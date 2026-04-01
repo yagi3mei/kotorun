@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>かなゲーム</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="menu">
+        <h1>かなゲーム</h1>
+
+        <button onclick="goGame('seion')">
+            せいおん<br>
+            <small>あ・い・う…わ・を・ん</small>
+        </button>
+
+        <button onclick="goGame('dakuon')">
+            だくおん・はんだくおん<br>
+            <small>が・ぎ・ぐ…ぱ・ぴ・ぷ…</small>
+        </button>
+
+        <button onclick="goGame('youon')">
+            ようおん<br>
+            <small>きゃ・きゅ・きょ…</small>
+        </button>
+    </div>
+
+    <script>
+    function goGame(type) {
+        location.href = "game.html?type=" + type;
+    }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>かなゲーム（清音）</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="header">
+        <div id="timer-display">0.00</div>
+        <div id="remaining-display">0</div>
+        <div id="miss-display">0</div>
+    </div>
+
+    <div id="romaji-display">Press Start</div>
+
+    <button id="start-btn">スタート</button>
+
+    <div class="card-container" id="card-container"></div>
+
+    <!-- ✅ 終了モーダル -->
+    <div id="result-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>クリア！</h2>
+            <p id="game-type-label"></p>
+            <p id="final-time"></p>
+            <p id="miss-result"></p>
+            <button onclick="restartGame()">もういちど</button>
+            <button onclick="goMenu()">メニューへ</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+
+</body>
+</html>
