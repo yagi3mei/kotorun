@@ -60,7 +60,7 @@ let missCount = 0;
 // =====================
 // 初期描画
 // =====================
-document.getElementById("remaining-display").textContent = "あと：-";
+document.getElementById("remaining-display").textContent = "のこり：-";
 document.getElementById("miss-display").textContent = "ミス：-";
 
 const container = document.getElementById("card-container");
@@ -101,11 +101,9 @@ function startGame() {
     document.getElementById("start-btn").style.display = "none";
     document.getElementById("card-container").classList.remove("disabled");
 
-    document.getElementById("remaining-display").textContent =
-    "あと：" + Object.keys(remaining).length;
+    document.getElementById("remaining-display").textContent = "のこり：" + Object.keys(remaining).length;
 
-    document.getElementById("miss-display").textContent =
-    "ミス：0";
+    document.getElementById("miss-display").textContent = "ミス：0";
 
     startTime = performance.now();
 
@@ -129,7 +127,10 @@ function handleClick(e) {
     const card = e.target;
 
     if (card.dataset.romaji === current) {
-        // 正解
+        // 正解時の動作
+        // // 🔊 正解音
+        // document.getElementById("sound-correct").play();
+        // カード消去
         card.style.visibility = "hidden";
         delete remaining[current];
 
@@ -143,18 +144,20 @@ function handleClick(e) {
         }
 
     } else {
-        // ❌ 不正解（ここ追加）
+        // ❌ ミス時の動作
+        // 🔊 ミス音
+        const wrongSound = document.getElementById("sound-wrong");
+        wrongSound.volume = 0.3; // 0〜1（0.3くらいがちょうどいい）
+        wrongSound.currentTime = 0; // 連続で鳴らすために再生位置をリセット
+        wrongSound.play();
+        //  画面シェイク
+        document.body.style.animation = "shake 0.2s";
+        setTimeout(() => document.body.style.animation = "", 200);
+        // ミス数インクリメント
         missCount++;
-
         document.getElementById("miss-display").textContent =
     "ミス：" + missCount;
 
-        // ★ちょっとした演出（おすすめ）
-        card.style.backgroundColor = "#ffcdd2";
-
-        setTimeout(() => {
-            card.style.backgroundColor = "#ffffff";
-        }, 200);
     }
 }
 
