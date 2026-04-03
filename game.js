@@ -103,6 +103,7 @@ let missCount = 0;
 // =====================
 // 初期描画
 // =====================
+document.getElementById("sound-btn").disabled = true;   // 🔊 音声再生ボタンは最初は無効化
 document.getElementById("remaining-display").textContent = "のこり：-";
 document.getElementById("miss-display").textContent = "ミス：-";
 
@@ -129,6 +130,7 @@ QUESTIONS.forEach(q => {
 // スタート
 // =====================
 document.getElementById("start-btn").addEventListener("click", startGame);
+document.getElementById("sound-btn").disabled = false;  // 🔊 音声再生ボタンを有効化
 
 function startGame() {
     remaining = {};
@@ -142,6 +144,7 @@ function startGame() {
     updateRemainingDisplay();
 
     document.getElementById("start-btn").style.display = "none";
+    document.getElementById("back-btn").style.display = "none";
     document.getElementById("card-container").classList.remove("disabled");
 
     document.getElementById("remaining-display").textContent = "のこり：" + Object.keys(remaining).length;
@@ -159,12 +162,45 @@ function startGame() {
 }
 
 // =====================
+// 次の問題をランダムに選んで音声と表示をする
+// ===================== 
 function nextQuestion() {
     const keys = Object.keys(remaining);
     current = keys[Math.floor(Math.random() * keys.length)];
+
+    // 🔊 前の音を止める
+    speechSynthesis.cancel();
+    // 🔊 音声
+    const kana = remaining[current];
+    const utter = new SpeechSynthesisUtterance(kana);
+    utter.lang = "ja-JP";
+    utter.rate = 0.8;
+    speechSynthesis.speak(utter);
+    // 文字表示
     document.getElementById("romaji-display").textContent = current;
 }
 
+// =====================
+// 音声再生ボタンの動作
+// =====================
+function playSound() {
+    if (!current) return;
+
+    const kana = remaining[current];
+
+    speechSynthesis.cancel();
+
+    const utter = new SpeechSynthesisUtterance(kana);
+    utter.lang = "ja-JP";
+    utter.rate = 0.8;
+
+    speechSynthesis.speak(utter);
+}
+
+document.getElementById("sound-btn").addEventListener("click", playSound);
+
+// =====================
+// カードクリックの動作
 // =====================
 function handleClick(e) {
     const card = e.target;
@@ -203,6 +239,8 @@ function handleClick(e) {
     }
 }
 
+// =====================
+// ゲーム終了
 // =====================
 function endGame() {
     clearInterval(timerInterval);
