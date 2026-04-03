@@ -207,13 +207,15 @@ function handleClick(e) {
 function endGame() {
     clearInterval(timerInterval);
 
+    const now = new Date();
+    const dateStr = now.toLocaleString();
     const time = ((performance.now() - startTime) / 1000).toFixed(2);
 
-    document.getElementById("final-time").textContent = time + " 秒";
-    document.getElementById("miss-result").textContent =
-    "ミス：" + missCount + " 回";
-    document.getElementById("game-type-label").textContent =
-        "モード：" + getGameLabel(gameType);
+    document.getElementById("game-type-label").textContent = getGameLabel(gameType);   // 結果モーダルにゲームモードを表示
+    // document.getElementById("game-type-label").textContent = "モード：" + getGameLabel(gameType);   // 結果モーダルにゲームモードを表示
+    document.getElementById("date-time").textContent = dateStr;     // 結果モーダルに日時を表示
+    document.getElementById("final-time").textContent = time + " 秒";   // 結果モーダルにタイムを表示
+    document.getElementById("miss-result").textContent = "ミス：" + missCount + " 回";  // 結果モーダルにミス数を表示
     document.getElementById("result-modal").classList.remove("hidden");
 }
 

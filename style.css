@@ -124,7 +124,7 @@ body {
     display: none;
 }
 
-/* モーダル本体（←ここ大幅改善） */
+/* モーダル本体 */
 .modal-content {
     background: #FFB728;
     padding: 30px;
@@ -132,7 +132,7 @@ body {
     border: 5px solid #B67A20;
 
     width: 80vw;       /* ← スマホ対応 */
-    max-width: 400px;
+    max-width: 600px;
 
     text-align: center;
 }
