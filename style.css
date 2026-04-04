@@ -19,7 +19,7 @@ body {
    問題（主役）
 ===================== */
 #romaji-display {
-    font-size: 10vw;
+    font-size: 8vw;
     font-weight: bold;
     color: #d32f2f;
     margin: 10px 0;
@@ -78,7 +78,7 @@ body {
     flex: 1;
     max-width: 300px;
     padding: 12px;
-    font-size: 5vw;
+    font-size: 4vw;
 }
 
 /* 個別指定は最小限に */
@@ -133,8 +133,7 @@ body {
 
     cursor: pointer;
     transition: transform 0.1s, box-shadow 0.1s;
-
-    font-size: min(6vw, 5vh);
+    font-size: 5vw;
     font-weight: bold;
 }
 
