@@ -19,7 +19,7 @@ body {
    問題（主役）
 ===================== */
 #romaji-display {
-    font-size: min(10vw, 40px);
+    font-size: 10vw;
     font-weight: bold;
     color: #d32f2f;
     margin: 10px 0;
@@ -31,7 +31,7 @@ body {
 #timer-display,
 #remaining-display,
 #miss-display {
-    font-size: min(5vw, 24px);
+    font-size: 5vw;
     font-weight: bold;
 }
 
@@ -53,7 +53,7 @@ body {
 }
 
 #sound-btn {
-    font-size: min(6vw, 30px);
+    font-size: 6vw;
     background: none;
     border: none;
     cursor: pointer;
@@ -78,7 +78,7 @@ body {
     flex: 1;
     max-width: 300px;
     padding: 12px;
-    font-size: min(5vw, 20px);
+    font-size: 5vw;
 }
 
 /* 個別指定は最小限に */
@@ -191,12 +191,12 @@ body {
 
 /* モーダル文字サイズUP */
 .modal-content h2 {
-    font-size: min(6vw, 32px);
+    font-size: 6vw;
     color: #4A2800;
 }
 
 .modal-content p {
-    font-size: min(5vw, 20px);
+    font-size: 5vw;
     color: #4A2800;
 }
 
@@ -204,7 +204,7 @@ body {
 .modal-content button {
     margin: 10px;
     padding: 12px 20px;
-    font-size: min(4.5vw, 18px);
+    font-size: 4.5vw;
     background: #B67A20;
     color: white;
     border: none;
@@ -257,9 +257,43 @@ body {
    メディアクエリ（画面幅768px以上でレイアウト調整）
 ===================== */
 @media (min-width: 768px) {
+    #romaji-display {
+        font-size: 48px;
+    }
+
+    #timer-display,
+    #miss-display,
+    #remaining-display {
+        font-size: 24px;
+    }
+
+    #sound-btn {
+    font-size: min(6vw, 30px);
+    }
+
+    .button-area button {
+        font-size: 18px;
+    }
+
+    .modal-content h2 {
+        font-size: 32px;
+    }
+
+    .modal-content p {
+        font-size: 22px;
+    }
+
+    .modal-content button {
+        font-size: 18px;
+    }
+
+    .card-custom {
+        font-size: 28px;
+    }
+
     .card-container {
         width: 80vw;
-        height: 65vh;
+        height: 70vh;
     }
 
     .menu {
