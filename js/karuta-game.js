@@ -27,7 +27,7 @@ function loadQuestion() {
     card.className = "card";
 
     const img = document.createElement("img");
-    img.src = `../images/${item.img}`;
+    img.src = `images/${item.img}`;
 
     const label = document.createElement("div");
     label.className = "card-label";
