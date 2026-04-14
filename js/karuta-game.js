@@ -85,7 +85,7 @@ function checkAnswer(selected, card) {
   if (selected.id === correctAnswer.id) {
     // 正解
     const sound = new Audio("sounds/correct.mp3");
-    sound.volume = 0.3;  // 0.0〜1.0
+    sound.volume = 0.6;  // 0.0〜1.0
     sound.play();
 
     questionCount++;
@@ -97,7 +97,7 @@ function checkAnswer(selected, card) {
   } else {
     // 不正解
     const sound = new Audio("sounds/wrong.mp3");
-    sound.volume = 0.3;
+    sound.volume = 0.6;
     sound.play();
 
     missCount++;
