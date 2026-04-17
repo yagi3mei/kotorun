@@ -253,8 +253,31 @@ body {
 }
 
 /* =====================
-   かるたゲーム追加用のcss 2026/4/9
+   かるたゲーム追加用のcss
 ===================== */
+.kana-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  width: 90vw;
+  margin: 20px auto;
+}
+
+.kana-tile {
+  background: white;
+  padding: 20px;
+  font-size: 6vw;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+}
+
+.kana-tile.disabled {
+  background: #ccc;
+  color: #888;
+  pointer-events: none;
+}
+
 .menu-btn {
   display: block;
   margin: 20px auto;
@@ -268,10 +291,11 @@ body {
 
 #cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4vw;
-  padding: 2vw;
-  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  width: 90vw;
+  max-width: 800px;
+  margin: 30px auto;
 }
 
 .card {
@@ -356,4 +380,14 @@ body {
     .menu {
         gap: 10px;
     }
+
+    /* #cards {
+        grid-template-columns: repeat(3, 200px);
+        gap: 20px;
+    }
+
+    .card {
+        width: 200px;
+        height: 200px;
+    } */
 }
