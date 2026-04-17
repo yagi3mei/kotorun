@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>かるた一覧</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h1>もじをえらんでください</h1>
+
+<div id="kana-grid" class="kana-grid"></div>
+
+<div class="button-area">
+  <button onclick="goBack()">もどる</button>
+</div>
+
+<script type="module">
+import list from "./data/list.js";
+
+const params = new URLSearchParams(window.location.search);
+const type = params.get("type") || "hira";     // hira / kata
+const group = params.get("group") || "seion"; // seion / dakuon など
+
+// 対象データ取得
+const available = list[type][group];
+
+// かな配列（今は清音のみ）
+const kanaList = [
+  { kana: "あ", key: "a" },
+  { kana: "い", key: "i" },
+  { kana: "う", key: "u" },
+  { kana: "え", key: "e" },
+  { kana: "お", key: "o" }
+];
+
+const grid = document.getElementById("kana-grid");
+
+kanaList.forEach(item => {
+  const btn = document.createElement("div");
+  btn.className = "kana-tile";
+  btn.textContent = item.kana;
+
+  // 🔥 ファイル名と一致させる
+  const fileKey = `${type}_${item.key}`;
+
+  if (available.includes(item.key)) {
+    btn.onclick = () => {
+      location.href = `karuta-game.html?type=${type}&kana=${item.key}`;
+    };
+  } else {
+    btn.classList.add("disabled");
+  }
+
+  grid.appendChild(btn);
+});
+
+// 戻る
+window.goBack = function () {
+  history.back();
+};
+</script>
+
+</body>
+</html>

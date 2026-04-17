@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>かるたゲーム選択</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="menu">
+  <h1>かるたゲーム</h1>
+
+  <button onclick="go('hira', 'seion')">
+    ひらがな（せいおん）
+  </button>
+
+  <button onclick="go('hira', 'dakuon')">
+    ひらがな（だくおん）
+  </button>
+
+  <button onclick="goList('katakana')">
+    カタカナ
+  </button>
+
+  <button onclick="goBack()">もどる</button>
+</div>
+
+<script>
+function go(type, group) {
+  location.href = `karuta-list.html?type=${type}&group=${group}`;
+}
+
+function goBack(){
+  location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
