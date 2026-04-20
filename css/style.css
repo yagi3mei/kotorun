@@ -328,6 +328,11 @@ body {
   font-size: 20px;
   font-weight: bold;
   color: red;
+
+  white-space: nowrap;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .correct {
@@ -381,13 +386,4 @@ body {
         gap: 10px;
     }
 
-    /* #cards {
-        grid-template-columns: repeat(3, 200px);
-        gap: 20px;
-    }
-
-    .card {
-        width: 200px;
-        height: 200px;
-    } */
 }

@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>かるたゲーム選択</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -11,18 +12,32 @@
   <h1>かるたゲーム</h1>
 
   <button onclick="go('hira', 'seion')">
-    ひらがな（せいおん）
+    ひらがな（せいおん）<br>
+    <small>あ・い・う…</small>
   </button>
 
   <button onclick="go('hira', 'dakuon')">
-    ひらがな（だくおん）
+    ひらがな（だくおん）<br>
+    <small>が・ぎ・ぐ…</small>
   </button>
 
   <button onclick="goList('katakana')">
-    カタカナ
+    カタカナ<br>
+    <small>ア・イ・ウ…</small>
   </button>
 
-  <button onclick="goBack()">もどる</button>
+  <!-- もどるボタンも統一 -->
+  <div class="button-area">
+    <button onclick="goBack()">もどる</button>
+  </div>
+
+  <!-- 説明文 -->
+  <small>
+    ことばを れんしゅうします。<br>
+    えが ある ことばだけです。<br>
+    まちがえると ★が でます。<br>
+    もじを えらんでください。
+  </small>
 </div>
 
 <script>

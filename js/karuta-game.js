@@ -20,7 +20,7 @@ function shuffle(array) {
 // 問題生成
 function loadQuestion() {
   // 5問終了チェック
-  if (questionCount >= 5) {
+  if (questionCount >= data.length) {
     showResult();
     return;
   }
@@ -36,15 +36,16 @@ function loadQuestion() {
   
   // 正解選択（未出題から）
   correctAnswer = remaining[Math.floor(Math.random() * remaining.length)];
-
+  
   // 履歴に追加
   usedQuestions.push(correctAnswer.id);
 
   document.getElementById("romaji-display").textContent = correctAnswer.romaji;
 
   // カードは全データから5枚（ここ重要）
-  const shuffled = shuffle([...data]);
-  const selected = shuffled.slice(0, 5);
+  // const shuffled = shuffle([...data]);
+  // const selected = shuffled.slice(0, 5);
+  const selected = shuffle([...data]);
 
   const cardsDiv = document.getElementById("cards");
   cardsDiv.innerHTML = "";

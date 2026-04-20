@@ -1,6 +1,6 @@
 export default {
   hira: {
-    seion: ["a"],
+    seion: ["a", "i"],
     dakuon: [],
     youon: []
   },
