@@ -266,7 +266,11 @@ body {
 
 .kana-tile {
     background: white;
-    font-size: 6vw;
+    font-size: min(6vw, 28px);
+    white-space: normal;       /* 改行OK */
+    word-break: break-all;     /* 長い単語も分割 */
+    text-align: center;
+    
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 3px 5px rgba(0,0,0,0.3);
