@@ -268,11 +268,6 @@ body {
     background: white;
     font-size: min(5vw, 22px);
 
-    white-space: normal !important;
-    word-break: break-all;
-    overflow: visible !important;
-    text-overflow: clip !important;
-
     text-align: center;
 
     border-radius: 10px;
@@ -283,8 +278,8 @@ body {
     justify-content: center;
     align-items: center;
 
-    padding: 5px;           /* ← これ地味に効く */
-    line-height: 1.2;       /* ← 改行時の見やすさ */
+    padding: 5px;
+    line-height: 1.2;
 }
 
 .kana-tile.disabled {
