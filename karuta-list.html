@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>かるた一覧</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -9,11 +10,12 @@
 
 <h1>もじをえらんでください</h1>
 
-<div id="kana-grid" class="kana-grid"></div>
-
 <div class="button-area">
   <button onclick="goBack()">もどる</button>
 </div>
+
+<div id="kana-grid" class="kana-grid"></div>
+
 
 <script type="module">
 import list from "./data/list.js";
@@ -27,11 +29,16 @@ const available = list[type][group];
 
 // かな配列（今は清音のみ）
 const kanaList = [
-  { kana: "あ", key: "a" },
-  { kana: "い", key: "i" },
-  { kana: "う", key: "u" },
-  { kana: "え", key: "e" },
-  { kana: "お", key: "o" }
+  { kana: "あ", key: "a" }, { kana: "い", key: "i" }, { kana: "う", key: "u" }, { kana: "え", key: "e" }, { kana: "お", key: "o" },
+  { kana: "か", key: "ka" }, { kana: "き", key: "ki" }, { kana: "く", key: "ku" }, { kana: "け", key: "ke" }, { kana: "こ", key: "ko" },
+  { kana: "さ", key: "sa" }, { kana: "し", key: "shi" }, { kana: "す", key: "su" }, { kana: "せ", key: "se" }, { kana: "そ", key: "so" },
+  { kana: "た", key: "ta" }, { kana: "ち", key: "chi" }, { kana: "つ", key: "tsu" }, { kana: "て", key: "te" }, { kana: "と", key: "to" },
+  { kana: "な", key: "na" }, { kana: "に", key: "ni" }, { kana: "ぬ", key: "nu" }, { kana: "ね", key: "ne" }, { kana: "の", key: "no" },
+  { kana: "は", key: "ha" }, { kana: "ひ", key: "hi" }, { kana: "ふ", key: "fu" }, { kana: "へ", key: "he" }, { kana: "ほ", key: "ho" },
+  { kana: "ま", key: "ma" }, { kana: "み", key: "mi" }, { kana: "む", key: "mu" }, { kana: "め", key: "me" }, { kana: "も", key: "mo" },
+  { kana: "や", key: "ya" }, { kana: "", key: "" }, { kana: "ゆ", key: "yu" }, { kana: "", key: "" }, { kana: "よ", key: "yo" },
+  { kana: "ら", key: "ra" }, { kana: "り", key: "ri" }, { kana: "る", key: "ru" }, { kana: "れ", key: "re" }, { kana: "ろ", key: "ro" },
+  { kana: "わ", key: "wa" }, { kana: "", key: "" }, { kana: "を", key: "wo" }, { kana: "", key: "" }, { kana: "ん", key: "n" }
 ];
 
 const grid = document.getElementById("kana-grid");

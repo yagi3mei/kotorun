@@ -3,6 +3,15 @@ const type = params.get("type") || "hira";
 const kana = params.get("kana") || "a";
 const module = await import(`../data/${type}_${kana}.js`);
 const data = module.default;
+const kanaLabelMap = {
+  a: "あ", i: "い", u: "う", e: "え", o: "お",
+  ka: "か", ki: "き", ku: "く", ke: "け", ko: "こ",
+  sa: "さ", shi: "し", su: "す", se: "せ", so: "そ"
+  // 必要に応じて追加
+};
+
+const kanaDisplay = kanaLabelMap[kana] || kana;
+const typeDisplay = type === "hira" ? "ひらがな" : "カタカナ";
 
 let questionCount = 0;
 let missCount = 0;
@@ -43,8 +52,6 @@ function loadQuestion() {
   document.getElementById("romaji-display").textContent = correctAnswer.romaji;
 
   // カードは全データから5枚（ここ重要）
-  // const shuffled = shuffle([...data]);
-  // const selected = shuffled.slice(0, 5);
   const selected = shuffle([...data]);
 
   const cardsDiv = document.getElementById("cards");
@@ -137,6 +144,7 @@ function showResult() {
 
   const resultText = `
     実施日時：${dateStr}<br><br>
+    【${typeDisplay}　${kanaDisplay}】<br>
     時間：${time}秒<br>
     ミス★：${missCount}回<br><br>
     ＜今回の単語＞<br>
