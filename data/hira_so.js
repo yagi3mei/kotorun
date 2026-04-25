@@ -17,15 +17,15 @@ export default [
     img: "sokutatsu_mail.png",
     lesson: 11
   },
-  {
-    id: "soko_there",
-    word: "そこ",
-    kana: "ソコ",
-    romaji: "so ko",
-    sentence: "かばんは そこです",
-    img: "soko_there.png",
-    lesson: 3
-  },
+  // {
+  //   id: "soko_there",
+  //   word: "そこ",
+  //   kana: "ソコ",
+  //   romaji: "so ko",
+  //   sentence: "かばんは そこです",
+  //   img: "soko_there.png",
+  //   lesson: 3
+  // },
   {
     id: "soto_outside",
     word: "そと",
@@ -35,13 +35,13 @@ export default [
     img: "soto_outside.png",
     lesson: 10
   },
-  {
-    id: "sore_that",
-    word: "それ",
-    kana: "ソレ",
-    romaji: "so re",
-    sentence: "それは わたしの ほんです",
-    img: "sore_that.png",
-    lesson: 2
-  }
+  // {
+  //   id: "sore_that",
+  //   word: "それ",
+  //   kana: "ソレ",
+  //   romaji: "so re",
+  //   sentence: "それは わたしの ほんです",
+  //   img: "sore_that.png",
+  //   lesson: 2
+  // }
 ];

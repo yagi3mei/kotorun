@@ -31,7 +31,7 @@ export default [
     word: "いしゃ",
     kana: "イシャ",
     romaji: "i sha",
-    sentence: "ちちは いしゃです",
+    sentence: "ちちわ いしゃです",
     img: "isha_doctor.png",
     lesson: 1
   },
