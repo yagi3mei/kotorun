@@ -6,6 +6,15 @@ const modeLabel=mode==="inner" ? "うちの（わたしの）" : "ともだち�
 
 document.getElementById("family-mode-label").textContent=modeLabel;
 
+const centerLabel =
+        mode === "inner"
+            ? "わたし"
+            : "ともだち";
+
+    document.getElementById(
+        "family-center"
+    ).textContent = centerLabel;
+
 const module=
     await import(
         mode==="inner"
