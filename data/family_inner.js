@@ -4,7 +4,7 @@ export default [
   word: "そふ",
   kana: "ソフ",
   romaji: "so fu",
-  sentence: "うちの そふ です",
+  sentence: "うちの 祖父 です",
   img: "sofu.png",
   lesson: 41
 },
@@ -31,7 +31,7 @@ export default [
   word: "はは",
   kana: "ハハ",
   romaji: "ha ha",
-  sentence: "うちの はは です",
+  sentence: "うちの 母 です",
   img: "haha.png",
   lesson: 7
 },
