@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>かぞく かるた</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="header">
+
+        <header class="top-header">
+            <a href="index.html">
+                <img src="images/kotorun-logo.png" class="app-logo" alt="ことラン">
+            </a>
+        </header>
+
+        <button id="back-btn"
+            onclick="goBack()">
+            もどる
+        </button>
+
+    </div>
+
+    <div class="menu">
+
+        <h1>かぞくを えらんでね</h1>
+
+        <button onclick="goFamily('inner')">
+            うちの（わたしの） かぞく<br>
+            <small>ちち・はは…</small>
+        </button>
+
+        <button onclick="goFamily('outer')">
+            ともだちの かぞく<br>
+            <small>おとうさん・おかあさん…</small>
+        </button>
+    </div>
+
+    <script>
+
+        function goFamily(mode){
+        location.href=
+        `family-game.html?mode=${mode}`;
+        }
+
+        function goBack(){
+        location.href="karuta-index.html";
+        }
+
+    </script>
+
+</body>
+</html>

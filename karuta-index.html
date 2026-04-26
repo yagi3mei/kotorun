@@ -36,7 +36,12 @@
       <small>ア・イ・ウ…</small>
     </button>
 
-    <!-- もどるボタンも統一 -->
+    <button onclick="goFamily()">
+      かぞく<br>
+      <small>ちち・はは…</small>
+    </button>
+
+    <!-- もどるボタン -->
     <div class="button-area">
       <button onclick="goBack()">もどる</button>
     </div>
@@ -54,6 +59,10 @@
   <script>
     function go(type, group) {
       location.href = `karuta-list.html?type=${type}&group=${group}`;
+    }
+
+    function goFamily(){
+      location.href="family-index.html";
     }
 
     function goBack(){

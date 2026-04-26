@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+    <title>かぞくゲーム</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="header">
+
+        <header class="top-header">
+            <a href="index.html">
+                <img src="images/kotorun-logo.png" class="app-logo" alt="ことラン">
+            </a>
+        </header>
+
+        <div id="timer-display">0.00</div>
+        <div id="remaining-display">0</div>
+        <div id="miss-display">0</div>
+
+    </div>
+
+
+    <div class="question-area">
+        <div id="romaji-display">もんだい</div>
+        <button id="sound-btn">🔊</button>
+    </div>
+
+    <div id="family-mode-label"
+        class="family-mode-label">
+        うちの
+    </div>
+
+    <!-- 家系図 -->
+    <div id="family-board" class="family-board">
+
+        <div id="sofu" class="family-card"></div>
+        <div id="sobo" class="family-card"></div>
+
+        <div id="chichi" class="family-card"></div>
+        <div id="haha" class="family-card"></div>
+
+        <div id="ani" class="family-card"></div>
+        <div id="ane" class="family-card"></div>
+
+        <div id="watashi" class="family-center">わたし</div>
+
+        <div id="otouto" class="family-card"></div>
+        <div id="imouto" class="family-card"></div>
+
+    </div>
+
+    <div class="button-area">
+        <button id="back-btn" onclick="goBack()">
+        もどる
+        </button>
+    </div>
+
+    
+    <!-- 結果モーダル -->
+    <div id="result-modal" class="modal hidden">
+        <div class="modal-content">
+
+            <h2>かぞくゲーム けっか</h2>
+
+            <p id="result-text"></p>
+
+            <button onclick="restartGame()">
+            もういちど
+            </button>
+
+            <button onclick="goBack()">
+            もどる
+            </button>
+
+        </div>
+    </div>
+
+
+    <script type="module" src="js/family-game.js"></script>
+
+</body>
+</html>
