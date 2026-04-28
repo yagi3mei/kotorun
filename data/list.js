@@ -5,6 +5,8 @@ export default {
       "ka", "ki", "ku", "ke", "ko",
       "sa", "shi", "su", "se", "so",
       "ta", "chi", "tsu", "te", "to",
+      "na", "ni", "", "ne", "no",
+      "ha", "hi", "fu", "he", "ho",
     ],
     dakuon: [],
     youon: []
