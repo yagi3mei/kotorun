@@ -1,54 +1,56 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>かるたゲーム</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>かるたゲーム</title>
+    <!-- 共通 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <!-- ゲーム系 -->
+    <link rel="stylesheet" href="css/game.css">
+    <!-- ページ専用 -->
+    <link rel="stylesheet" href="css/karuta.css">
 </head>
 <body>
 
-  <div class="header">
-      <!-- ロゴ -->
-      <header class="top-header">
-          <a href="index.html">
-              <img src="images/kotorun-logo.png"
-                  alt="ことラン"
-                  class="app-logo">
-          </a>
-      </header>
-      <div id="timer-display">0.00</div>
-      <div id="remaining-display">0</div>
-      <div id="miss-display">0</div>
-  </div>
-
-  <div class="question-area">
-      <div id="romaji-display">もんだい</div>
-      <button id="sound-btn">🔊</button>
-  </div>
-  <!-- <div class="question-area">
-    <p id="romaji-display">loading...</p>
-    <button id="sound-btn" onclick="playAudio()">🔊</button>
-  </div> -->
-
-  <div id="cards"></div>
-
-  <div class="button-area">
-    <button onclick="goBack()">もどる</button>
-  </div>
-
-  <script type="module" src="js/karuta-game.js"></script>
-
-  <!-- モーダル -->
-  <div id="result-modal" class="modal hidden">
-    <div class="modal-content">
-      <h2>かるたゲーム　けっか</h2>
-      <p id="result-text"></p>
-
-      <button onclick="restartGame()">もういちど</button>
-      <button onclick="goBack()">もどる</button>
+    <div class="header">
+          <!-- ロゴ -->
+          <header class="top-header">
+              <a href="index.html">
+                  <img src="images/kotorun-logo.png"
+                      alt="ことラン"
+                      class="app-logo">
+              </a>
+          </header>
+          <div id="timer-display">0.00</div>
+          <div id="remaining-display">0</div>
+          <div id="miss-display">0</div>
     </div>
-  </div>
+
+    <div class="question-area">
+          <div id="romaji-display">もんだい</div>
+          <button id="sound-btn">🔊</button>
+    </div>
+
+    <div id="cards"></div>
+
+    <div class="button-area">
+        <button onclick="goBack()">もどる</button>
+    </div>
+
+    <script type="module" src="js/karuta-game.js"></script>
+
+    <!-- モーダル -->
+    <div id="result-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>かるたゲーム　けっか</h2>
+            <p id="result-text"></p>
+
+            <button onclick="restartGame()">もういちど</button>
+            <button onclick="goBack()">もどる</button>
+        </div>
+    </div>
 
 </body>
 </html>
