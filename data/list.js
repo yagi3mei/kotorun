@@ -6,7 +6,8 @@ export default {
       "sa", "shi", "su", "se", "so",
       "ta", "chi", "tsu", "te", "to",
       "na", "ni", "", "ne", "no",
-      "ha", "hi", "fu", "he", "ho",
+      "ha", "hi", "fu", "", "ho",
+      "ma", "mi", "", "me", "mo",
     ],
     dakuon: [],
     youon: []
