@@ -72,6 +72,9 @@
     height: 75vh;
     margin: 4px auto;
     gap: 6px;
+
+    /* 小さい画面でもスクロールで表示（保険のため） */
+    overflow-y: auto;
 }
 
 /* ゲーム開始前の無効状態 */

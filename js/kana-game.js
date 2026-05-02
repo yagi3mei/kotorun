@@ -158,7 +158,7 @@ function startGame() {
     updateRemainingDisplay();
 
     document.getElementById("start-btn").style.display = "none";
-    document.getElementById("back-btn").style.display = "none";
+    // document.getElementById("back-btn").style.display = "none";
     document.getElementById("card-container").classList.remove("disabled");
 
     document.getElementById("remaining-display").textContent = "のこり：" + Object.keys(remaining).length;
