@@ -1,3 +1,17 @@
+<!-- =========================================
+     File: karuta-list.html
+     Purpose: かるたゲームで使用する文字（かな）を選択する画面
+     Author: やぎさん
+     Created: 2026-04-09
+     Updated: 2026-04-30：css分割
+
+     Notes:
+     - 各ゲームモード（ひらがな・カタカナ）の文字を選択する画面
+     - URLパラメータ（type, group）を受け取り、表示内容を切り替える
+     - 選択した文字（kana）をURLパラメータとして次画面へ渡す
+     - 共通スタイルは common.css / layout.css を使用
+     - ページ専用スタイルは kana.css を使用
+========================================= -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -30,60 +44,62 @@
     <div id="kana-grid" class="kana-grid"></div>
 
     <script type="module">
-    import list from "./data/list.js";
+        // 学習対象データ（使用可能なかな一覧）
+        import list from "./data/list.js";
 
-    const params = new URLSearchParams(window.location.search);
-    const type = params.get("type") || "hira";
-    const group = params.get("group") || "seion";
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get("type") || "hira";
+        const group = params.get("group") || "seion";
 
-    // 対象データ取得
-    const available = list[type][group];
+        // 対象データ取得
+        const available = list[type][group];
 
-    // かな配列
-    const kanaList = [
-        { kana: "あ", key: "a" }, { kana: "い", key: "i" }, { kana: "う", key: "u" }, { kana: "え", key: "e" }, { kana: "お", key: "o" },
-        { kana: "か", key: "ka" }, { kana: "き", key: "ki" }, { kana: "く", key: "ku" }, { kana: "け", key: "ke" }, { kana: "こ", key: "ko" },
-        { kana: "さ", key: "sa" }, { kana: "し", key: "shi" }, { kana: "す", key: "su" }, { kana: "せ", key: "se" }, { kana: "そ", key: "so" },
-        { kana: "た", key: "ta" }, { kana: "ち", key: "chi" }, { kana: "つ", key: "tsu" }, { kana: "て", key: "te" }, { kana: "と", key: "to" },
-        { kana: "な", key: "na" }, { kana: "に", key: "ni" }, { kana: "ぬ", key: "nu" }, { kana: "ね", key: "ne" }, { kana: "の", key: "no" },
-        { kana: "は", key: "ha" }, { kana: "ひ", key: "hi" }, { kana: "ふ", key: "fu" }, { kana: "へ", key: "he" }, { kana: "ほ", key: "ho" },
-        { kana: "ま", key: "ma" }, { kana: "み", key: "mi" }, { kana: "む", key: "mu" }, { kana: "め", key: "me" }, { kana: "も", key: "mo" },
-        { kana: "や", key: "ya" }, { kana: "", key: "" }, { kana: "ゆ", key: "yu" }, { kana: "", key: "" }, { kana: "よ", key: "yo" },
-        { kana: "ら", key: "ra" }, { kana: "り", key: "ri" }, { kana: "る", key: "ru" }, { kana: "れ", key: "re" }, { kana: "ろ", key: "ro" },
-        { kana: "わ", key: "wa" }, { kana: "", key: "" }, { kana: "を", key: "wo" }, { kana: "", key: "" }, { kana: "ん", key: "n" }
-    ];
+        // かな配列
+        const kanaList = [
+            { kana: "あ", key: "a" }, { kana: "い", key: "i" }, { kana: "う", key: "u" }, { kana: "え", key: "e" }, { kana: "お", key: "o" },
+            { kana: "か", key: "ka" }, { kana: "き", key: "ki" }, { kana: "く", key: "ku" }, { kana: "け", key: "ke" }, { kana: "こ", key: "ko" },
+            { kana: "さ", key: "sa" }, { kana: "し", key: "shi" }, { kana: "す", key: "su" }, { kana: "せ", key: "se" }, { kana: "そ", key: "so" },
+            { kana: "た", key: "ta" }, { kana: "ち", key: "chi" }, { kana: "つ", key: "tsu" }, { kana: "て", key: "te" }, { kana: "と", key: "to" },
+            { kana: "な", key: "na" }, { kana: "に", key: "ni" }, { kana: "ぬ", key: "nu" }, { kana: "ね", key: "ne" }, { kana: "の", key: "no" },
+            { kana: "は", key: "ha" }, { kana: "ひ", key: "hi" }, { kana: "ふ", key: "fu" }, { kana: "へ", key: "he" }, { kana: "ほ", key: "ho" },
+            { kana: "ま", key: "ma" }, { kana: "み", key: "mi" }, { kana: "む", key: "mu" }, { kana: "め", key: "me" }, { kana: "も", key: "mo" },
+            { kana: "や", key: "ya" }, { kana: "", key: "" }, { kana: "ゆ", key: "yu" }, { kana: "", key: "" }, { kana: "よ", key: "yo" },
+            { kana: "ら", key: "ra" }, { kana: "り", key: "ri" }, { kana: "る", key: "ru" }, { kana: "れ", key: "re" }, { kana: "ろ", key: "ro" },
+            { kana: "わ", key: "wa" }, { kana: "", key: "" }, { kana: "を", key: "wo" }, { kana: "", key: "" }, { kana: "ん", key: "n" }
+        ];
 
-    const grid = document.getElementById("kana-grid");
+        const grid = document.getElementById("kana-grid");
 
-    kanaList.forEach(item => {
-        const btn = document.createElement("div");
-        btn.className = "kana-tile";
+        // かなタイルを動的生成
+        kanaList.forEach(item => {
+            const btn = document.createElement("div");
+            btn.className = "kana-tile";
 
-        // 空マス処理
-        if (!item.key) {
-            btn.classList.add("empty");
+            // 五十音のレイアウト維持のための空マス（クリック不可）
+            if (!item.key) {
+                btn.classList.add("empty");
+                grid.appendChild(btn);
+                return;
+            }
+
+            btn.textContent = item.kana;
+
+            // 学習対象に含まれる文字のみクリック可能にする
+            if (available.includes(item.key)) {
+                btn.onclick = () => {
+                    location.href = `karuta-game.html?type=${type}&kana=${item.key}`;
+                };
+            } else {
+                btn.classList.add("disabled");
+            }
+
             grid.appendChild(btn);
-            return;
-        }
+        });
 
-        btn.textContent = item.kana;
-
-        // 利用可能チェック
-        if (available.includes(item.key)) {
-            btn.onclick = () => {
-                location.href = `karuta-game.html?type=${type}&kana=${item.key}`;
-            };
-        } else {
-            btn.classList.add("disabled");
-        }
-
-        grid.appendChild(btn);
-    });
-
-    // 戻る
-    window.goBack = function () {
-        history.back();
-    };
+        // 前の画面に戻る（履歴ベース）
+        window.goBack = function () {
+            history.back();
+        };
     </script>
 
 </body>

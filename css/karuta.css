@@ -1,9 +1,26 @@
+/* =========================================
+   File: karuta.css
+   Purpose: かるたゲーム画面専用スタイル（カード表示・ラベル）
+   Author: やぎさん
+   Created: 2026-04-30：style.css から分割
+   Updated: （なし）
+
+   Notes:
+    - 共通スタイルは common.css / layout.css を使用
+    - ゲームUIは game.css に分離
+    - かるたカード（画像＋単語ラベル）の表示スタイルを定義
+    - レスポンシブ対応でカードサイズを自動調整
+========================================= */
+
 /* =====================
    かるたカード一覧
 ===================== */
 #cards {
     display: grid;
+
+    /* 画面幅に応じてカード数を自動調整 */
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    
     gap: 20px;
     width: 90vw;
     max-width: 800px;
@@ -45,6 +62,8 @@
 
     white-space: nowrap;
     max-width: 90%;
-    overflow: visible;      /* ← はみ出しOK */
-    text-overflow: clip;    /* ← …を出さない */
+
+    /* ラベルが長い場合でも省略せず表示する */
+    overflow: visible;
+    text-overflow: clip;
 }

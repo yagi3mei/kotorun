@@ -1,4 +1,18 @@
-// ひらがな清音の配列
+// =========================================
+//      File: kana-game.js
+//      Purpose: かなゲームのゲーム画面
+//      Author: やぎさん
+//      Created: 2026-04-01
+//      Updated: 2026-04-30: CSSファイル分割に伴う読み込み構造の変更
+//
+//      Notes:
+//      - かなゲームの共通JavaScriptファイル
+//      - kana-index.htmlからゲームタイプをURLパラメータで受け取って、ゲームの内容を切り替える
+//      - ゲームのロジック（問題選択、入力判定、タイマー、ミスカウントなど）を実装
+// ========================================= 
+
+// ひらがな清音の配列（5列グリッド用に空文字を含む）
+// 空文字はレイアウト調整用（クリック不可）
 const SEION = [
     { kana_char: "あ", romaji: "a" }, { kana_char: "い", romaji: "i" }, { kana_char: "う", romaji: "u" }, { kana_char: "え", romaji: "e" }, { kana_char: "お", romaji: "o" },
     { kana_char: "か", romaji: "ka" }, { kana_char: "き", romaji: "ki" }, { kana_char: "く", romaji: "ku" }, { kana_char: "け", romaji: "ke" }, { kana_char: "こ", romaji: "ko" },
@@ -162,7 +176,7 @@ function startGame() {
 }
 
 // =====================
-// 次の問題をランダムに選んで音声と表示をする
+// 次の問題をランダムに選択し、音声再生＋ローマ字表示を更新
 // ===================== 
 function nextQuestion() {
     const keys = Object.keys(remaining);
@@ -200,7 +214,7 @@ function playSound() {
 document.getElementById("sound-btn").addEventListener("click", playSound);
 
 // =====================
-// カードクリックの動作
+// カードクリック時の判定処理（正解／ミスの分岐）
 // =====================
 function handleClick(e) {
     const card = e.target;
@@ -271,6 +285,8 @@ function getGameLabel(type) {
     return type;
 }
 
+// =====================
+// 初期化処理
 // =====================
 function restartGame() {
     location.reload();

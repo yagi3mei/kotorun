@@ -1,3 +1,15 @@
+<!-- =========================================
+     File: karuta-index.html
+     Purpose: かるた系ゲームのメニュー選択画面
+     Author: やぎさん
+     Created: 2026-04-09
+     Updated: 2026-04-30：css分割
+
+     Notes:
+     - 各ゲームモード（ひらがな・カタカナ・かぞく）への入口画面
+     - URLパラメータ（type, group）を付与して次画面へ遷移
+     - 共通スタイルは common.css / layout.css を使用
+========================================= -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -20,6 +32,7 @@
         </header>
     </div>
 
+    <!-- ゲーム選択ボタン -->
     <div class="menu">
         <h1>かるたゲーム</h1>
 
@@ -48,7 +61,7 @@
             <button onclick="goBack()">もどる</button>
         </div>
 
-        <!-- 説明文 -->
+        <!-- 学習者向け説明 -->
         <small>
             ことばを れんしゅうします。<br>
             みんなの日本語 初級Ⅰの ことばです。<br>
@@ -59,10 +72,12 @@
     </div>
 
     <script>
+        // かな・かるた一覧画面へ遷移
         function go(type, group) {
             location.href = `karuta-list.html?type=${type}&group=${group}`;
         }
 
+        // 家族ゲームへ遷移
         function goFamily(){
             location.href="family-index.html";
         }

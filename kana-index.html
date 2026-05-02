@@ -1,7 +1,20 @@
+<!-- =========================================
+     File: kana-index.html
+     Purpose: かなゲームのメニュー画面
+     Author: やぎさん
+     Created: 2026-04-09
+     Updated: 2026-04-30：css分割
+
+     Notes:
+     - ひらがな、かたかなのゲームを選択する画面
+     - 清音・濁音・拗音・カタカナ（外来語含む）の各モードを選択可能
+     - 共通スタイルは common.css / layout.css を使用
+========================================= -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <!-- スマホ表示対応のviewport設定（必須） -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>かなゲーム</title>
     <!-- 共通 -->
@@ -10,7 +23,7 @@
 </head>
 <body>
     <div class="header">
-        <!-- ロゴ -->
+        <!-- 共通ロゴ -->
         <header class="top-header">
             <a href="index.html">
                 <img src="images/kotorun-logo.png"
@@ -20,6 +33,7 @@
         </header>
     </div>
 
+    <!-- メニュー画面 -->
     <div class="menu">
         <h1>かなゲーム</h1>
 
@@ -65,6 +79,7 @@
 
     </div>
 
+    <!-- スクリプト -->
     <script>
     function goGame(type) {
         location.href = "kana-game.html?type=" + type;

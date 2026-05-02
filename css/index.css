@@ -1,6 +1,18 @@
+/* =========================================
+   File: index.css
+   Purpose: トップ画面（index.html）のスタイル
+   Author: やぎさん
+   Created: 2026-04-30：style.css から分割
+   Updated: （なし）
+
+   Notes:
+   - 共通スタイルは common.css / layout.css を使用
+   - トップ画面のレイアウト（メニュー・ビジュアル）を定義
+========================================= */
+
+/* トップメニュー（ボタン群レイアウト） */
 .top-menu {
     display: flex;
-    flex-direction:row;
     justify-content: center;
     align-items: center;
     gap: 16px;
@@ -8,6 +20,7 @@
     margin-top: 15px;
 }
 
+/* メインビジュアル領域 */
 .hero-area {
     position: relative;
     max-width: 420px;

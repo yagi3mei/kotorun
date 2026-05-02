@@ -1,3 +1,18 @@
+<!-- =========================================
+     File: family-game.html
+     Purpose: かるたゲーム内のfamilyモードのプレイ画面（家族表現の理解・選択）
+     Author: やぎさん
+     Created: 2026-04-09
+     Updated: 2026-04-30：css分割
+
+     Notes:
+     - かるたゲームの一部として実装された家族テーマの学習モード
+     - 「ちち / はは」と「おとうさん / おかあさん」の使い分けを理解するためのゲーム
+     - 共通スタイルは common.css / layout.css を使用
+     - ゲームUIは game.css を使用
+     - 家族ゲーム専用スタイルは family.css を使用
+========================================= -->
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -36,27 +51,28 @@
         <button id="sound-btn">🔊</button>
     </div>
 
+    <!-- 表示モード（うちの / そとの） -->
     <div id="family-mode-label"
         class="family-mode-label">
         うちの
     </div>
 
-    <!-- 家系図 -->
+    <!-- 家系図レイアウト（中央に「わたし」、上下左右に家族配置） -->
     <div id="family-board" class="family-board">
 
-        <div id="sofu" class="family-card"></div>
-        <div id="sobo" class="family-card"></div>
+        <div id="sofu" class="family-card"></div>   <!-- 祖父 -->
+        <div id="sobo" class="family-card"></div>   <!-- 祖母 -->
 
-        <div id="chichi" class="family-card"></div>
-        <div id="haha" class="family-card"></div>
+        <div id="chichi" class="family-card"></div> <!-- 父 -->
+        <div id="haha" class="family-card"></div>   <!-- 母 -->
 
-        <div id="ani" class="family-card"></div>
-        <div id="ane" class="family-card"></div>
+        <div id="ani" class="family-card"></div>    <!-- 兄 -->
+        <div id="ane" class="family-card"></div>    <!-- 姉 -->
 
         <div id="family-center" class="family-center">わたし</div>
 
-        <div id="otouto" class="family-card"></div>
-        <div id="imouto" class="family-card"></div>
+        <div id="otouto" class="family-card"></div> <!-- 弟 -->
+        <div id="imouto" class="family-card"></div> <!-- 妹 -->
 
     </div>
 
@@ -86,7 +102,7 @@
         </div>
     </div>
 
-
+    <!-- ゲームロジック（モード判定・問題生成・判定処理） -->
     <script type="module" src="js/family-game.js"></script>
 
 </body>

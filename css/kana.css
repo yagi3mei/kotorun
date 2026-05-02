@@ -1,11 +1,32 @@
+/* =========================================
+   File: kana.css
+   Purpose: かな・かるた一覧およびかなゲームのグリッドUIスタイル
+   Author: やぎさん
+   Created: 2026-04-30：style.css から分割
+   Updated: （なし）
+
+   Notes:
+    - 共通スタイルは common.css / layout.css を使用
+    - ゲームUIは game.css に分離
+    - かな一覧（kana-grid）とゲーム用カード（card-container）の両方を定義
+    - 空白マス（.empty）や無効状態（.disabled）の制御を含む
+    - レスポンシブ対応でカードサイズを自動調整
+========================================= */
+
 /* =====================
    かな一覧（karuta-list的な画面）
 ===================== */
 .kana-grid {
     display: grid;
+
+    /* 5列固定（あ行〜わ行のレイアウト） */
     grid-template-columns: repeat(5, 1fr);
+
     width: 95vw;
+
+    /* 画面内に収めるため高さ固定 */
     height: 85vh;
+
     margin: 4px auto;
     gap: 6px;
 }
@@ -31,6 +52,8 @@
 .kana-tile.disabled {
     background: #ccc;
     color: #888;
+
+    /* クリック不可状態 */
     pointer-events: none;
 }
 
@@ -40,14 +63,18 @@
 ===================== */
 .card-container {
     display: grid;
+
+    /* 5×11の固定グリッド（五十音） */
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(11, 1fr);
+
     width: 95vw;
     height: 75vh;
     margin: 4px auto;
     gap: 6px;
 }
 
+/* ゲーム開始前の無効状態 */
 .card-container.disabled {
     pointer-events: none;
     opacity: 0.5;
@@ -73,14 +100,14 @@
     box-shadow: 0 2px 3px rgba(0,0,0,0.2);
 }
 
-/* 空白マス */
+/* 五十音の空白位置（や行・わ行など） */
 .empty {
     background: transparent;
     box-shadow: none;
     cursor: default;
 }
 
-/* ホバー（軽い演出） */
+/* ゲーム中の選択カードのホバー演出 */
 .kana-button:hover {
     background: #eee;
 }
@@ -88,6 +115,7 @@
 
 /* =====================
    PC対応
+   PC時はサイズを固定して見やすくする
 ===================== */
 @media (min-width: 768px) {
 

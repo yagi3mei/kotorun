@@ -1,8 +1,19 @@
+/* =========================================
+   File: common.css
+   Purpose: 全画面共通のスタイル
+   Author: やぎさん
+   Created: 2026-04-30：style.css から分割
+   Updated: （なし）
+
+   Notes:
+   - 共通スタイルは common.css / layout.css を使用
+   - ゲームUIは game.css に分離
+========================================= */
+
 /* =========================
    共通（全ページ）
 ========================= */
-
-/* ベース */
+/* ページ全体の基本スタイル（余白・フォント・背景） */
 body {
     margin: 0;
     font-family: sans-serif;
@@ -10,31 +21,13 @@ body {
     background: #fffdf8;
 }
 
-/* 見出し余白統一 */
+/* 共通見出しの基本余白（必要に応じて各ページで上書き） */
 h1 {
     margin: 1px 0;
 }
 
 /* =====================
-   ロゴ
-===================== */
-.top-header {
-    padding: 4px 8px;
-    margin: 0;
-}
-
-.app-logo {
-    width: 70px;
-    height: auto;
-    transition: transform .15s;
-}
-
-.app-logo:active {
-    transform: scale(.95);
-}
-
-/* =====================
-   PC対応（共通）
+    PC表示時の共通調整（ロゴサイズなど）
 ===================== */
 @media (min-width: 768px) {
     .app-logo {

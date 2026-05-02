@@ -1,7 +1,23 @@
+<!-- =========================================
+     File: kana-game.html
+     Purpose: かなゲームの共通プレイ画面（問題表示・入力・結果表示）
+     Author: やぎさん
+     Created: 2026-04-01
+     Updated: 2026-04-30：css分割
+
+     Notes:
+     - 問題表示・回答入力・結果表示を行う共通ゲーム画面
+     - 問題音声はボタンで再生（音声合成）
+     - ミス時に効果音を再生
+     - 共通スタイル: common.css / layout.css
+     - ゲームUI: game.css
+     - かな専用: kana.css
+========================================= -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <!-- スマホ表示対応のviewport設定（必須） -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>かなゲーム</title>
     <!-- 共通 -->
@@ -15,7 +31,7 @@
     <link rel="stylesheet" href="css/kana.css">
 </head>
 <body>
-
+    <!-- ヘッダー（タイマー・状態表示） -->
     <div class="header">
         <!-- ロゴ -->
         <header class="top-header">
@@ -31,11 +47,13 @@
         <div id="miss-display">0</div>
     </div>
 
+    <!-- 問題表示エリア -->
     <div class="question-area">
         <div id="romaji-display">もんだい</div>
         <button id="sound-btn">🔊</button>
     </div>
 
+    <!-- 操作ボタン -->
     <div class="button-area">
         <button id="start-btn">はじめる</button>
         <button id="back-btn" onclick="goMenu()">もどる</button>
@@ -56,9 +74,10 @@
         </div>
     </div>
 
+    <!-- ゲームスクリプト -->
     <script src="js/kana-game.js"></script>
 
-    <!-- <audio id="sound-correct" src="sounds/correct.mp3"></audio> -->
+    <!-- 間違い音の読み込み -->
     <audio id="sound-wrong" src="sounds/wrong.mp3"></audio>
 </body>
 </html>

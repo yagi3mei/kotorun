@@ -1,4 +1,20 @@
+// =========================================
+//      File: family-game.js
+//      Purpose: かるたゲーム内のfamilyモードのプレイロジック（問題生成・判定・結果表示）
+//      Author: やぎさん
+//      Created: 2026-04-09
+//      Updated: 2026-04-30: CSSファイル分割に伴う読み込み構造の変更
+//
+//      Notes:
+//      - 家族ゲームの共通JavaScriptファイル
+//      - family-index.htmlからURLパラメータ（mode: inner / outer）を受け取りゲーム内容を切り替える
+//      - かるたゲームの一部として家族テーマを扱うモード
+//      - ゲームのロジック（問題選択、入力判定、タイマー、ミスカウントなど）を実装
+// ========================================= 
+
 const params=new URLSearchParams(location.search);
+
+// mode: inner（自分の家族） / outer（他人の家族）
 const mode=params.get("mode") || "inner";
 
 /* ★表示名 */
@@ -24,7 +40,11 @@ const module=
 
 const data=module.default;
 
-
+/* =========================
+   表示IDマッピング
+   - データID → DOM要素IDへの対応付け
+   - 内の家族（ちち等）と外の家族（おとうさん等）を同一位置に表示するために使用
+========================= */
 const mapping={
     sofu:"sofu",
     sobo:"sobo",
@@ -78,33 +98,38 @@ const resultText=
     );
 
 
-
+/* =====================
+   初期描画（家系図にカードを配置）
+===================== */
 function renderCards(){
 
-data.forEach(item=>{
+    data.forEach(item=>{
 
-const card=
-    document.getElementById(
-        mapping[item.id]
-    );
+    const card=
+        document.getElementById(
+            mapping[item.id]
+        );
 
-card.innerHTML=`
-    <img src="images/family/${item.img}">
-    <div class="family-label">
-        ${item.word}
-    </div>
-    `;
+    card.innerHTML=`
+        <img src="images/family/${item.img}">
+        <div class="family-label">
+            ${item.word}
+        </div>
+        `;
 
-card.onclick=()=>{
-        checkAnswer(item,card);
-    };
+    card.onclick=()=>{
+            checkAnswer(item,card);
+        };
 
-});
+    });
 
 }
 
 
-
+/* =====================
+   問題生成
+   - 未出題データからランダムに選択
+===================== */
 function loadQuestion(){
 
     const remain=
@@ -145,7 +170,7 @@ function loadQuestion(){
 }
 
 
-
+/* 音声再生（例文読み上げ） */
 function playAudio(){
 
     const u=
@@ -168,7 +193,11 @@ document
     );
 
 
-
+/* =====================
+   回答判定
+   - 正解：次の問題へ
+   - 不正解：ミスカウント＋アニメーション
+===================== */
 function checkAnswer(selected, card) {
 
     if (selected.id === correctAnswer.id) {
@@ -208,6 +237,11 @@ function checkAnswer(selected, card) {
     }
 }
 
+
+/* =====================
+   結果表示（モーダル）
+   - 実施日時・時間・ミス数・単語一覧を表示
+===================== */
 function showResult() {
 
     clearInterval(timerInterval);
@@ -287,7 +321,11 @@ window.goBack=function(){
 };
 
 
-
+/* =====================
+   ゲーム開始処理
+   - タイマー開始
+   - 最初の問題生成
+===================== */
 function start(){
 
     startTime=

@@ -1,3 +1,17 @@
+// =========================================
+//      File: karuta-game.js
+//      Purpose: かるたゲームのプレイロジック（問題生成・判定・結果表示）
+//      Author: やぎさん
+//      Created: 2026-04-09
+//      Updated: 2026-04-30: CSSファイル分割に伴う読み込み構造の変更
+//
+//      Notes:
+//      - かるたゲームの共通JavaScriptファイル
+//      - karuta-list.htmlからURLパラメータ（type, kana）を受け取りゲーム内容を切り替える
+//      - 動的importを使用してデータファイル（../data/${type}_${kana}.js）を読み込む
+//      - ゲームのロジック（問題選択、入力判定、タイマー、ミスカウントなど）を実装
+// ========================================= 
+
 const params = new URLSearchParams(window.location.search);
 const type = params.get("type") || "hira";
 const kana = params.get("kana") || "a";
@@ -10,10 +24,10 @@ const missDisplay = document.getElementById("miss-display");
 
 
 /* =========================
-★追加1 画像フォルダ定数
+    画像フォルダ定数
 ========================= */
 
-// 今は清音のみ
+// type（hira/kata）に応じて画像フォルダを切り替える
 const IMAGE_DIR_MAP = {
   hira: "images/hiragana-seion/",
   kata: "images/katakana-seion/"
@@ -44,7 +58,7 @@ const resultTextEl = document.getElementById("result-text");
 const resultModal = document.getElementById("result-modal");
 
 
-/* 状態 */
+/* 状態管理（問題数・ミス数・使用済み問題・誤答問題）を配列・変数で管理 */
 let questionCount = 0;
 let missCount = 0;
 let startTime = performance.now();
@@ -58,16 +72,18 @@ let usedQuestions = [];
 remainingDisplay.textContent = "のこり：" + data.length;
 missDisplay.textContent = "ミス：0";
 
-
+// 配列をランダムに並び替える（簡易シャッフル）
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
 
 /* =====================
-問題生成
+問題生成（メイン処理）
+- 未出題の問題からランダム選択
+- カード生成
+- 音声再生
 ===================== */
-
 function loadQuestion() {
 
   const remaining = data.filter(
@@ -120,9 +136,7 @@ function loadQuestion() {
 
 
     /* =========================
-    ★変更2 画像パスを定数化
-    旧:
-    img.src = `images/${item.img}`;
+        画像パスを定数化
     ========================= */
     img.src = IMAGE_DIR + item.img;
 
@@ -168,7 +182,11 @@ document
 
 
 
-/* 判定 */
+/* =====================
+回答判定
+- 正解：次の問題へ
+- 不正解：ミス加算＋演出
+===================== */
 function checkAnswer(selected, card) {
 
   if (selected.id === correctAnswer.id) {
@@ -213,7 +231,11 @@ function checkAnswer(selected, card) {
 
 
 
-/* 結果 */
+/* =====================
+結果表示
+- タイム・ミス数・学習単語一覧を表示
+- 誤答単語には★を付与
+===================== */
 function showResult() {
 
   clearInterval(timerInterval);
