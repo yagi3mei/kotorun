@@ -8,6 +8,8 @@ export default {
       "na", "ni", "", "ne", "no",
       "ha", "hi", "fu", "", "ho",
       "ma", "mi", "", "me", "mo",
+      "ya", "", "yu", "", "yo",
+      "ra", "ri", "", "re", "ro",
     ],
     dakuon: [],
     youon: []
