@@ -1,9 +1,9 @@
 /* =========================================
    File: kana.css
-   Purpose: かな・かるた一覧およびかなゲームのグリッドUIスタイル
+   Purpose: かな一覧・かなゲーム共通レイアウト
    Author: やぎさん
    Created: 2026-04-30：style.css から分割
-   Updated: （なし）
+   Updated: 2026-05-06：かな配列表示を統一（かなゲームとかるたゲーム）
 
    Notes:
     - 共通スタイルは common.css / layout.css を使用
@@ -14,120 +14,104 @@
 ========================================= */
 
 /* =====================
-   かな一覧（karuta-list的な画面）
+   共通グリッド（最重要）
 ===================== */
-.kana-grid {
+.kana-layout {
     display: grid;
-
-    /* 5列固定（あ行〜わ行のレイアウト） */
     grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
 
     width: 95vw;
-
-    /* 画面内に収めるため高さ固定 */
-    height: 85vh;
-
     margin: 4px auto;
-    gap: 6px;
 }
-
-.kana-tile {
-    background: white;
-    font-size: min(5vw, 22px);
-
-    text-align: center;
-
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0 3px 5px rgba(0,0,0,0.3);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 5px;
-    line-height: 1.2;
-}
-
-.kana-tile.disabled {
-    background: #ccc;
-    color: #888;
-
-    /* クリック不可状態 */
-    pointer-events: none;
-}
-
 
 /* =====================
-   かなゲーム（カード）
+   モード別（ここで差をつける）
 ===================== */
-.card-container {
-    display: grid;
 
-    /* 5×11の固定グリッド（五十音） */
-    grid-template-columns: repeat(5, 1fr);
+/* 五十音フル表示（ゲーム用など） */
+.kana-layout.fixed {
     grid-template-rows: repeat(11, 1fr);
-
-    width: 95vw;
     height: 75vh;
-    margin: 4px auto;
-    gap: 6px;
-
-    /* 小さい画面でもスクロールで表示（保険のため） */
-    overflow-y: auto;
 }
 
-/* ゲーム開始前の無効状態 */
-.card-container.disabled {
-    pointer-events: none;
-    opacity: 0.5;
+/* 可変（濁音・一部表示） */
+.kana-layout.auto {
+    grid-auto-rows: 1fr;
 }
 
-.card-custom {
+/* =====================
+   タイル共通
+===================== */
+.kana-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ffffff;
 
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+
+    font-size: min(5vw, 22px);
+    line-height: 1.2;
+    padding: 5px;
 
     cursor: pointer;
-    transition: transform 0.1s, box-shadow 0.1s;
-    font-size: 5vw;
-    font-weight: bold;
 }
 
-.card-custom:active {
-    transform: translateY(3px);
-    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+/* 無効状態 */
+.kana-item.disabled {
+    background: #ccc;
+    color: #888;
+    pointer-events: none;
 }
 
-/* 五十音の空白位置（や行・わ行など） */
+/* 空マス */
 .empty {
     background: transparent;
     box-shadow: none;
     cursor: default;
 }
 
-/* ゲーム中の選択カードのホバー演出 */
-.kana-button:hover {
-    background: #eee;
+/* =====================
+   ゲーム用カード（強調版）
+===================== */
+.kana-item.card {
+    font-weight: bold;
+    font-size: 5vw;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+    transition: transform 0.1s, box-shadow 0.1s;
 }
 
+.kana-item.card:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+
+/* =====================
+   無効（ゲーム開始前）
+===================== */
+.kana-layout.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
 
 /* =====================
    PC対応
-   PC時はサイズを固定して見やすくする
 ===================== */
 @media (min-width: 768px) {
 
-    .card-custom {
-        font-size: 28px;
-    }
-
-    .card-container {
+    .kana-layout.fixed {
         width: 80vw;
         height: 70vh;
+    }
+
+    .kana-item {
+        font-size: 22px;
+    }
+
+    .kana-item.card {
+        font-size: 28px;
     }
 }

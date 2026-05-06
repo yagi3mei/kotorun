@@ -4,7 +4,7 @@
 //      Author: やぎさん
 //      Created: 2026-04-01
 //      Updated: 2026-04-30: CSSファイル分割に伴う読み込み構造の変更
-//
+//      Updated: 2026-05-06: kana.cssをかるたゲームと共有化
 //      Notes:
 //      - かなゲームの共通JavaScriptファイル
 //      - kana-index.htmlからゲームタイプをURLパラメータで受け取って、ゲームの内容を切り替える
@@ -127,9 +127,9 @@ QUESTIONS.forEach(q => {
     const div = document.createElement("div");
 
     if (q.kana_char === "") {
-        div.className = "card-custom empty";
+        div.className = "kana-item empty";
     } else {
-        div.className = "card-custom kana-button";
+        div.className = "kana-item card kana-button";
         div.dataset.kana = q.kana_char;
         div.dataset.romaji = q.romaji;
         div.textContent = q.kana_char;

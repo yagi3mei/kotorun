@@ -4,6 +4,8 @@
      Author: やぎさん
      Created: 2026-04-09
      Updated: 2026-04-30：css分割
+     Updated: 2026-05-06：kana.cssをかなゲームと共有化
+
 
      Notes:
      - 各ゲームモード（ひらがな・カタカナ）の文字を選択する画面
@@ -41,7 +43,7 @@
 
     <h1>もじをえらんでね</h1>
 
-    <div id="kana-grid" class="kana-grid"></div>
+    <div id="kana-grid" class="kana-layout fixed"></div>
 
     <script type="module">
         // 学習対象データ（使用可能なかな一覧）
@@ -54,8 +56,8 @@
         // 対象データ取得
         const available = list[type][group];
 
-        // かな配列
-        const kanaList = [
+        // ①ひらがな清音
+        const hiraSeionList = [
             { kana: "あ", key: "a" }, { kana: "い", key: "i" }, { kana: "う", key: "u" }, { kana: "え", key: "e" }, { kana: "お", key: "o" },
             { kana: "か", key: "ka" }, { kana: "き", key: "ki" }, { kana: "く", key: "ku" }, { kana: "け", key: "ke" }, { kana: "こ", key: "ko" },
             { kana: "さ", key: "sa" }, { kana: "し", key: "shi" }, { kana: "す", key: "su" }, { kana: "せ", key: "se" }, { kana: "そ", key: "so" },
@@ -68,14 +70,56 @@
             { kana: "わ", key: "wa" }, { kana: "", key: "" }, { kana: "を", key: "wo" }, { kana: "", key: "" }, { kana: "ん", key: "n" }
         ];
 
+        // ②ひらがな濁音
+        const hiraDakuonList = [
+            { kana: "が", key: "ga" }, { kana: "ぎ", key: "gi" }, { kana: "ぐ", key: "gu" }, { kana: "げ", key: "ge" }, { kana: "ご", key: "go" },
+            { kana: "ざ", key: "za" }, { kana: "じ", key: "ji" }, { kana: "ず", key: "zu" }, { kana: "ぜ", key: "ze" }, { kana: "ぞ", key: "zo" },
+            { kana: "だ", key: "da" }, { kana: "ぢ", key: "di" }, { kana: "づ", key: "du" }, { kana: "で", key: "de" }, { kana: "ど", key: "do" },
+            { kana: "ば", key: "ba" }, { kana: "び", key: "bi" }, { kana: "ぶ", key: "bu" }, { kana: "べ", key: "be" }, { kana: "ぼ", key: "bo" },
+            { kana: "ぱ", key: "pa" }, { kana: "ぴ", key: "pi" }, { kana: "ぷ", key: "pu" }, { kana: "ぺ", key: "pe" }, { kana: "ぽ", key: "po" }
+        ];        
+
+        // ③カタカナ清音
+        const kataSeionList = [
+            { kana: "ア", key: "a" }, { kana: "イ", key: "i" }, { kana: "ウ", key: "u" }, { kana: "エ", key: "e" }, { kana: "オ", key: "o" },
+            { kana: "カ", key: "ka" }, { kana: "キ", key: "ki" }, { kana: "ク", key: "ku" }, { kana: "ケ", key: "ke" }, { kana: "コ", key: "ko" },
+            { kana: "サ", key: "sa" }, { kana: "シ", key: "shi" }, { kana: "ス", key: "su" }, { kana: "セ", key: "se" }, { kana: "ソ", key: "so" },
+            { kana: "タ", key: "ta" }, { kana: "チ", key: "chi" }, { kana: "ツ", key: "tsu" }, { kana: "テ", key: "te" }, { kana: "ト", key: "to" },
+            { kana: "ナ", key: "na" }, { kana: "ニ", key: "ni" }, { kana: "ヌ", key: "nu" }, { kana: "ネ", key: "ne" }, { kana: "ノ", key: "no" },
+            { kana: "ハ", key: "ha" }, { kana: "ヒ", key: "hi" }, { kana: "フ", key: "fu" }, { kana: "ヘ", key: "he" }, { kana: "ホ", key: "ho" },
+            { kana: "マ", key: "ma" }, { kana: "ミ", key: "mi" }, { kana: "ム", key: "mu" }, { kana: "メ", key: "me" }, { kana: "モ", key: "mo" },
+            { kana: "ヤ", key: "ya" }, { kana: "", key: "" }, { kana: "ユ", key: "yu" }, { kana: "", key: "" }, { kana: "ヨ", key: "yo" },
+            { kana: "ラ", key: "ra" }, { kana: "リ", key: "ri" }, { kana: "ル", key: "ru" }, { kana: "レ", key: "re" }, { kana: "ロ", key: "ro" },
+            { kana: "ワ", key: "wa" }, { kana: "", key: "" }, { kana: "ヲ", key: "wo" }, { kana: "", key: "" }, { kana: "ン", key: "n" }
+        ];
+
+        let kanaList;
+
+        if (type === "hira" && group === "seion") {
+            kanaList = hiraSeionList;
+        } else if (type === "hira" && group === "dakuon") {
+            kanaList = hiraDakuonList;
+        } else if (type === "kata") {
+            kanaList = kataSeionList;
+        }
+
         const grid = document.getElementById("kana-grid");
+
+        /* ★追加：レイアウト切り替え */
+        if (group === "seion" || type === "kata") {
+            grid.classList.add("fixed");  // 五十音フル
+        } else {
+            grid.classList.add("auto");   // 濁音など
+        }
 
         // かなタイルを動的生成
         kanaList.forEach(item => {
             const btn = document.createElement("div");
-            btn.className = "kana-tile";
 
-            // 五十音のレイアウト維持のための空マス（クリック不可）
+            // ★変更：クラス統一
+            btn.className = "kana-item";
+
+            // 空マス
             if (!item.key) {
                 btn.classList.add("empty");
                 grid.appendChild(btn);
@@ -84,7 +128,7 @@
 
             btn.textContent = item.kana;
 
-            // 学習対象に含まれる文字のみクリック可能にする
+            // 有効/無効
             if (available.includes(item.key)) {
                 btn.onclick = () => {
                     location.href = `karuta-game.html?type=${type}&kana=${item.key}`;
@@ -95,7 +139,6 @@
 
             grid.appendChild(btn);
         });
-
         // 前の画面に戻る（履歴ベース）
         window.goBack = function () {
             history.back();

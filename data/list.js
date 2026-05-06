@@ -9,7 +9,8 @@ export default {
       "ha", "hi", "fu", "", "ho",
       "ma", "mi", "", "me", "mo",
       "ya", "", "yu", "", "yo",
-      "ra", "ri", "", "re", "ro",
+      "ra", "ri", "", "re", "",
+      "wa", "", "", "", "",
     ],
     dakuon: [],
     youon: []
