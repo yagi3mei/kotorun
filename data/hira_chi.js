@@ -35,22 +35,41 @@ export default [
     img: "chikai_near.png",
     lesson: 10
   },
-  {
-    id: "chuushajou_parking",
-    word: "ちゅうしゃじょう",
-    kana: "チュウシャジョウ",
-    romaji: "chu u sha jo u",
-    sentence: "ちゅうしゃじょうです",
-    img: "chuushajou_parking.png",
-    lesson: 23
-  },
-  {
-    id: "chuumon_order",
-    word: "ちゅうもん",
-    kana: "チュウモン",
-    romaji: "chu u mo n",
-    sentence: "ラーメンを ちゅうもんします",
-    img: "chuumon_order.png",
-    lesson: 13
-  }
+{
+    id: "chika_underground",
+    word: "ちか",
+    kana: "チカ",
+    romaji: "chi ka",
+    sentence: "ちかえ いきます",
+    img: "chika_underground.png",
+    lesson: 3
+},
+{
+    id: "chigaimasu_different",
+    word: "ちがいます",
+    kana: "チガイマス",
+    romaji: "chi ga i ma su",
+    sentence: "それわ ちがいます",
+    img: "chigaimasu_different.png",
+    lesson: 2
+},
+
+  // {
+  //   id: "chuushajou_parking",
+  //   word: "ちゅうしゃじょう",
+  //   kana: "チュウシャジョウ",
+  //   romaji: "chu u sha jo u",
+  //   sentence: "ちゅうしゃじょうです",
+  //   img: "chuushajou_parking.png",
+  //   lesson: 23
+  // },
+  // {
+  //   id: "chuumon_order",
+  //   word: "ちゅうもん",
+  //   kana: "チュウモン",
+  //   romaji: "chu u mo n",
+  //   sentence: "ラーメンを ちゅうもんします",
+  //   img: "chuumon_order.png",
+  //   lesson: 13
+  // }
 ];

@@ -27,14 +27,23 @@ export default [
     lesson: 11
   },
   {
-    id: "kyoushitsu_classroom",
-    word: "きょうしつ",
-    kana: "キョウシツ",
-    romaji: "kyo u shi tsu",
-    sentence: "きょうしつに います",
-    img: "kyoushitsu_classroom.png",
-    lesson: 3
+      id: "kimono_clothes",
+      word: "きもの",
+      kana: "キモノ",
+      romaji: "ki mo no",
+      sentence: "きものを きます",
+      img: "kimono_clothes.png",
+      lesson: 20
   },
+  // {
+  //   id: "kyoushitsu_classroom",
+  //   word: "きょうしつ",
+  //   kana: "キョウシツ",
+  //   romaji: "kyo u shi tsu",
+  //   sentence: "きょうしつに います",
+  //   img: "kyoushitsu_classroom.png",
+  //   lesson: 3
+  // },
   {
     id: "kirimasu_cut",
     word: "きります",

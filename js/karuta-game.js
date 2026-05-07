@@ -14,7 +14,9 @@
 
 const params = new URLSearchParams(window.location.search);
 const type = params.get("type") || "hira";
+const group = params.get("group") || "seion";
 const kana = params.get("kana") || "a";
+const kanaLabel = params.get("label") || kana;
 
 const module = await import(`../data/${type}_${kana}.js`);
 const data = module.default;
@@ -27,28 +29,31 @@ const missDisplay = document.getElementById("miss-display");
     画像フォルダ定数
 ========================= */
 
-// type（hira/kata）に応じて画像フォルダを切り替える
 const IMAGE_DIR_MAP = {
-  hira: "images/hiragana-seion/",
-  kata: "images/katakana-seion/"
+  hira: {
+    seion: "images/hiragana-seion/",
+    dakuon: "images/hiragana-dakuon/",
+    youon: "images/hiragana-youon/"
+  },
+
+  kata: {
+    seion: "images/katakana-seion/"
+  }
 };
 
-// typeに応じて自動切替
-const IMAGE_DIR = IMAGE_DIR_MAP[type] || "images/hiragana-seion/";
+/* type + group に応じて自動切替 */
+const IMAGE_DIR = IMAGE_DIR_MAP[type]?.[group] || "images/hiragana-seion/";
 
+const typeDisplay =
+  type === "hira" ? "ひらがな" : "カタカナ";
 
-
-/* 表示用 */
-const kanaLabelMap = {
-  a: "あ", i: "い", u: "う", e: "え", o: "お",
-  ka: "か", ki: "き", ku: "く", ke: "け", ko: "こ",
-  sa: "さ", shi: "し", su: "す", se: "せ", so: "そ",
-  ta: "た", chi: "ち", tsu: "つ", te: "て", to: "と",
+const groupDisplayMap = {
+  seion: "せいおん",
+  dakuon: "だくおん",
+  youon: "ようおん"
 };
 
-const kanaDisplay = kanaLabelMap[kana] || kana;
-const typeDisplay = type === "hira" ? "ひらがな" : "カタカナ";
-
+const groupDisplay = groupDisplayMap[group] || "";
 
 /* DOMキャッシュ */
 const romajiDisplay = document.getElementById("romaji-display");
@@ -266,7 +271,7 @@ function showResult() {
 
   const resultText = `
     実施日時：${dateStr}<br><br>
-    【${typeDisplay}　${kanaDisplay}】<br>
+    【${typeDisplay}　${kanaLabel}】<br>
     時間：${time}秒<br>
     ミス★：${missCount}回<br><br>
     ＜今回の単語＞<br>

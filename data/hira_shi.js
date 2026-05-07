@@ -1,21 +1,39 @@
 export default [
+  // {
+  //   id: "shashin_photo",
+  //   word: "しゃしん",
+  //   kana: "シャシン",
+  //   romaji: "sha shi n",
+  //   sentence: "しゃしんを とります",
+  //   img: "shashin_photo.png",
+  //   lesson: 6
+  // },
+  // {
+  //   id: "shukudai_homework",
+  //   word: "しゅくだい",
+  //   kana: "シュクダイ",
+  //   romaji: "shu ku da i",
+  //   sentence: "しゅくだいを します",
+  //   img: "shukudai_homework.png",
+  //   lesson: 6
+  // },
   {
-    id: "shashin_photo",
-    word: "しゃしん",
-    kana: "シャシン",
-    romaji: "sha shi n",
-    sentence: "しゃしんを とります",
-    img: "shashin_photo.png",
-    lesson: 6
+      id: "shita_under",
+      word: "した",
+      kana: "シタ",
+      romaji: "shi ta",
+      sentence: "つくえの したです",
+      img: "shita_under.png",
+      lesson: 10
   },
   {
-    id: "shukudai_homework",
-    word: "しゅくだい",
-    kana: "シュクダイ",
-    romaji: "shu ku da i",
-    sentence: "しゅくだいを します",
-    img: "shukudai_homework.png",
-    lesson: 6
+      id: "shingou_traffic_light",
+      word: "しんごう",
+      kana: "シンゴウ",
+      romaji: "shi n go u",
+      sentence: "しんごう です",
+      img: "shingou_traffic_light.png",
+      lesson: 23
   },
   {
     id: "shinkansen_train",

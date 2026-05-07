@@ -56,7 +56,7 @@
         // 対象データ取得
         const available = list[type][group];
 
-        // ①ひらがな清音
+        // ひらがな清音
         const hiraSeionList = [
             { kana: "あ", key: "a" }, { kana: "い", key: "i" }, { kana: "う", key: "u" }, { kana: "え", key: "e" }, { kana: "お", key: "o" },
             { kana: "か", key: "ka" }, { kana: "き", key: "ki" }, { kana: "く", key: "ku" }, { kana: "け", key: "ke" }, { kana: "こ", key: "ko" },
@@ -70,28 +70,51 @@
             { kana: "わ", key: "wa" }, { kana: "", key: "" }, { kana: "を", key: "wo" }, { kana: "", key: "" }, { kana: "ん", key: "n" }
         ];
 
-        // ②ひらがな濁音
+        // ひらがな濁音
         const hiraDakuonList = [
             { kana: "が", key: "ga" }, { kana: "ぎ", key: "gi" }, { kana: "ぐ", key: "gu" }, { kana: "げ", key: "ge" }, { kana: "ご", key: "go" },
             { kana: "ざ", key: "za" }, { kana: "じ", key: "ji" }, { kana: "ず", key: "zu" }, { kana: "ぜ", key: "ze" }, { kana: "ぞ", key: "zo" },
             { kana: "だ", key: "da" }, { kana: "ぢ", key: "di" }, { kana: "づ", key: "du" }, { kana: "で", key: "de" }, { kana: "ど", key: "do" },
             { kana: "ば", key: "ba" }, { kana: "び", key: "bi" }, { kana: "ぶ", key: "bu" }, { kana: "べ", key: "be" }, { kana: "ぼ", key: "bo" },
             { kana: "ぱ", key: "pa" }, { kana: "ぴ", key: "pi" }, { kana: "ぷ", key: "pu" }, { kana: "ぺ", key: "pe" }, { kana: "ぽ", key: "po" }
-        ];        
+        ];       
 
-        // ③カタカナ清音
-        const kataSeionList = [
-            { kana: "ア", key: "a" }, { kana: "イ", key: "i" }, { kana: "ウ", key: "u" }, { kana: "エ", key: "e" }, { kana: "オ", key: "o" },
-            { kana: "カ", key: "ka" }, { kana: "キ", key: "ki" }, { kana: "ク", key: "ku" }, { kana: "ケ", key: "ke" }, { kana: "コ", key: "ko" },
-            { kana: "サ", key: "sa" }, { kana: "シ", key: "shi" }, { kana: "ス", key: "su" }, { kana: "セ", key: "se" }, { kana: "ソ", key: "so" },
-            { kana: "タ", key: "ta" }, { kana: "チ", key: "chi" }, { kana: "ツ", key: "tsu" }, { kana: "テ", key: "te" }, { kana: "ト", key: "to" },
-            { kana: "ナ", key: "na" }, { kana: "ニ", key: "ni" }, { kana: "ヌ", key: "nu" }, { kana: "ネ", key: "ne" }, { kana: "ノ", key: "no" },
-            { kana: "ハ", key: "ha" }, { kana: "ヒ", key: "hi" }, { kana: "フ", key: "fu" }, { kana: "ヘ", key: "he" }, { kana: "ホ", key: "ho" },
-            { kana: "マ", key: "ma" }, { kana: "ミ", key: "mi" }, { kana: "ム", key: "mu" }, { kana: "メ", key: "me" }, { kana: "モ", key: "mo" },
-            { kana: "ヤ", key: "ya" }, { kana: "", key: "" }, { kana: "ユ", key: "yu" }, { kana: "", key: "" }, { kana: "ヨ", key: "yo" },
-            { kana: "ラ", key: "ra" }, { kana: "リ", key: "ri" }, { kana: "ル", key: "ru" }, { kana: "レ", key: "re" }, { kana: "ロ", key: "ro" },
-            { kana: "ワ", key: "wa" }, { kana: "", key: "" }, { kana: "ヲ", key: "wo" }, { kana: "", key: "" }, { kana: "ン", key: "n" }
+        const hiraYouonList = [
+            { kana: "きゃ", key: "kya" }, { kana: "", key: "" }, { kana: "きゅ", key: "kyu" }, { kana: "", key: "" }, { kana: "きょ", key: "kyo" },
+            { kana: "しゃ", key: "sha" }, { kana: "", key: "" }, { kana: "しゅ", key: "shu" }, { kana: "", key: "" }, { kana: "しょ", key: "sho" },
+            { kana: "ちゃ", key: "cha" }, { kana: "", key: "" }, { kana: "ちゅ", key: "chu" }, { kana: "", key: "" }, { kana: "ちょ", key: "cho" },
+            { kana: "にゃ", key: "nya" }, { kana: "", key: "" }, { kana: "にゅ", key: "nyu" }, { kana: "", key: "" }, { kana: "にょ", key: "nyo" },
+            { kana: "ひゃ", key: "hya" }, { kana: "", key: "" }, { kana: "ひゅ", key: "hyu" }, { kana: "", key: "" }, { kana: "ひょ", key: "hyo" },
+            { kana: "みゃ", key: "mya" }, { kana: "", key: "" }, { kana: "みゅ", key: "myu" }, { kana: "", key: "" }, { kana: "みょ", key: "myo" },
+            { kana: "りゃ", key: "rya" }, { kana: "", key: "" }, { kana: "りゅ", key: "ryu" }, { kana: "", key: "" }, { kana: "りょ", key: "ryo" },
+            { kana: "ぎゃ", key: "gya" }, { kana: "", key: "" }, { kana: "ぎゅ", key: "gyu" }, { kana: "", key: "" }, { kana: "ぎょ", key: "gyo" },
+            { kana: "じゃ", key: "ja" }, { kana: "", key: "" }, { kana: "じゅ", key: "ju" }, { kana: "", key: "" }, { kana: "じょ", key: "jo" },
+            { kana: "びゃ", key: "bya" }, { kana: "", key: "" }, { kana: "びゅ", key: "byu" }, { kana: "", key: "" }, { kana: "びょ", key: "byo" },
+            { kana: "ぴゃ", key: "pya" }, { kana: "", key: "" }, { kana: "ぴゅ", key: "pyu" }, { kana: "", key: "" }, { kana: "ぴょ", key: "pyo" },
         ];
+
+        // ひらがなをカタカナに変換する関数
+        function toKatakana(str) {
+            return str.replace(/[ぁ-ん]/g, s =>
+                String.fromCharCode(s.charCodeAt(0) + 0x60)
+            );
+        }
+
+        // カタカナ清音はひらがな清音を変換して生成
+        const kataSeionList = hiraSeionList.map(item => ({
+            kana: item.kana ? toKatakana(item.kana) : "",
+            key: item.key
+        }));
+        // カタカナ濁音はひらがな濁音を変換して生成
+        const kataDakuonList = hiraDakuonList.map(item => ({
+            kana: item.kana ? toKatakana(item.kana) : "",
+            key: item.key
+        }));
+        // カタカナ拗音はひらがな拗音を変換して生成
+        const kataYouonList = hiraYouonList.map(item => ({
+            kana: item.kana ? toKatakana(item.kana) : "",
+            key: item.key
+        }));
 
         let kanaList;
 
@@ -99,8 +122,14 @@
             kanaList = hiraSeionList;
         } else if (type === "hira" && group === "dakuon") {
             kanaList = hiraDakuonList;
-        } else if (type === "kata") {
+        } else if (type === "hira" && group === "youon") {
+            kanaList = hiraYouonList;
+        } else if (type === "kata" && group === "seion") {
             kanaList = kataSeionList;
+        } else if (type === "kata" && group === "dakuon") {
+            kanaList = kataDakuonList;
+        } else if (type === "kata" && group === "youon") {
+            kanaList = kataYouonList;
         }
 
         const grid = document.getElementById("kana-grid");
@@ -131,7 +160,7 @@
             // 有効/無効
             if (available.includes(item.key)) {
                 btn.onclick = () => {
-                    location.href = `karuta-game.html?type=${type}&kana=${item.key}`;
+                    location.href = `karuta-game.html?type=${type}&group=${group}&kana=${item.key}&label=${item.kana}`;
                 };
             } else {
                 btn.classList.add("disabled");

@@ -9,11 +9,18 @@ export default {
       "ha", "hi", "fu", "", "ho",
       "ma", "mi", "", "me", "mo",
       "ya", "", "yu", "", "yo",
-      "ra", "ri", "", "re", "",
-      "wa", "", "", "", "",
+      "ra", "", "", "re", "",
+      "wa", "", "", "", ""
     ],
-    dakuon: [],
-    youon: []
+    dakuon: [
+      "ga", "gi", "", "ge", "go",
+      "za", "ji", "zu", "ze", "zo",
+      "da", "", "", "de", "do",
+      "ba", "bi", "bu", "be", "bo",
+      "pa", "pi", "pu", "pe", "po"
+    ],
+    youon: [
+    ]
   },
   kata: {
     seion: [],
