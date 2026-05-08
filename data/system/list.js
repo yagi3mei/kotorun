@@ -14,7 +14,7 @@ export default {
     ],
     dakuon: [
       "ga", "gi", "", "ge", "go",
-      "za", "ji", "zu", "ze", "zo",
+      "za", "ji", "", "", "",
       "da", "", "", "de", "do",
       "ba", "bi", "bu", "be", "bo",
       "pa", "pi", "pu", "pe", "po"
