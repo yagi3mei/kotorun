@@ -17,26 +17,70 @@ const params=new URLSearchParams(location.search);
 // mode: inner（自分の家族） / outer（他人の家族）
 const mode=params.get("mode") || "inner";
 
-/* ★表示名 */
-const modeLabel=mode==="inner" ? "うちの（わたしの）" : "ともだちの";
+/* メニュー表示名 */
+let modeLabel = "";
+if (mode === "inner") {
+    modeLabel = "うちの かぞく";
+} else if (mode === "outer") {
+    modeLabel = "ともだちの かぞく";
+} else if (mode === "relative") {
+    modeLabel = "しんせきの かぞく";
+}
 
 document.getElementById("family-mode-label").textContent=modeLabel;
 
-const centerLabel =
-        mode === "inner"
-            ? "わたし"
-            : "ともだち";
+/* =====================
+   レイアウト切り替え
+===================== */
+
+const normalBoard =
+    document.getElementById(
+        "family-board-normal"
+    );
+
+const relativeBoard =
+    document.getElementById(
+        "family-board-relative"
+    );
+
+if (mode === "relative") {
+
+    normalBoard.classList.add(
+        "hidden"
+    );
+
+    relativeBoard.classList.remove(
+        "hidden"
+    );
+
+} else {
+
+    normalBoard.classList.remove(
+        "hidden"
+    );
+
+    relativeBoard.classList.add(
+        "hidden"
+    );
+
+}
+
+/* 中間表示（誰から見た家族か） */
+if (mode !== "relative") {
+
+    let centerLabel = "わたし";
+
+    if (mode === "outer") {
+        centerLabel = "ともだち";
+    }
 
     document.getElementById(
         "family-center"
     ).textContent = centerLabel;
+}
 
-const module=
-    await import(
-        mode==="inner"
-        ? "../data/family_inner.js"
-        : "../data/family_outer.js"
-    );
+// データの動的インポート
+const module= await import(`../data/family/${mode}.js`);
 
 const data=module.default;
 
@@ -45,23 +89,37 @@ const data=module.default;
    - データID → DOM要素IDへの対応付け
    - 内の家族（ちち等）と外の家族（おとうさん等）を同一位置に表示するために使用
 ========================= */
-const mapping={
-    sofu:"sofu",
-    sobo:"sobo",
-    chichi:"chichi",
-    haha:"haha",
-    ani:"ani",
-    ane:"ane",
-    otouto:"otouto",
-    imouto:"imouto",
+let mapping = {};
 
-    ojiisan:"sofu",
-    obaasan:"sobo",
-    otousan:"chichi",
-    okaasan:"haha",
-    oniisan:"ani",
-    oneesan:"ane"
-};
+if (mode === "relative") {
+
+    mapping = {
+        sofu:"relative-sofu",
+        sobo:"relative-sobo",
+        ojisan:"relative-ojisan",
+        obasan:"relative-obasan",
+        itoko:"relative-itoko"
+    };
+} else {
+
+    mapping = {
+        sofu:"sofu",
+        sobo:"sobo",
+        chichi:"chichi",
+        haha:"haha",
+        ani:"ani",
+        ane:"ane",
+        otouto:"otouto",
+        imouto:"imouto",
+
+        ojiisan:"sofu",
+        obaasan:"sobo",
+        otousan:"chichi",
+        okaasan:"haha",
+        oniisan:"ani",
+        oneesan:"ane"
+    };
+}
 
 const resultModal = document.getElementById("result-modal");
 
@@ -109,6 +167,11 @@ function renderCards(){
         document.getElementById(
             mapping[item.id]
         );
+
+    /* 要素が存在しない場合はスキップ */
+    if (!card) {
+        return;
+    }
 
     card.innerHTML=`
         <img src="images/family/${item.img}">
@@ -273,11 +336,15 @@ function showResult() {
         `;
     });
 
-    const familyLabel =
-        mode === "inner"
-            ? "かぞく　うちの"
-            : "かぞく　ともだちの";
-
+    // 家族の見方によるラベル
+    let familyLabel = "";
+    if (mode === "inner") {
+        familyLabel = "かぞく　うちの";
+    } else if (mode === "outer") {
+        familyLabel = "かぞく　ともだちの";
+    } else if (mode === "relative") {
+        familyLabel = "しんせきの かぞく";
+    }
 
     resultText.innerHTML = `
         実施日時：${dateStr}<br><br>

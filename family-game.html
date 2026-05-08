@@ -3,14 +3,12 @@
      Purpose: かるたゲーム内のfamilyモードのプレイ画面（家族表現の理解・選択）
      Author: やぎさん
      Created: 2026-04-09
-     Updated: 2026-04-30：css分割
+     Updated: 2026-05-08：親戚モード(relative)追加
 
      Notes:
-     - かるたゲームの一部として実装された家族テーマの学習モード
-     - 「ちち / はは」と「おとうさん / おかあさん」の使い分けを理解するためのゲーム
-     - 共通スタイルは common.css / layout.css を使用
-     - ゲームUIは game.css を使用
-     - 家族ゲーム専用スタイルは family.css を使用
+     - family-index.html から mode を受け取る
+     - inner / outer / relative に対応
+     - relative は専用レイアウトを使用
 ========================================= -->
 
 <!DOCTYPE html>
@@ -19,12 +17,16 @@
     <meta charset="UTF-8">
     <meta name="viewport"
     content="width=device-width, initial-scale=1.0">
+
     <title>かぞくゲーム</title>
+
     <!-- 共通 -->
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/layout.css">
+
     <!-- ゲーム系 -->
     <link rel="stylesheet" href="css/game.css">
+
     <!-- ページ専用 -->
     <link rel="stylesheet" href="css/family.css">
 </head>
@@ -35,7 +37,9 @@
 
         <header class="top-header">
             <a href="index.html">
-                <img src="images/kotorun-logo.png" class="app-logo" alt="ことラン">
+                <img src="images/kotorun-logo.png"
+                    class="app-logo"
+                    alt="ことラン">
             </a>
         </header>
 
@@ -47,63 +51,141 @@
 
 
     <div class="question-area">
-        <div id="romaji-display">もんだい</div>
-        <button id="sound-btn">🔊</button>
+
+        <div id="romaji-display">
+            もんだい
+        </div>
+
+        <button id="sound-btn">
+            🔊
+        </button>
+
     </div>
 
-    <!-- 表示モード（うちの / そとの） -->
+
+    <!-- モード表示 -->
     <div id="family-mode-label"
         class="family-mode-label">
+
         うちの
-    </div>
-
-    <!-- 家系図レイアウト（中央に「わたし」、上下左右に家族配置） -->
-    <div id="family-board" class="family-board">
-
-        <div id="sofu" class="family-card"></div>   <!-- 祖父 -->
-        <div id="sobo" class="family-card"></div>   <!-- 祖母 -->
-
-        <div id="chichi" class="family-card"></div> <!-- 父 -->
-        <div id="haha" class="family-card"></div>   <!-- 母 -->
-
-        <div id="ani" class="family-card"></div>    <!-- 兄 -->
-        <div id="ane" class="family-card"></div>    <!-- 姉 -->
-
-        <div id="family-center" class="family-center">わたし</div>
-
-        <div id="otouto" class="family-card"></div> <!-- 弟 -->
-        <div id="imouto" class="family-card"></div> <!-- 妹 -->
 
     </div>
+
+
+    <!-- =====================================
+         通常レイアウト（inner / outer）
+    ====================================== -->
+    <div id="family-board-normal"
+        class="family-board">
+
+        <div id="sofu" class="family-card"></div>
+        <div id="sobo" class="family-card"></div>
+
+        <div id="chichi" class="family-card"></div>
+        <div id="haha" class="family-card"></div>
+
+        <div id="ani" class="family-card"></div>
+        <div id="ane" class="family-card"></div>
+
+        <div id="family-center"
+            class="family-center">
+
+            わたし
+
+        </div>
+
+        <div id="otouto" class="family-card"></div>
+        <div id="imouto" class="family-card"></div>
+
+    </div>
+
+
+    <!-- =====================================
+         親戚レイアウト（relative）
+    ====================================== -->
+    <div id="family-board-relative"
+        class="family-board-relative hidden">
+
+        <!-- 1段目 -->
+        <div class="empty"></div>
+
+        <div id="relative-sofu"
+            class="family-card">
+        </div>
+
+        <div id="relative-sobo"
+            class="family-card">
+        </div>
+
+        <!-- 2段目 -->
+        <div class="family-center-small">
+            ちち/はは
+        </div>
+
+        <div id="relative-ojisan"
+            class="family-card">
+        </div>
+
+        <div id="relative-obasan"
+            class="family-card">
+        </div>
+
+
+        <!-- 3段目 -->
+        <div class="family-center-small">
+            わたし
+        </div>
+
+        <div id="relative-itoko"
+            class="family-card">
+        </div>
+
+        <div class="empty"></div>
+
+    </div>
+
 
     <div class="button-area">
-        <button id="back-btn" onclick="goBack()">
-        もどる
+
+        <button id="back-btn"
+            onclick="goBack()">
+
+            もどる
+
         </button>
+
     </div>
 
-    
+
     <!-- 結果モーダル -->
-    <div id="result-modal" class="modal hidden">
+    <div id="result-modal"
+        class="modal hidden">
+
         <div class="modal-content">
 
-            <h2>かぞくゲーム けっか</h2>
+            <h2>
+                かぞくゲーム けっか
+            </h2>
 
             <p id="result-text"></p>
 
             <button onclick="restartGame()">
-            もういちど
+                もういちど
             </button>
 
             <button onclick="goBack()">
-            もどる
+                もどる
             </button>
 
         </div>
+
     </div>
 
-    <!-- ゲームロジック（モード判定・問題生成・判定処理） -->
-    <script type="module" src="js/family-game.js"></script>
+
+    <!-- ゲームロジック -->
+    <script type="module"
+        src="js/family-game.js">
+    </script>
 
 </body>
 </html>

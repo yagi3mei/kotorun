@@ -1,70 +1,124 @@
 <!-- =========================================
      File: family-index.html
-     Purpose: familyかるたゲームのモード選択画面（内・外の家族）
+     Purpose: familyかるたゲームのモード選択画面
      Author: やぎさん
      Created: 2026-04-09
      Updated: 2026-04-30：css分割
+     Updated: 2026-05-07：親戚家族メニュー追加
 
      Notes:
-     - 家族表現（内の家族 / 外の家族）を選択する画面
-     - 今後、親戚表現（おじ・おば等）を追加予定
-     - 「おじいさん / おばあさん」などの使い分け学習にも対応予定
+     - 家族表現（内・外・親戚）を選択する画面
+     - 「おじ・おば・いとこ」などの親戚表現に対応
      - 共通スタイルは common.css / layout.css を使用
      - ゲーム画面は family-game.html に遷移して実行
 ========================================= -->
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>かぞく かるた</title>
+
     <!-- 共通 -->
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/layout.css">
+
 </head>
 
 <body>
 
     <div class="header">
 
+        <!-- ロゴ -->
         <header class="top-header">
+
             <a href="index.html">
-                <img src="images/kotorun-logo.png" class="app-logo" alt="ことラン">
+
+                <img src="images/kotorun-logo.png"
+                     class="app-logo"
+                     alt="ことラン">
+
             </a>
+
         </header>
 
-        <button id="back-btn-top" onclick="goBack()">
+        <button id="back-btn-top"
+                onclick="goBack()">
+
             もどる
+
         </button>
 
     </div>
 
+    <!-- メニュー -->
     <div class="menu">
 
         <h1>かぞくを えらんでね</h1>
 
+        <!-- 自分の家族 -->
         <button onclick="goFamily('inner')">
+
             うちの（わたしの） かぞく<br>
-            <small>ちち・はは…</small>
+
+            <small>
+                ちち・はは…
+            </small>
+
         </button>
 
+        <!-- 他人の家族 -->
         <button onclick="goFamily('outer')">
+
             ともだちの かぞく<br>
-            <small>おとうさん・おかあさん…</small>
+
+            <small>
+                おとうさん・おかあさん…
+            </small>
+
         </button>
+
+        <!-- 親戚 -->
+        <button onclick="goFamily('relative')">
+
+            しんせきの かぞく<br>
+
+            <small>
+                おじさん・いとこ…<br>
+                ・おじいさん と おじさん を聞き分ける<br>
+                ・おばあさん と おばさん を聞き分ける
+            </small>
+
+        </button>
+
+
     </div>
 
     <script>
 
-        // mode: inner（自分の家族） / outer（他人の家族）
-        function goFamily(mode){
-        location.href=
-        `family-game.html?mode=${mode}`;
+        // mode:
+        // inner   = 自分の家族
+        // outer   = 他人の家族
+        // relative = 親戚
+
+        function goFamily(mode) {
+
+            location.href =
+                `family-game.html?mode=${mode}`;
+
         }
 
-        function goBack(){
-        location.href="karuta-index.html";
+        // 戻る
+        function goBack() {
+
+            location.href = "iroiro-index.html";
+
         }
 
     </script>

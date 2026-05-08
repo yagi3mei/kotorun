@@ -1,0 +1,109 @@
+<!-- =========================================
+     File: iroiro-index.html
+     Purpose: いろいろなゲームのメニュー選択画面
+     Author: やぎさん
+     Created: 2026-05-07
+
+     Notes:
+     - かな・かるた以外の学習ゲームへの入口画面
+     - 家族・身体・時間などテーマ別ゲームを追加予定
+     - 共通スタイルは common.css / layout.css を使用
+========================================= -->
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>いろいろなゲーム</title>
+
+    <!-- 共通 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        <!-- ロゴ -->
+        <header class="top-header">
+
+            <a href="index.html">
+
+                <img src="images/kotorun-logo.png"
+                     alt="ことラン"
+                     class="app-logo">
+
+            </a>
+
+        </header>
+
+        <button id="back-btn-top"
+                onclick="goBack()">
+
+            もどる
+
+        </button>
+
+    </div>
+
+    <!-- メニュー -->
+    <div class="menu">
+
+        <h1>いろいろなゲーム</h1>
+
+        <!-- 家族ゲーム -->
+        <button onclick="goFamily()">
+
+            かぞくゲーム<br>
+
+            <small>
+                ちち・はは・おじさん…
+            </small>
+
+        </button>
+
+        <!-- 今後追加予定 -->
+        <!--
+        <button>からだ</button>
+        <button>じかん</button>
+        <button>くに</button>
+        -->
+
+        <!-- 学習者向け説明 -->
+        <small>
+
+            テーマべつの にほんごゲームです。<br>
+
+            みて、きいて、ことばを おぼえます。
+
+        </small>
+
+    </div>
+
+    <script>
+
+        // 家族ゲームへ遷移
+        function goFamily() {
+
+            location.href = "family-index.html";
+
+        }
+
+        // 戻る
+        function goBack() {
+
+            location.href = "index.html";
+
+        }
+
+    </script>
+
+</body>
+</html>

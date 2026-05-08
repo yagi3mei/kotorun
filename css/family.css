@@ -35,6 +35,50 @@
 }
 
 /* =====================
+   親戚レイアウト
+===================== */
+.family-board-relative {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 90px);
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 15px;
+
+    padding: 10px;
+}
+
+.empty{
+    visibility:hidden;
+}
+
+/* 中央文字（ちち・はは、わたし） */
+.family-center-small {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-weight: bold;
+
+    background: #fff3cf;
+
+    border-radius: 20px;
+
+    padding: 8px;
+
+    min-height: 70px;
+}
+
+
+/* =====================
    カード
 ===================== */
 .family-card {
@@ -92,6 +136,15 @@
 
     .family-board {
         grid-template-columns: 160px 160px;
+        gap: 25px;
+    }
+
+    .family-board-relative {
+
+        display:grid;
+        grid-template-columns:
+            repeat(3, 160px);
+
         gap: 25px;
     }
 }

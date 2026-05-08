@@ -18,7 +18,7 @@ const group = params.get("group") || "seion";
 const kana = params.get("kana") || "a";
 const kanaLabel = params.get("label") || kana;
 
-const module = await import(`../data/${type}_${kana}.js`);
+const module = await import(`../data/kana/${type}/${group}/${type}_${kana}.js`);
 const data = module.default;
 
 const timerDisplay = document.getElementById("timer-display");
