@@ -2,7 +2,7 @@ export default [
     {
         day: 1,
         text: "ついたち",
-        speech: "一日"
+        speech: "ついたち"
     },
     {
         day: 2,
