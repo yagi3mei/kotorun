@@ -160,9 +160,9 @@ function checkAnswer(selectedDay){
 ========================= */
 function updateDisplays(){
 
-    remainingDisplay.textContent = remaining;
+    remainingDisplay.textContent = "のこり：" + remaining;
 
-    missDisplay.textContent = missCount;
+    missDisplay.textContent = "ミス：" + missCount;
 }
 
 /* =========================
