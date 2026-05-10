@@ -16,8 +16,8 @@ export default {
       "ga", "gi", "", "ge", "go",
       "za", "ji", "", "", "",
       "da", "", "", "de", "do",
-      "ba", "bi", "bu", "be", "bo",
-      "pa", "pi", "pu", "pe", "po"
+      "ba", "bi", "", "be", "bo",
+      "", "", "", "", ""
     ],
     youon: [
     ]
