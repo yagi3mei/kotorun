@@ -1,0 +1,170 @@
+<!-- =========================================
+     File: kazoekata-list.html
+     Purpose: かぞえかたゲームの種類選択画面
+     Author: やぎさん
+     Created: 2026-05-12
+
+     Notes:
+     - 助数詞（ほん・まい・さつ等）を選択
+     - 選択内容をURLパラメータで渡す
+     - 共通スタイル:
+       common.css / layout.css
+========================================= -->
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>かぞえかたゲーム</title>
+
+    <!-- 共通 -->
+    <link rel="stylesheet"
+          href="css/common.css">
+
+    <link rel="stylesheet"
+          href="css/layout.css">
+
+</head>
+
+<body>
+
+    <!-- =====================================
+         ヘッダー
+    ====================================== -->
+    <div class="header">
+
+        <!-- ロゴ -->
+        <header class="top-header">
+
+            <a href="index.html">
+
+                <img src="images/kotorun-logo.png"
+                     alt="ことラン"
+                     class="app-logo">
+
+            </a>
+
+        </header>
+
+        <!-- 戻る -->
+        <button id="back-btn-top"
+                onclick="goBack()">
+
+            もどる
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================
+         メニュー
+    ====================================== -->
+    <div class="menu">
+
+        <h1>
+
+            かぞえかたを<br>
+            えらんでね
+
+        </h1>
+
+
+        <!-- 本 -->
+        <button onclick="goGame('hon')">
+
+            ほん<br>
+
+            <small>
+                いっぽん・にほん・さんぼん
+            </small>
+
+        </button>
+
+
+        <!-- 枚 -->
+        <button onclick="goGame('mai')">
+
+            まい<br>
+
+            <small>
+                いちまい・にまい・さんまい
+            </small>
+
+        </button>
+
+
+        <!-- 冊 -->
+        <button onclick="goGame('satsu')">
+
+            さつ<br>
+
+            <small>
+                いっさつ・にさつ・さんさつ
+            </small>
+
+        </button>
+
+
+        <!-- 匹 -->
+        <button onclick="goGame('hiki')">
+
+            ひき<br>
+
+            <small>
+                いっぴき・にひき・さんびき
+            </small>
+
+        </button>
+
+
+        <!-- 学習者向け説明 -->
+        <small>
+
+            かずの よみかたを<br>
+
+            みて、きいて、おぼえよう！
+
+        </small>
+
+    </div>
+
+
+    <!-- =====================================
+         スクリプト
+    ====================================== -->
+    <script>
+
+        /* =========================
+           ゲーム開始
+        ========================= */
+
+        function goGame(type) {
+
+            location.href =
+                `kazoekata-game.html?type=${type}`;
+
+        }
+
+
+        /* =========================
+           戻る
+        ========================= */
+
+        function goBack() {
+
+            location.href =
+                "iroiro-index.html";
+
+        }
+
+    </script>
+
+</body>
+</html>

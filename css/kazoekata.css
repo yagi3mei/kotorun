@@ -1,0 +1,174 @@
+```css
+/* =========================================
+   File: kazoekata.css
+   Purpose: かぞえかたゲーム専用スタイル
+   Author: やぎさん
+   Created: 2026-05-12
+
+   Notes:
+   - 助数詞ゲーム専用
+   - イラスト＋数字＋4択構成
+   - スマホ優先設計
+========================================= */
+
+
+/* =====================
+   問題表示（なんほん？）
+===================== */
+#question-display {
+
+    font-size: 8vw;
+
+    font-weight: bold;
+
+    color: #d32f2f;
+}
+
+
+/* =====================
+   問題画像エリア
+===================== */
+.question-image-area {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-top: 6px;
+
+    margin-bottom: 8px;
+}
+
+
+/* =====================
+   問題画像
+===================== */
+#question-image {
+
+    width: 82%;
+
+    max-width: 320px;
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 8px;
+
+    box-shadow:
+        0 3px 6px rgba(0,0,0,.25);
+}
+
+
+/* =====================
+   数字表示
+===================== */
+#number-display {
+
+    font-size: 12vw;
+
+    font-weight: bold;
+
+    color: #d32f2f;
+
+    text-align: center;
+
+    margin-bottom: 10px;
+}
+
+
+/* =====================
+   選択肢エリア
+===================== */
+.choices-area {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+
+    width: 92%;
+
+    max-width: 420px;
+
+    margin: 0 auto 20px;
+}
+
+
+/* =====================
+   選択肢ボタン
+===================== */
+.choice-btn {
+
+    background: white;
+
+    border: none;
+
+    border-radius: 16px;
+
+    padding: 14px 8px;
+
+    font-size: 6vw;
+
+    font-weight: bold;
+
+    color: #333;
+
+    box-shadow:
+        0 3px 6px rgba(0,0,0,.25);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.08s,
+        background 0.2s;
+}
+
+
+/* 押した時 */
+.choice-btn:active {
+
+    transform: scale(0.97);
+}
+
+
+/* ホバー（PC用） */
+.choice-btn:hover {
+
+    background: #fff3cf;
+}
+
+
+/* =====================
+   PC表示
+===================== */
+@media (min-width: 768px) {
+
+    #question-display {
+
+        font-size: 42px;
+    }
+
+    #number-display {
+
+        font-size: 64px;
+    }
+
+    #question-image {
+
+        max-width: 520px;
+    }
+
+    .choice-btn {
+
+        font-size: 28px;
+
+        padding: 20px;
+    }
+}

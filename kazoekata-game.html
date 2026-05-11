@@ -1,0 +1,198 @@
+<!-- =========================================
+     File: kazoekata-game.html
+     Purpose: かぞえかたゲーム プレイ画面
+     Author: やぎさん
+     Created: 2026-05-12
+
+     Notes:
+     - 助数詞（本・枚・冊など）の読み学習ゲーム
+     - イラスト＋数字を見て正しい読みを選択
+     - 共通スタイル: common.css / layout.css
+     - ゲームUI: game.css
+========================================= -->
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>かぞえかたゲーム</title>
+
+    <!-- 共通 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+    <!-- ゲーム系 -->
+    <link rel="stylesheet" href="css/game.css">
+
+    <!-- ページ専用 -->
+    <link rel="stylesheet" href="css/kazoekata.css">
+
+</head>
+
+<body>
+
+    <!-- =====================================
+         ヘッダー
+    ====================================== -->
+    <div class="header">
+
+        <!-- ロゴ -->
+        <header class="top-header">
+
+            <a href="index.html">
+
+                <img src="images/kotorun-logo.png"
+                     alt="ことラン"
+                     class="app-logo">
+
+            </a>
+
+        </header>
+
+        <!-- タイマー -->
+        <div id="timer-display">
+            0.00
+        </div>
+
+        <!-- 残り -->
+        <div id="remaining-display">
+            0
+        </div>
+
+        <!-- ミス数 -->
+        <div id="miss-display">
+            0
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         問題画像
+    ====================================== -->
+    <div class="question-image-area">
+
+        <img id="question-image"
+            src=""
+            alt="問題画像">
+
+    </div>
+
+    <!-- =====================================
+         問題表示
+    ====================================== -->
+    <div class="question-area">
+
+        <!-- 数字 -->
+        <div id="number-display">
+
+            1
+
+        </div>
+
+
+        <!-- 音声 -->
+        <button id="sound-btn">
+
+            🔊
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================
+         選択肢
+    ====================================== -->
+    <div id="choices-area"
+        class="choices-area">
+
+        <!-- JSで生成 -->
+
+    </div>
+
+
+    <!-- =====================================
+         戻るボタン
+    ====================================== -->
+    <div class="button-area">
+
+        <button id="back-btn"
+                onclick="goMenu()">
+
+            もどる
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================
+         結果モーダル
+    ====================================== -->
+    <div id="result-modal"
+         class="modal hidden">
+
+        <div class="modal-content">
+
+            <h2>
+
+                かぞえかたゲーム　けっか
+
+            </h2>
+
+            <p id="date-time"></p>
+
+            <p id="final-time"></p>
+
+            <p id="miss-result"></p>
+
+            <p id="wrong-list"></p>
+
+            <button onclick="restartGame()">
+
+                もういちど
+
+            </button>
+
+            <button onclick="goMenu()">
+
+                メニューへ
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         音声
+    ====================================== -->
+
+    <!-- 正解音 -->
+    <audio id="sound-correct"
+           src="sounds/correct.mp3">
+    </audio>
+
+    <!-- ミス音 -->
+    <audio id="sound-wrong"
+           src="sounds/wrong.mp3">
+    </audio>
+
+
+    <!-- =====================================
+         ゲームスクリプト
+    ====================================== -->
+    <script type="module"
+            src="js/kazoekata-game.js">
+    </script>
+
+</body>
+</html>
