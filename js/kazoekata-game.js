@@ -9,17 +9,16 @@
    - イラスト＋数字を見て正しい読みを選択
    - choicesをdata側で管理
    - URLパラメータで種類切替
-   - 結果モーダルへ種類表示
+   - dataMap方式へ変更
 ========================================= */
 
 
 /* =========================
-   データ読込
+   設定読込
 ========================= */
 
-import honData
-    from "../data/kazoekata/hon-data.js";
-
+import config
+    from "../data/kazoekata/kazoekata-config.js";
 
 /* =========================
    URLパラメータ取得
@@ -35,25 +34,19 @@ const type =
 
 
 /* =========================
-   データ切替
+   設定取得
 ========================= */
 
-let data = [];
-
-let typeLabel = "";
-
-let questionLabel = "";
+const currentConfig =
+    config[type] || config.hon;
 
 
-if (type === "hon") {
+/* =========================
+   データ取得
+========================= */
 
-    data = honData;
-
-    typeLabel = "ほん";
-
-    questionLabel = "なんぼん";
-
-}
+const data =
+    currentConfig.data;
 
 
 /* =========================
@@ -412,7 +405,8 @@ function showResult() {
         `
         実施日時：${dateStr}<br><br>
 
-        【${typeLabel}　${questionLabel}】
+        【${currentConfig.label}（${currentConfig.kanji}）
+        　${currentConfig.question}】
         `;
 
 
