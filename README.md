@@ -7,7 +7,7 @@
 
 ## サイトURL
 
-https://（[あなたのGitHub PagesのURL](https://yagi3mei.github.io/kotorun/index.html)）
+https://（https://yagi3mei.github.io/kotorun/index.html）
 
 ---
 
