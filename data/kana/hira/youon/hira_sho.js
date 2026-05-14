@@ -34,7 +34,7 @@ export default [
     word: "しょくどう",
     kana: "ショクドウ",
     romaji: "sho ku do u",
-    sentence: "しょくどうで ひるごはんを たべます",
+    sentence: "しょくどうで たべます",
     img: "shokudou_cafeteria.png",
     lesson: 3
   }
