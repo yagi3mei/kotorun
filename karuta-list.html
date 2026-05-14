@@ -160,7 +160,22 @@
             // 有効/無効
             if (available.includes(item.key)) {
                 btn.onclick = () => {
-                    location.href = `karuta-game.html?type=${type}&group=${group}&kana=${item.key}&label=${item.kana}`;
+
+                    /* 拗音共有マップ */
+                    const sharedKanaMap = {
+
+                        kyo: "kyu"
+
+                    };
+
+                    /* 実際に使用するゲーム */
+                    const targetKana =
+                        sharedKanaMap[item.key]
+                        || item.key;
+
+                    location.href =
+                        `karuta-game.html?type=${type}&group=${group}&kana=${targetKana}&label=${item.kana}`;
+
                 };
             } else {
                 btn.classList.add("disabled");

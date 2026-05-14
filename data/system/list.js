@@ -20,6 +20,8 @@ export default {
       "", "", "", "", ""
     ],
     youon: [
+      "", "kyu", "kyo",
+      "sha", "shu", "sho",
     ]
   },
   kata: {
