@@ -26,6 +26,55 @@ h1 {
     margin: 1px 0;
 }
 
+/* 警告モーダル */
+.warning-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.warning-box {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+
+    width: 80%;
+    max-width: 320px;
+
+    text-align: center;
+}
+
+.warning-box h2 {
+    margin-bottom: 16px;
+}
+
+.warning-box p {
+    margin-bottom: 16px;
+    line-height: 1.7;
+}
+
+.warning-box button {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+
+    background: #ff9800;
+    color: white;
+
+    font-size: 16px;
+}
+
+.hidden {
+    display: none;
+}
+
+
 /* =====================
     PC表示時の共通調整（ロゴサイズなど）
 ===================== */

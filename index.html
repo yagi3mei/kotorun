@@ -53,6 +53,26 @@
 
     </main>
 
+    <div id="browser-warning" class="warning-modal hidden">
+        <div class="warning-box">
+            <h2>⚠ 注意</h2>
+
+            <p>
+                このブラウザでは<br>
+                音声が正常に動作しない場合があります
+            </p>
+
+            <p>
+                右上メニューから<br>
+                「ブラウザで開く」をお試しください
+            </p>
+
+            <button id="warning-close">
+                OK
+            </button>
+        </div>
+    </div>
+
     <script>
         const ua = navigator.userAgent;
 
@@ -62,15 +82,17 @@
             ua.includes("Instagram") ||
             ua.includes("Line");
 
-        if (isInAppBrowser) {
-            alert(
-                `⚠ このブラウザでは
-                音声が正常に動作しない場合があります
+        const modal = document.getElementById("browser-warning");
 
-                右上メニューから
-                「ブラウザで開く」をお試しください`
-            );
+        if (isInAppBrowser) {
+            modal.classList.remove("hidden");
         }
+
+        document
+            .getElementById("warning-close")
+            .addEventListener("click", () => {
+                modal.classList.add("hidden");
+            });
     </script>
 
 </body>
