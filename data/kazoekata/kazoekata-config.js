@@ -45,6 +45,10 @@ import maiData
 import ninData
     from "./nin-data.js";
 
+import satsuData
+    from "./satsu-data.js";
+
+    
 /* =========================
    設定一覧
 ========================= */
@@ -96,6 +100,18 @@ const config = {
         question: "なんにん",
 
         data: ninData
+
+    },
+
+    satsu: {
+
+        label: "さつ",
+
+        kanji: "冊",
+
+        question: "なんさつ",
+
+        data: satsuData
 
     }
 
