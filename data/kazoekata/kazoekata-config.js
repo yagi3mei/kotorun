@@ -33,6 +33,9 @@
    データ読込
 ========================= */
 
+import tsuData
+    from "./tsu-data.js";
+
 import koData
     from "./ko-data.js";
 
@@ -54,6 +57,18 @@ import satsuData
 ========================= */
 
 const config = {
+
+    tsu: {
+
+        label: "つ",
+
+        kanji: "～つ",
+
+        question: "いくつ",
+
+        data: tsuData
+
+    },
 
     ko: {
 
