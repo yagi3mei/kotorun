@@ -53,5 +53,25 @@
 
     </main>
 
+    <script>
+        const ua = navigator.userAgent;
+
+        const isInAppBrowser =
+            ua.includes("FBAN") ||
+            ua.includes("FBAV") ||
+            ua.includes("Instagram") ||
+            ua.includes("Line");
+
+        if (isInAppBrowser) {
+            alert(
+                `⚠ このブラウザでは
+                音声が正常に動作しない場合があります
+
+                右上メニューから
+                「ブラウザで開く」をお試しください`
+            );
+        }
+    </script>
+
 </body>
 </html>
