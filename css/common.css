@@ -74,6 +74,11 @@ h1 {
     display: none;
 }
 
+.menu-icon {
+    font-size: 24px;
+    font-weight: bold;
+}
+
 
 /* =====================
     PC表示時の共通調整（ロゴサイズなど）
