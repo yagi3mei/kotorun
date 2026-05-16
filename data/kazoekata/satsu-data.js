@@ -3,11 +3,11 @@ export default [
         id: "issatsu",
         number: 1,
         counter: "さつ",
-        questionSpeech: "なんさつ",
+        questionSpeech: "ほんが なんさつ ありますか？",
         reading: "いっさつ",
         speech: "いっさつ",
         item: "ほん",
-        img: "hon_1.png",
+        img: "book_1.png",
 
         choices: [
             "いっさつ",
@@ -20,11 +20,11 @@ export default [
         id: "nisatsu",
         number: 2,
         counter: "さつ",
-        questionSpeech: "なんさつ",
+        questionSpeech: "ほんが なんさつ ありますか？",
         reading: "にさつ",
         speech: "にさつ",
         item: "ほん",
-        img: "hon_2.png",
+        img: "book_2.png",
 
         choices: [
             "にさつ",
@@ -37,11 +37,11 @@ export default [
         id: "sansatsu",
         number: 3,
         counter: "さつ",
-        questionSpeech: "なんさつ",
+        questionSpeech: "じしょが なんさつ ありますか？",
         reading: "さんさつ",
         speech: "さんさつ",
-        item: "ほん",
-        img: "hon_3.png",
+        item: "じしょ",
+        img: "dictionary_3.png",
 
         choices: [
             "さんさつ",
@@ -54,11 +54,11 @@ export default [
         id: "yonsatsu",
         number: 4,
         counter: "さつ",
-        questionSpeech: "なんさつ",
+        questionSpeech: "じしょが なんさつ ありますか？",
         reading: "よんさつ",
         speech: "よんさつ",
-        item: "ほん",
-        img: "hon_4.png",
+        item: "じしょ",
+        img: "dictionary_4.png",
 
         choices: [
             "よんさつ",
@@ -71,11 +71,11 @@ export default [
         id: "gosatsu",
         number: 5,
         counter: "さつ",
-        questionSpeech: "なんさつ",
+        questionSpeech: "まんがが なんさつ ありますか？",
         reading: "ごさつ",
         speech: "ごさつ",
-        item: "ほん",
-        img: "hon_5.png",
+        item: "まんが",
+        img: "manga_5.png",
 
         choices: [
             "ごさつ",
@@ -88,11 +88,11 @@ export default [
         id: "rokusatsu",
         number: 6,
         counter: "さつ",
-        questionSpeech: "なんさつ",
+        questionSpeech: "まんがが なんさつ ありますか？",
         reading: "ろくさつ",
         speech: "ろくさつ",
-        item: "ほん",
-        img: "hon_6.png",
+        item: "まんが",
+        img: "manga_6.png",
 
         choices: [
             "ろくさつ",
@@ -105,11 +105,11 @@ export default [
         id: "nanasatsu",
         number: 7,
         counter: "さつ",
-        questionSpeech: "なんさつ",
+        questionSpeech: "ノートが なんさつ ありますか？",
         reading: "ななさつ",
         speech: "ななさつ",
-        item: "ほん",
-        img: "hon_7.png",
+        item: "ノート",
+        img: "notebook_7.png",
 
         choices: [
             "ななさつ",
@@ -122,11 +122,11 @@ export default [
         id: "hassatsu",
         number: 8,
         counter: "さつ",
-        questionSpeech: "なんさつ",
+        questionSpeech: "ノートが なんさつ ありますか？",
         reading: "はっさつ",
         speech: "はっさつ",
-        item: "ほん",
-        img: "hon_8.png",
+        item: "ノート",
+        img: "notebook_8.png",
 
         choices: [
             "はっさつ",
@@ -139,11 +139,11 @@ export default [
         id: "kyuusatsu",
         number: 9,
         counter: "さつ",
-        questionSpeech: "なんさつ",
+        questionSpeech: "ざっしが なんさつ ありますか？",
         reading: "きゅうさつ",
         speech: "きゅうさつ",
-        item: "ほん",
-        img: "hon_9.png",
+        item: "ざっし",
+        img: "magazine_9.png",
 
         choices: [
             "きゅうさつ",
@@ -156,11 +156,11 @@ export default [
         id: "jussatsu",
         number: 10,
         counter: "さつ",
-        questionSpeech: "なんさつ",
+        questionSpeech: "ざっしが なんさつ ありますか？",
         reading: "じゅっさつ",
         speech: "じゅっさつ",
-        item: "ほん",
-        img: "hon_10.png",
+        item: "ざっし",
+        img: "magazine_10.png",
 
         choices: [
             "じゅっさつ",
