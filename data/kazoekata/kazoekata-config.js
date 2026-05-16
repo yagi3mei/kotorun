@@ -48,6 +48,9 @@ import maiData
 import ninData
     from "./nin-data.js";
 
+import daiData
+    from "./dai-data.js";
+
 import satsuData
     from "./satsu-data.js";
 
@@ -118,6 +121,18 @@ const config = {
 
     },
 
+    dai: {
+
+        label: "だい",
+
+        kanji: "台",
+
+        question: "なんだい",
+
+        data: daiData
+
+    },
+    
     satsu: {
 
         label: "さつ",
