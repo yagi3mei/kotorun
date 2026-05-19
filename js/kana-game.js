@@ -11,6 +11,9 @@
 //      - ゲームのロジック（問題選択、入力判定、タイマー、ミスカウントなど）を実装
 // ========================================= 
 
+// 共通のストレージモジュールからスコア保存関数をインポート
+import { saveScore, getScore } from "./storage.js";
+
 // ひらがな清音の配列（5列グリッド用に空文字を含む）
 // 空文字はレイアウト調整用（クリック不可）
 const SEION = [
@@ -257,19 +260,97 @@ function handleClick(e) {
 // ゲーム終了
 // =====================
 function endGame() {
+
     clearInterval(timerInterval);
 
     const now = new Date();
-    const dateStr = now.toLocaleString();
-    const time = ((performance.now() - startTime) / 1000).toFixed(2);
 
-    document.getElementById("game-type-label").textContent = getGameLabel(gameType);   // 結果モーダルにゲームモードを表示
-    // document.getElementById("game-type-label").textContent = "モード：" + getGameLabel(gameType);   // 結果モーダルにゲームモードを表示
-    document.getElementById("date-time").textContent = dateStr;     // 結果モーダルに日時を表示
-    document.getElementById("final-time").textContent = time + " 秒";   // 結果モーダルにタイムを表示
-    document.getElementById("miss-result").textContent = "ミス：" + missCount + " 回";  // 結果モーダルにミス数を表示
-    document.getElementById("result-modal").classList.remove("hidden");
+    const dateStr = now.toLocaleString();
+
+    const time =
+        ((performance.now() - startTime) / 1000).toFixed(2);
+
+    // =====================
+    // 保存前ベスト取得
+    // =====================
+    const oldBest = getScore(
+        "kana",
+        getStorageKey(gameType)
+    );
+
+    // =====================
+    // 今回の結果
+    // =====================
+    const result = {
+        time: Number(time),
+        miss: missCount,
+        date: dateStr
+    };
+
+    // =====================
+    // 保存
+    // =====================
+    const updated = saveScore(
+        "kana",
+        getStorageKey(gameType),
+        result
+    );
+
+    // =====================
+    // 保存後ベスト取得
+    // =====================
+    const best = getScore(
+        "kana",
+        getStorageKey(gameType)
+    );
+
+    // =====================
+    // 今回の結果表示
+    // =====================
+    document.getElementById("game-type-label").textContent =
+        getGameLabel(gameType);
+
+    document.getElementById("date-time").textContent =
+        dateStr;
+
+    document.getElementById("miss-result").textContent =
+        "ミス：" + missCount + " 回";
+
+    document.getElementById("final-time").textContent =
+        "タイム：" + time + " 秒";
+
+    // =====================
+    // ベスト表示
+    // =====================
+    if (updated) {
+
+        document.getElementById("best-message").textContent =
+            "🎉 ベストきろく　こうしん！";
+
+        document.getElementById("best-date").textContent = "";
+        document.getElementById("best-miss").textContent = "";
+        document.getElementById("best-time").textContent = "";
+
+    } else {
+
+        document.getElementById("best-message").textContent = "";
+
+        document.getElementById("best-date").textContent =
+            "いつ：" + best.date;
+
+        document.getElementById("best-miss").textContent =
+            "ミス：" + best.miss + " 回";
+
+        document.getElementById("best-time").textContent =
+            "タイム：" + best.time + " 秒";
+    }
+    // =====================
+    // モーダル表示
+    // =====================
+    document.getElementById("result-modal")
+        .classList.remove("hidden");
 }
+
 
 // モーダル表示用のラベル
 function getGameLabel(type) {
@@ -286,6 +367,25 @@ function getGameLabel(type) {
 }
 
 // =====================
+// localStorage保存用キー
+// =====================
+function getStorageKey(type) {
+
+    const map = {
+        "seion": "hiragana_seion",
+        "dakuon": "hiragana_dakuon",
+        "youon": "hiragana_youon",
+
+        "katakana-seion": "katakana_seion",
+        "katakana-dakuon": "katakana_dakuon",
+        "katakana-youon": "katakana_youon",
+        "katakana-extra": "katakana_extra"
+    };
+
+    return map[type] || type;
+}
+
+// =====================
 // 初期化処理
 // =====================
 function restartGame() {
@@ -295,6 +395,12 @@ function restartGame() {
 function goMenu() {
     location.href = "kana-index.html";
 }
+
+// =====================
+// HTML onclick 用に公開
+// =====================
+window.restartGame = restartGame;
+window.goMenu = goMenu;
 
 document.getElementById("card-container").classList.add("disabled");
 
