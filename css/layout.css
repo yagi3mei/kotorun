@@ -136,6 +136,17 @@
 }
 
 /* =========================
+   実施済みボタン
+========================= */
+.menu button.completed,
+.kana-item.completed {
+
+    background-color: #d8f8d4;
+    border: 2px solid #7edc82;
+}
+
+
+/* =========================
    PC表示時のレイアウト調整
 ========================= */
 @media (min-width: 768px) {

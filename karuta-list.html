@@ -135,6 +135,15 @@
 
         const grid = document.getElementById("kana-grid");
 
+        /* =====================
+            LocalStorageキー生成
+        ===================== */
+        function getStorageKey(type, group, kanaKey) {
+
+            return `${type}-${group}-${kanaKey}`;
+
+        }
+
         /* ★追加：レイアウト切り替え */
         if (group === "seion" || type === "kata") {
             grid.classList.add("fixed");  // 五十音フル
@@ -157,6 +166,26 @@
             }
 
             btn.textContent = item.kana;
+
+            /* =====================
+                実施済みチェック
+            ===================== */
+
+            const scores =
+                JSON.parse(
+                    localStorage.getItem("kotorun-score")
+                ) || {};
+
+            const karutaScores =
+                scores.karuta || {};
+
+            const storageKey =
+                getStorageKey(type, group, item.key);
+
+            if (karutaScores[storageKey]) {
+
+                btn.classList.add("completed");
+            }
 
             // 有効/無効
             if (available.includes(item.key)) {

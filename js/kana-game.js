@@ -308,7 +308,7 @@ function endGame() {
     // 今回の結果表示
     // =====================
     document.getElementById("game-type-label").textContent =
-        getGameLabel(gameType);
+        `【${getGameLabel(gameType)}】`;
 
     document.getElementById("date-time").textContent =
         dateStr;

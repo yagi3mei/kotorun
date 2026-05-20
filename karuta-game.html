@@ -4,6 +4,7 @@
      Author: やぎさん
      Created: 2026-04-09
      Updated: 2026-04-30：css分割
+     Updated: 2026-05-20：LocalStorageにベストスコア保存機能追加
 
      Notes:
      - 問題表示・回答入力・結果表示を行う共通ゲーム画面
@@ -19,7 +20,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>かるたゲーム</title>
+    <title>たんごかるた</title>
     <!-- 共通 -->
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/layout.css">
@@ -60,19 +61,45 @@
     </div>
 
     
-    <!-- ゲームロジック -->
-    <script type="module" src="js/karuta-game.js"></script>
-
-    <!-- 結果表示モーダル -->
+    <!-- 結果モーダル --> 
     <div id="result-modal" class="modal hidden">
         <div class="modal-content">
-            <h2>かるたゲーム　けっか</h2>
-            <p id="result-text"></p>
+            <h2>たんごかるた　けっか</h2>
 
-            <button onclick="restartGame()">もういちど</button>
-            <button onclick="goBack()">もどる</button>
+            <!-- ゲーム情報 -->
+            <p id="game-type-label"></p>
+            <p id="date-time"></p>
+            
+            <!-- 今回の結果 -->
+            <p id="miss-result"></p>
+            <p id="final-time"></p>
+
+            <hr>
+
+            <!-- ベスト -->
+            <p id="best-score-label">
+                あなたのベストきろく
+            </p>
+            
+            <p id="best-message"></p>
+            <p id="best-date"></p>
+            <p id="best-miss"></p>
+            <p id="best-time"></p>
+            
+            <!-- 今回の単語 -->
+            <div id="word-list-area"></div>
+            <button onclick="restartGame()">
+                もういちど
+            </button>
+            
+            <button onclick="goBack()">
+                もどる
+            </button>
         </div>
     </div>
+
+    <!-- ゲームロジック -->
+    <script type="module" src="js/karuta-game.js"></script>
 
 </body>
 </html>
