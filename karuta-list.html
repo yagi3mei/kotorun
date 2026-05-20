@@ -216,7 +216,9 @@
         });
         // 前の画面に戻る（履歴ベース）
         window.goBack = function () {
-            history.back();
+                location.href =
+                    `karuta-list.html?type=${type}&group=${group}`;
+
         };
     </script>
 

@@ -116,6 +116,9 @@ const bestMiss =
 const bestTime =
   document.getElementById("best-time");
 
+const wordListArea =
+  document.getElementById("word-list-area");
+
 
 /* 状態管理 */
 let questionCount = 0;
@@ -346,6 +349,24 @@ function showResult() {
   const dateStr =
     now.toLocaleString();
 
+  /* =====================
+      単語一覧生成
+  ===================== */
+  let wordList = "";
+
+  data.forEach(item => {
+
+    const isWrong =
+      wrongAnswers.includes(item.id);
+
+    const mark =
+      isWrong ? "★" : "　";
+
+    wordList +=
+      `${mark} ${item.word}（${item.lesson}課）<br>`;
+
+  });
+
 
   /* =====================
       ベスト判定
@@ -427,6 +448,12 @@ function showResult() {
       `タイム：${best.time}秒`;
 
   }
+
+  /* =====================
+      単語一覧表示
+  ===================== */
+  wordListArea.innerHTML =
+    wordList;
 
 
   resultModal.classList.remove("hidden");
