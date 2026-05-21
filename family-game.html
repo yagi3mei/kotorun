@@ -167,8 +167,36 @@
                 かぞくゲーム けっか
             </h2>
 
-            <p id="result-text"></p>
+            <!-- ゲーム情報 -->
+            <p id="game-type-label"></p>
+            <p id="date-time"></p>
 
+            <!-- 今回の結果 -->
+            <p id="miss-result"></p>
+            <p id="final-time"></p>
+
+            <hr>
+
+            <!-- ベスト -->
+            <p id="best-score-label">
+                あなたのベストきろく
+            </p>
+
+            <p id="best-message"></p>
+            <p id="best-date"></p>
+            <p id="best-miss"></p>
+            <p id="best-time"></p>
+
+            <hr>
+
+            <!-- 今回の単語 -->
+            <p id="word-list-label">
+                こんかいの たんご
+            </p>
+
+            <div id="word-list-area"></div>
+
+            
             <button onclick="restartGame()">
                 もういちど
             </button>
@@ -180,7 +208,6 @@
         </div>
 
     </div>
-
 
     <!-- ゲームロジック -->
     <script type="module"

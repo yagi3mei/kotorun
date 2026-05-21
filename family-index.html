@@ -63,7 +63,9 @@
         <h1>かぞくを えらんでね</h1>
 
         <!-- 自分の家族 -->
-        <button onclick="goFamily('inner')">
+        <button
+            data-key="inner"
+            onclick="goFamily('inner')">
 
             うちの（わたしの） かぞく<br>
 
@@ -74,7 +76,9 @@
         </button>
 
         <!-- 他人の家族 -->
-        <button onclick="goFamily('outer')">
+        <button
+            data-key="outer"
+            onclick="goFamily('outer')">
 
             ともだちの かぞく<br>
 
@@ -85,7 +89,9 @@
         </button>
 
         <!-- 親戚 -->
-        <button onclick="goFamily('relative')">
+        <button
+            data-key="relative"
+            onclick="goFamily('relative')">
 
             しんせきの かぞく<br>
 
@@ -120,6 +126,30 @@
             location.href = "iroiro-index.html";
 
         }
+
+        /* =========================
+        実施済みチェック
+        ========================= */
+
+        const scores =
+            JSON.parse(
+                localStorage.getItem("kotorun-score")
+            ) || {};
+
+        const familyScores =
+            scores.family || {};
+
+        document
+            .querySelectorAll(".menu button[data-key]")
+            .forEach(button => {
+
+                const key = button.dataset.key;
+
+                if (familyScores[key]) {
+
+                    button.classList.add("completed");
+                }
+            });
 
     </script>
 

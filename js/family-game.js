@@ -4,6 +4,7 @@
 //      Author: やぎさん
 //      Created: 2026-04-09
 //      Updated: 2026-04-30: CSSファイル分割に伴う読み込み構造の変更
+//      Updated: 2026-05-21: storage対応
 //
 //      Notes:
 //      - 家族ゲームの共通JavaScriptファイル
@@ -12,6 +13,8 @@
 //      - ゲームのロジック（問題選択、入力判定、タイマー、ミスカウントなど）を実装
 // ========================================= 
 
+import { saveScore, getScore } from "./storage.js";
+
 const params=new URLSearchParams(location.search);
 
 // mode: inner（自分の家族） / outer（他人の家族）
@@ -19,15 +22,82 @@ const mode=params.get("mode") || "inner";
 
 /* メニュー表示名 */
 let modeLabel = "";
+
 if (mode === "inner") {
+
     modeLabel = "うちの かぞく";
+
 } else if (mode === "outer") {
+
     modeLabel = "ともだちの かぞく";
+
 } else if (mode === "relative") {
+
     modeLabel = "しんせきの かぞく";
 }
 
-document.getElementById("family-mode-label").textContent=modeLabel;
+document.getElementById(
+    "family-mode-label"
+).textContent=modeLabel;
+
+
+/* =========================
+   storage key
+========================= */
+function getStorageKey() {
+
+    return mode;
+}
+
+
+/* =========================
+   結果モーダル
+========================= */
+const gameTypeLabel =
+    document.getElementById(
+        "game-type-label"
+    );
+
+const dateTime =
+    document.getElementById(
+        "date-time"
+    );
+
+const missResult =
+    document.getElementById(
+        "miss-result"
+    );
+
+const finalTime =
+    document.getElementById(
+        "final-time"
+    );
+
+const bestMessage =
+    document.getElementById(
+        "best-message"
+    );
+
+const bestDate =
+    document.getElementById(
+        "best-date"
+    );
+
+const bestMiss =
+    document.getElementById(
+        "best-miss"
+    );
+
+const bestTime =
+    document.getElementById(
+        "best-time"
+    );
+
+const wordListArea =
+    document.getElementById(
+        "word-list-area"
+    );
+
 
 /* =====================
    レイアウト切り替え
@@ -65,12 +135,13 @@ if (mode === "relative") {
 
 }
 
-/* 中間表示（誰から見た家族か） */
+/* 中間表示 */
 if (mode !== "relative") {
 
     let centerLabel = "わたし";
 
     if (mode === "outer") {
+
         centerLabel = "ともだち";
     }
 
@@ -79,30 +150,36 @@ if (mode !== "relative") {
     ).textContent = centerLabel;
 }
 
-// データの動的インポート
-const module= await import(`../data/family/${mode}.js`);
+
+/* データ */
+const module=
+    await import(
+        `../data/family/${mode}.js`
+    );
 
 const data=module.default;
 
+
 /* =========================
    表示IDマッピング
-   - データID → DOM要素IDへの対応付け
-   - 内の家族（ちち等）と外の家族（おとうさん等）を同一位置に表示するために使用
 ========================= */
 let mapping = {};
 
 if (mode === "relative") {
 
     mapping = {
+
         sofu:"relative-sofu",
         sobo:"relative-sobo",
         ojisan:"relative-ojisan",
         obasan:"relative-obasan",
         itoko:"relative-itoko"
     };
+
 } else {
 
     mapping = {
+
         sofu:"sofu",
         sobo:"sobo",
         chichi:"chichi",
@@ -121,7 +198,10 @@ if (mode === "relative") {
     };
 }
 
-const resultModal = document.getElementById("result-modal");
+const resultModal =
+    document.getElementById(
+        "result-modal"
+    );
 
 let used=[];
 let wrongWords=[];
@@ -132,8 +212,6 @@ let questionCount = 0;
 
 let startTime;
 let timerInterval;
-
-
 
 const timerDisplay=
     document.getElementById(
@@ -150,37 +228,31 @@ const missDisplay=
         "miss-display"
     );
 
-const resultText=
-    document.getElementById(
-        "result-text"
-    );
-
 
 /* =====================
-   初期描画（家系図にカードを配置）
+   初期描画
 ===================== */
 function renderCards(){
 
     data.forEach(item=>{
 
-    const card=
-        document.getElementById(
-            mapping[item.id]
-        );
+        const card=
+            document.getElementById(
+                mapping[item.id]
+            );
 
-    /* 要素が存在しない場合はスキップ */
-    if (!card) {
-        return;
-    }
+        if (!card) {
+            return;
+        }
 
-    card.innerHTML=`
-        <img src="images/family/${item.img}">
-        <div class="family-label">
-            ${item.word}
-        </div>
+        card.innerHTML=`
+            <img src="images/family/${item.img}">
+            <div class="family-label">
+                ${item.word}
+            </div>
         `;
 
-    card.onclick=()=>{
+        card.onclick=()=>{
             checkAnswer(item,card);
         };
 
@@ -191,7 +263,6 @@ function renderCards(){
 
 /* =====================
    問題生成
-   - 未出題データからランダムに選択
 ===================== */
 function loadQuestion(){
 
@@ -201,14 +272,13 @@ function loadQuestion(){
         );
 
     remainingDisplay.textContent=
-    "のこり："+remain.length;
-
+        "のこり："+remain.length;
 
     if(remain.length===0){
+
         showResult();
         return;
     }
-
 
     correctAnswer=
         remain[
@@ -221,29 +291,30 @@ function loadQuestion(){
         correctAnswer.id
     );
 
-
     document.getElementById(
         "romaji-display"
-        ).textContent=
+    ).textContent=
         correctAnswer.romaji;
-
 
     playAudio();
 
 }
 
 
-/* 音声再生（例文読み上げ） */
+/* =====================
+   音声
+===================== */
 function playAudio(){
 
     const u=
         new SpeechSynthesisUtterance(
-        correctAnswer.sentence
+            correctAnswer.sentence
         );
 
     u.lang="ja-JP";
 
     speechSynthesis.cancel();
+
     speechSynthesis.speak(u);
 
 }
@@ -251,15 +322,13 @@ function playAudio(){
 document
     .getElementById("sound-btn")
     .addEventListener(
-    "click",
-    playAudio
+        "click",
+        playAudio
     );
 
 
 /* =====================
    回答判定
-   - 正解：次の問題へ
-   - 不正解：ミスカウント＋アニメーション
 ===================== */
 function checkAnswer(selected, card) {
 
@@ -267,43 +336,55 @@ function checkAnswer(selected, card) {
 
         speechSynthesis.cancel();
 
-        /* 正解音 */
-        const sound = new Audio("sounds/correct.mp3");
+        const sound =
+            new Audio("sounds/correct.mp3");
+
         sound.volume = 0.4;
+
         sound.play();
 
         questionCount++;
 
         setTimeout(() => {
+
             loadQuestion();
+
         }, 500);
 
     } else {
 
-        /* 不正解音 */
-        const sound = new Audio("sounds/wrong.mp3");
+        const sound =
+            new Audio("sounds/wrong.mp3");
+
         sound.volume = 0.4;
+
         sound.play();
 
         missCount++;
-        missDisplay.textContent = "ミス：" + missCount;
+
+        missDisplay.textContent =
+            "ミス：" + missCount;
 
         if (!wrongWords.includes(correctAnswer.id)) {
+
             wrongWords.push(correctAnswer.id);
+
         }
 
-        card.style.animation = "shake 0.3s";
+        card.style.animation =
+            "shake 0.3s";
 
         setTimeout(() => {
+
             card.style.animation = "";
+
         }, 300);
     }
 }
 
 
 /* =====================
-   結果表示（モーダル）
-   - 実施日時・時間・ミス数・単語一覧を表示
+   結果表示
 ===================== */
 function showResult() {
 
@@ -321,6 +402,48 @@ function showResult() {
     const dateStr =
         now.toLocaleString();
 
+
+    /* =====================
+       ベスト判定
+    ===================== */
+    const oldBest =
+        getScore(
+            "family",
+            getStorageKey()
+        );
+
+    const isBest =
+        !oldBest
+        || missCount < oldBest.miss
+        || (
+            missCount === oldBest.miss
+            && Number(time) < oldBest.time
+        );
+
+
+    /* =====================
+       スコア保存
+    ===================== */
+    saveScore(
+        "family",
+        getStorageKey(),
+        {
+            time: Number(time),
+            miss: missCount,
+            date: dateStr
+        }
+    );
+
+    const best =
+        getScore(
+            "family",
+            getStorageKey()
+        );
+
+
+    /* =====================
+       単語一覧
+    ===================== */
     let wordList = "";
 
     data.forEach(item => {
@@ -336,33 +459,61 @@ function showResult() {
         `;
     });
 
-    // 家族の見方によるラベル
-    let familyLabel = "";
-    if (mode === "inner") {
-        familyLabel = "かぞく　うちの";
-    } else if (mode === "outer") {
-        familyLabel = "かぞく　ともだちの";
-    } else if (mode === "relative") {
-        familyLabel = "しんせきの かぞく";
+    wordListArea.innerHTML = wordList;
+
+
+    /* =====================
+       今回結果
+    ===================== */
+    gameTypeLabel.textContent =
+        `【${modeLabel}】`;
+
+    dateTime.textContent =
+        dateStr;
+
+    missResult.textContent =
+        `ミス：${missCount}回`;
+
+    finalTime.textContent =
+        `タイム：${time}秒`;
+
+
+    /* =====================
+       ベスト
+    ===================== */
+    if (isBest) {
+
+        bestMessage.textContent =
+            "🎉 ベストきろく　こうしん！";
+
+        bestDate.textContent = "";
+        bestMiss.textContent = "";
+        bestTime.textContent = "";
+
+    } else {
+
+        bestMessage.textContent = "";
+
+        bestDate.textContent =
+            `いつ：${best.date}`;
+
+        bestMiss.textContent =
+            `ミス：${best.miss}回`;
+
+        bestTime.textContent =
+            `タイム：${best.time}秒`;
+
     }
-
-    resultText.innerHTML = `
-        実施日時：${dateStr}<br><br>
-
-        【${familyLabel}】<br>
-        時間：${time}秒<br>
-        ミス★：${missCount}回<br><br>
-
-        ＜今回の単語＞<br>
-        ${wordList}
-    `;
-
 
     resultModal.classList.remove(
         "hidden"
     );
 }
 
+
+/* =====================
+   再スタート
+===================== */
 window.restartGame=function(){
 
     used=[];
@@ -372,7 +523,7 @@ window.restartGame=function(){
     questionCount=0;
 
     missDisplay.textContent=
-    "ミス：0";
+        "ミス：0";
 
     resultModal.classList.add(
         "hidden"
@@ -382,16 +533,18 @@ window.restartGame=function(){
 };
 
 
-
+/* =====================
+   戻る
+===================== */
 window.goBack=function(){
-    history.back();
+
+    location.href =
+        "family-index.html";
 };
 
 
 /* =====================
-   ゲーム開始処理
-   - タイマー開始
-   - 最初の問題生成
+   ゲーム開始
 ===================== */
 function start(){
 
@@ -401,7 +554,6 @@ function start(){
     clearInterval(
         timerInterval
     );
-
 
     timerInterval=
         setInterval(()=>{
@@ -413,7 +565,6 @@ function start(){
             ).toFixed(2);
 
         },50);
-
 
     loadQuestion();
 

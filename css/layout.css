@@ -145,6 +145,29 @@
     border: 2px solid #7edc82;
 }
 
+/* =====================
+   結果モーダル：単語一覧
+===================== */
+#word-list-area {
+
+    margin-top: 12px;
+
+    max-height: 220px;
+
+    overflow-y: auto;
+
+    text-align: left;
+
+    padding: 8px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    background: #fff3cf;
+
+    line-height: 1.8;
+}
 
 /* =========================
    PC表示時のレイアウト調整
