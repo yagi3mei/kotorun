@@ -17,6 +17,21 @@
 import calendarData from "../data/calendar/calendar-days.js";
 
 /* =========================
+   storage.js
+========================= */
+import {
+    saveScore,
+    getScore
+} from "./storage.js";
+
+/* =========================
+   storage key
+========================= */
+function getStorageKey() {
+    return "calendar";
+}
+
+/* =========================
    HTML取得
 ========================= */
 const calendarGrid = document.getElementById("calendar-grid");
@@ -197,21 +212,117 @@ function endGame(){
 
     // タイム計算
     const time =
-        ((performance.now() - startTime) / 1000)
-        .toFixed(2);
+        (
+            (performance.now() - startTime)
+            / 1000
+        ).toFixed(2);
 
-    // モーダルへ反映
-    document.getElementById("date-time")
-        .textContent = dateStr;
 
+    /* =====================
+       ベスト判定
+    ===================== */
+    const oldBest =
+        getScore(
+            "calendar",
+            getStorageKey()
+        );
+
+    const isBest =
+        !oldBest
+        || missCount < oldBest.miss
+        || (
+            missCount === oldBest.miss
+            && Number(time) < oldBest.time
+        );
+
+
+    /* =====================
+       スコア保存
+    ===================== */
+    saveScore(
+        "calendar",
+        getStorageKey(),
+        {
+            time: Number(time),
+            miss: missCount,
+            date: dateStr
+        }
+    );
+
+    const best =
+        getScore(
+            "calendar",
+            getStorageKey()
+        );
+
+
+    /* =====================
+       今回結果
+    ===================== */
     document.getElementById("game-type-label")
-        .textContent = "日づけ（カレンダー）";
+        .textContent =
+        "【日づけ（カレンダー）】";
+
+    document.getElementById("date-time")
+        .textContent =
+        dateStr;
 
     document.getElementById("final-time")
-        .textContent = time + " 秒";
+        .textContent =
+        `タイム：${time}秒`;
 
     document.getElementById("miss-result")
-        .textContent = "ミス：" + missCount + " 回";
+        .textContent =
+        `ミス：${missCount}回`;
+
+
+    /* =====================
+       ベスト表示
+    ===================== */
+    const bestMessage =
+        document.getElementById(
+            "best-message"
+        );
+
+    const bestDate =
+        document.getElementById(
+            "best-date"
+        );
+
+    const bestTime =
+        document.getElementById(
+            "best-time"
+        );
+
+    const bestMiss =
+        document.getElementById(
+            "best-miss"
+        );
+
+
+    if (isBest) {
+
+        bestMessage.textContent =
+            "🎉 ベストきろく　こうしん！";
+
+        bestDate.textContent = "";
+        bestTime.textContent = "";
+        bestMiss.textContent = "";
+
+    } else {
+
+        bestMessage.textContent = "";
+
+        bestDate.textContent =
+            `いつ：${best.date}`;
+
+        bestTime.textContent =
+            `タイム：${best.time}秒`;
+
+        bestMiss.textContent =
+            `ミス：${best.miss}回`;
+    }
+
 
     // モーダル表示
     document.getElementById("result-modal")
