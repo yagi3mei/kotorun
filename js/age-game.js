@@ -12,6 +12,11 @@
 
 import ageData from "../data/age/age-data.js";
 
+// ストレージからスコアを保存・取得する関数
+import {
+    saveScore,
+    getScore
+} from "./storage.js";
 
 /* =========================
    定数・変数
@@ -47,6 +52,45 @@ const resultModal =
         "result-modal"
     );
 
+const gameTypeLabel =
+    document.getElementById(
+        "game-type-label"
+    );
+
+const dateTime =
+    document.getElementById(
+        "date-time"
+    );
+
+const finalTime =
+    document.getElementById(
+        "final-time"
+    );
+
+const missResult =
+    document.getElementById(
+        "miss-result"
+    );
+
+const bestMessage =
+    document.getElementById(
+        "best-message"
+    );
+
+const bestDate =
+    document.getElementById(
+        "best-date"
+    );
+
+const bestTime =
+    document.getElementById(
+        "best-time"
+    );
+
+const bestMiss =
+    document.getElementById(
+        "best-miss"
+    );
 
 let used = [];
 
@@ -257,30 +301,93 @@ function showResult() {
         ).toFixed(2);
 
 
-    document.getElementById(
-        "date-time"
-    ).textContent =
+    /* =====================
+       ベスト判定
+    ===================== */
+    const oldBest =
+        getScore(
+            "age",
+            "age_game"
+        );
+
+    const isBest =
+        !oldBest
+        || missCount < oldBest.miss
+        || (
+            missCount === oldBest.miss
+            && Number(time) < oldBest.time
+        );
+
+
+    /* =====================
+       スコア保存
+    ===================== */
+    saveScore(
+        "age",
+        "age_game",
+        {
+            time: Number(time),
+            miss: missCount,
+            date: dateStr
+        }
+    );
+
+
+    const best =
+        getScore(
+            "age",
+            "age_game"
+        );
+
+
+    /* =====================
+       今回結果
+    ===================== */
+    gameTypeLabel.textContent =
+        "【ねんれいゲーム】";
+
+    dateTime.textContent =
         dateStr;
 
+    missResult.textContent =
+        `ミス：${missCount}回`;
 
-    document.getElementById(
-        "final-time"
-    ).textContent =
-        time + " 秒";
+    finalTime.textContent =
+        `タイム：${time}秒`;
 
 
-    document.getElementById(
-        "miss-result"
-    ).textContent =
-        "ミス：" + missCount + " 回";
+    /* =====================
+       ベスト表示
+    ===================== */
+    if (isBest) {
+
+        bestMessage.textContent =
+            "🎉 ベストきろく　こうしん！";
+
+        bestDate.textContent = "";
+        bestMiss.textContent = "";
+        bestTime.textContent = "";
+
+    } else {
+
+        bestMessage.textContent = "";
+
+        bestDate.textContent =
+            `いつ：${best.date}`;
+
+        bestMiss.textContent =
+            `ミス：${best.miss}回`;
+
+        bestTime.textContent =
+            `タイム：${best.time}秒`;
+
+    }
 
 
     resultModal.classList.remove(
         "hidden"
     );
-
 }
-
 
 /* =========================
    ゲーム開始
