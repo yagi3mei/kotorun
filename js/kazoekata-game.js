@@ -21,6 +21,15 @@ import config
     from "../data/kazoekata/kazoekata-config.js";
 
 /* =========================
+   storage 読込
+========================= */
+import {
+    saveScore,
+    getScore
+}
+from "./storage.js";
+
+/* =========================
    URLパラメータ取得
 ========================= */
 
@@ -88,6 +97,50 @@ const resultModal =
         "result-modal"
     );
 
+const gameTypeLabel =
+    document.getElementById(
+        "game-type-label"
+    );
+
+const dateTime =
+    document.getElementById(
+        "date-time"
+    );
+
+const finalTime =
+    document.getElementById(
+        "final-time"
+    );
+
+const missResult =
+    document.getElementById(
+        "miss-result"
+    );
+        
+const bestMessage =
+    document.getElementById(
+        "best-message"
+    );
+
+const bestDate =
+    document.getElementById(
+        "best-date"
+    );
+
+const bestTime =
+    document.getElementById(
+        "best-time"
+    );
+
+const bestMiss =
+    document.getElementById(
+        "best-miss"
+    );
+
+const wrongListArea =
+    document.getElementById(
+        "wrong-list"
+    );
 
 /* =========================
    状態変数
@@ -389,44 +442,109 @@ function showResult() {
         ).toFixed(2);
 
 
+    /* =====================
+       ベスト判定
+    ===================== */
+    const oldBest =
+        getScore(
+            "kazoekata",
+            type
+        );
+
+    const isBest =
+        !oldBest
+        || missCount < oldBest.miss
+        || (
+            missCount === oldBest.miss
+            && Number(time) < oldBest.time
+        );
+
+
+    /* =====================
+       スコア保存
+    ===================== */
+    saveScore(
+        "kazoekata",
+        type,
+        {
+            time: Number(time),
+            miss: missCount,
+            date: dateStr
+        }
+    );
+
+    const best =
+        getScore(
+            "kazoekata",
+            type
+        );
+
+
+    /* =====================
+       間違え一覧
+    ===================== */
     let wrongList = "";
 
     wrongQuestions.forEach(item => {
 
-        wrongList += item + "<br>";
+        wrongList += `
+            ${item}<br>
+        `;
 
     });
 
-
-    document.getElementById(
-        "date-time"
-    ).innerHTML =
-
-        `
-        実施日時：${dateStr}<br><br>
-
-        【${currentConfig.label}（${currentConfig.kanji}）
-        　${currentConfig.question}】
-        `;
+    wrongListArea.innerHTML =
+        wrongList;
 
 
-    document.getElementById(
-        "final-time"
-    ).textContent =
-        time + " 秒";
+    /* =====================
+       今回結果
+    ===================== */
+    gameTypeLabel.textContent =
+
+        `【${currentConfig.label}（${currentConfig.kanji}） ${currentConfig.question}】`;
 
 
-    document.getElementById(
-        "miss-result"
-    ).innerHTML =
+    dateTime.textContent =
+        dateStr;
 
-        `
-        ミス：${missCount} 回<br><br>
 
-        まちがえた もんだい<br>
+    missResult.textContent =
+        `ミス：${missCount}回`;
 
-        ${wrongList}
-        `;
+
+    finalTime.textContent =
+        `タイム：${time}秒`;
+
+
+    /* =====================
+       ベスト表示
+    ===================== */
+    if (isBest) {
+
+        bestMessage.textContent =
+            "🎉 ベストきろく　こうしん！";
+
+        bestDate.textContent = "";
+
+        bestMiss.textContent = "";
+
+        bestTime.textContent = "";
+
+    } else {
+
+        bestMessage.textContent = "";
+
+        bestDate.textContent =
+            `いつ：${best.date}`;
+
+        bestMiss.textContent =
+            `ミス：${best.miss}回`;
+
+        bestTime.textContent =
+            `タイム：${best.time}秒`;
+
+    }
 
 
     resultModal.classList.remove(
@@ -434,7 +552,6 @@ function showResult() {
     );
 
 }
-
 
 /* =========================
    ゲーム開始

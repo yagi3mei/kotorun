@@ -3,6 +3,7 @@
      Purpose: かぞえかたゲーム プレイ画面
      Author: やぎさん
      Created: 2026-05-12
+     Updated: 2026-05-22：LocalStorageにベストスコア保存機能追加
 
      Notes:
      - 助数詞（本・枚・冊など）の読み学習ゲーム
@@ -134,10 +135,10 @@
 
 
     <!-- =====================================
-         結果モーダル
+        結果モーダル
     ====================================== -->
     <div id="result-modal"
-         class="modal hidden">
+        class="modal hidden">
 
         <div class="modal-content">
 
@@ -147,30 +148,51 @@
 
             </h2>
 
+            <!-- ゲーム情報 -->
+            <p id="game-type-label"></p>
+
             <p id="date-time"></p>
 
+            <!-- 今回結果 -->
             <p id="final-time"></p>
 
             <p id="miss-result"></p>
 
-            <p id="wrong-list"></p>
+            <hr>
 
+            <!-- ベスト表示 -->
+            <p id="best-score-label">
+                あなたのベストきろく
+            </p>
+
+            <p id="best-message"></p>
+            <p id="best-date"></p>
+            <p id="best-miss"></p>
+            <p id="best-time"></p>
+
+            <hr>
+
+            <!-- 間違えた問題 -->
+            <p id="word-list-label">
+                まちがえた　たんご
+            </p>
+
+            <div id="wrong-list"
+                class="word-list-scroll">
+            </div>
+
+            
             <button onclick="restartGame()">
-
                 もういちど
-
             </button>
 
             <button onclick="goMenu()">
-
-                メニューへ
-
+                もどる
             </button>
 
         </div>
 
     </div>
-
 
     <!-- =====================================
          音声

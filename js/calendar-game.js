@@ -3,6 +3,7 @@
    Purpose : 日づけゲーム制御
    Author  : やぎさん
    Created : 2026-05-09
+   Updated: 2026-05-22: LocalStorageベスト記録保存・結果モーダル拡張対応
 
    Notes:
    - 日付カード生成

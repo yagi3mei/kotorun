@@ -3,6 +3,7 @@
    Purpose: 年齢ゲームのプレイロジック
    Author: やぎさん
    Created: 2026-05-11
+   Updated: 2026-05-22: LocalStorageベスト記録保存・結果モーダル拡張対応
 
    Notes:
    - 1歳〜20歳の年齢読み学習ゲーム

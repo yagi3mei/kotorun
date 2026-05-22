@@ -3,6 +3,7 @@
      Purpose: かぞえかたゲームの種類選択画面
      Author: やぎさん
      Created: 2026-05-12
+     Updated: 2026-05-22：LocalStorageにベストスコア保存機能追加
 
      Notes:
      - 助数詞（ほん・まい・さつ等）を選択
@@ -186,7 +187,12 @@
     <!-- =====================================
          スクリプト
     ====================================== -->
-    <script>
+    <script type="module">
+
+        import {
+            getCategoryScores
+        }
+        from "./js/storage.js";
 
         /* =========================
            ゲーム開始
@@ -210,6 +216,51 @@
                 "iroiro-index.html";
 
         }
+
+        /* =========================
+        実施済み表示
+        ========================= */
+
+        const scores =
+            getCategoryScores(
+                "kazoekata"
+            );
+
+
+        document
+            .querySelectorAll(".menu button")
+            .forEach(button => {
+
+                const onclickText =
+                    button.getAttribute(
+                        "onclick"
+                    );
+
+                if (!onclickText) {
+                    return;
+                }
+
+                const match =
+                    onclickText.match(
+                        /goGame\('(.+?)'\)/
+                    );
+
+                if (!match) {
+                    return;
+                }
+
+                const type =
+                    match[1];
+
+                if (scores[type]) {
+
+                    button.classList.add(
+                        "completed"
+                    );
+
+                }
+
+            });
 
     </script>
 

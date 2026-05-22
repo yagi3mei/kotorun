@@ -3,7 +3,7 @@
    Purpose: レイアウト関連のスタイル
    Author: やぎさん
    Created: 2026-04-30：style.css から分割
-   Updated: （なし）
+   Updated: 2026-05-20: LocalStorageベスト記録対応
 
    Notes:
    - 共通スタイルは common.css / layout.css を使用
@@ -148,25 +148,17 @@
 /* =====================
    結果モーダル：単語一覧
 ===================== */
-.word-list-scroll {
-
+.word-list-scroll,
+.wrong-list-scroll {
     margin-top: 12px;
-
     max-height: 120px;
-
     overflow-y: auto;
-
     text-align: left;
-
     padding: 8px;
-
     border: 1px solid #ddd;
-
     border-radius: 10px;
-
     background: #fff3cf;
-
-    line-height: 1.8;
+    line-height: 1.6;
 }
 
 /* =========================
