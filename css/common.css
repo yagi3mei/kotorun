@@ -79,6 +79,19 @@ h1 {
     font-weight: bold;
 }
 
+/* =========================
+   音声ボタン
+========================= */
+#sound-btn {
+
+    border: none;
+
+    background: none;
+
+    font-size: 1.4rem;
+
+    cursor: pointer;
+}
 
 /* =====================
     PC表示時の共通調整（ロゴサイズなど）

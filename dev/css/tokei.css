@@ -68,27 +68,9 @@ body {
 
 .question-text {
 
-    font-size: 1.6rem;
-
-    font-weight: bold;
-}
-
-
-.sound-btn {
-
-    width: 48px;
-
-    height: 48px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: #ffe27a;
-
     font-size: 1.4rem;
 
-    cursor: pointer;
+    font-weight: bold;
 }
 
 
@@ -112,22 +94,52 @@ body {
 
     width: 72px;
 
-    height: 72px;
+    height: 50px;
 
     border: none;
 
     border-radius: 50%;
 
-    font-size: 2rem;
+    font-size: 1.6rem;
 
     cursor: pointer;
-
-    background: white;
 
     box-shadow:
         0 2px 6px rgba(0,0,0,0.15);
 }
 
+/* =========================
+   太陽ボタン
+========================= */
+.sun-btn {
+
+    background: #87ceeb;
+
+    color: #ffcc00;
+}
+
+
+/* =========================
+   月ボタン
+========================= */
+.moon-btn {
+
+    background: #3b4a6b;
+
+    color: #ffe27a;
+}
+
+/* =========================
+   選択状態
+========================= */
+.selected {
+
+    outline: 4px solid #ff9900;
+
+    transform: scale(1.05);
+
+    transition: 0.15s;
+}
 
 /* =========================
    針選択
@@ -150,7 +162,7 @@ body {
 
     width: 180px;
 
-    padding: 12px;
+    padding: 8px 12px;
 
     border: none;
 
@@ -180,7 +192,7 @@ body {
 
     justify-content: center;
 
-    margin-bottom: 24px;
+    margin-bottom: 10px;
 }
 
 
@@ -210,7 +222,7 @@ body {
 ========================= */
 .sun-moon-info {
 
-    margin-top: 8px;
+    margin-top: 25px;
 
     font-size: 0.95rem;
 

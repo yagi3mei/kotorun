@@ -46,11 +46,7 @@
 
             </div>
 
-            <button class="sound-btn">
-
-                🔊
-
-            </button>
+            <button id="sound-btn">🔊</button>
 
         </section>
 
@@ -93,7 +89,7 @@
                 <!-- 選択時メッセージ -->
                 <span class="needle-guide">
 
-                    → とけいの すうじを クリック
+                    → とけいの すうじを おす
 
                 </span>
 
@@ -113,7 +109,7 @@
                 <!-- 非表示状態 -->
                 <span class="needle-guide guide-hidden">
 
-                    → とけいの すうじを クリック
+                    → とけいの すうじを おす
 
                 </span>
 
@@ -150,51 +146,87 @@
 
 
                 <!-- 数字 -->
-                <text x="150" y="38"
+                <text
+                    class="clock-number"
+                    data-number="12"
+                    x="150" y="38"
                     text-anchor="middle"
                     font-size="24">12</text>
 
-                <text x="206" y="54"
+                <text
+                    class="clock-number"
+                    data-number="1"
+                    x="206" y="54"
                     text-anchor="middle"
                     font-size="24">1</text>
 
-                <text x="246" y="95"
+                <text
+                    class="clock-number"
+                    data-number="2"
+                    x="246" y="95"
                     text-anchor="middle"
                     font-size="24">2</text>
 
-                <text x="262" y="156"
+                <text
+                    class="clock-number"
+                    data-number="3"
+                    x="262" y="156"
                     text-anchor="middle"
                     font-size="24">3</text>
 
-                <text x="246" y="218"
+                <text
+                    class="clock-number"
+                    data-number="4"
+                    x="246" y="218"
                     text-anchor="middle"
                     font-size="24">4</text>
 
-                <text x="206" y="258"
+                <text
+                    class="clock-number"
+                    data-number="5"
+                    x="206" y="258"
                     text-anchor="middle"
                     font-size="24">5</text>
 
-                <text x="150" y="278"
+                <text
+                    class="clock-number"
+                    data-number="6"
+                    x="150" y="278"
                     text-anchor="middle"
                     font-size="24">6</text>
 
-                <text x="94" y="258"
+                <text
+                    class="clock-number"
+                    data-number="7"
+                    x="94" y="258"
                     text-anchor="middle"
                     font-size="24">7</text>
 
-                <text x="54" y="218"
+                <text
+                    class="clock-number"
+                    data-number="8"
+                    x="54" y="218"
                     text-anchor="middle"
                     font-size="24">8</text>
 
-                <text x="38" y="156"
+                <text
+                    class="clock-number"
+                    data-number="9"
+                    x="38" y="156"
                     text-anchor="middle"
                     font-size="24">9</text>
 
-                <text x="54" y="95"
+                <text
+                    class="clock-number"
+                    data-number="10"
+                    x="54" y="95"
                     text-anchor="middle"
                     font-size="24">10</text>
 
-                <text x="94" y="54"
+                <text
+                    class="clock-number"
+                    data-number="11"
+                     x="94" y="54"
                     text-anchor="middle"
                     font-size="24">11</text>
 
@@ -202,31 +234,35 @@
                 <!-- =====================================
                     赤い短針（矢印型）
                 ====================================== -->
+                <g id="short-hand">
 
-                <!-- 本体 -->
-                <line
-                    x1="150"
-                    y1="150"
-                    x2="150"
-                    y2="98"
-                    stroke="red"
-                    stroke-width="10"
-                    stroke-linecap="round" />
+                    <!-- 本体 -->
+                    <line
+                        x1="150"
+                        y1="150"
+                        x2="150"
+                        y2="98"
+                        stroke="red"
+                        stroke-width="10"
+                        stroke-linecap="round" />
 
-                <!-- 矢印 -->
-                <polygon
-                    points="
-                        150,82
-                        142,102
-                        158,102
-                    "
-                    fill="red" />
+                    <!-- 矢印 -->
+                    <polygon
+                        points="
+                            150,82
+                            142,102
+                            158,102
+                        "
+                        fill="red" />
+
+                </g>
 
 
                 <!-- =====================================
                     黒い長針
                 ====================================== -->
                 <line
+                    id="long-hand"
                     x1="150"
                     y1="150"
                     x2="150"
@@ -241,25 +277,41 @@
 
 
         <!-- =====================================
+             かくにんボタン
+        ====================================== -->
+        <section class="check-area">
+
+            <button id="check-btn">
+
+                かくにん
+
+            </button>
+
+        </section>
+
+
+        <!-- =====================================
              昼夜説明
         ====================================== -->
         <section class="sun-moon-info">
 
             <div>
 
-                ☀ ごぜん6じ〜 ごご5じ59ふん
+                ☀：ごぜん6じ〜 ごご5じ59ふん
 
             </div>
 
             <div>
 
-                🌙 ごご6じ〜 ごぜん5じ59ふん
+                🌙：ごご6じ〜 ごぜん5じ59ふん
 
             </div>
 
         </section>
 
     </main>
+
+    <script src="js/tokei-test.js"></script>
 
 </body>
 </html>
