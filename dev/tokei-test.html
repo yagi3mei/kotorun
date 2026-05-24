@@ -1,0 +1,265 @@
+<!-- =========================================
+     File: tokei-test.html
+     Purpose: 時計ゲーム UIテスト
+     Author: やぎさん
+     Created: 2026-05-24
+
+     Notes:
+     - 時計UI配置確認用
+     - SVG時計テスト
+     - まだJS動作なし
+========================================= -->
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>とけいゲーム テスト</title>
+
+    <link rel="stylesheet"
+          href="css/tokei.css">
+
+</head>
+
+<body>
+
+    <!-- =====================================
+         全体エリア
+    ====================================== -->
+    <main class="tokei-container">
+
+
+        <!-- =====================================
+             問題表示
+        ====================================== -->
+        <section class="question-area">
+
+            <div class="question-text">
+
+                ごご 8じ 30ぷん です
+
+            </div>
+
+            <button class="sound-btn">
+
+                🔊
+
+            </button>
+
+        </section>
+
+
+        <!-- =====================================
+             昼夜選択
+        ====================================== -->
+        <section class="sun-moon-area">
+
+            <button class="sun-btn">
+
+                ☀
+
+            </button>
+
+            <button class="moon-btn">
+
+                🌙
+
+            </button>
+
+        </section>
+
+
+        <!-- =====================================
+            針選択
+        ===================================== -->
+        <section class="needle-select-area">
+
+            <!-- 短針 -->
+            <div class="needle-row">
+
+                <button
+                    class="needle-btn short-needle active">
+
+                    🔴 みじかい はり
+
+                </button>
+
+                <!-- 選択時メッセージ -->
+                <span class="needle-guide">
+
+                    → とけいの すうじを クリック
+
+                </span>
+
+            </div>
+
+
+            <!-- 長針 -->
+            <div class="needle-row">
+
+                <button
+                    class="needle-btn long-needle">
+
+                    ⚫ ながい はり
+
+                </button>
+
+                <!-- 非表示状態 -->
+                <span class="needle-guide guide-hidden">
+
+                    → とけいの すうじを クリック
+
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+            時計エリア
+        ===================================== -->
+        <section class="clock-area">
+
+            <svg
+                class="clock-svg"
+                viewBox="0 0 300 300">
+
+                <!-- 外円 -->
+                <circle
+                    cx="150"
+                    cy="150"
+                    r="140"
+                    fill="white"
+                    stroke="#333"
+                    stroke-width="6" />
+
+
+                <!-- 中心 -->
+                <circle
+                    cx="150"
+                    cy="150"
+                    r="6"
+                    fill="#333" />
+
+
+                <!-- 数字 -->
+                <text x="150" y="38"
+                    text-anchor="middle"
+                    font-size="24">12</text>
+
+                <text x="206" y="54"
+                    text-anchor="middle"
+                    font-size="24">1</text>
+
+                <text x="246" y="95"
+                    text-anchor="middle"
+                    font-size="24">2</text>
+
+                <text x="262" y="156"
+                    text-anchor="middle"
+                    font-size="24">3</text>
+
+                <text x="246" y="218"
+                    text-anchor="middle"
+                    font-size="24">4</text>
+
+                <text x="206" y="258"
+                    text-anchor="middle"
+                    font-size="24">5</text>
+
+                <text x="150" y="278"
+                    text-anchor="middle"
+                    font-size="24">6</text>
+
+                <text x="94" y="258"
+                    text-anchor="middle"
+                    font-size="24">7</text>
+
+                <text x="54" y="218"
+                    text-anchor="middle"
+                    font-size="24">8</text>
+
+                <text x="38" y="156"
+                    text-anchor="middle"
+                    font-size="24">9</text>
+
+                <text x="54" y="95"
+                    text-anchor="middle"
+                    font-size="24">10</text>
+
+                <text x="94" y="54"
+                    text-anchor="middle"
+                    font-size="24">11</text>
+
+
+                <!-- =====================================
+                    赤い短針（矢印型）
+                ====================================== -->
+
+                <!-- 本体 -->
+                <line
+                    x1="150"
+                    y1="150"
+                    x2="150"
+                    y2="98"
+                    stroke="red"
+                    stroke-width="10"
+                    stroke-linecap="round" />
+
+                <!-- 矢印 -->
+                <polygon
+                    points="
+                        150,82
+                        142,102
+                        158,102
+                    "
+                    fill="red" />
+
+
+                <!-- =====================================
+                    黒い長針
+                ====================================== -->
+                <line
+                    x1="150"
+                    y1="150"
+                    x2="150"
+                    y2="55"
+                    stroke="black"
+                    stroke-width="5"
+                    stroke-linecap="round" />
+
+            </svg>
+
+        </section>
+
+
+        <!-- =====================================
+             昼夜説明
+        ====================================== -->
+        <section class="sun-moon-info">
+
+            <div>
+
+                ☀ ごぜん6じ〜 ごご5じ59ふん
+
+            </div>
+
+            <div>
+
+                🌙 ごご6じ〜 ごぜん5じ59ふん
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
