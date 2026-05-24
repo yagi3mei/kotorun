@@ -120,9 +120,7 @@ body {
    月ボタン
 ========================= */
 .moon-btn {
-
     background: #3b4a6b;
-
     color: #ffe27a;
 }
 
@@ -218,16 +216,19 @@ body {
    昼夜説明
 ========================= */
 .sun-moon-info {
-
     margin-top: 25px;
-
     font-size: 0.95rem;
-
     line-height: 1.8;
-
     color: #555;
 }
 
+.sun-icon {
+    color: #ffcc00;
+}
+
+.moon-icon {
+    color: #ffe27a;
+}
 
 
 /* =========================
