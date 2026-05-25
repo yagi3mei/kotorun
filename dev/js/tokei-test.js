@@ -63,7 +63,7 @@ const soundBtn =
 ========================= */
 const correctSound =
     new Audio(
-        "../../sounds/correct.mp3"
+        "/sounds/correct.mp3"
     );
 
 correctSound.volume = 0.4;
