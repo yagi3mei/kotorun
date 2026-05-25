@@ -1,199 +1,744 @@
 /* =========================================
    File: tokei-test.js
-   Purpose: 時計ゲーム UIテスト
+   Purpose: 時計ゲーム UIテスト動作
    Author: やぎさん
-   Created: 2026-05-24
+   Created: 2026-05-25
 
    Notes:
-   - 針選択
-   - ガイド表示
-   - 時計数字クリック
-   - SVG針回転
+   - 初級テスト用
+   - 短針・長針切替
+   - 太陽・月選択
+   - SVG針移動
 ========================================= */
 
+import questions from "../../data/tokei/tokei-shokyuu-data.js";
+
+import chuukyuuData
+    from "../../data/tokei/tokei-chuukyuu-data.js";
 
 /* =========================
-   現在選択中の針
+   DOM取得
 ========================= */
-let currentNeedle = "short";
-
-
-/* =========================
-   要素取得
-========================= */
-const shortBtn =
+const shortNeedleBtn =
     document.querySelector(".short-needle");
 
-const longBtn =
+const longNeedleBtn =
     document.querySelector(".long-needle");
 
-const guides =
+const needleGuides =
     document.querySelectorAll(".needle-guide");
 
+const shortGuide =
+    needleGuides[0];
 
-/* =========================
-   SVG針取得
-========================= */
+const longGuide =
+    needleGuides[1];
+
+const clockNumbers =
+    document.querySelectorAll(".clock-number");
+
 const shortHand =
     document.getElementById("short-hand");
 
 const longHand =
     document.getElementById("long-hand");
 
-
-/* =========================
-   数字取得
-========================= */
-const clockNumbers =
-    document.querySelectorAll(".clock-number");
-
-    
-/* =========================
-   太陽・月
-========================= */
 const sunBtn =
     document.querySelector(".sun-btn");
 
 const moonBtn =
     document.querySelector(".moon-btn");
 
+const checkBtn =
+    document.getElementById("check-btn");
+
+const questionText =
+    document.querySelector(".question-text");
+
+const soundBtn =
+    document.getElementById("sound-btn");
 
 /* =========================
-   昼夜選択
+   正解音
 ========================= */
-function selectDayNight(type) {
+const correctSound =
+    new Audio(
+        "../../sounds/correct.mp3"
+    );
+
+correctSound.volume = 0.4;
+
+/* =========================
+   現在状態
+========================= */
+let selectedNeedle = "short";
+
+let selectedPeriod = null;
+
+let currentHour = 12;
+
+let currentMinute = 0;
+
+let gameQuestions = [];
+
+let currentQuestionIndex = 0;
+
+let currentQuestion = null;
+
+let missCount = 0;
+
+
+/* =========================
+   時読み
+========================= */
+const hourReadings = {
+    1: "いちじ",
+    2: "にじ",
+    3: "さんじ",
+    4: "よじ",
+    5: "ごじ",
+    6: "ろくじ",
+    7: "しちじ",
+    8: "はちじ",
+    9: "くじ",
+    10: "じゅうじ",
+    11: "じゅういちじ",
+    12: "れいじ"
+};
+
+/* =========================
+   分読み
+========================= */
+const minuteReadings = {
+    0: "",
+    5: "ごふん",
+    10: "じゅっぷん",
+    15: "じゅうごふん",
+    20: "にじゅっぷん",
+    25: "にじゅうごふん",
+    30: "さんじゅっぷん",
+    35: "さんじゅうごふん",
+    40: "よんじゅっぷん",
+    45: "よんじゅうごふん",
+    50: "ごじゅっぷん",
+    55: "ごじゅうごふん"
+};
+
+
+/* =========================
+   問題文生成
+========================= */
+function createDisplayText(
+    hour,
+    minute,
+    period
+) {
+
+    const amPm =
+        getAmPm(
+            period,
+            hour
+        ) === "ごぜん"
+            ? "午前"
+            : "午後";
+
+
+    const displayHour =
+        hour === 12
+            ? 0
+            : hour;
+
+
+    /* =====================
+       ○時ちょうど
+    ===================== */
+    if (minute === 0) {
+
+        return `${amPm}${displayHour}時です`;
+    }
+
+
+    /* =====================
+       ○時半
+    ===================== */
+    if (minute === 30) {
+
+        return `${amPm}${displayHour}時半です`;
+    }
+
+
+    /* =====================
+       ○時○分
+    ===================== */
+    return `${amPm}${displayHour}時${minute}分です`;
+}
+
+/* =========================
+   読み上げ文生成
+========================= */
+function createSpeechText(
+    hour,
+    minute,
+    period
+) {
+
+    const amPm =
+        getAmPm(
+            period,
+            hour
+        );
+
+
+    const hourReading =
+        hourReadings[hour];
+
+
+    /* =====================
+       ○時ちょうど
+    ===================== */
+    if (minute === 0) {
+
+        return `${amPm} ${hourReading} です`;
+    }
+
+
+    /* =====================
+       ○時半
+    ===================== */
+    if (minute === 30) {
+
+        return `${amPm} ${hourReading} はん です`;
+    }
+
+
+    /* =====================
+       ○時○分
+    ===================== */
+    const minuteReading =
+        minuteReadings[minute];
+
+
+    return `${amPm} ${hourReading} ${minuteReading} です`;
+}
+
+/* =========================
+   読み上げ
+========================= */
+function speak(text) {
+
+    speechSynthesis.cancel();
+
+    const utterance =
+        new SpeechSynthesisUtterance(
+            text
+        );
+
+    utterance.lang = "ja-JP";
+
+    utterance.rate = 0.9;
+
+    utterance.pitch = 1.0;
+
+    speechSynthesis.speak(
+        utterance
+    );
+}
+
+/* =========================
+   ランダム10問生成
+========================= */
+// 中級問題からランダム10問生成
+function createGameQuestions() {
+
+    gameQuestions =
+        generateChuukyuuQuestions()
+            .sort(
+                () => Math.random() - 0.5
+            )
+            .slice(0, 10);
+}
+// 初級データからランダム10問生成
+// function createGameQuestions() {
+
+//     const shuffled =
+//         [...questions].sort(
+//             () => Math.random() - 0.5
+//         );
+
+//     gameQuestions =
+//         shuffled.slice(0, 10);
+// }
+
+/* =========================
+   中級問題生成
+========================= */
+function generateChuukyuuQuestions() {
+
+    const generated = [];
+
+
+    for (
+        let hour = 1;
+        hour <= 12;
+        hour++
+    ) {
+
+        for (
+            const minute of
+            chuukyuuData.minutes
+        ) {
+
+            for (
+                const period of
+                chuukyuuData.periods
+            ) {
+
+                generated.push({
+
+                    hour,
+
+                    minute,
+
+                    period,
+
+                    displayText:
+                        createDisplayText(
+                            hour,
+                            minute,
+                            period
+                        ),
+
+                    speechText:
+                        createSpeechText(
+                            hour,
+                            minute,
+                            period
+                        )
+                });
+            }
+        }
+    }
+
+
+    return generated;
+}
+
+/* =========================
+   問題表示
+========================= */
+function showQuestion() {
+
+    currentQuestion =
+        gameQuestions[currentQuestionIndex];
+
+    questionText.textContent =
+        currentQuestion.displayText;
+
+
+    resetClock();
+}
+
+/* =========================
+   音声再生
+========================= */
+function speakQuestion() {
+
+    if (!currentQuestion) return;
+
+    const utterance =
+        new SpeechSynthesisUtterance(
+            currentQuestion.speechText
+        );
+
+    utterance.lang = "ja-JP";
+
+    speechSynthesis.speak(
+        utterance
+    );
+}
+
+/* =========================
+   音声ボタン
+========================= */
+soundBtn.addEventListener(
+    "click",
+    () => {
+
+        speakQuestion();
+    }
+);
+
+/* =========================
+   数字→角度変換
+========================= */
+function getAngle(number) {
+
+    return number * 30;
+}
+
+
+/* =========================
+   午前午後判定
+========================= */
+function getAmPm(period, hour) {
+
+    if (period === "sun") {
+
+        if (hour >= 6 && hour <= 11) {
+
+            return "ごぜん";
+
+        } else {
+
+            return "ごご";
+        }
+    }
+
+    if (period === "moon") {
+
+        if (hour >= 6 && hour <= 11) {
+
+            return "ごご";
+
+        } else {
+
+            return "ごぜん";
+        }
+    }
+
+    return "";
+}
+
+/* =========================
+   短針移動
+========================= */
+function moveShortHand(number) {
+
+    const angle =
+        getAngle(number);
+
+    shortHand.setAttribute(
+        "transform",
+        `rotate(${angle} 150 150)`
+    );
+
+    currentHour = number;
+}
+
+
+/* =========================
+   長針移動
+========================= */
+function moveLongHand(number) {
+
+    const angle =
+        getAngle(number);
+
+    longHand.setAttribute(
+        "transform",
+        `rotate(${angle} 150 150)`
+    );
+
+    currentMinute =
+        number === 12
+            ? 0
+            : number * 5;
+}
+
+
+/* =========================
+   針選択UI更新
+========================= */
+function updateNeedleUI() {
+
+    shortNeedleBtn.classList.remove("selected");
+
+    if (longNeedleBtn) {
+        longNeedleBtn.classList.remove("selected");
+    }
+    shortGuide.classList.add("guide-hidden");
+
+    if (longGuide) {
+        longGuide.classList.add("guide-hidden");
+    }
+
+    if (selectedNeedle === "short") {
+
+        shortNeedleBtn.classList.add("selected");
+
+        shortGuide.classList.remove("guide-hidden");
+
+    } else {
+
+        longNeedleBtn.classList.add("selected");
+
+        longGuide.classList.remove("guide-hidden");
+    }
+}
+
+
+/* =========================
+   太陽・月UI更新
+========================= */
+function updatePeriodUI() {
 
     sunBtn.classList.remove("selected");
+
     moonBtn.classList.remove("selected");
 
-    if (type === "sun") {
+
+    if (selectedPeriod === "sun") {
 
         sunBtn.classList.add("selected");
 
-    } else {
+    } else if (selectedPeriod === "moon") {
 
         moonBtn.classList.add("selected");
-
     }
 }
 
 
 /* =========================
-   イベント
+   短針ボタン
 ========================= */
-sunBtn.addEventListener("click", () => {
+shortNeedleBtn.addEventListener(
+    "click",
+    () => {
 
-    selectDayNight("sun");
+        selectedNeedle = "short";
 
-});
-
-moonBtn.addEventListener("click", () => {
-
-    selectDayNight("moon");
-
-});
+        updateNeedleUI();
+    }
+);
 
 
 /* =========================
-   針選択切替
+   長針ボタン
 ========================= */
-function selectNeedle(type) {
+if (longNeedleBtn) {
 
-    currentNeedle = type;
+    longNeedleBtn.addEventListener(
+        "click",
+        () => {
 
-    /* ボタンselected解除 */
-    shortBtn.classList.remove("selected");
-    longBtn.classList.remove("selected");
+            selectedNeedle = "long";
 
-    /* ガイド非表示 */
-    guides.forEach(guide => {
-
-        guide.classList.add("guide-hidden");
-
-    });
-
-    /* 選択反映 */
-    if (type === "short") {
-
-        shortBtn.classList.add("selected");
-
-        guides[0].classList.remove("guide-hidden");
-
-    } else {
-
-        longBtn.classList.add("selected");
-
-        guides[1].classList.remove("guide-hidden");
-
-    }
+            updateNeedleUI();
+        }
+    );
 }
 
-
 /* =========================
-   ボタンイベント
+   太陽ボタン
 ========================= */
-shortBtn.addEventListener("click", () => {
+sunBtn.addEventListener(
+    "click",
+    () => {
 
-    selectNeedle("short");
+        selectedPeriod = "sun";
 
-});
-
-longBtn.addEventListener("click", () => {
-
-    selectNeedle("long");
-
-});
+        updatePeriodUI();
+    }
+);
 
 
 /* =========================
-   数字クリック
+   月ボタン
+========================= */
+moonBtn.addEventListener(
+    "click",
+    () => {
+
+        selectedPeriod = "moon";
+
+        updatePeriodUI();
+    }
+);
+
+/* =========================
+   問題読み上げ
+========================= */
+soundBtn.addEventListener(
+    "click",
+    () => {
+
+        speak(
+            currentQuestion.speechText
+        );
+    }
+);
+
+/* =========================
+   時計数字クリック
 ========================= */
 clockNumbers.forEach(number => {
 
-    number.addEventListener("click", () => {
+    number.addEventListener(
+        "click",
+        () => {
 
-        const value =
-            parseInt(number.dataset.number);
+            const clickedNumber =
+                Number(
+                    number.dataset.number
+                );
 
-        moveNeedle(value);
 
-    });
+            if (selectedNeedle === "short") {
 
+                moveShortHand(
+                    clickedNumber
+                );
+
+            } else {
+
+                moveLongHand(
+                    clickedNumber
+                );
+            }
+        }
+    );
 });
 
 
 /* =========================
-   針移動
+   かくにんボタン
 ========================= */
-function moveNeedle(number) {
+checkBtn.addEventListener(
+    "click",
+    () => {
 
-    /* 12を0扱い */
-    const normalized =
-        number === 12 ? 0 : number;
+        const result =
+            checkAnswer();
 
-    /* 30度ずつ回転 */
-    const angle =
-        normalized * 30;
 
-    if (currentNeedle === "short") {
+        if (result) {
 
-        shortHand.setAttribute(
-            "transform",
-            `rotate(${angle} 150 150)`
-        );
+            speechSynthesis.cancel();
 
-    } else {
+            correctSound.currentTime = 0;
 
-        longHand.setAttribute(
-            "transform",
-            `rotate(${angle} 150 150)`
-        );
+            correctSound.play();
 
+            setTimeout(() => {
+
+                nextQuestion();
+
+            }, 500);
+
+        } else {
+
+            missCount++;
+
+            const amPm =
+                getAmPm(
+                    selectedPeriod,
+                    currentHour
+                );
+
+            const hourReading =
+                hourReadings[currentHour];
+
+            const minuteReading =
+                minuteReadings[currentMinute];
+
+            const wrongText =
+                minuteReading
+                    ? `${amPm} ${hourReading} ${minuteReading} です`
+                    : `${amPm} ${hourReading} です`; 
+                                   
+            // const wrongText =
+            //     `${amPm} ${hourReading} です`;
+
+            speak(wrongText);
+
+            alert(wrongText);
+        }
     }
-}
-
+);
 
 /* =========================
-   初期状態
+   正誤判定
 ========================= */
-selectNeedle("short");
+function checkAnswer() {
+
+    const isCorrectHour =
+        currentHour === currentQuestion.hour;
+
+    const isCorrectMinute =
+        currentMinute === currentQuestion.minute;
+
+    const isCorrectPeriod =
+        selectedPeriod === currentQuestion.period;
+
+
+    return (
+        isCorrectHour &&
+        isCorrectMinute &&
+        isCorrectPeriod
+    );
+}
+
+/* =========================
+   次問題へ
+========================= */
+function nextQuestion() {
+
+    currentQuestionIndex++;
+
+
+    if (
+        currentQuestionIndex >=
+        gameQuestions.length
+    ) {
+
+        alert(
+            `ゲーム終了！\nミス:${missCount}`
+        );
+
+        return;
+    }
+
+
+    showQuestion();
+}
+
+/* =========================
+   時計リセット
+========================= */
+function resetClock() {
+
+    selectedNeedle = "short";
+
+    selectedPeriod = null;
+
+    currentHour = 12;
+
+    currentMinute = 0;
+
+
+    shortHand.setAttribute(
+        "transform",
+        "rotate(0 150 150)"
+    );
+
+    longHand.setAttribute(
+        "transform",
+        "rotate(0 150 150)"
+    );
+
+
+    updateNeedleUI();
+
+    updatePeriodUI();
+}
+
+/* =========================
+   初期化
+========================= */
+createGameQuestions();
+
+showQuestion();
+
+updateNeedleUI();
+
+updatePeriodUI();
