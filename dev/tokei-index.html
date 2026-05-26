@@ -1,0 +1,127 @@
+<!-- =========================================
+     File: tokei-index.html
+     Purpose: 時計ゲーム レベル選択
+     Author: やぎさん
+     Created: 2026-05-27
+========================================= -->
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>とけいゲーム</title>
+
+<style>
+
+    body {
+
+        margin: 0;
+
+        padding: 0;
+
+        font-family: sans-serif;
+
+        background: #f5f5f5;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        min-height: 100vh;
+    }
+
+    .menu-container {
+
+        width: 90%;
+
+        max-width: 400px;
+
+        text-align: center;
+    }
+
+    h1 {
+
+        margin-bottom: 40px;
+
+        font-size: 32px;
+    }
+
+    .level-btn {
+
+        width: 100%;
+
+        padding: 18px;
+
+        margin-bottom: 20px;
+
+        font-size: 24px;
+
+        border: none;
+
+        border-radius: 12px;
+
+        cursor: pointer;
+
+        color: white;
+    }
+
+    .beginner-btn {
+
+        background: #4caf50;
+    }
+
+    .intermediate-btn {
+
+        background: #2196f3;
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<main class="menu-container">
+
+    <h1>
+
+        とけいゲーム
+
+    </h1>
+
+    <button
+        class="level-btn beginner-btn"
+        onclick="
+            location.href=
+            'tokei-test.html?level=beginner'
+        ">
+
+        しょきゅう
+
+    </button>
+
+    <button
+        class="level-btn intermediate-btn"
+        onclick="
+            location.href=
+            'tokei-test.html?level=intermediate'
+        ">
+
+        ちゅうきゅう
+
+    </button>
+
+</main>
+
+</body>
+
+</html>

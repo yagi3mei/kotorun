@@ -1,0 +1,260 @@
+/* =========================================
+   File: tokei.css
+   Purpose: 時計ゲーム UIテスト
+   Author: やぎさん
+   Created: 2026-05-24
+
+   Notes:
+   - 時計UI配置確認用
+   - スマホ優先
+========================================= */
+
+
+/* =========================
+   全体
+========================= */
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    background: #fffdf7;
+
+    font-family:
+        "Hiragino Sans",
+        "Yu Gothic",
+        sans-serif;
+
+    color: #333;
+}
+
+
+/* =========================
+   コンテナ
+========================= */
+.tokei-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px 16px 40px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+/* =========================
+   問題エリア
+========================= */
+.question-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+
+.question-text {
+    color: red;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+/* =========================
+   入力順序の補助番号
+========================= */
+.step-label {
+
+font-size: 1.0rem;
+
+font-weight: bold;
+
+margin-bottom: 8px;
+
+color: #333;
+
+}
+
+/* =========================
+   太陽・月
+========================= */
+.sun-moon-area {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+
+.sun-btn,
+.moon-btn {
+    width: 72px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    cursor: pointer;
+    box-shadow:
+        0 2px 6px rgba(0,0,0,0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 4px;
+}
+
+/* =========================
+   太陽ボタン
+========================= */
+.sun-btn {
+    font-size: 2rem;
+    background: #87ceeb;
+    color: #ffcc00;
+}
+
+
+/* =========================
+   月ボタン
+========================= */
+.moon-btn {
+    background: #3b4a6b;
+    color: #ffe27a;
+}
+
+/* =========================
+   選択状態
+========================= */
+.selected {
+    outline: 4px solid #ff9900;
+    transform: scale(1.05);
+    transition: 0.15s;
+}
+
+/* =========================
+   針選択
+========================= */
+.needle-select-area {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+
+.needle-btn {
+    width: 180px;
+    padding: 5px;
+    border: none;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    background: white;
+    box-shadow:
+        0 2px 6px rgba(0,0,0,0.15);
+}
+
+
+/* =========================
+   時計エリア
+========================= */
+.clock-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+
+.clock-svg {
+    width: 90%;
+    max-width: 360px;
+    height: auto;
+}
+
+
+/* =========================
+   SVG数字
+========================= */
+.clock-svg text {
+    font-weight: bold;
+    fill: #333;
+}
+
+
+/* =========================
+   昼夜説明
+========================= */
+.sun-moon-info {
+    margin-top: 25px;
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+.sun-icon {
+    color: #ffcc00;
+}
+
+.moon-icon {
+    color: #ffe27a;
+}
+
+
+/* =========================
+   針行
+========================= */
+.needle-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+/* かくにんボタン */
+#check-btn {
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-radius: 18px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: #6fcf97;
+    color: white;
+    cursor: pointer;
+    box-shadow:
+        0 2px 6px rgba(0,0,0,0.2);
+}
+
+
+/* =========================
+   ガイド
+========================= */
+.needle-guide {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+
+/* 非表示 */
+.guide-hidden {
+    visibility: hidden;
+}
+
+/* =========================
+   スマホ微調整
+========================= */
+@media (max-width: 480px) {
+
+    .question-text {
+        font-size: 1.3rem;
+    }
+
+    .needle-btn {
+        width: 152px;
+        font-size: 1rem;
+    }
+
+}

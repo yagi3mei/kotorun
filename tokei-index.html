@@ -1,0 +1,155 @@
+<!-- =========================================
+     File: tokei-index.html
+     Purpose: とけいゲーム メニュー画面
+     Author: やぎさん
+     Created: 2026-05-26
+
+     Notes:
+     - 初級・中級の選択
+     - beginner / intermediate を渡す
+========================================= -->
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <!-- スマホ表示対応 -->
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>とけいゲーム</title>
+
+    <!-- 共通 -->
+    <link rel="stylesheet"
+        href="css/common.css">
+
+    <link rel="stylesheet"
+        href="css/layout.css">
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        <!-- ロゴ -->
+        <header class="top-header">
+
+            <a href="index.html">
+
+                <img src="images/kotorun-logo.png"
+                    alt="ことラン"
+                    class="app-logo">
+
+            </a>
+
+        </header>
+
+        <!-- もどる -->
+        <button id="back-btn-top"
+                onclick="goBack()">
+
+            もどる
+
+        </button>
+
+    </div>
+
+    <!-- メニュー -->
+    <div class="menu">
+
+        <h1>とけいゲーム</h1>
+
+        <!-- 初級 -->
+        <button
+            data-key="tokei_beginner"
+            onclick="goGame('beginner')">
+
+            しょきゅう<br>
+
+            <small>
+                なんじ？
+            </small>
+
+        </button>
+
+        <!-- 中級 -->
+        <button
+            data-key="tokei_intermediate"
+            onclick="goGame('intermediate')">
+
+            ちゅうきゅう<br>
+
+            <small>
+                なんじ なんぷん？
+            </small>
+
+        </button>
+
+    </div>
+
+    <script>
+
+    /* =========================
+    ゲーム開始
+    ========================= */
+    function goGame(level) {
+
+        location.href =
+
+            "tokei-game.html?level="
+            + level;
+    }
+
+    /* =========================
+    もどる
+    ========================= */
+    function goBack() {
+
+        location.href = "index.html";
+    }
+
+    /* =========================
+    実施済みチェック
+    ========================= */
+    const scores =
+    JSON.parse(
+        localStorage.getItem(
+            "kotorun-score"
+        )
+    ) || {};
+
+    const tokeiScores =
+    scores.tokei || {};
+
+    /* 初級 */
+    if (tokeiScores.beginner) {
+    document
+        .querySelector(
+            '[data-key="tokei_beginner"]'
+        )
+        .classList.add(
+            "completed"
+        );
+    }
+
+    /* 中級 */
+    if (tokeiScores.intermediate) {
+    document
+        .querySelector(
+            '[data-key="tokei_intermediate"]'
+        )
+        .classList.add(
+            "completed"
+        );
+    }
+
+    </script>
+
+</body>
+
+</html>

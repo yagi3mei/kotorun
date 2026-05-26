@@ -11,10 +11,13 @@
    - SVG針移動
 ========================================= */
 
-import questions from "../../tokei-chuukyuu-data.js";
+import questions from "../data/tokei/tokei-shokyuu-data.js";
 
 import chuukyuuData
-    from "../../data/tokei/tokei-chuukyuu-data.js";
+    from "../data/tokei/tokei-chuukyuu-data.js";
+
+import {saveScore, getScore} from "./storage.js";
+
 
 /* =========================
 レベル取得
@@ -71,6 +74,46 @@ const questionText =
 const soundBtn =
     document.getElementById("sound-btn");
 
+const remainingDisplay =
+    document.getElementById("remaining-display");
+
+const missDisplay =
+    document.getElementById("miss-display");
+
+const resultModal =
+    document.getElementById("result-modal");
+
+const gameLevelLabel =
+    document.getElementById("game-level-label");
+
+const dateTime =
+    document.getElementById("date-time");
+
+const missResult =
+    document.getElementById("miss-result");
+
+const finalTime =
+    document.getElementById("final-time");
+
+const wrongListArea =
+    document.getElementById("wrong-list-area");
+
+const timerDisplay =
+    document.getElementById("timer-display");
+
+const bestMessage =
+    document.getElementById("best-message");
+
+const bestDate =
+    document.getElementById("best-date");
+
+const bestMiss =
+    document.getElementById("best-miss");
+
+const bestTime =
+    document.getElementById("best-time");
+
+
 /* =========================
    正解音
 ========================= */
@@ -100,6 +143,13 @@ let currentQuestion = null;
 
 let missCount = 0;
 
+let timer = null;
+
+let startTime = null;
+
+let elapsedTime = 0;
+
+let wrongAnswers = [];
 
 /* =========================
    時読み
@@ -349,6 +399,10 @@ function generateChuukyuuQuestions() {
 ========================= */
 function showQuestion() {
 
+    if (!timer) {
+        startTimer();
+    }
+
     currentQuestion =
         gameQuestions[currentQuestionIndex];
 
@@ -356,7 +410,9 @@ function showQuestion() {
         currentQuestion.displayText;
 
 
-    resetClock();
+    resetClock();       // 時計リセット
+    speakQuestion();    // 自動読み上げ
+    updateStatus();     // ステータス更新
 }
 
 /* =========================
@@ -518,6 +574,22 @@ function updatePeriodUI() {
     }
 }
 
+/* =========================
+ステータス更新
+========================= */
+function updateStatus() {
+
+    remainingDisplay.textContent =
+        "のこり:"
+        + (
+            gameQuestions.length
+             - currentQuestionIndex
+        );
+
+    missDisplay.textContent =
+        `ミス:${missCount}`;
+
+}
 
 /* =========================
    短針ボタン
@@ -606,15 +678,20 @@ clockNumbers.forEach(number => {
 
             if (selectedNeedle === "short") {
 
-                moveShortHand(
-                    clickedNumber
-                );
+                moveShortHand(clickedNumber);
+
+                if (
+                    gameLevel === "intermediate"
+                ) {
+
+                    selectedNeedle = "long";
+
+                    updateNeedleUI();
+                }
 
             } else {
 
-                moveLongHand(
-                    clickedNumber
-                );
+                moveLongHand(clickedNumber);
             }
         }
     );
@@ -650,6 +727,8 @@ checkBtn.addEventListener(
 
             missCount++;
 
+            updateStatus();
+
             const amPm =
                 getAmPm(
                     selectedPeriod,
@@ -666,12 +745,14 @@ checkBtn.addEventListener(
                 minuteReading
                     ? `${amPm} ${hourReading} ${minuteReading} です`
                     : `${amPm} ${hourReading} です`; 
-                                   
-            // const wrongText =
-            //     `${amPm} ${hourReading} です`;
 
+            // 間違えた回答を保存
+            if (!wrongAnswers.includes(currentQuestion.displayText)) {
+                wrongAnswers.push(currentQuestion.displayText);
+            }
+
+            // 間違えた回答を読み上げる
             speak(wrongText);
-
         }
     }
 );
@@ -699,25 +780,147 @@ function checkAnswer() {
 }
 
 /* =========================
+タイマー開始
+========================= */
+function startTimer() {
+
+    startTime = Date.now();
+
+    timer = setInterval(() => {
+        elapsedTime =
+            Date.now() - startTime;
+        updateTimerDisplay();
+    }, 10);
+
+}
+
+/* =========================
+タイマー表示更新
+========================= */
+function updateTimerDisplay() {
+
+    const seconds =(elapsedTime / 1000).toFixed(2);
+
+    timerDisplay.textContent = seconds;
+
+}
+
+
+/* =========================
+ベストスコア読込
+========================= */
+function loadBestScore() {
+
+    const storageKey =
+        gameLevel === "beginner"
+            ? "tokei-beginner-best"
+            : "tokei-intermediate-best";
+
+    return JSON.parse(
+        localStorage.getItem(
+            storageKey
+        )
+    );
+
+}
+
+
+/* =========================
+結果モーダル表示
+========================= */
+function showResultModal() {
+
+    clearInterval(timer);
+
+    timer = null;
+
+    const result = {
+        time:
+            Number(
+                (
+                    elapsedTime / 1000
+                ).toFixed(2)
+            ),
+        miss:
+            missCount,
+        date:
+            new Date()
+                .toLocaleString("ja-JP")
+    };
+
+    const storageKey =
+        gameLevel === "beginner"
+            ? "beginner"
+            : "intermediate";
+
+    const isBest =
+        saveScore(
+            "tokei",
+            storageKey,
+            result
+        );
+
+    const bestScore =
+        getScore(
+            "tokei",
+            storageKey
+        );
+
+    const now = new Date();
+        dateTime.textContent = now.toLocaleString("ja-JP");
+
+    missResult.textContent = `ミス:${missCount}`;
+
+    finalTime.textContent = `タイム:${(elapsedTime / 1000).toFixed(2)}秒`;
+
+    wrongListArea.innerHTML = "";
+
+    if (isBest) {
+
+        bestMessage.textContent =
+            "🎉 ベストきろく　こうしん！";
+
+        bestDate.textContent = "";
+        bestMiss.textContent = "";
+        bestTime.textContent = "";
+
+    } else if (bestScore) {
+        bestMessage.textContent = "";
+        bestDate.textContent =
+            `いつ：${bestScore.date}`;
+        bestMiss.textContent =
+            `ミス：${bestScore.miss}回`;
+        bestTime.textContent =
+            `タイム：${bestScore.time}秒`;
+    }
+
+    // 間違えた問題をリスト表示
+    wrongAnswers.forEach(answer => {
+        const p = document.createElement("p");
+        p.textContent = answer;
+        wrongListArea.appendChild(p);
+    });
+
+    document
+        .getElementById("result-modal")
+        .classList.remove("hidden");
+}
+
+
+/* =========================
    次問題へ
 ========================= */
 function nextQuestion() {
 
     currentQuestionIndex++;
 
-
     if (
         currentQuestionIndex >=
         gameQuestions.length
     ) {
-
-        alert(
-            `ゲーム終了！\nミス:${missCount}`
-        );
-
+        showResultModal();
         return;
     }
-
 
     showQuestion();
 }
@@ -779,6 +982,30 @@ function setupLevelUI() {
 }
 
 /* =========================
+ゲーム再開
+========================= */
+function restartGame() {
+    resultModal.classList.add("hidden");
+    currentQuestionIndex = 0;
+    missCount = 0;
+    wrongAnswers = [];
+    elapsedTime = 0;
+    timerDisplay.textContent = "0.00";
+    createGameQuestions();
+    showQuestion();
+    updateStatus();
+}
+
+/* =========================
+    メニューへ戻る
+========================= */
+function goBack() {
+
+    window.location.href =
+        "tokei-index.html";
+}
+
+/* =========================
    初期化
 ========================= */
 if (gameLevel === "beginner") {
@@ -803,3 +1030,9 @@ updateNeedleUI();
 updatePeriodUI();
 
 setupLevelUI();
+
+updateStatus();
+
+window.restartGame = restartGame;
+
+window.goBack = goBack;

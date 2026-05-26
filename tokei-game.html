@@ -1,0 +1,421 @@
+<!-- =========================================
+     File: tokei-game.html
+     Purpose: 時計ゲーム
+     Author: やぎさん
+     Created: 2026-05-24
+
+     Notes:
+     - 時計UI配置確認用
+     - SVG時計テスト
+     - まだJS動作なし
+========================================= -->
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>とけいゲーム テスト</title>
+    <!-- 共通 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <!-- ゲーム系 -->
+    <link rel="stylesheet" href="css/game.css">
+    <!-- ページ専用 -->
+    <link rel="stylesheet" href="css/tokei.css">
+
+</head>
+
+<body>
+    <div class="header">
+          <!-- ロゴ -->
+          <header class="top-header">
+              <a href="index.html">
+                  <img src="images/kotorun-logo.png"
+                      alt="ことラン"
+                      class="app-logo">
+              </a>
+          </header>
+          <!-- ステータス表示（タイマー・残り・ミス） -->
+          <div id="timer-display">0.00</div>
+          <div id="remaining-display">のこり：10</div>
+          <div id="miss-display">ミス：0</div>
+    </div>
+    
+    <!-- =====================================
+         全体エリア
+    ====================================== -->
+    <main class="tokei-container">
+
+
+        <!-- =====================================
+             問題表示
+        ====================================== -->
+        <section class="question-area">
+
+            <div class="question-text">
+
+                もんだい
+
+            </div>
+
+            <button id="sound-btn">🔊</button>
+
+        </section>
+
+
+        <!-- =====================================
+             昼夜選択
+        ====================================== -->
+        <section class="sun-moon-area">
+
+            <div class="step-label">
+                ①
+            </div>
+
+            <button class="sun-btn">
+
+                ☀
+
+            </button>
+
+            <button class="moon-btn">
+
+                🌙
+
+            </button>
+
+        </section>
+
+
+        <!-- =====================================
+            針選択
+        ===================================== -->
+        <section class="needle-select-area">
+
+            <!-- 短針 -->
+            <div class="needle-row">
+
+                <div class="step-label">
+                    ②
+                </div>
+
+                <button
+                    class="needle-btn short-needle active">
+
+                    🔴 みじかい はり
+
+                </button>
+
+                <!-- 選択時メッセージ -->
+                <span class="needle-guide">
+
+                    → とけいの 時を おす
+
+                </span>
+
+            </div>
+
+            <!-- 長針 -->
+            <div class="needle-row">
+
+                <div class="step-label">
+                    ③
+                </div>
+
+                <button
+                    class="needle-btn long-needle">
+
+                    ⚫ ながい はり
+
+                </button>
+
+                <!-- 非表示状態 -->
+                <span class="needle-guide guide-hidden">
+
+                    → とけいの 分を おす
+
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+            時計エリア
+        ===================================== -->
+        <section class="clock-area">
+
+            <svg
+                class="clock-svg"
+                viewBox="0 0 300 300">
+
+                <!-- 外円 -->
+                <circle
+                    cx="150"
+                    cy="150"
+                    r="140"
+                    fill="white"
+                    stroke="#333"
+                    stroke-width="6" />
+
+
+                <!-- 中心 -->
+                <circle
+                    cx="150"
+                    cy="150"
+                    r="6"
+                    fill="#333" />
+
+
+                <!-- 数字 -->
+                <text
+                    class="clock-number"
+                    data-number="12"
+                    x="150" y="38"
+                    text-anchor="middle"
+                    font-size="24">12</text>
+
+                <text
+                    class="clock-number"
+                    data-number="1"
+                    x="206" y="54"
+                    text-anchor="middle"
+                    font-size="24">1</text>
+
+                <text
+                    class="clock-number"
+                    data-number="2"
+                    x="246" y="95"
+                    text-anchor="middle"
+                    font-size="24">2</text>
+
+                <text
+                    class="clock-number"
+                    data-number="3"
+                    x="262" y="156"
+                    text-anchor="middle"
+                    font-size="24">3</text>
+
+                <text
+                    class="clock-number"
+                    data-number="4"
+                    x="246" y="218"
+                    text-anchor="middle"
+                    font-size="24">4</text>
+
+                <text
+                    class="clock-number"
+                    data-number="5"
+                    x="206" y="258"
+                    text-anchor="middle"
+                    font-size="24">5</text>
+
+                <text
+                    class="clock-number"
+                    data-number="6"
+                    x="150" y="278"
+                    text-anchor="middle"
+                    font-size="24">6</text>
+
+                <text
+                    class="clock-number"
+                    data-number="7"
+                    x="94" y="258"
+                    text-anchor="middle"
+                    font-size="24">7</text>
+
+                <text
+                    class="clock-number"
+                    data-number="8"
+                    x="54" y="218"
+                    text-anchor="middle"
+                    font-size="24">8</text>
+
+                <text
+                    class="clock-number"
+                    data-number="9"
+                    x="38" y="156"
+                    text-anchor="middle"
+                    font-size="24">9</text>
+
+                <text
+                    class="clock-number"
+                    data-number="10"
+                    x="54" y="95"
+                    text-anchor="middle"
+                    font-size="24">10</text>
+
+                <text
+                    class="clock-number"
+                    data-number="11"
+                     x="94" y="54"
+                    text-anchor="middle"
+                    font-size="24">11</text>
+
+
+                <!-- =====================================
+                    赤い短針（矢印型）
+                ====================================== -->
+                <g id="short-hand">
+
+                    <!-- 本体 -->
+                    <line
+                        x1="150"
+                        y1="150"
+                        x2="150"
+                        y2="98"
+                        stroke="red"
+                        stroke-width="10"
+                        stroke-linecap="round" />
+
+                    <!-- 矢印 -->
+                    <polygon
+                        points="
+                            150,82
+                            142,102
+                            158,102
+                        "
+                        fill="red" />
+
+                </g>
+
+
+                <!-- =====================================
+                    黒い長針
+                ====================================== -->
+                <line
+                    id="long-hand"
+                    x1="150"
+                    y1="150"
+                    x2="150"
+                    y2="55"
+                    stroke="black"
+                    stroke-width="5"
+                    stroke-linecap="round" />
+
+            </svg>
+
+        </section>
+
+
+        <!-- =====================================
+             かくにんボタン
+        ====================================== -->
+        <section class="check-area">
+
+            <button id="check-btn">
+
+                ④ かくにん
+
+            </button>
+
+        </section>
+
+
+        <!-- =====================================
+             昼夜説明
+        ====================================== -->
+        <section class="sun-moon-info">
+
+            <div>
+                <span class="sun-icon">☀</span>
+                ごぜん6じ〜 ごご5じ59ふん
+            </div>
+
+            <div>
+                <span class="moon-icon">🌙</span>
+                ごご6じ〜 ごぜん5じ59ふん
+            </div>
+
+        </section>
+
+        <!-- もどるボタン -->
+        <div class="button-area">
+            <button id="back-btn" onclick="goBack()">もどる</button>
+        </div>
+
+    </main>
+
+    <!-- 結果モーダル -->
+
+    <div id="result-modal"
+        class="modal hidden">
+
+        <div class="modal-content">
+
+            <h2>
+
+                とけいゲーム　けっか
+
+            </h2>
+
+            <!-- ゲーム情報 -->
+            <p id="game-level-label"></p>
+
+            <p id="date-time"></p>
+
+            <!-- 今回結果 -->
+            <p id="miss-result"></p>
+
+            <p id="final-time"></p>
+
+            <hr>
+
+            <!-- ベスト -->
+            <p id="best-score-label">
+
+                あなたのベストきろく
+
+            </p>
+
+            <p id="best-message"></p>
+
+            <p id="best-date"></p>
+
+            <p id="best-miss"></p>
+
+            <p id="best-time"></p>
+
+            <hr>
+
+            <!-- ミス一覧 -->
+            <p>
+
+                ＜まちがえたもんだい＞
+
+            </p>
+
+            <div id="wrong-list-area"
+                class="word-list-scroll">
+
+            </div>
+
+            <button onclick="restartGame()">
+
+                もういちど
+
+            </button>
+
+            <button onclick="goBack()">
+
+                もどる
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script type="module"
+        src="js/tokei-game.js"></script>
+
+</body>
+</html>
