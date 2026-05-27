@@ -722,8 +722,8 @@ checkBtn.addEventListener(
 
             const wrongText =
                 minuteReading
-                    ? `${amPm} ${hourReading} ${minuteReading} です`
-                    : `${amPm} ${hourReading} です`; 
+                    ? `${amPm} ${hourReading} ${minuteReading}`
+                    : `${amPm} ${hourReading}`; 
 
             // 間違えた回答を保存
             if (!wrongAnswers.includes(currentQuestion.displayText)) {
@@ -745,6 +745,13 @@ checkBtn.addEventListener(
             setTimeout(() => {
                 speak(wrongText);
             }, 600);
+
+            /* =========================
+            不正解時は短針へ戻す
+            ========================= */
+            selectedNeedle = "short";
+
+            updateNeedleUI();
 
         }
     }
