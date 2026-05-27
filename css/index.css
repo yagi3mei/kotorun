@@ -87,3 +87,24 @@
     text-align: center;
     color: #666;
 }
+
+.game-tree {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.game-tree summary {
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.tree-content {
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+.tree-content ul {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
