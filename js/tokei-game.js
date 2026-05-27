@@ -684,6 +684,9 @@ checkBtn.addEventListener(
     "click",
     () => {
 
+        /* 多重クリック防止 */
+        checkBtn.disabled = true;
+
         const result =
             checkAnswer();
 
@@ -697,9 +700,8 @@ checkBtn.addEventListener(
             correctSound.play();
 
             setTimeout(() => {
-
                 nextQuestion();
-
+                checkBtn.disabled = false;
             }, 500);
 
         } else {
@@ -744,6 +746,7 @@ checkBtn.addEventListener(
             ========================= */
             setTimeout(() => {
                 speak(wrongText);
+                checkBtn.disabled = false;
             }, 600);
 
             /* =========================
@@ -923,6 +926,7 @@ function nextQuestion() {
     }
 
     showQuestion();
+    checkBtn.disabled = false;
 }
 
 /* =========================
