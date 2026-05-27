@@ -162,7 +162,7 @@ const hourReadings = {
     5: "ごじ",
     6: "ろくじ",
     7: "しちじ",
-    8: "はちじ",
+    8: "八じ",
     9: "くじ",
     10: "じゅうじ",
     11: "じゅういちじ",
@@ -307,27 +307,6 @@ function speak(text) {
     );
 }
 
-/* =========================
-   ランダム10問生成
-========================= */
-// 中級問題からランダム10問生成
-// function createGameQuestions() {
-
-//     if (gameLevel === "beginner") {
-
-//     createGameQuestions();
-
-//     } else {
-
-//     gameQuestions =
-//         generateChuukyuuQuestions()
-//             .sort(
-//                 () => Math.random() - 0.5
-//             )
-//             .slice(0, 10);
-
-// }
-// }
 // 初級データからランダム10問生成
 function createGameQuestions() {
 
@@ -575,7 +554,7 @@ function updatePeriodUI() {
 }
 
 /* =========================
-ステータス更新
+    ステータス更新
 ========================= */
 function updateStatus() {
 
@@ -751,8 +730,22 @@ checkBtn.addEventListener(
                 wrongAnswers.push(currentQuestion.displayText);
             }
 
-            // 間違えた回答を読み上げる
-            speak(wrongText);
+            /* =========================
+                不正解音
+            ========================= */
+            const wrongSound =
+                new Audio(
+                    "sounds/wrong.mp3"
+                );
+            wrongSound.play();
+
+            /* =========================
+                間違えた回答を読み上げる
+            ========================= */
+            setTimeout(() => {
+                speak(wrongText);
+            }, 400);
+
         }
     }
 );
@@ -780,7 +773,7 @@ function checkAnswer() {
 }
 
 /* =========================
-タイマー開始
+    タイマー開始
 ========================= */
 function startTimer() {
 
@@ -795,7 +788,7 @@ function startTimer() {
 }
 
 /* =========================
-タイマー表示更新
+    タイマー表示更新
 ========================= */
 function updateTimerDisplay() {
 
@@ -807,7 +800,7 @@ function updateTimerDisplay() {
 
 
 /* =========================
-ベストスコア読込
+    ベストスコア読込
 ========================= */
 function loadBestScore() {
 
@@ -826,7 +819,7 @@ function loadBestScore() {
 
 
 /* =========================
-結果モーダル表示
+    結果モーダル表示
 ========================= */
 function showResultModal() {
 
@@ -956,7 +949,7 @@ function resetClock() {
 }
 
 /* =========================
-レベル別UI
+    レベル別UI
 ========================= */
 function setupLevelUI() {
 
@@ -982,7 +975,7 @@ function setupLevelUI() {
 }
 
 /* =========================
-ゲーム再開
+    ゲーム再開
 ========================= */
 function restartGame() {
     resultModal.classList.add("hidden");

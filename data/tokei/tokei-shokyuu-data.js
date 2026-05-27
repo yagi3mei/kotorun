@@ -135,7 +135,7 @@ export default [
 
         displayText: "午前8時です",
 
-        speechText: "ごぜん はちじ です",
+        speechText: "ごぜん 八じ です",
 
         hour: 8,
 
@@ -334,7 +334,7 @@ export default [
 
         displayText: "午後8時です",
 
-        speechText: "ごご はちじ です",
+        speechText: "ごご 八じ です",
 
         hour: 8,
 
