@@ -3,6 +3,7 @@
      Purpose: いろいろなゲームのメニュー選択画面
      Author: やぎさん
      Created: 2026-05-07
+     Updated: 2026-05-27：かず・じかんカテゴリでrename修正
 
      Notes:
      - かな・かるた以外の学習ゲームへの入口画面
@@ -19,7 +20,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>いろいろなゲーム</title>
+    <title>かず・じかん</title>
 
     <!-- 共通 -->
     <link rel="stylesheet" href="css/common.css">
@@ -56,18 +57,7 @@
     <!-- メニュー -->
     <div class="menu">
 
-        <h1>いろいろなゲーム</h1>
-
-        <!-- 家族ゲーム -->
-        <button onclick="goFamily()">
-
-            かぞくゲーム<br>
-
-            <small>
-                ちち・はは・おじさん…
-            </small>
-
-        </button>
+        <h1>かず・じかん</h1>
 
         <!-- 日づけゲーム -->
         <button onclick="goCalendar()">
@@ -122,22 +112,15 @@
         <!-- 学習者向け説明 -->
         <small>
 
-            テーマべつの にほんごゲームです。<br>
+            かず や じかん の<br>
 
-            みて、きいて、ことばを おぼえます。
+            よみかたを れんしゅうします。
 
         </small>
 
     </div>
 
     <script>
-
-        // 家族ゲームへ遷移
-        function goFamily() {
-
-            location.href = "family-index.html";
-
-        }
 
         // 日づけゲームへ遷移
         function goCalendar() {

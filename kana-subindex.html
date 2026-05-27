@@ -1,0 +1,186 @@
+<!-- =========================================
+     File: kana-subindex.html
+     Purpose: かなゲームのメニュー画面
+     Author: やぎさん
+     Created: 2026-04-09
+     Updated: 2026-04-30：css分割
+     Updated: 2026-05-19：実施済みメニューの色変更機能追加
+     Updated: 2026-05-27：かなカテゴリの入口画面を kana-index.html に分割
+
+     Notes:
+     - ひらがな、かたかなのゲームを選択する画面
+     - 清音・濁音・拗音・カタカナ（外来語含む）の各モードを選択可能
+     - 共通スタイルは common.css / layout.css を使用
+========================================= -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- スマホ表示対応のviewport設定（必須） -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>かなゲーム</title>
+
+    <!-- 共通 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        <!-- 共通ロゴ -->
+        <header class="top-header">
+
+            <a href="index.html">
+
+                <img src="images/kotorun-logo.png"
+                    alt="ことラン"
+                    class="app-logo">
+
+            </a>
+
+        </header>
+
+        <button id="back-btn-top" onclick="goBack()">
+            もどる
+        </button>
+
+    </div>
+
+    <!-- メニュー画面 -->
+    <div class="menu">
+
+        <h1>かなゲーム</h1>
+
+        <button
+            data-key="hiragana_seion"
+            onclick="goGame('seion')">
+
+            ひらがな（せいおん）<br>
+
+            <small>
+                あ・い・う…わ・を・ん
+            </small>
+
+        </button>
+
+        <button
+            data-key="hiragana_dakuon"
+            onclick="goGame('dakuon')">
+
+            ひらがな（だくおん）<br>
+
+            <small>
+                が・ぎ・ぐ…ぱ・ぴ・ぷ…
+            </small>
+
+        </button>
+
+        <button
+            data-key="hiragana_youon"
+            onclick="goGame('youon')">
+
+            ひらがな（ようおん）<br>
+
+            <small>
+                きゃ・きゅ・きょ…
+            </small>
+
+        </button>
+
+        <button
+            data-key="katakana_seion"
+            onclick="goGame('katakana-seion')">
+
+            カタカナ（せいおん）<br>
+
+            <small>
+                ア・イ・ウ…ワ・ヲ・ン
+            </small>
+
+        </button>
+
+        <button
+            data-key="katakana_dakuon"
+            onclick="goGame('katakana-dakuon')">
+
+            カタカナ（だくおん）<br>
+
+            <small>
+                ガ・ギ・グ…パ・ピ・プ…
+            </small>
+
+        </button>
+
+        <button
+            data-key="katakana_youon"
+            onclick="goGame('katakana-youon')">
+
+            カタカナ（ようおん）<br>
+
+            <small>
+                キャ・キュ・キョ…
+            </small>
+
+        </button>
+
+        <button
+            data-key="katakana_extra"
+            onclick="goGame('katakana-extra')">
+
+            カタカナ（外来語）<br>
+
+            <small>
+                ファ・ティ・ディ…
+            </small>
+
+        </button>
+
+    </div>
+
+    <!-- スクリプト -->
+    <script>
+
+    function goGame(type) {
+
+        location.href =
+            "kana-game.html?type=" + type;
+    }
+
+    function goBack() {
+
+        location.href = "kana-index.html";
+    }
+
+    /* =========================
+       実施済みチェック
+    ========================= */
+
+    const scores =
+        JSON.parse(
+            localStorage.getItem("kotorun-score")
+        ) || {};
+
+    const kanaScores =
+        scores.kana || {};
+
+    document
+        .querySelectorAll(".menu button[data-key]")
+        .forEach(button => {
+
+            const key = button.dataset.key;
+
+            if (kanaScores[key]) {
+
+                button.classList.add("completed");
+            }
+        });
+
+    </script>
+
+</body>
+</html>

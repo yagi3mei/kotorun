@@ -1,12 +1,12 @@
 <!-- =========================================
-     File: kana-index.html
-     Purpose: かなカテゴリの入口画面
+     File: kotoba-index.html
+     Purpose: ことばカテゴリの入口画面
      Author: やぎさん
      Created: 2026-05-27
 
      Notes:
-     - かなカテゴリのメニュー画面
-     - 今後、書き順なども追加予定
+     - ことばカテゴリのメニュー画面
+     - 単語系ゲームへの入口
 ========================================= -->
 <!DOCTYPE html>
 <html lang="ja">
@@ -18,7 +18,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>かな</title>
+    <title>ことば</title>
 
     <!-- 共通 -->
     <link rel="stylesheet" href="css/common.css">
@@ -55,27 +55,38 @@
     <!-- メニュー -->
     <div class="menu">
 
-        <h1>かな</h1>
+        <h1>ことば</h1>
 
-        <!-- かなゲーム -->
-        <button onclick="goKanaGame()">
+        <!-- たんごかるた -->
+        <button onclick="goKaruta()">
 
-            かなゲーム<br>
+            たんごかるた<br>
 
             <small>
-                ひらがな・カタカナ
+                たべもの・どうぶつ・スポーツ…
             </small>
 
         </button>
 
-        <!-- 今後追加予定 -->
+        <!-- かぞく -->
+        <button onclick="goFamily()">
+
+            かぞくゲーム<br>
+
+            <small>
+                ちち・はは・おじさん…
+            </small>
+
+        </button>
+
+        <!-- 今後追加 -->
         <!--
         <button>
 
-            かきじゅんゲーム<br>
+            からだゲーム<br>
 
             <small>
-                かなの かきかた
+                め・みみ・くち…
             </small>
 
         </button>
@@ -84,7 +95,7 @@
         <!-- 学習者向け説明 -->
         <small>
 
-            かなを よんだり きいたりする<br>
+            ことばを おぼえる<br>
 
             にほんごゲームです。
 
@@ -94,11 +105,19 @@
 
     <script>
 
-        // かなゲームへ
-        function goKanaGame() {
+        // たんごかるた
+        function goKaruta() {
 
             location.href =
-                "kana-subindex.html";
+                "karuta-index.html";
+
+        }
+
+        // かぞく
+        function goFamily() {
+
+            location.href =
+                "family-index.html";
 
         }
 

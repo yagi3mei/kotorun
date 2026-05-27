@@ -450,7 +450,7 @@ window.restartGame = function() {
 window.goMenu = function() {
 
     location.href =
-        "iroiro-index.html";
+        "kazu-jikan-index.html";
 
 };
 

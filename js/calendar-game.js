@@ -341,7 +341,7 @@ function restartGame(){
    メニューへ戻る
 ========================= */
 function goMenu(){
-    location.href = "iroiro-index.html";
+    location.href = "kazu-jikan-index.html";
 }
 
 /* =========================

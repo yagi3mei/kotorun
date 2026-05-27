@@ -393,7 +393,7 @@ function restartGame() {
 }
 
 function goMenu() {
-    location.href = "kana-index.html";
+    location.href = "kana-subindex.html";
 }
 
 // =====================
