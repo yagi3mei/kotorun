@@ -744,7 +744,7 @@ checkBtn.addEventListener(
             ========================= */
             setTimeout(() => {
                 speak(wrongText);
-            }, 400);
+            }, 600);
 
         }
     }
