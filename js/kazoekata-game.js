@@ -157,7 +157,8 @@ let wrongQuestions = [];
 let startTime;
 
 let timerInterval;
-
+// 回答ロック（連打防止）
+let isAnswerLocked = false;
 
 /* =========================
    問題生成
@@ -352,8 +353,14 @@ document
 /* =========================
    回答判定
 ========================= */
-
 function checkAnswer(choice, button) {
+
+    /* 連打防止 */
+    if (isAnswerLocked) {
+        return;
+    }
+
+    isAnswerLocked = true;
 
     /* 正解 */
     if (
@@ -362,11 +369,12 @@ function checkAnswer(choice, button) {
 
         speechSynthesis.cancel();
 
-
         /* 正解読み */
         playCorrectAudio(() => {
 
             loadQuestion();
+
+            isAnswerLocked = false;
 
         });
 
@@ -384,7 +392,6 @@ function checkAnswer(choice, button) {
 
         wrongSound.play();
 
-
         /* シェイク */
         button.style.animation =
             "shake 0.2s";
@@ -395,6 +402,12 @@ function checkAnswer(choice, button) {
 
         }, 200);
 
+        /* ブザー終了後に解除 */
+        wrongSound.onended = () => {
+
+            isAnswerLocked = false;
+
+        };
 
         /* ミス数 */
         missCount++;
@@ -402,8 +415,7 @@ function checkAnswer(choice, button) {
         missDisplay.textContent =
             "ミス：" + missCount;
 
-
-        /* 間違い記録 */
+        /* 間違え記録 */
         if (
             !wrongQuestions.includes(
                 currentQuestion.reading

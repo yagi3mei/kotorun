@@ -207,6 +207,7 @@ let used=[];
 let wrongWords=[];
 
 let correctAnswer=null;
+let isAnswerLocked = false;
 let missCount=0;
 let questionCount = 0;
 
@@ -298,6 +299,8 @@ function loadQuestion(){
 
     playAudio();
 
+    isAnswerLocked = false;
+
 }
 
 
@@ -331,6 +334,14 @@ document
    回答判定
 ===================== */
 function checkAnswer(selected, card) {
+
+    /* 連打防止 */
+    if (isAnswerLocked) {
+        return;
+    }
+
+    isAnswerLocked = true;
+
 
     if (selected.id === correctAnswer.id) {
 
@@ -375,9 +386,10 @@ function checkAnswer(selected, card) {
             "shake 0.3s";
 
         setTimeout(() => {
-
             card.style.animation = "";
 
+            // アニメーションが終わった後にロックを解除
+            isAnswerLocked = false;
         }, 300);
     }
 }

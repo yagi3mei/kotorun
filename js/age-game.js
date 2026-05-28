@@ -103,6 +103,8 @@ let startTime;
 
 let timerInterval;
 
+// 回答ロックフラグ（連続クリック防止用）
+let isAnswerLocked = false;
 
 /* =========================
    初期カード生成
@@ -221,6 +223,13 @@ document
 ========================= */
 function checkAnswer(selected, card) {
 
+    /* 連打防止 */
+    if (isAnswerLocked) {
+        return;
+    }
+
+    isAnswerLocked = true;
+
     /* 正解 */
     if (selected.id === currentQuestion.id) {
 
@@ -238,10 +247,11 @@ function checkAnswer(selected, card) {
 
         correctSound.play();
 
-
         setTimeout(() => {
 
             loadQuestion();
+
+            isAnswerLocked = false;
 
         }, 300);
 
@@ -259,7 +269,6 @@ function checkAnswer(selected, card) {
 
         wrongSound.play();
 
-
         /* シェイク */
         card.style.animation =
             "shake 0.2s";
@@ -268,8 +277,9 @@ function checkAnswer(selected, card) {
 
             card.style.animation = "";
 
-        }, 200);
+            isAnswerLocked = false;
 
+        }, 200);
 
         /* ミス数 */
         missCount++;
@@ -280,7 +290,6 @@ function checkAnswer(selected, card) {
     }
 
 }
-
 
 /* =========================
    結果表示

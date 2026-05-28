@@ -287,7 +287,7 @@ function createSpeechText(
 /* =========================
    読み上げ
 ========================= */
-function speak(text) {
+function speak(text, callback = null) {
 
     speechSynthesis.cancel();
 
@@ -302,10 +302,19 @@ function speak(text) {
 
     utterance.pitch = 1.0;
 
+    utterance.onend = () => {
+
+        if (callback) {
+            callback();
+        }
+
+    };
+
     speechSynthesis.speak(
         utterance
     );
 }
+
 
 // 初級データからランダム10問生成
 function createGameQuestions() {
@@ -745,10 +754,14 @@ checkBtn.addEventListener(
                 間違えた回答を読み上げる
             ========================= */
             setTimeout(() => {
-                speak(wrongText);
-                checkBtn.disabled = false;
-            }, 600);
 
+                speak(wrongText, () => {
+
+                    checkBtn.disabled = false;
+
+                });
+
+            }, 600);
             /* =========================
             不正解時は短針へ戻す
             ========================= */

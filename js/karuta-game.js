@@ -127,6 +127,7 @@ let startTime = performance.now();
 let timerInterval;
 
 let correctAnswer = null;
+let isAnswerLocked = false;
 
 let wrongAnswers = [];
 let usedQuestions = [];
@@ -246,6 +247,8 @@ function loadQuestion() {
 
   }, 500);
 
+  isAnswerLocked = false;
+
 }
 
 
@@ -276,6 +279,14 @@ document
 回答判定
 ===================== */
 function checkAnswer(selected, card) {
+
+    /* 連打防止 */
+  if (isAnswerLocked) {
+    return;
+  }
+
+  isAnswerLocked = true;
+
 
   if (selected.id === correctAnswer.id) {
 
@@ -322,10 +333,12 @@ function checkAnswer(selected, card) {
       "shake 0.3s";
 
     setTimeout(() => {
-
       card.style.animation = "";
 
+      // アニメーション終了後にロック解除
+      isAnswerLocked = false;
     }, 300);
+
 
   }
 

@@ -55,6 +55,8 @@ let missCount = 0;
 // タイマー関連
 let startTime = 0;
 let timerInterval;
+// 回答ロックフラグ（多重クリック防止）
+let isAnswerLocked = false;
 
 /* =========================
    カード生成
@@ -132,12 +134,21 @@ function nextQuestion(){
     questionDisplay.textContent = currentQuestion.text;
 
     speakQuestion();
+
+    isAnswerLocked = false;
 }
 
 /* =========================
    正解判定
 ========================= */
 function checkAnswer(selectedDay){
+
+     /* 連打防止 */
+    if (isAnswerLocked) {
+        return;
+    }
+
+    isAnswerLocked = true;
 
     // 正解
     if(selectedDay === currentQuestion.day){
@@ -166,8 +177,20 @@ function checkAnswer(selectedDay){
 
         updateDisplays();
 
-        // 間違い音
-        document.getElementById("sound-wrong").play();
+        const wrongSound =
+            document.getElementById(
+                "sound-wrong"
+            );
+
+        wrongSound.currentTime = 0;
+
+        wrongSound.play();
+
+        wrongSound.onended = () => {
+
+            isAnswerLocked = false;
+
+        };
     }
 }
 
