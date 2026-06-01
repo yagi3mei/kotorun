@@ -27,7 +27,7 @@ export default [
     id: "ear",
     word: "みみ",
     kanji: "耳",
-    speech: "みみ",
+    speech: "耳",
     x: 85,
     y: 261,
 },
