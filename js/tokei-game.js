@@ -885,6 +885,11 @@ function showResultModal() {
     const now = new Date();
         dateTime.textContent = now.toLocaleString("ja-JP");
 
+    gameLevelLabel.textContent =
+        gameLevel === "beginner"
+            ? "【しょきゅう（初級）】"
+            : "【中級（ちゅうきゅう）】";
+
     missResult.textContent = `ミス:${missCount}`;
 
     finalTime.textContent = `タイム:${(elapsedTime / 1000).toFixed(2)}秒`;

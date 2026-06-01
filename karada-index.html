@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>からだゲーム</title>
+
+    <link rel="stylesheet"
+        href="css/common.css">
+
+    <link rel="stylesheet"
+        href="css/layout.css">
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        <!-- ロゴ -->
+        <header class="top-header">
+
+            <a href="index.html">
+
+                <img src="images/kotorun-logo.png"
+                    alt="ことラン"
+                    class="app-logo">
+
+            </a>
+
+        </header>
+
+        <!-- もどる -->
+        <button id="back-btn-top"
+                onclick="goBack()">
+
+            もどる
+
+        </button>
+
+    </div>
+
+    <div class="menu">
+
+        <h1>からだゲーム</h1>
+
+        <!-- 顔 -->
+        <button
+            data-key="karada_face"
+            onclick="goGame('face')">
+
+            かお<br>
+
+            <small>
+                め・みみ・はな
+            </small>
+
+        </button>
+
+        <!-- 上半身 -->
+        <button
+            data-key="karada_upper">
+
+            じょうはんしん<br>
+
+            <small>
+                じゅんびちゅう
+            </small>
+
+        </button>
+
+        <!-- 下半身 -->
+        <button
+            data-key="karada_lower">
+
+            かはんしん<br>
+
+            <small>
+                じゅんびちゅう
+            </small>
+
+        </button>
+
+    </div>
+
+    <script>
+
+        function goGame(category)
+        {
+            location.href =
+                "karada-game.html?category="
+                + category;
+        }
+
+        function goBack()
+        {
+            location.href =
+                "kotoba-index.html";
+        }
+
+        /* =========================
+        実施済みチェック
+        ========================= */
+
+        const scores =
+            JSON.parse(
+                localStorage.getItem(
+                    "kotorun-score"
+                )
+            ) || {};
+
+        const karadaScores =
+            scores.karada || {};
+
+        /* 顔 */
+        if (karadaScores.face)
+        {
+            document
+                .querySelector(
+                    '[data-key="karada_face"]'
+                )
+                .classList.add(
+                    "completed"
+                );
+        }
+
+        /* 上半身 */
+        if (karadaScores.upper)
+        {
+            document
+                .querySelector(
+                    '[data-key="karada_upper"]'
+                )
+                .classList.add(
+                    "completed"
+                );
+        }
+
+        /* 下半身 */
+        if (karadaScores.lower)
+        {
+            document
+                .querySelector(
+                    '[data-key="karada_lower"]'
+                )
+                .classList.add(
+                    "completed"
+                );
+        }
+
+    </script>
+
+</body>
+
+</html>

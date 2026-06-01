@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .image-wrapper{
+        position:relative;
+        width:512px;
+    }
+
+    #marker{
+        position:absolute;
+        width:20px;
+        height:20px;
+        background:red;
+        border-radius:50%;
+        pointer-events:none;
+    }
+    </style>
+</head>
+<body>
+    <div class="image-wrapper">
+        <img src="images/face.png" id="bodyImage">
+
+        <div id="marker"></div>
+    </div>
+    <script>
+        const image = document.getElementById("bodyImage");
+        const marker = document.getElementById("marker");
+
+        image.addEventListener("click", (e) => {
+
+            const rect = image.getBoundingClientRect();
+
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            console.log(`x:${Math.floor(x)}, y:${Math.floor(y)}`);
+
+            marker.style.left = `${x}px`;
+            marker.style.top = `${y}px`;
+        });
+    </script>
+</body>
+</html>

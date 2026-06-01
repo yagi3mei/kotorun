@@ -1,0 +1,24 @@
+.image-container{
+position:relative;
+width:100%;
+max-width:400px;
+margin:auto;
+}
+
+#faceImage{
+width:100%;
+display:block;
+}
+
+#marker{
+position:absolute;
+
+width:20px;
+height:20px;
+
+background:red;
+border-radius:50%;
+
+transform:translate(-50%, -50%);
+
+}
