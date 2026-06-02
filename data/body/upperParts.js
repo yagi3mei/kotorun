@@ -67,7 +67,7 @@ export default [
         id: "stomach",
         word: "おなか",
         kanji: "お腹",
-        speech: "お腹",
+        speech: "おなか",
         x: 104,
         y: 319,
     },
