@@ -24,7 +24,7 @@ export default [
         kanji: "腕",
         speech: "腕",
         x: 9,
-        y: 222,
+        y: 212,
     },
 
     {
@@ -69,7 +69,7 @@ export default [
         kanji: "お腹",
         speech: "お腹",
         x: 104,
-        y: 339,
+        y: 319,
     },
 
     {
@@ -78,7 +78,7 @@ export default [
         kanji: "背中",
         speech: "背中",
         x: 347,
-        y: 263,
+        y: 243,
     },
 
     {
@@ -87,7 +87,7 @@ export default [
         kanji: "腰",
         speech: "腰",
         x: 340,
-        y: 353,
+        y: 343,
     }
 
 ];
