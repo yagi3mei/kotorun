@@ -1,47 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .image-wrapper{
-        position:relative;
-        width:512px;
-    }
 
-    #marker{
-        position:absolute;
-        width:20px;
-        height:20px;
-        background:red;
-        border-radius:50%;
-        pointer-events:none;
-    }
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>座標取得</title>
+
+    <style>
+
+        .image-wrapper {
+
+            position: relative;
+
+            width: 512px;
+        }
+
+        #bodyImage {
+
+            width: 512px;
+
+            display: block;
+        }
+
+        /* 赤い矢印 */
+        #marker {
+
+            position: absolute;
+
+            width: 30px;
+
+            height: 4px;
+
+            background: red;
+
+            transform-origin: left center;
+
+            pointer-events: none;
+        }
+
+        #marker::after {
+
+            content: "";
+
+            position: absolute;
+
+            right: -8px;
+
+            top: -4px;
+
+            border-top: 6px solid transparent;
+
+            border-bottom: 6px solid transparent;
+
+            border-left: 10px solid red;
+        }
+
     </style>
+
 </head>
+
 <body>
+
     <div class="image-wrapper">
-        <img src="images/face.png" id="bodyImage">
+
+        <img
+            src="../images/body/upperParts.png"
+            id="bodyImage"
+        >
 
         <div id="marker"></div>
+
     </div>
+
     <script>
-        const image = document.getElementById("bodyImage");
-        const marker = document.getElementById("marker");
 
-        image.addEventListener("click", (e) => {
+        const image =
+            document.getElementById(
+                "bodyImage"
+            );
 
-            const rect = image.getBoundingClientRect();
+        const marker =
+            document.getElementById(
+                "marker"
+            );
 
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+        image.addEventListener(
+            "click",
+            (e) => {
 
-            console.log(`x:${Math.floor(x)}, y:${Math.floor(y)}`);
+                const rect =
+                    image.getBoundingClientRect();
 
-            marker.style.left = `${x}px`;
-            marker.style.top = `${y}px`;
-        });
+                const x =
+                    Math.floor(
+                        e.clientX - rect.left
+                    );
+
+                const y =
+                    Math.floor(
+                        e.clientY - rect.top
+                    );
+
+                console.log(
+                    `x:${x}, y:${y}`
+                );
+
+                /*
+                 * 矢印先端を
+                 * クリック位置へ合わせる
+                 */
+
+                marker.style.left =
+                    `${x - 30}px`;
+
+                marker.style.top =
+                    `${y - 2}px`;
+
+            }
+        );
+
     </script>
+
 </body>
+
 </html>

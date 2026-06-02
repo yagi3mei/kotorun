@@ -1,7 +1,24 @@
+// =========================================
+//      File: karada-game.js
+//      Purpose: からだゲームのゲーム画面
+//      Author: やぎさん
+//      Created: 2026-06-01
+// 
+//      Notes:
+//      - からだゲームの共通JavaScriptファイル
+//      - karada-index.htmlからゲームタイプをURLパラメータで受け取って、ゲームの内容を切り替える
+//      - ゲームのロジック（問題選択、入力判定、タイマー、ミスカウントなど）を実装
+// ========================================= 
+
+
 // ストレージ読み書き
 import faceParts
     from "../data/body/face.js";
 
+import upperParts
+    from "../data/body/upperParts.js";
+
+    
 import {
     saveScore,
     getScore
@@ -151,14 +168,6 @@ function speak(text, callback = null)
     speechSynthesis.speak(utterance);
 }
 
-function getRandomQuestion()
-{
-    const randomIndex =
-        Math.floor(Math.random() * faceParts.length);
-
-    return faceParts[randomIndex];
-}
-
 
 function shuffle(array)
 {
@@ -196,9 +205,10 @@ function renderChoices(question)
     while (choices.length < 4)
     {
         const randomPart =
-            faceParts[
+            questionList[
                 Math.floor(
-                    Math.random() * faceParts.length
+                    Math.random()
+                    * questionList.length
                 )
             ];
 
@@ -500,16 +510,22 @@ function startGame()
     // メニューに応じた問題リストを作成
     if (category === "face")
     {
+        image.src =
+            "images/body/face.png";
         questionList = [...faceParts];
         categoryLabel = "かお（顔）";
     }
     else if (category === "upper")
     {
+        image.src =
+            "images/body/upperParts.png";
         questionList = [...upperParts];
         categoryLabel = "じょうはんしん（上半身）";
     }
     else if (category === "lower")
     {
+        image.src =
+            "images/body/lowerParts.png";
         questionList = [...lowerParts];
         categoryLabel = "かはんしん（下半身）"; 
     }
