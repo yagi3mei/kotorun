@@ -10,6 +10,21 @@ width:100%;
 display:block;
 }
 
+.question-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+#questionText {
+    color: red;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+
 /* =========================
    指し棒（点滅矢印）
 ========================= */

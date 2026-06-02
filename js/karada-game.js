@@ -113,6 +113,11 @@ const wrongSound =
         "sound-wrong"
     );
 
+const soundBtn =
+    document.getElementById(
+        "sound-btn"
+    );
+
 
 // 状態変数
 let currentQuestion = null;
@@ -167,6 +172,17 @@ function speak(text, callback = null)
 
     speechSynthesis.speak(utterance);
 }
+
+
+soundBtn.addEventListener(
+    "click",
+    () =>
+    {
+        speak(
+            QUESTION_SPEECH
+        );
+    }
+);
 
 
 function shuffle(array)
