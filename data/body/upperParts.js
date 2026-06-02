@@ -31,7 +31,7 @@ export default [
         id: "elbow",
         word: "ひじ",
         kanji: "肘",
-        speech: "ヒジ",
+        speech: "hiji",
         x: 0,
         y: 275,
     },
