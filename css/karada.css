@@ -10,15 +10,56 @@ width:100%;
 display:block;
 }
 
-#marker{
-position:absolute;
+/* =========================
+   指し棒（点滅矢印）
+========================= */
 
-width:20px;
-height:20px;
+#marker {
 
-background:red;
-border-radius:50%;
+    position: absolute;
 
-transform:translate(-50%, -50%);
+    width: 28px;
 
+    height: 4px;
+
+    background: red;
+
+    transform-origin: right center;
+
+    animation:
+        marker-blink 1s infinite;
+}
+
+/* 矢印の先端 */
+#marker::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: -10px;
+
+    top: -6px;
+
+    border-top: 8px solid transparent;
+
+    border-bottom: 8px solid transparent;
+
+    border-left: 12px solid red;
+}
+
+/* 点滅 */
+@keyframes marker-blink {
+
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

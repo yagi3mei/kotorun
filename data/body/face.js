@@ -4,7 +4,7 @@ export default [
     word: "あたま",
     kanji: "頭",
     speech: "あたま",
-    x: 167,
+    x: 117,
     y: 50,
 },
 {
@@ -12,7 +12,7 @@ export default [
     word: "かみ",
     kanji: "髪",
     speech: "かみ",
-    x: 412,
+    x: 362,
     y: 281,
 },
 {
@@ -20,7 +20,7 @@ export default [
     word: "め",
     kanji: "目",
     speech: "め",
-    x: 164,
+    x: 114,
     y: 245,
 },
 {
@@ -28,7 +28,7 @@ export default [
     word: "みみ",
     kanji: "耳",
     speech: "耳",
-    x: 85,
+    x: 40,
     y: 261,
 },
 {
@@ -36,7 +36,7 @@ export default [
     word: "はな",
     kanji: "鼻",
     speech: "はな",
-    x: 219,
+    x: 175,
     y: 272,
 },
 {
@@ -44,7 +44,7 @@ export default [
     word: "くち",
     kanji: "口",
     speech: "くち",
-    x:189,
+    x:147,
     y:322,
 },
 {
@@ -52,7 +52,7 @@ export default [
     word: "あご",
     kanji: "顎",
     speech: "あご",
-    x: 228,
+    x: 178,
     y: 373,
 },
 {
@@ -60,7 +60,7 @@ export default [
     word: "は",
     kanji: "歯",
     speech: "は",
-    x: 228,
+    x: 178,
     y: 313,
 },
 {
@@ -68,7 +68,7 @@ export default [
     word: "した",
     kanji: "舌",
     speech: "した",
-    x: 227,
+    x: 178,
     y: 335,
 },
 {
@@ -76,7 +76,7 @@ export default [
     word: "まゆ",
     kanji: "眉",
     speech: "まゆ",
-    x: 155,
+    x: 105,
     y: 180,
 }
 ];
