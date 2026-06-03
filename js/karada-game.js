@@ -136,6 +136,10 @@ function showQuestion(question)
 {
     // 試験用にコンソールへ問題を表示する。あとで削除予定！
     console.log(question.word);
+    console.log(
+        image.clientWidth,
+        image.clientHeight
+    );
 
     questionText.textContent =
         QUESTION_TEXT;
@@ -520,40 +524,50 @@ function startGame()
 
     timer = null;
 
+    // ゲーム設定読み込み
+    loadGameConfig();
+
+    image.onload = () =>
+    {
+        shuffle(questionList);
+
+        currentIndex = 0;
+
+        updateStatus();
+
+        nextQuestion();
+    };
     // タイマー開始
     startTimer();
 
-    // メニューに応じた問題リストを作成
+}
+
+function loadGameConfig()
+{
     if (category === "face")
     {
         image.src =
             "images/body/face.png";
-        questionList = [...faceParts];
-        categoryLabel = "かお（顔）";
+
+        questionList =
+            [...faceParts];
+
+        categoryLabel =
+            "かお（顔）";
     }
     else if (category === "upper")
     {
         image.src =
             "images/body/upperParts.png";
-        questionList = [...upperParts];
-        categoryLabel = "じょうはんしん（上半身）";
+
+        questionList =
+            [...upperParts];
+
+        categoryLabel =
+            "じょうはんしん（上半身）";
     }
-    else if (category === "lower")
-    {
-        image.src =
-            "images/body/lowerParts.png";
-        questionList = [...lowerParts];
-        categoryLabel = "かはんしん（下半身）"; 
-    }
-
-    shuffle(questionList);
-
-    currentIndex = 0;
-
-    updateStatus();
-
-    nextQuestion();
 }
+
 
 // ゲーム開始
 startGame();
