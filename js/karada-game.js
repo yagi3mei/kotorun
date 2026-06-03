@@ -18,6 +18,8 @@ import faceParts
 import upperParts
     from "../data/body/upperParts.js";
 
+import lowerParts
+    from "../data/body/lowerParts.js";
     
 import {
     saveScore,
@@ -136,10 +138,6 @@ function showQuestion(question)
 {
     // 試験用にコンソールへ問題を表示する。あとで削除予定！
     console.log(question.word);
-    console.log(
-        image.clientWidth,
-        image.clientHeight
-    );
 
     questionText.textContent =
         QUESTION_TEXT;
@@ -565,6 +563,17 @@ function loadGameConfig()
 
         categoryLabel =
             "じょうはんしん（上半身）";
+    }
+    else if (category === "lower")
+    {
+        image.src =
+            "images/body/lowerParts.png";
+
+        questionList =
+            [...lowerParts];
+
+        categoryLabel =
+            "かはんしん（下半身）";
     }
 }
 
