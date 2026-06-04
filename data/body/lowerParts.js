@@ -6,7 +6,7 @@ export default [
         kanji: "足",
         speech: "あし",
         x: 46,
-        y: 443,
+        y: 450,
     },
 
     {
@@ -14,8 +14,8 @@ export default [
         word: "ひざ",
         kanji: "膝",
         speech: "ひざ",
-        x: 58,
-        y: 261,
+        x: 50,
+        y: 270,
     },
 
     {
@@ -33,7 +33,7 @@ export default [
         kanji: "足首",
         speech: "あしくび",
         x: 40,
-        y: 425,
+        y: 420,
     },
 
     {
@@ -41,7 +41,7 @@ export default [
         word: "つまさき",
         kanji: "爪先",
         speech: "つまさき",
-        x: 168,
+        x: 160,
         y: 475,
     },
 
@@ -51,7 +51,7 @@ export default [
         kanji: "脛",
         speech: "すね",
         x: 50,
-        y: 321,
+        y: 340,
     },
 
     {
@@ -60,7 +60,7 @@ export default [
         kanji: "脹脛",
         speech: "ふくらはぎ",
         x: 300,
-        y: 315,
+        y: 320,
     },
 
     {
@@ -78,7 +78,7 @@ export default [
         kanji: "踵",
         speech: "かかと",
         x: 308,
-        y: 441,
+        y: 446,
     },
 
 ];
