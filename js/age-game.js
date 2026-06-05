@@ -352,12 +352,11 @@ function showResult() {
             {
                 game: "age",
                 mode: "age_game",
-                miss: result.miss,
-                time: result.time
+                miss: missCount,
+                time: Number(time)
             }
         );
-}
-
+    }
 
     const best =
         getScore(
