@@ -495,8 +495,8 @@ function showResult() {
             {
                 game: "kazoekata",
                 mode: type,
-                miss: result.miss,
-                time: result.time
+                miss: missCount,
+                time: Number(time)
             }
         );
     }

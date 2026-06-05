@@ -456,12 +456,12 @@ function showResult() {
             {
                 game: "family",
                 mode: getStorageKey(),
-                miss: result.miss,
-                time: result.time
+                miss: missCount,
+                time: Number(time)
             }
         );
     }
-
+    
     const best =
         getScore(
             "family",

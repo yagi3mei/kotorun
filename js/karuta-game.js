@@ -422,8 +422,8 @@ function showResult() {
           {
               game: "karuta",
               mode: getStorageKey(),
-              miss: result.miss,
-              time: result.time
+              miss: missCount,
+              time: Number(time)
           }
       );
   }
