@@ -4,6 +4,7 @@
    Author: やぎさん
    Created: 2026-05-11
    Updated: 2026-05-22: LocalStorageベスト記録保存・結果モーダル拡張対応
+   Updated: 2026-06-05: google analytics イベント送信追加
 
    Notes:
    - 1歳〜20歳の年齢読み学習ゲーム
@@ -341,6 +342,21 @@ function showResult() {
             date: dateStr
         }
     );
+
+    // Google Analytics イベント送信
+    if (typeof gtag === "function")
+    {
+        gtag(
+            "event",
+            "game_clear",
+            {
+                game: "age",
+                mode: "age_game",
+                miss: result.miss,
+                time: result.time
+            }
+        );
+}
 
 
     const best =

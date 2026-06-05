@@ -5,6 +5,8 @@
 //      Created: 2026-04-01
 //      Updated: 2026-04-30: CSSファイル分割に伴う読み込み構造の変更
 //      Updated: 2026-05-06: kana.cssをかるたゲームと共有化
+//      Updated: 2026-06-05: google analytics イベント送信追加
+// 
 //      Notes:
 //      - かなゲームの共通JavaScriptファイル
 //      - kana-index.htmlからゲームタイプをURLパラメータで受け取って、ゲームの内容を切り替える
@@ -286,6 +288,18 @@ function endGame() {
         miss: missCount,
         date: dateStr
     };
+
+    // google analytics へイベント送信
+    gtag(
+        "event",
+        "game_clear",
+        {
+            game: "kana",
+            mode: gameType,
+            miss: result.miss,
+            time: result.time
+        }
+    );
 
     // =====================
     // 保存

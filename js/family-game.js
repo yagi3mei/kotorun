@@ -5,6 +5,7 @@
 //      Created: 2026-04-09
 //      Updated: 2026-04-30: CSSファイル分割に伴う読み込み構造の変更
 //      Updated: 2026-05-21: storage対応
+//      Updated: 2026-06-05: google analytics イベント送信追加
 //
 //      Notes:
 //      - 家族ゲームの共通JavaScriptファイル
@@ -445,6 +446,21 @@ function showResult() {
             date: dateStr
         }
     );
+
+    // Analytics
+    if (typeof gtag === "function")
+    {
+        gtag(
+            "event",
+            "game_clear",
+            {
+                game: "family",
+                mode: getStorageKey(),
+                miss: result.miss,
+                time: result.time
+            }
+        );
+    }
 
     const best =
         getScore(

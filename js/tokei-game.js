@@ -3,6 +3,7 @@
    Purpose: 時計ゲーム UIテスト動作
    Author: やぎさん
    Created: 2026-05-25
+   Updated: 2026-06-05: google analytics イベント送信追加  
 
    Notes:
    - 初級テスト用
@@ -876,6 +877,21 @@ function showResultModal() {
             result
         );
 
+    // Google Analytics イベント送信
+    if (typeof gtag === "function")
+    {
+        gtag(
+            "event",
+            "game_clear",
+            {
+                game: "tokei",
+                mode: storageKey,
+                miss: result.miss,
+                time: result.time
+            }
+        );
+    }
+    
     const bestScore =
         getScore(
             "tokei",

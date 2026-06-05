@@ -6,6 +6,7 @@
 //      Updated: 2026-04-30: CSSファイル分割に伴う読み込み構造の変更
 //      Updated: 2026-05-17: かるたゲームからたんごかるたへ名称変更
 //      Updated: 2026-05-20: LocalStorageベスト記録保存・結果モーダル拡張対応
+//      Updated: 2026-06-05: google analytics イベント送信追加
 //
 //      Notes:
 //      - たんごかるたゲームの共通JavaScriptファイル
@@ -412,6 +413,20 @@ function showResult() {
     }
   );
 
+  // Google Analytics イベント送信
+  if (typeof gtag === "function")
+  {
+      gtag(
+          "event",
+          "game_clear",
+          {
+              game: "karuta",
+              mode: getStorageKey(),
+              miss: result.miss,
+              time: result.time
+          }
+      );
+  }
 
   const best = getScore(
     "karuta",

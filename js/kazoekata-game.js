@@ -3,6 +3,7 @@
    Purpose: かぞえかたゲーム プレイロジック
    Author: やぎさん
    Created: 2026-05-12
+   Updated: 2026-06-05: google analytics イベント送信追加
 
    Notes:
    - 助数詞の読み方学習ゲーム
@@ -484,6 +485,21 @@ function showResult() {
             date: dateStr
         }
     );
+
+    // Google Analytics イベント送信
+    if (typeof gtag === "function")
+    {
+        gtag(
+            "event",
+            "game_clear",
+            {
+                game: "kazoekata",
+                mode: type,
+                miss: result.miss,
+                time: result.time
+            }
+        );
+    }
 
     const best =
         getScore(
