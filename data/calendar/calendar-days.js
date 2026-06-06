@@ -46,7 +46,7 @@ export default [
     },
     {
         day: 10,
-        text: "とうか",
+        text: "とおか",
         speech: "十日"
     },
     {
