@@ -1,0 +1,224 @@
+<!-- =========================================
+     File: country-game.html
+     Purpose: 国・地域ゲーム プレイ画面
+     Author: やぎさん
+     Created: 2026-06-08
+
+     Notes:
+     - 旗＋地図を見て国・地域名を答えるゲーム
+     - 4択形式
+     - 共通スタイル: common.css / layout.css
+     - ゲームUI: game.css
+========================================= -->
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>国・地域ゲーム</title>
+
+    <!-- 共通 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+    <!-- ゲーム系 -->
+    <link rel="stylesheet" href="css/game.css">
+
+    <!-- ページ専用 -->
+    <link rel="stylesheet" href="css/country.css">
+
+    <!-- Google Analytics -->
+    <script async
+        src="https://www.googletagmanager.com/gtag/js?id=G-B80JQLPCH4">
+    </script>
+
+    <script src="js/analytics.js"></script>
+
+</head>
+
+<body>
+
+    <!-- =====================================
+         ヘッダー
+    ====================================== -->
+    <div class="header">
+
+        <header class="top-header">
+
+            <a href="index.html">
+
+                <img src="images/kotorun-logo.png"
+                     alt="ことラン"
+                     class="app-logo">
+
+            </a>
+
+        </header>
+
+        <div id="timer-display">
+            0.00
+        </div>
+
+        <div id="remaining-display">
+            0
+        </div>
+
+        <div id="miss-display">
+            0
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         問題表示
+    ====================================== -->
+    <div class="question-area">
+
+        <div id="question-display">
+
+            ここは？
+
+        </div>
+
+        <button id="sound-btn">
+
+            🔊
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================
+         問題画像
+    ====================================== -->
+    <div class="question-image-area">
+
+        <img id="question-image"
+             src=""
+             alt="旗と地図">
+
+    </div>
+
+
+    <!-- =====================================
+         選択肢
+    ====================================== -->
+    <div id="choices-area"
+         class="choices-area">
+
+        <!-- JSで生成 -->
+
+    </div>
+
+
+    <!-- =====================================
+         戻るボタン
+    ====================================== -->
+    <div class="button-area">
+
+        <button id="back-btn"
+                onclick="goMenu()">
+
+            もどる
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================
+         結果モーダル
+    ====================================== -->
+    <div id="result-modal"
+         class="modal hidden">
+
+        <div class="modal-content">
+
+            <h2>
+
+                くに・ちいきゲーム　けっか
+
+            </h2>
+
+            <p id="game-type-label"></p>
+
+            <p id="date-time"></p>
+
+            <p id="final-time"></p>
+
+            <p id="miss-result"></p>
+
+            <hr>
+
+            <p id="best-score-label">
+
+                あなたのベストきろく
+
+            </p>
+
+            <p id="best-message"></p>
+            <p id="best-date"></p>
+            <p id="best-miss"></p>
+            <p id="best-time"></p>
+
+            <hr>
+
+            <p id="word-list-label">
+
+                まちがえた　くに・ちいき
+
+            </p>
+
+            <div id="wrong-list"
+                 class="word-list-scroll">
+            </div>
+
+            <button onclick="restartGame()">
+
+                もういちど
+
+            </button>
+
+            <button onclick="goMenu()">
+
+                もどる
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         音声
+    ====================================== -->
+
+    <audio id="sound-correct"
+           src="sounds/correct.mp3">
+    </audio>
+
+    <audio id="sound-wrong"
+           src="sounds/wrong.mp3">
+    </audio>
+
+
+    <!-- =====================================
+         ゲームスクリプト
+    ====================================== -->
+
+    <script type="module"
+            src="js/country-game.js">
+    </script>
+
+</body>
+
+</html>
