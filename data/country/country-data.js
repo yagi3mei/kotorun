@@ -137,7 +137,7 @@ img: "japan.png"
     country: "オーストラリア",
     reading: "オーストラリア",
     img: "australia.png"
-}
+},
 
 {
     id: "mexico",
