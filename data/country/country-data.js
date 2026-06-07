@@ -139,4 +139,11 @@ img: "japan.png"
     img: "australia.png"
 }
 
+{
+    id: "mexico",
+    country: "メキシコ",
+    reading: "メキシコ",
+    img: "mexico.png"
+}
+
 ];
