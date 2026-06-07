@@ -16,18 +16,6 @@
 import countryData
     from "../data/country/country-data.js";
 
-/* =========================
-   出題用データ（10問）
-========================= */
-const QUESTION_COUNT = 10;  // 問題数
-
-const gameData =
-    [...countryData]
-        .sort(
-            () => Math.random() - 0.5
-        )
-        .slice(0, QUESTION_COUNT);
-
 import {
         saveScore,
         getScore
@@ -118,9 +106,13 @@ const wrongListArea =
     "wrong-list"
     );
 
+const QUESTION_COUNT = 10;  // 出題数
+
+
 /* =========================
 状態変数
 ========================= */
+let gameQuestions = [];
 
 let used = [];
 
@@ -136,14 +128,23 @@ let timerInterval;
 
 let isAnswerLocked = false;
 
+
 /* =========================
 問題生成
 ========================= */
+function createGameQuestions() {
+
+    gameQuestions =
+        [...countryData]
+            .sort(() => Math.random() - 0.5)
+            .slice(0, QUESTION_COUNT);
+
+}
 
 function loadQuestion() {
 
     const remain =
-        gameData.filter(
+        gameQuestions.filter(
             x => !used.includes(x.id)
         );
 
@@ -172,10 +173,10 @@ function loadQuestion() {
 
 }
 
+
 /* =========================
 問題表示
 ========================= */
-
 function renderQuestion() {
 
     imageDisplay.src =
@@ -194,10 +195,10 @@ function renderQuestion() {
 
 }
 
+
 /* =========================
 選択肢生成
 ========================= */
-
 function renderChoices() {
 
     choicesArea.innerHTML = "";
@@ -253,10 +254,10 @@ function renderChoices() {
 
 }
 
+
 /* =========================
 問題音声
 ========================= */
-
 function playQuestionAudio() {
 
     speechSynthesis.cancel();
@@ -274,10 +275,10 @@ function playQuestionAudio() {
 
 }
 
+
 /* =========================
 正解音声
 ========================= */
-
 function playCorrectAudio(
         callback
     ) {
@@ -305,10 +306,10 @@ function playCorrectAudio(
 
 }
 
+
 /* =========================
 スピーカーボタン
 ========================= */
-
 document
     .getElementById("sound-btn")
     .addEventListener(
@@ -316,10 +317,10 @@ document
         playQuestionAudio
     );
 
+
 /* =========================
 回答判定
 ========================= */
-
 function checkAnswer(
         choice,
         button
@@ -390,10 +391,10 @@ function checkAnswer(
 
 }
 
+
 /* =========================
 結果表示
 ========================= */
-
 function showResult() {
 
     clearInterval(
@@ -510,6 +511,8 @@ function showResult() {
 ========================= */
 
 function startGame() {
+
+    createGameQuestions();
 
     used = [];
 
