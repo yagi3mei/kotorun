@@ -41,12 +41,50 @@
 
     <!-- メインコンテンツ（トップ画面） -->
     <main class="hero-area">
-    
-          <!-- ランナーイラスト -->
-        <img src="images/kotorun-runners.png"
-             alt="ことラン ランナー"
-             class="runner-visual">
 
+        <!-- おしらせ -->
+        <details class="top-news">
+
+            <summary id="news-summary">
+                📢 おしらせ（クリックで開く）
+            </summary>
+
+            <ul>
+
+                <li>
+                    2026/06/07 ことばに「くに・ちいきゲーム」追加
+                </li>
+
+                <li>
+                    2026/06/01 ことばに「からだゲーム」追加
+                </li>
+
+                <li>
+                    2026/05/26 かず・じかんに「とけいゲーム」追加
+                </li>
+
+                <li>
+                    2026/05/22 ゲーム結果保存に対応
+                    <!-- （ベストタイム・ミス回数） -->
+                </li>
+
+                <li>
+                    2026/05/22 あそんだゲームはみどり色です
+                </li>
+
+                <li>
+                    2026/05/13 「ことラン」をリリース
+                </li>
+
+            </ul>
+
+        </details>
+
+        <!-- ランナーイラスト -->
+        <img
+            src="images/kotorun-runners.png"
+            alt="ことラン ランナー"
+            class="runner-visual">
 
         <!-- メニュー -->
         <p>日本語をれんしゅうしよう！</p>
@@ -77,7 +115,7 @@
         </div>
 
         <section class="about-kotorun">
-            <h2>ことランについて</h2>
+            <h3>ことランについて</h3>
 
             <p>
                 ことランは、
@@ -133,49 +171,6 @@
             </details>
         </section>
 
-        <section class="news">
-            <h2>おしらせ</h2>
-
-            <ul>
-                <li>
-                    2026/06/07 ことばに「くに・ちいきゲーム」追加
-                </li>
-
-                <li>
-                    2026/06/01 ことばに「からだゲーム」追加
-                </li>
-                
-                <li>
-                    2026/05/26 かず・じかんに「とけいゲーム」追加
-                </li>
-
-                <!-- <li>
-                    2026/05/26 「かず・じかん」カテゴリ追加
-                </li> -->
-
-                <li>
-                    2026/05/22 ゲーム結果保存に対応<br>
-                    （ベストタイム・ミス回数）
-                </li>
-
-                <li>
-                    2026/05/22 あそんだゲームはみどり色です
-                </li>
-
-                <!-- <li>
-                    2026/05/18 たんごかるたのひらがな完成
-                </li>
-
-                <li>
-                    2026/05/16 「～つ」「～だい」を追加
-                </li> -->
-
-                <li>
-                    2026/05/13 「ことラン」をリリース
-                </li>
-
-            </ul>
-        </section>
 
         <footer class="contact-info">
             <small>
@@ -208,6 +203,36 @@
         </div>
     </div>
 
+    <!-- おしらせの展開/折りたたみ機能 -->
+    <script>
+        const newsDetails =
+            document.querySelector(
+                ".top-news"
+            );
+
+        const newsSummary =
+            document.getElementById(
+                "news-summary"
+            );
+
+        if (newsDetails && newsSummary) {
+
+            newsDetails.addEventListener(
+                "toggle",
+                () => {
+
+                    newsSummary.textContent =
+                        newsDetails.open
+                        ? "📢 おしらせ（クリックで閉じる）"
+                        : "📢 おしらせ（クリックで開く）";
+
+                }
+            );
+
+        }
+    </script>
+
+    <!-- ブラウザ警告 -->
     <script>
         const ua = navigator.userAgent;
         const lang = navigator.language;
