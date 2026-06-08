@@ -159,16 +159,16 @@
         </button>
 
 
-        <!-- 匹 -->
-        <!-- <button onclick="goGame('hiki')">
+        <!-- ランダム -->
+        <button onclick="goRandomGame()">
 
-            ひき（匹）<br>
+            ランダム<br>
 
             <small>
-                いっぴき・にひき・さんびき
+                いろいろな かぞえかた
             </small>
 
-        </button> -->
+        </button>
 
 
         <!-- 学習者向け説明 -->
@@ -205,6 +205,18 @@
         }
 
 
+        /* =========================
+            ランダムゲーム
+        ========================= */
+
+        window.goRandomGame = function() {
+
+            location.href =
+                "kazoekata-random.html";
+
+        }
+
+        
         /* =========================
            戻る
         ========================= */
