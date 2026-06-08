@@ -102,6 +102,22 @@ export function shouldUpdate(oldScore, newScore) {
 ========================= */
 export function saveScore(category, key, result) {
 
+     /* 不正データ防止 */
+    if (
+        typeof result.time !== "number"
+        || result.time <= 0
+        || typeof result.miss !== "number"
+        || result.miss < 0
+    ) {
+
+        console.warn(
+            "invalid score",
+            result
+        );
+
+        return false;
+    }
+    
     const scores = loadScores();
 
     // category がないなら作成
