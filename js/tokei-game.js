@@ -1,6 +1,6 @@
 /* =========================================
    File: tokei-test.js
-   Purpose: 時計ゲーム UIテスト動作
+   Purpose: 時計ゲーム
    Author: やぎさん
    Created: 2026-05-25
    Updated: 2026-06-05: google analytics イベント送信追加  

@@ -364,7 +364,7 @@ function restartGame(){
    メニューへ戻る
 ========================= */
 function goMenu(){
-    location.href = "kazu-jikan-index.html";
+    location.href = "hizuke-index.html";
 }
 
 /* =========================

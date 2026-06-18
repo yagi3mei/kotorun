@@ -1,0 +1,190 @@
+/* =========================================
+   File: relative-time.css
+   Purpose: ひづけゲーム専用CSS
+========================================= */
+
+
+/* =========================
+   ゲームエリア
+========================= */
+
+#game-area {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================
+   曜日
+========================= */
+
+.calendar-weekdays {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
+    gap: 4px;
+
+    margin-bottom: 6px;
+
+    text-align: center;
+
+    font-weight: bold;
+
+}
+
+.weekday {
+
+    font-size: 0.9rem;
+
+}
+
+.weekday.sunday {
+
+    color: red;
+
+    font-weight: bold;
+
+}
+
+.weekday.saturday {
+
+    color: blue;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================
+   日付グリッド
+========================= */
+
+.calendar-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
+    gap: 4px;
+
+}
+
+
+/* =========================
+   週モード
+========================= */
+#game-area.week-mode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.week-btn {
+
+    width: 70%;
+
+    min-height: 60px;
+
+    margin-bottom: 15px;
+
+    font-size: 1.2rem;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 8px;
+
+    background: white;
+
+    cursor: pointer;
+
+}
+
+
+.week-btn:hover {
+
+    background: #f0f0f0;
+
+}
+
+
+/* =========================
+   日付ボタン
+========================= */
+
+.date-btn {
+
+    width: 100%;
+
+    min-height: 55px;
+
+    padding: 4px;
+
+    font-size: 0.9rem;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 8px;
+
+    background: white;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================
+   ホバー
+========================= */
+
+.date-btn:hover {
+
+    background: #f0f0f0;
+
+}
+
+
+/* =========================
+   スマホ
+========================= */
+
+@media (max-width: 768px) {
+
+    .date-btn {
+
+        min-height: 45px;
+
+        font-size: 0.8rem;
+
+    }
+
+}
+
+/* =========================
+   今日の正解表示
+========================= */
+
+.today-correct {
+
+    background-color: #66cc66;
+
+    color: white;
+
+    font-weight: bold;
+
+}

@@ -1,0 +1,169 @@
+<!-- =========================================
+     File: hizuke-list.html
+     Purpose: ひづけゲームの種類選択画面
+     Author: やぎさん
+     Created: 2026-06-13
+
+     Notes:
+     - カレンダーゲーム
+     - 相対時間ゲーム
+========================================= -->
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>ひづけゲーム</title>
+
+<link rel="stylesheet"
+      href="css/common.css">
+
+<link rel="stylesheet"
+      href="css/layout.css">
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        <header class="top-header">
+
+            <a href="index.html">
+
+                <img src="images/kotorun-logo.png"
+                    alt="ことラン"
+                    class="app-logo">
+
+            </a>
+
+        </header>
+
+        <button id="back-btn-top"
+                onclick="goBack()">
+
+            もどる
+
+        </button>
+
+    </div>
+
+    <div class="menu">
+
+        <h1>
+
+            ひづけゲーム
+
+        </h1>
+
+        <!-- カレンダー -->
+        <button onclick="goCalendar()">
+
+            カレンダーゲーム<br>
+
+            <small>
+                ついたち・ふつか・みっか
+            </small>
+
+        </button>
+
+        <!-- 日付 -->
+        <button onclick="goRelativeTime('day')">
+
+            きょう・あしたゲーム<br>
+
+            <small>
+                きょう・きのう・あした
+            </small>
+
+        </button>
+
+        <!-- 週 -->
+        <!-- <button onclick="goRelativeTime('week')">
+
+            こんしゅう・せんしゅうゲーム<br>
+
+            <small>
+                こんしゅう・らいしゅう
+            </small>
+
+        </button> -->
+
+        <!-- 月 -->
+        <!-- <button onclick="goRelativeTime('month')">
+
+            こんげつ・さらいげつゲーム<br>
+
+            <small>
+                こんげつ・らいげつ
+            </small>
+
+        </button> -->
+
+        <!-- 年 -->
+        <!-- <button onclick="goRelativeTime('year')">
+
+            ことし・おととしゲーム<br>
+
+            <small>
+                ことし・らいねん
+            </small>
+
+        </button> -->
+
+        <!-- ランダム -->
+        <!-- <button onclick="goRelativeTime('random')">
+
+            ランダム<br>
+
+            <small>
+                いろいろな じかんひょうげん
+            </small>
+
+        </button> -->
+
+        <small>
+
+         ひづけの ことばを<br>
+
+            れんしゅうします。
+
+        </small>
+
+    </div>
+
+    <script>
+
+        function goCalendar() {
+
+            location.href =
+                "calendar-game.html";
+
+        }
+
+        function goRelativeTime(mode) {
+
+            location.href =
+                `relative-time-game.html?mode=${mode}`;
+
+        }
+
+        function goBack() {
+
+            location.href =
+                "kazu-jikan-index.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
