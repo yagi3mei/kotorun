@@ -24,46 +24,52 @@
 
 
 /* =========================
-   曜日
+   曜日表示
 ========================= */
 
 .calendar-weekdays {
 
+    width: 100%;
+
     display: grid;
 
     grid-template-columns:
-        repeat(7, minmax(0, 1fr));
+        repeat(7, 1fr);
 
-    gap: 4px;
+    gap: 5px;
 
-    margin-bottom: 6px;
+    margin-bottom: 5px;
+
+}
+
+
+/* 曜日セル */
+.weekday {
 
     text-align: center;
 
     font-weight: bold;
 
+    padding: 8px 0;
+
+    border-radius: 8px;
+
+    background-color: #f0f0f0;
+
 }
 
-.weekday {
 
-    font-size: 0.9rem;
-
-}
-
+/* 日曜日 */
 .weekday.sunday {
 
-    color: red;
-
-    font-weight: bold;
-
+    color: #d40000;
 }
 
+
+/* 土曜日 */
 .weekday.saturday {
 
-    color: blue;
-
-    font-weight: bold;
-
+    color: #0066cc;
 }
 
 
@@ -73,12 +79,13 @@
 
 .calendar-grid {
 
+    width: 100%;
+
     display: grid;
 
-    grid-template-columns:
-        repeat(7, minmax(0, 1fr));
+    grid-template-columns: repeat(7, 1fr);
 
-    gap: 4px;
+    gap: 5px;
 
 }
 
@@ -129,11 +136,11 @@
 
     width: 100%;
 
-    min-height: 55px;
+    min-height: 60px;
 
-    padding: 4px;
+    padding: 8px;
 
-    font-size: 0.9rem;
+    font-size: 1.0rem;
 
     border: 1px solid #cccccc;
 
@@ -160,6 +167,29 @@
 
 
 /* =========================
+   今日の正解表示
+========================= */
+
+.today-correct {
+
+    background-color: #66cc66;
+
+    color: white;
+
+    font-weight: bold;
+
+}
+
+.today-correct:active {
+
+    background-color: #66cc66;
+
+    color: white;
+
+}
+
+
+/* =========================
    スマホ
 ========================= */
 
@@ -173,18 +203,12 @@
 
     }
 
-}
+    .weekday {
 
-/* =========================
-   今日の正解表示
-========================= */
+        font-size: 0.8rem;
 
-.today-correct {
+        padding: 5px 0;
 
-    background-color: #66cc66;
-
-    color: white;
-
-    font-weight: bold;
+    }
 
 }

@@ -156,6 +156,11 @@ let missCount = 0;
 
 let wrongAnswers = [];
 
+/* =========================
+   回答ロック
+========================= */
+
+let isAnswerLocked = false;
 
 /* =========================
    タイマー
@@ -557,7 +562,7 @@ function getWeekAnswer() {
 /* =========================
    日付読み上げ
 ========================= */
-function speakDate(question, dateString) {
+function speakDate(question, dateString, button) {
 
     speechSynthesis.cancel();
 
@@ -581,6 +586,15 @@ function speakDate(question, dateString) {
     /* 読み上げ終了後 */
     utterance.onend = () => {
 
+        /* 緑解除 */
+        button.classList.remove(
+            "today-correct"
+        );
+        
+        // 回答ロック解除
+        isAnswerLocked = false;
+
+        // 次の問題へ
         nextQuestion();
 
     };
@@ -593,7 +607,7 @@ function speakDate(question, dateString) {
 /* =========================
    週読み上げ
 ========================= */
-function speakWeek(question) {
+function speakWeek(question, button) {
 
     const text =
         `${question.speech}です`;
@@ -604,6 +618,14 @@ function speakWeek(question) {
     utterance.lang = "ja-JP";
 
     utterance.onend = () => {
+
+        /* 緑表示解除 */
+        button.classList.remove(
+            "today-correct"
+        );
+        
+        // 回答ロック解除
+        isAnswerLocked = false;
 
         nextQuestion();
 
@@ -662,6 +684,10 @@ function renderDayCalendar() {
             "game-area"
         );
 
+    gameArea.classList.remove(
+        "week-mode"
+    );
+
     const today =
         new Date();
 
@@ -692,11 +718,11 @@ function renderDayCalendar() {
         <div class="calendar-weekdays">
 
             <div class="weekday sunday">日</div>
-            <div>月</div>
-            <div>火</div>
-            <div>水</div>
-            <div>木</div>
-            <div>金</div>
+            <div class="weekday">月</div>
+            <div class="weekday">火</div>
+            <div class="weekday">水</div>
+            <div class="weekday">木</div>
+            <div class="weekday">金</div>
             <div class="weekday saturday">土</div>
 
         </div>
@@ -764,6 +790,15 @@ function renderDayCalendar() {
                 "click",
                 () => {
 
+                    if (isAnswerLocked) {
+                        return;
+                    }
+
+                    /* =========================
+                        クリックしたら即ロック
+                    ========================= */
+                    isAnswerLocked = true;
+
                     const clickedDate =
                         button.dataset.date;
 
@@ -775,21 +810,17 @@ function renderDayCalendar() {
                         const question =
                             questions[currentQuestionIndex];
 
-
-                        /* 今日だけ緑表示 */
-                        if (question.offset === 0) {
-
-                            button.classList.add(
-                                "today-correct"
-                            );
-
-                        }
+                        /* 正解ボタンを緑表示 */
+                        button.classList.add(
+                            "today-correct"
+                        );
 
 
-                        /* 正解した日付を読み上げ */
+                        /* 正解読み上げ */
                         speakDate(
                             question,
-                            answerDate
+                            answerDate,
+                            button
                         );
 
                         console.log("正解");
@@ -833,6 +864,13 @@ function renderDayCalendar() {
                         wrongSound.currentTime = 0;
 
                         wrongSound.play();
+
+                        // 回答ロック解除は音声終了後
+                        wrongSound.onended = () => {
+
+                            isAnswerLocked = false;
+
+                        };
                         
                     }
                 }
@@ -995,6 +1033,18 @@ function renderWeekButtons() {
                 "click",
                 () => {
 
+                    /* =========================
+                        回答ロック中は何もしない
+                    ========================= */
+                    if (isAnswerLocked) {
+                        return;
+                    }
+
+                    /* =========================
+                        クリックした瞬間にロック
+                    ========================= */
+                    isAnswerLocked = true;
+
                     const clickedWeek =
                         button.dataset.week;
 
@@ -1013,10 +1063,15 @@ function renderWeekButtons() {
                         const question =
                             questions[currentQuestionIndex];
 
-
+                        /* 正解ボタンを表示 */
+                        button.classList.add(
+                            "today-correct"
+                        );
+                        
                         /* 正解読み上げ */
                         speakWeek(
-                            question
+                            question,
+                            button
                         );
 
 
@@ -1070,6 +1125,15 @@ function renderWeekButtons() {
 
                         wrongSound.play();
 
+                        /* =========================
+                            ブザー終了後に解除
+                        ========================= */
+                        wrongSound.onended = () => {
+
+                            isAnswerLocked = false;
+
+                        };
+                        
                     }
 
                 }
