@@ -64,7 +64,9 @@
         </h1>
 
         <!-- カレンダー -->
-        <button onclick="goCalendar()">
+        <button
+            data-key="calendar"
+            onclick="goCalendar()">
 
             カレンダーゲーム<br>
 
@@ -75,7 +77,9 @@
         </button>
 
         <!-- 日付 -->
-        <button onclick="goRelativeTime('day')">
+        <button
+            data-key="hizuke_day"
+            onclick="goRelativeTime('day')">
 
             きょう・あしたゲーム<br>
 
@@ -86,7 +90,9 @@
         </button>
 
         <!-- 週 -->
-        <button onclick="goRelativeTime('week')">
+        <button
+            data-key="hizuke_week"
+            onclick="goRelativeTime('week')">
 
             こんしゅう・せんしゅうゲーム<br>
 
@@ -161,6 +167,96 @@
                 "kazu-jikan-index.html";
 
         }
+
+        /* =========================
+            実施済みチェック
+        ========================= */
+
+        const scores =
+            JSON.parse(
+                localStorage.getItem(
+                    "kotorun-score"
+                )
+            ) || {};
+
+
+        /* -------------------------
+            カレンダー
+        ------------------------- */
+
+        const calendarScores =
+            scores.calendar || {};
+
+        if (calendarScores.calendar)
+        {
+            document
+                .querySelector(
+                    '[data-key="calendar"]'
+                )
+                .classList.add(
+                    "completed"
+                );
+        }
+
+
+        /* -------------------------
+            ひづけゲーム
+        ------------------------- */
+
+        const hizukeScores =
+            scores.hizuke || {};
+
+
+        /* day */
+
+        if (hizukeScores.day)
+        {
+            document
+                .querySelector(
+                    '[data-key="hizuke_day"]'
+                )
+                .classList.add(
+                    "completed"
+                );
+        }
+
+
+        /* week */
+
+        if (hizukeScores.week)
+        {
+            document
+                .querySelector(
+                    '[data-key="hizuke_week"]'
+                )
+                .classList.add(
+                    "completed"
+                );
+        }
+
+        /* month */
+        // if (hizukeScores.month)
+        // {
+        //     document
+        //         .querySelector(
+        //             '[data-key="hizuke_month"]'
+        //         )
+        //         .classList.add(
+        //             "completed"
+        //         );
+        // }
+
+        /* year */
+        // if (hizukeScores.year)
+        // {
+        //     document
+        //         .querySelector(
+        //             '[data-key="hizuke_year"]'
+        //         )
+        //         .classList.add(
+        //             "completed"
+        //         );
+        // }
 
     </script>
 
