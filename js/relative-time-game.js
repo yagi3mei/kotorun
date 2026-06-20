@@ -1500,6 +1500,11 @@ function goMenu() {
 soundBtn.addEventListener(
     "click",
     () => {
+        
+        /* 回答処理中は再生禁止 */
+        if (isAnswerLocked) {
+            return;
+        }
 
         const question =
             questions[currentQuestionIndex];
