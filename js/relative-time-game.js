@@ -564,6 +564,45 @@ function getWeekAnswer() {
 
 
 /* =========================
+   month 正解月取得
+========================= */
+function getMonthAnswer() {
+
+    const question =
+        questions[
+            currentQuestionIndex
+        ];
+
+
+    const today =
+        new Date();
+
+
+    const answerMonth =
+        new Date(
+            today.getFullYear(),
+            today.getMonth()
+            + question.offset,
+            1
+        );
+
+
+    const year =
+        answerMonth.getFullYear();
+
+
+    const month =
+        String(
+            answerMonth.getMonth() + 1
+        ).padStart(2, "0");
+
+
+    return `${year}-${month}`;
+
+}
+
+
+/* =========================
    日付読み上げ
 ========================= */
 function speakDate(question, dateString, button) {
@@ -643,6 +682,44 @@ function speakWeek(question, button) {
 
 
 /* =========================
+   月読み上げ
+========================= */
+function speakMonth(question, button) {
+
+    const text =
+        `${question.speech}です`;
+
+    const utterance =
+        new SpeechSynthesisUtterance(text);
+
+    utterance.lang = "ja-JP";
+
+
+    /* 読み上げ終了後 */
+    utterance.onend = () => {
+
+        // 緑解除
+        button.classList.remove(
+            "today-correct"
+        );
+
+        // 回答ロック解除
+        isAnswerLocked = false;
+
+        // 次の問題へ
+        nextQuestion();
+
+    };
+
+
+    speechSynthesis.speak(
+        utterance
+    );
+
+}
+
+
+/* =========================
    問題読み上げ
 ========================= */
 function speakQuestion(question) {
@@ -662,7 +739,7 @@ function speakQuestion(question) {
 
 
 /* =========================
-   dayモード カレンダー生成
+   モード別 カレンダー生成
 ========================= */
 if (mode === "day") {
 
@@ -670,10 +747,15 @@ if (mode === "day") {
 
 }
 
-
 if (mode === "week") {
 
     renderWeekButtons();
+
+}
+
+if (mode === "month") {
+
+    renderMonthButtons();
 
 }
 
@@ -1147,6 +1229,188 @@ function renderWeekButtons() {
 
 }
 
+
+/* =========================
+   月ボタン生成
+========================= */
+function renderMonthButtons() {
+
+    const gameArea =
+        document.getElementById(
+            "game-area"
+        );
+
+
+    /* 今日 */
+    const today =
+        new Date();
+
+
+    /* 表示開始（月） */
+    const startMonth =
+        new Date(
+            today.getFullYear(),
+            today.getMonth() - 2,
+            1
+        );
+
+
+    let html = "";
+
+
+    /* =========================
+       6か月生成
+    ========================= */
+    for (
+        let i = 0;
+        i < 6;
+        i++
+    ) {
+
+        const date =
+            new Date(startMonth);
+
+        date.setMonth(
+            startMonth.getMonth() + i
+        );
+
+
+        const year =
+            date.getFullYear();
+
+        const month =
+            date.getMonth() + 1;
+
+
+        /* 判定用 */
+        const fullDate =
+            `${year}-${String(month).padStart(2, "0")}`;
+
+
+        html += `
+            <button
+                class="month-btn"
+                data-month="${fullDate}">
+
+                ${year}年${month}月
+
+            </button>
+        `;
+    }
+
+
+    gameArea.innerHTML =
+        html;
+
+
+    /* =========================
+       月ボタンクリック
+    ========================= */
+    document
+        .querySelectorAll(".month-btn")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    // 回答ロック中
+                    if (isAnswerLocked) {
+                        return;
+                    }
+
+                    // クリックしたら即ロック
+                    isAnswerLocked = true;
+
+                    const clickedMonth =
+                        button.dataset.month;
+
+                    const answerMonth =
+                        getMonthAnswer();
+
+
+                    /* =====================
+                    正解
+                    ===================== */
+                    if (clickedMonth === answerMonth) {
+
+                        const question =
+                            questions[currentQuestionIndex];
+
+
+                        // 正解ボタンを緑
+                        button.classList.add(
+                            "today-correct"
+                        );
+
+
+                        // 正解読み上げ
+                        speakMonth(
+                            question,
+                            button
+                        );
+
+
+                        console.log("正解");
+
+
+                    } else {
+
+
+                        /* =====================
+                        不正解
+                        ===================== */
+
+                        console.log("不正解");
+
+
+                        missCount++;
+
+                        updateMissDisplay();
+
+
+                        const question =
+                            questions[currentQuestionIndex];
+
+
+                        if (
+                            !wrongAnswers.includes(
+                                question.reading
+                            )
+                        ) {
+
+                            wrongAnswers.push(
+                                question.reading
+                            );
+
+                        }
+
+
+                        // 不正解音
+                        speechSynthesis.cancel();
+
+                        wrongSound.currentTime = 0;
+
+                        wrongSound.play();
+
+
+                        // 音終了後解除
+                        wrongSound.onended = () => {
+
+                            isAnswerLocked = false;
+
+                        };
+
+                    }
+
+                }
+            );
+
+        });
+
+}
+
+
 /* =========================
    残り問題数表示
 ========================= */
@@ -1233,7 +1497,6 @@ function goMenu() {
 /* =========================
    スピーカー再生
 ========================= */
-
 soundBtn.addEventListener(
     "click",
     () => {

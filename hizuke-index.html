@@ -103,7 +103,9 @@
         </button>
 
         <!-- 月 -->
-        <!-- <button onclick="goRelativeTime('month')">
+        <button
+            data-key="hizuke_month"
+            onclick="goRelativeTime('month')">
 
             こんげつ・さらいげつゲーム<br>
 
@@ -111,10 +113,12 @@
                 こんげつ・らいげつ
             </small>
 
-        </button> -->
+        </button>
 
         <!-- 年 -->
-        <!-- <button onclick="goRelativeTime('year')">
+        <!-- <button
+            data-key="hizuke_year"
+            onclick="goRelativeTime('year')">
 
             ことし・おととしゲーム<br>
 
@@ -235,16 +239,16 @@
         }
 
         /* month */
-        // if (hizukeScores.month)
-        // {
-        //     document
-        //         .querySelector(
-        //             '[data-key="hizuke_month"]'
-        //         )
-        //         .classList.add(
-        //             "completed"
-        //         );
-        // }
+        if (hizukeScores.month)
+        {
+            document
+                .querySelector(
+                    '[data-key="hizuke_month"]'
+                )
+                .classList.add(
+                    "completed"
+                );
+        }
 
         /* year */
         // if (hizukeScores.year)
