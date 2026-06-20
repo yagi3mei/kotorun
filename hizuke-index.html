@@ -116,7 +116,7 @@
         </button>
 
         <!-- 年 -->
-        <!-- <button
+        <button
             data-key="hizuke_year"
             onclick="goRelativeTime('year')">
 
@@ -126,7 +126,7 @@
                 ことし・らいねん
             </small>
 
-        </button> -->
+        </button>
 
         <!-- ランダム -->
         <!-- <button onclick="goRelativeTime('random')">
@@ -251,16 +251,16 @@
         }
 
         /* year */
-        // if (hizukeScores.year)
-        // {
-        //     document
-        //         .querySelector(
-        //             '[data-key="hizuke_year"]'
-        //         )
-        //         .classList.add(
-        //             "completed"
-        //         );
-        // }
+        if (hizukeScores.year)
+        {
+            document
+                .querySelector(
+                    '[data-key="hizuke_year"]'
+                )
+                .classList.add(
+                    "completed"
+                );
+        }
 
     </script>
 

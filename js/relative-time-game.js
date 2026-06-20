@@ -177,15 +177,6 @@ let elapsedTime = 0;
 
 
 /* =========================
-   確認
-========================= */
-console.log(
-    "gameData:",
-    gameData
-);
-
-
-/* =========================
    問題生成
 ========================= */
 function createQuestions() {
@@ -603,6 +594,31 @@ function getMonthAnswer() {
 
 
 /* =========================
+   year 正解年取得
+========================= */
+function getYearAnswer() {
+
+    const question =
+        questions[
+            currentQuestionIndex
+        ];
+
+
+    const today =
+        new Date();
+
+
+    const answerYear =
+        today.getFullYear()
+        + question.offset;
+
+
+    return String(answerYear);
+
+}
+
+
+/* =========================
    日付読み上げ
 ========================= */
 function speakDate(question, dateString, button) {
@@ -720,6 +736,41 @@ function speakMonth(question, button) {
 
 
 /* =========================
+   年読み上げ
+========================= */
+function speakYear(question, button) {
+
+    const text =
+        `${question.speech}です`;
+
+    const utterance =
+        new SpeechSynthesisUtterance(text);
+
+    utterance.lang = "ja-JP";
+
+    utterance.onend = () => {
+
+        /* 回答ロック解除 */
+        isAnswerLocked = false;
+
+        /* 緑解除 */
+        button.classList.remove(
+            "today-correct"
+        );
+
+        /* 次の問題へ */
+        nextQuestion();
+
+    };
+
+    speechSynthesis.speak(
+        utterance
+    );
+
+}
+
+
+/* =========================
    問題読み上げ
 ========================= */
 function speakQuestion(question) {
@@ -756,6 +807,12 @@ if (mode === "week") {
 if (mode === "month") {
 
     renderMonthButtons();
+
+}
+
+if (mode === "year") {
+
+    renderYearButtons();
 
 }
 
@@ -909,14 +966,10 @@ function renderDayCalendar() {
                             button
                         );
 
-                        console.log("正解");
-
                     } else {
 
                         speechSynthesis.cancel();
                         
-                        console.log("不正解");
-
                         missCount++;
 
                         updateMissDisplay();
@@ -1161,23 +1214,12 @@ function renderWeekButtons() {
                         );
 
 
-                        console.log(
-                            "正解"
-                        );
-
-
                     } else {
 
 
                         /* =========================
                             不正解
                         ========================= */
-
-                        console.log(
-                            "不正解"
-                        );
-
-
                         missCount++;
 
 
@@ -1246,14 +1288,49 @@ function renderMonthButtons() {
         new Date();
 
 
-    /* 表示開始（月） */
-    const startMonth =
-        new Date(
-            today.getFullYear(),
-            today.getMonth() - 2,
-            1
-        );
+    /* =========================
+    表示開始位置決定
+    0：対象外が上
+    1：対象外が下
+    ========================= */
 
+    const pattern =
+        Math.random() < 0.5
+            ? 0
+            : 1;
+
+    let startMonth;
+
+
+    /* -------------------------
+    対象外が上
+    -3か月〜+2か月
+    ------------------------- */
+
+    if (pattern === 0) {
+
+        startMonth =
+            new Date(
+                today.getFullYear(),
+                today.getMonth() - 3,
+                1
+            );
+
+    } else {
+
+        /* ---------------------
+        対象外が下
+        -2か月〜+3か月
+        --------------------- */
+
+        startMonth =
+            new Date(
+                today.getFullYear(),
+                today.getMonth() - 2,
+                1
+            );
+
+    }
 
     let html = "";
 
@@ -1350,20 +1427,12 @@ function renderMonthButtons() {
                             button
                         );
 
-
-                        console.log("正解");
-
-
                     } else {
 
 
                         /* =====================
                         不正解
                         ===================== */
-
-                        console.log("不正解");
-
-
                         missCount++;
 
                         updateMissDisplay();
@@ -1404,6 +1473,187 @@ function renderMonthButtons() {
                     }
 
                 }
+            );
+
+        });
+
+}
+
+
+/* =========================
+   年ボタン生成
+========================= */
+function renderYearButtons() {
+
+    const gameArea =
+        document.getElementById(
+            "game-area"
+        );
+
+
+    /* 今日 */
+    const today =
+        new Date();
+
+
+    /* =========================
+    表示開始位置決定
+    0：対象外が上
+    1：対象外が下
+    ========================= */
+
+    const pattern =
+        Math.random() < 0.5
+            ? 0
+            : 1;
+
+
+    let startYear;
+
+
+    /* -------------------------
+    対象外が上
+    -3年～+2年
+    ------------------------- */
+    if (pattern === 0) {
+
+        startYear =
+            today.getFullYear() - 3;
+
+    } else {
+
+        /* ---------------------
+        対象外が下
+        -2年～+3年
+        --------------------- */
+
+        startYear =
+            today.getFullYear() - 2;
+
+    }
+
+    let html = "";
+
+
+    /* =========================
+       5年生成
+    ========================= */
+    for (
+        let i = 0;
+        i < 6;
+        i++
+    ) {
+
+        const year =
+            startYear + i;
+
+
+        html += `
+            <button
+                class="year-btn"
+                data-year="${year}">
+
+                ${year}年
+
+            </button>
+        `;
+
+    }
+
+
+    gameArea.innerHTML =
+        html;
+
+
+    /* =========================
+       年ボタンクリック
+    ========================= */
+    document
+        .querySelectorAll(".year-btn")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    if (isAnswerLocked) {
+                        return;
+                    }
+
+
+                    isAnswerLocked = true;
+
+
+                    const clickedYear =
+                        button.dataset.year;
+
+
+                    const answerYear =
+                        getYearAnswer();
+
+
+                    /* 正解 */
+                    if (
+                        clickedYear === answerYear
+                    ) {
+
+                        const question =
+                            questions[currentQuestionIndex];
+
+
+                        button.classList.add(
+                            "today-correct"
+                        );
+
+
+                        speakYear(
+                            question,
+                            button
+                        );
+
+
+                    } else {
+
+                        missCount++;
+
+                        updateMissDisplay();
+
+                        const question =
+                            questions[currentQuestionIndex];
+
+
+                        if (
+                            !wrongAnswers.includes(
+                                question.reading
+                            )
+                        ) {
+
+                            wrongAnswers.push(
+                                question.reading
+                            );
+
+                        }
+
+
+                        speechSynthesis.cancel();
+
+
+                        wrongSound.currentTime = 0;
+
+
+                        wrongSound.play();
+
+
+                        wrongSound.onended = () => {
+
+                            isAnswerLocked = false;
+
+                        };
+
+                    }
+
+                }
+
             );
 
         });
@@ -1500,7 +1750,7 @@ function goMenu() {
 soundBtn.addEventListener(
     "click",
     () => {
-        
+
         /* 回答処理中は再生禁止 */
         if (isAnswerLocked) {
             return;
@@ -1529,22 +1779,6 @@ createQuestions();
 updateRemainingDisplay();
 
 showQuestion();
-
-console.log(
-    "mode:",
-    mode
-);
-
-console.log(
-    "questions:",
-    questions
-);
-
-
-console.log(
-    "weekAnswer:",
-    getWeekAnswer()
-);
 
 window.restartGame =
     restartGame;
