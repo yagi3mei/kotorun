@@ -111,6 +111,10 @@ const timerDisplay =
         "timer-display"
     );
 
+const soundBtn =
+    document.getElementById(
+        "sound-btn"
+    );
 
 /* =========================
    モード別データ
@@ -1224,6 +1228,27 @@ function goMenu() {
         "hizuke-index.html";
 
 }
+
+
+/* =========================
+   スピーカー再生
+========================= */
+
+soundBtn.addEventListener(
+    "click",
+    () => {
+
+        const question =
+            questions[currentQuestionIndex];
+
+        if (question) {
+
+            speakQuestion(question);
+
+        }
+
+    }
+);
 
 
 /* =========================
