@@ -702,8 +702,13 @@ function speakWeek(question, button) {
 ========================= */
 function speakMonth(question, button) {
 
+    // ボタン表示から月だけ取得
+    const month =
+        button.textContent
+            .match(/\d+月/)[0];
+
     const text =
-        `${question.speech}です`;
+        `${question.speech}は ${month}です`;
 
     const utterance =
         new SpeechSynthesisUtterance(text);
@@ -734,14 +739,19 @@ function speakMonth(question, button) {
 
 }
 
-
 /* =========================
    年読み上げ
 ========================= */
 function speakYear(question, button) {
 
+    /* ボタンから年を取得 */
+    const year =
+        button.textContent
+            .replace("年", "")
+            .trim();
+
     const text =
-        `${question.speech}です`;
+        `${question.speech}は ${year}年です`;
 
     const utterance =
         new SpeechSynthesisUtterance(text);
