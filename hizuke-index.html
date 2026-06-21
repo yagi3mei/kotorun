@@ -136,7 +136,9 @@
         </button>
 
         <!-- ランダム -->
-        <!-- <button onclick="goRelativeTime('random')">
+        <button
+            data-key="hizuke_random"
+            onclick="goRelativeTime('random')">
 
             ランダム<br>
 
@@ -144,7 +146,7 @@
                 いろいろな じかんひょうげん
             </small>
 
-        </button> -->
+        </button>
 
         <small>
 
@@ -263,6 +265,18 @@
             document
                 .querySelector(
                     '[data-key="hizuke_year"]'
+                )
+                .classList.add(
+                    "completed"
+                );
+        }
+
+        /* random */
+        if (hizukeScores.random)
+        {
+            document
+                .querySelector(
+                    '[data-key="hizuke_random"]'
                 )
                 .classList.add(
                     "completed"

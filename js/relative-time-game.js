@@ -279,14 +279,45 @@ function createQuestions() {
 
     if (mode === "random") {
 
-        const shuffled =
-            [...allRelativeTimeData]
-                .sort(
-                    () => Math.random() - 0.5
-                );
+        const groups = [
+            "day",
+            "week",
+            "month",
+            "year"
+        ];
 
+
+        const questionGroups =
+            groups.map(group => {
+
+                const groupQuestions =
+                    allRelativeTimeData
+                        .filter(
+                            q => q.group === group
+                        );
+
+                const shuffled =
+                    groupQuestions
+                        .sort(
+                            () => Math.random() - 0.5
+                        );
+
+                return shuffled.slice(0, 3);
+
+            });
+
+
+        // グループ順をランダム化
+        questionGroups.sort(
+            () => Math.random() - 0.5
+        );
+
+
+        // 1つの配列にする
         questions =
-            shuffled.slice(0, 5);
+            questionGroups.flat();
+
+        return;
 
     }
 
@@ -319,6 +350,13 @@ function showQuestion() {
     ).textContent =
         question.reading;
     
+    /* ランダム時の画面切替 */
+    if (mode === "random") {
+
+        renderRandomMode();
+
+    }
+
     speakQuestion(question);
 
 }
@@ -823,6 +861,10 @@ if (mode === "month") {
 if (mode === "year") {
 
     renderYearButtons();
+
+} else if (mode === "random") {
+
+    renderRandomMode();
 
 }
 
@@ -1667,6 +1709,43 @@ function renderYearButtons() {
             );
 
         });
+
+}
+
+
+/* =========================
+   random用画面切替
+========================= */
+function renderRandomMode() {
+
+    const question =
+        questions[currentQuestionIndex];
+
+    if (!question) {
+        return;
+    }
+
+
+    if (question.group === "day") {
+
+        renderDayCalendar();
+
+    }
+    else if (question.group === "week") {
+
+        renderWeekButtons();
+
+    }
+    else if (question.group === "month") {
+
+        renderMonthButtons();
+
+    }
+    else if (question.group === "year") {
+
+        renderYearButtons();
+
+    }
 
 }
 
