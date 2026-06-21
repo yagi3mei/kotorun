@@ -1030,7 +1030,7 @@ function renderDayCalendar() {
 
 
 /* =========================
-   6週間表示生成
+   週ボタン（6週間表示）生成
 ========================= */
 function renderWeekButtons() {
 
