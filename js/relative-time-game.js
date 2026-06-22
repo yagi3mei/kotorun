@@ -442,6 +442,38 @@ function showResultModal() {
         mode
     );
 
+    let gameName = "";
+
+    if (mode === "day") {
+
+        gameName =
+            "【きょう・あしたゲーム】";
+
+    } else if (mode === "week") {
+
+        gameName =
+            "【こんしゅう・せんしゅうゲーム】";
+
+    } else if (mode === "month") {
+
+        gameName =
+            "【こんげつ・さらいげつゲーム】";
+
+    } else if (mode === "year") {
+
+        gameName =
+            "【ことし・おととしゲーム】";
+
+    } else if (mode === "random") {
+
+        gameName =
+            "【ランダムゲーム】";
+
+    }
+
+    gameTypeLabel.textContent =
+        gameName;
+
     // 現在日時
     const now =
         new Date();
