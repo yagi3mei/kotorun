@@ -29,6 +29,7 @@ export default {
     seion: [
       "a", "", "", "e", "",
       "ka", "", "ku", "ke", "ko",
+      "sa", "shi", "su", "", "",
     ],
     dakuon: [],
     youon: [],
