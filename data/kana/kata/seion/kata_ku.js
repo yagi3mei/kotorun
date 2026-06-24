@@ -44,7 +44,7 @@ export default [
     word: "コンサート",
     kana: "コンサート",
     romaji: "ko n sa a to",
-    sentence: "コンサートへ いきます",
+    sentence: "コンサートえ いきます",
     img: "konsaato_concert.png",
     lesson: 9
   },
