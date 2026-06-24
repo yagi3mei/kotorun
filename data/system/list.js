@@ -28,7 +28,7 @@ export default {
   kata: {
     seion: [
       "a", "", "", "e", "",
-      "ka", "", "", "", "",
+      "ka", "", "ku", "ke", "ko",
     ],
     dakuon: [],
     youon: [],

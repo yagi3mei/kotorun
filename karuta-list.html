@@ -152,6 +152,45 @@
 
         }
 
+        /* =====================
+            共有かな変換
+        ===================== */
+        function getSharedKanaKey(type, key) {
+
+            /* ひらがな共有 */
+            if (type === "hira") {
+
+                const hiraMap = {
+
+                    // 拗音
+                    kyo: "kyu",
+                    cho: "chu"
+
+                };
+
+                return hiraMap[key] || key;
+            }
+
+
+            /* カタカナ共有 */
+            if (type === "kata") {
+
+                const kataMap = {
+
+                    // 清音グループ
+                    ke: "ku",
+                    ko: "ku"
+
+                };
+
+                return kataMap[key] || key;
+            }
+
+
+            return key;
+
+        }
+
         /* ★追加：レイアウト切り替え */
         if (group === "seion" || type === "kata") {
             grid.classList.add("fixed");  // 五十音フル
@@ -188,29 +227,25 @@
                 scores.karuta || {};
 
             const storageKey =
-                getStorageKey(type, group, item.key);
+                getStorageKey(
+                    type,
+                    group,
+                    getSharedKanaKey(type, item.key)
+                );
 
             if (karutaScores[storageKey]) {
 
                 btn.classList.add("completed");
             }
 
-            // 有効/無効
+            /* =====================
+                クリックイベント設定（次のページへの引継ぎ）
+            ===================== */
             if (available.includes(item.key)) {
                 btn.onclick = () => {
 
-                    /* 拗音共有マップ */
-                    const sharedKanaMap = {
-
-                        kyo: "kyu",
-                        cho: "chu",
-
-                    };
-
-                    /* 実際に使用するゲーム */
-                    const targetKana =
-                        sharedKanaMap[item.key]
-                        || item.key;
+                const targetKana =
+                    getSharedKanaKey(type, item.key);
 
                     location.href =
                         `karuta-game.html?type=${type}&group=${group}&kana=${targetKana}&label=${item.kana}`;
