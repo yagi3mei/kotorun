@@ -29,7 +29,13 @@ export default {
     seion: [
       "a", "", "", "e", "",
       "ka", "", "ku", "ke", "ko",
-      "sa", "shi", "su", "", "",
+      "sa", "shi", "su", "se", "so",
+      "ta", "chi", "", "te", "to",
+      "na", "ni", "", "ne", "no",
+      "ha", "", "fu", "", "ho",
+      "", "mi", "", "me", "",
+      "ra", "", "", "re", "ro",
+
     ],
     dakuon: [],
     youon: [],
