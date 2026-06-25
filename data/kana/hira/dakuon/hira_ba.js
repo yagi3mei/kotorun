@@ -37,5 +37,15 @@ export default [
         sentence: "にばんせん です。",
         img: "bansen_platform.png",
         lesson: 5
-    }
+    },
+    {
+        id: "bijutsukan_art",
+        word: "びじゅつかん",
+        kana: "ビジュツカン",
+        romaji: "bi ju tsu ka n",
+        sentence: "びじゅつかんえ いきます。",
+        img: "bijutsukan_art.png",
+        lesson: 4
+    },
+
 ];
