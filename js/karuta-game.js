@@ -50,7 +50,8 @@ const IMAGE_DIR_MAP = {
   },
 
   kata: {
-    seion: "images/katakana-seion/"
+    seion: "images/katakana-seion/",
+    dakuon: "images/katakana-dakuon/"
   }
 
 };
