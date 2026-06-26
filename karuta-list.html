@@ -120,10 +120,10 @@
             key: item.key
         }));
         // カタカナ拗音はひらがな拗音を変換して生成
-        const kataYouonList = hiraYouonList.map(item => ({
-            kana: item.kana ? toKatakana(item.kana) : "",
-            key: item.key
-        }));
+        // const kataYouonList = hiraYouonList.map(item => ({
+        //     kana: item.kana ? toKatakana(item.kana) : "",
+        //     key: item.key
+        // }));
 
         let kanaList;
 
@@ -137,8 +137,8 @@
             kanaList = kataSeionList;
         } else if (type === "kata" && group === "dakuon") {
             kanaList = kataDakuonList;
-        } else if (type === "kata" && group === "youon") {
-            kanaList = kataYouonList;
+        // } else if (type === "kata" && group === "youon") {
+        //     kanaList = kataYouonList;
         }
 
         const grid = document.getElementById("kana-grid");
@@ -191,6 +191,12 @@
                     fu: "ha", ho: "ha",
                     me: "mi",
                     re: "ra", ro: "ra",
+
+                    // カタカナ濁音
+                    go: "gu", ja: "gu", ju: "gu", jo: "gu",
+                    de: "da", do: "da",
+                    bi: "ba", be: "ba", bo: "ba",
+                    pu: "pi", po: "pi",
 
                 };
 
