@@ -4,7 +4,7 @@ export default [
     word: "まいにち",
     kana: "マイニチ",
     romaji: "ma i ni chi",
-    sentence: "まいにち　べんきょうします",
+    sentence: "まいにち べんきょうします",
     img: "mainichi_everyday.png",
     lesson: 4
   },
@@ -13,7 +13,7 @@ export default [
     word: "まど",
     kana: "マド",
     romaji: "ma do",
-    sentence: "まどを　あけます",
+    sentence: "まどを あけます",
     img: "mado_window.png",
     lesson: 10
   },
@@ -22,7 +22,7 @@ export default [
     word: "まち",
     kana: "マチ",
     romaji: "ma chi",
-    sentence: "まちえ　いきます",
+    sentence: "まちえ いきます",
     img: "machi_town.png",
     lesson: 8
   },
@@ -31,7 +31,7 @@ export default [
     word: "まっすぐ",
     kana: "マッスグ",
     romaji: "ma s su gu",
-    sentence: "まっすぐ　いきます",
+    sentence: "まっすぐ いきます",
     img: "massugu_straight.png",
     lesson: 14
   },
@@ -49,7 +49,7 @@ export default [
     word: "まがります",
     kana: "マガリマス",
     romaji: "ma ga ri ma su",
-    sentence: "みぎえ　まがります",
+    sentence: "みぎえ まがります",
     img: "magarimasu_turn.png",
     lesson: 14
   }

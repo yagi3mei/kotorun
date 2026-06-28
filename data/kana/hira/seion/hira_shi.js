@@ -1,22 +1,4 @@
 export default [
-  // {
-  //   id: "shashin_photo",
-  //   word: "しゃしん",
-  //   kana: "シャシン",
-  //   romaji: "sha shi n",
-  //   sentence: "しゃしんを とります",
-  //   img: "shashin_photo.png",
-  //   lesson: 6
-  // },
-  // {
-  //   id: "shukudai_homework",
-  //   word: "しゅくだい",
-  //   kana: "シュクダイ",
-  //   romaji: "shu ku da i",
-  //   sentence: "しゅくだいを します",
-  //   img: "shukudai_homework.png",
-  //   lesson: 6
-  // },
   {
       id: "shita_under",
       word: "した",

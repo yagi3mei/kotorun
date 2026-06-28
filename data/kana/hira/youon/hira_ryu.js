@@ -1,13 +1,4 @@
 export default [
-  // {
-  //   id: "ringo_apple",
-  //   word: "りんご",
-  //   kana: "リンゴ",
-  //   romaji: "ri n go",
-  //   sentence: "りんごです",
-  //   img: "ringo_apple.png",
-  //   lesson: 11
-  // },
   {
     id: "ryokou_trip",
     word: "りょこう",

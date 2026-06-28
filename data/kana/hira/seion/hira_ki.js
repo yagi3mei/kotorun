@@ -35,15 +35,6 @@ export default [
       img: "kimono_clothes.png",
       lesson: 20
   },
-  // {
-  //   id: "kyoushitsu_classroom",
-  //   word: "きょうしつ",
-  //   kana: "キョウシツ",
-  //   romaji: "kyo u shi tsu",
-  //   sentence: "きょうしつに います",
-  //   img: "kyoushitsu_classroom.png",
-  //   lesson: 3
-  // },
   {
     id: "kirimasu_cut",
     word: "きります",
