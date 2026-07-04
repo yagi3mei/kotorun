@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ことばさがし（開発）</title>
+
+    <!-- 共通CSS -->
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/layout.css">
+
+    <!-- ゲーム専用CSS -->
+    <link rel="stylesheet" href="css/kotobasagashi.css">
+
+</head>
+
+<body>
+
+    <main class="game-container">
+
+        <!--=========================
+            ゲーム情報
+        ==========================-->
+    <div class="header">
+          <!-- ロゴ -->
+          <header class="top-header">
+              <a href="index.html">
+                  <img src="../images/kotorun-logo.png"
+                      alt="ことラン"
+                      class="app-logo">
+              </a>
+          </header>
+
+            <!-- <div class="game-info"> -->
+                <span>00:00</span>
+                <span>のこり 6</span>
+                <span>ミス 0</span>
+            <!-- </div> -->
+
+        </div>
+
+        <!--=========================
+            問題
+        ==========================-->
+
+        <section class="question-area">
+
+            <div class="question-text">
+
+                ことばを さがしてください
+
+                <button
+                    id="speaker-button"
+                    type="button">
+
+                    🔊
+
+                </button>
+
+            </div>
+
+        </section>
+
+        <!--=========================
+            イラスト
+        ==========================-->
+
+        <section class="image-area">
+
+            <img
+                id="question-image"
+                src="../images/hiragana-seion/asa_morning.png"
+                alt="問題">
+
+        </section>
+
+        <!--=========================
+            文字盤
+        ==========================-->
+
+        <section
+            id="board"
+            class="board">
+
+        </section>
+
+        <!--=========================
+            ボタン
+        ==========================-->
+
+        <section class="button-area">
+
+            <button id="check-button">
+
+                かくにん
+
+            </button>
+
+            <button id="back-button">
+
+                もどる
+
+            </button>
+
+        </section>
+
+    </main>
+
+    <script src="js/kotobasagashi.js"></script>
+
+</body>
+
+</html>

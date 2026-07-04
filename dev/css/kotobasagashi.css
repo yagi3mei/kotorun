@@ -1,0 +1,207 @@
+/* ==========================================================
+    ことばさがし（開発用）
+========================================================== */
+
+.game-container {
+
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+
+/* ==========================================================
+    ヘッダー
+========================================================== */
+
+.game-header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 12px;
+}
+
+.logo {
+
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.game-info {
+
+    display: flex;
+    gap: 16px;
+
+    font-size: 1rem;
+}
+
+
+/* ==========================================================
+    問題文
+========================================================== */
+
+.question-area {
+
+    text-align: center;
+
+    margin-bottom: 12px;
+}
+
+.question-text {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#speaker-button {
+
+    cursor: pointer;
+
+    font-size: 1.2rem;
+
+    border: none;
+
+    background: transparent;
+}
+
+
+/* ==========================================================
+    イラスト
+========================================================== */
+
+.image-area {
+
+    text-align: center;
+
+    margin-bottom: 0px;
+}
+
+#question-image {
+
+    width: 220px;
+
+    max-width: 60vw;
+
+    height: auto;
+}
+
+
+/* ==========================================================
+    文字盤
+========================================================== */
+
+.board {
+
+    display: grid;
+
+    /* grid-template-columns: repeat(5, 1fr); */
+
+    border: 2px solid #444;
+
+    margin: 0 auto 20px auto;
+
+    /* width: 250px; */
+    width: min(90vw, 320px);
+}
+
+
+/* ==========================================================
+    マス
+========================================================== */
+
+.cell {
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    aspect-ratio: 1;
+
+    border: 1px solid #999;
+
+    font-size: 1.8rem;
+
+    cursor: pointer;
+
+    user-select: none;
+}
+
+
+/* 選択状態 */
+
+.cell.selected {
+
+    background-color: #8fd694;
+}
+
+
+/* ==========================================================
+    ボタン
+========================================================== */
+
+.button-area {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+}
+
+.button-area button {
+
+    min-width: 120px;
+
+    padding: 12px 20px;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================================
+    スマホ
+========================================================== */
+
+@media (max-width: 480px) {
+
+    .game-info {
+
+        gap: 10px;
+
+        font-size: 0.9rem;
+    }
+
+    .question-text {
+
+        font-size: 1rem;
+    }
+
+    #question-image {
+
+        width: 150px;
+    }
+
+    .cell {
+
+        font-size: 1.4rem;
+    }
+
+    .button-area button {
+
+        min-width: 100px;
+
+        padding: 10px;
+    }
+
+}
