@@ -51,3 +51,4 @@ https://（https://yagi3mei.github.io/kotorun/index.html）
 - 無断改変後の公開
 
 © やぎさん / KotoRun
+.
