@@ -2,6 +2,9 @@ export default [
   {
     id: "fuku_clothes",
     word: "ふく",
+    noun: "ふく",
+    hint: "ふ",
+    
     kana: "フク",
     romaji: "fu ku",
     sentence: "あたらしい ふくです",
@@ -11,6 +14,9 @@ export default [
   {
     id: "fune_ship",
     word: "ふね",
+    noun: "ふね",
+    hint: "ふ",
+    
     kana: "フネ",
     romaji: "fu ne",
     sentence: "ふねに のります",
@@ -20,6 +26,9 @@ export default [
   {
     id: "fuyu_winter",
     word: "ふゆ",
+    noun: "ふゆ",
+    hint: "ふ",
+    
     kana: "フユ",
     romaji: "fu yu",
     sentence: "ふゆわ さむいです",
@@ -29,6 +38,9 @@ export default [
   {
     id: "furo_bath",
     word: "ふろ",
+    noun: "ふろ",
+    hint: "ふ",
+    
     kana: "フロ",
     romaji: "fu ro",
     sentence: "ふろに はいります",
@@ -38,6 +50,9 @@ export default [
   {
     id: "futon_bed",
     word: "ふとん",
+    noun: "ふとん",
+    hint: "ふ",
+    
     kana: "フトン",
     romaji: "fu to n",
     sentence: "ふとんで ねます",

@@ -2,6 +2,9 @@ export default [
   {
     id: "shuumatsu_weekend",
     word: "しゅうまつ",
+    noun: "しゅうまつ",
+    hint: "しゅ",
+
     kana: "シュウマツ",
     romaji: "shu u ma tsu",
     sentence: "しゅうまつに こうえんえ いきます",
@@ -12,6 +15,9 @@ export default [
   {
     id: "shukudai_homework",
     word: "しゅくだい",
+    noun: "しゅくだい",
+    hint: "しゅ",
+
     kana: "シュクダイ",
     romaji: "shu ku da i",
     sentence: "しゅくだいを します",
@@ -22,6 +28,9 @@ export default [
   {
     id: "shuuri_repair",
     word: "しゅうりします",
+    noun: "しゅうり",
+    hint: "しゅ",
+
     kana: "シュウリシマス",
     romaji: "shu u ri shi ma su",
     sentence: "じてんしゃを しゅうりします",
@@ -32,6 +41,9 @@ export default [
     {
     id: "shucchou_business_trip",
     word: "しゅっちょうします",
+    noun: "しゅっちょう",
+    hint: "しゅ",
+
     kana: "シュッチョウシマス",
     romaji: "shu ccho u shi ma su",
     sentence: "きょうわ しゅっちょうします",
@@ -42,6 +54,9 @@ export default [
   {
     id: "shumi_hobby",
     word: "しゅみ",
+    noun: "-",
+    hint: "-",
+
     kana: "シュミ",
     romaji: "shu mi",
     sentence: "しゅみわ サッカーです",

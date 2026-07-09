@@ -2,6 +2,9 @@ export default [
   {
     id: "akai_red",
     word: "あかい",
+    noun: "あか",
+    hint: "あ",
+
     kana: "アカイ",
     romaji: "a ka i",
     sentence: "あかい りんごです",
@@ -11,6 +14,9 @@ export default [
   {
     id: "ame_rain",
     word: "あめ",
+    noun: "あめ",
+    hint: "あ",
+
     kana: "アメ",
     romaji: "a me",
     sentence: "あめが ふっています",
@@ -20,6 +26,9 @@ export default [
   {
     id: "aoi_blue",
     word: "あおい",
+    noun: "あお",
+    hint: "あ",
+
     kana: "アオイ",
     romaji: "a o i",
     sentence: "あおい そらです",
@@ -29,6 +38,9 @@ export default [
   {
     id: "asa_morning",
     word: "あさ",
+    noun: "あさ",
+    hint: "あ",
+
     kana: "アサ",
     romaji: "a sa",
     sentence: "あさ さんぽします",
@@ -38,16 +50,21 @@ export default [
   {
     id: "ashi_leg",
     word: "あし",
+    noun: "あし",
+    hint: "あ",
+
     kana: "アシ",
     romaji: "a shi",
-    sentence: "あしが いたいです",  // 文章はアクセントが良い
-    // sentence: "あし",  // これはアクセントが良くない
+    sentence: "あしが いたいです",
     img: "ashi_leg.png",
     lesson: 16
   },
   {
     id: "atama_head",
     word: "あたま",
+    noun: "あたま",
+    hint: "あ",
+
     kana: "アタマ",
     romaji: "a ta ma",
     sentence: "あたまが いたいです",

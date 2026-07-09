@@ -2,6 +2,9 @@ export default [
   {
     id: "sensei_teacher",
     word: "せんせい",
+    noun: "せんせい",
+    hint: "せ",
+
     kana: "センセイ",
     romaji: "se n se i",
     sentence: "せんせいが います",
@@ -11,6 +14,9 @@ export default [
   {
     id: "sentaku_laundry",
     word: "せんたくします",
+    noun: "せんたく",
+    hint: "せ",
+    
     kana: "センタクシマス",
     romaji: "se n ta ku shi ma su",
     sentence: "ふくを せんたくします",
@@ -20,6 +26,9 @@ export default [
   {
     id: "segatakai_tall",
     word: "せがたかい",
+    noun: "-",
+    hint: "-",
+    
     kana: "セガタカイ",
     romaji: "se",
     sentence: "あのひとわ せがたかいです",
@@ -29,6 +38,9 @@ export default [
   {
     id: "semai_narrow",
     word: "せまい",
+    noun: "-",
+    hint: "-",
+
     kana: "セマイ",
     romaji: "se ma i",
     sentence: "このみちわ せまいです",
@@ -38,6 +50,9 @@ export default [
   {
     id: "sekai_world",
     word: "せかい",
+    noun: "せかい",
+    hint: "せ",
+
     kana: "セカイ",
     romaji: "se ka i",
     sentence: "せかいわ ひろいです",
@@ -47,6 +62,9 @@ export default [
   {
     id: "setsumei_explain",
     word: "せつめいします",
+    noun: "せつめい",
+    hint: "せ",
+
     kana: "セツメイシマス",
     romaji: "se tsu me i shi ma su",
     sentence: "せんせいが せつめいします",

@@ -2,6 +2,9 @@ export default [
   {
     id: "gaikoku_country",
     word: "がいこく",
+    noun: "がいこく",
+    hint: "が",
+
     kana: "ガイコク",
     romaji: "ga i ko ku",
     sentence: "がいこくえ いきます",
@@ -11,6 +14,9 @@ export default [
   {
     id: "gakusei_student",
     word: "がくせい",
+    noun: "がくせい",
+    hint: "が",
+
     kana: "ガクセイ",
     romaji: "ga ku se i",
     sentence: "がくせいです",
@@ -20,6 +26,9 @@ export default [
   {
     id: "gakkou_school",
     word: "がっこう",
+    noun: "がっこう",
+    hint: "が",
+
     kana: "ガッコウ",
     romaji: "ga kko u",
     sentence: "がっこうえ いきます",
@@ -29,6 +38,9 @@ export default [
   {
     id: "ganbarimasu_do_my_best",
     word: "がんばります",
+    noun: "-",
+    hint: "-",
+
     kana: "ガンバリマス",
     romaji: "ga n ba ri ma su",
     sentence: "がんばります",
@@ -38,6 +50,9 @@ export default [
   {
     id: "ginkou_bank",
     word: "ぎんこう",
+    noun: "ぎんこう",
+    hint: "ぎ",
+
     kana: "ギンコウ",
     romaji: "gi n ko u",
     sentence: "ぎんこうへ いきます",
@@ -47,6 +62,9 @@ export default [
   {
     id: "ginkouin_bank_clerk",
     word: "ぎんこういん",
+    noun: "-",
+    hint: "-",
+
     kana: "ギンコウイン",
     romaji: "gi n ko u i n",
     sentence: "ぎんこういんです",

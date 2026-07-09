@@ -2,6 +2,9 @@ export default [
   {
     id: "hon_book",
     word: "ほん",
+    noun: "ほん",
+    hint: "ほ",
+
     kana: "ホン",
     romaji: "ho n",
     sentence: "ほんです",
@@ -11,6 +14,9 @@ export default [
   {
     id: "honya_bookstore",
     word: "ほんや",
+    noun: "ほんや",
+    hint: "ほ",
+
     kana: "ホンヤ",
     romaji: "ho n ya",
     sentence: "ほんやに いきます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "hoshii_want",
     word: "ほしい",
+    noun: "-",
+    hint: "-",
+    
     kana: "ホシイ",
     romaji: "ho shi i",
     sentence: "みずが ほしいです",
@@ -29,6 +38,9 @@ export default [
   {
     id: "hontou_true",
     word: "ほんとう",
+    noun: "-",
+    hint: "-",
+    
     kana: "ホントウ",
     romaji: "ho n to u",
     sentence: "ほんとうです",
@@ -38,6 +50,9 @@ export default [
   {
     id: "hokenshou_card",
     word: "ほけんしょう",
+    noun: "ほけんしょう",
+    hint: "ほ",
+
     kana: "ホケンショウ",
     romaji: "ho ke n sho u",
     sentence: "ほけんしょうを みせます",

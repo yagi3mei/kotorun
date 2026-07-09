@@ -2,6 +2,9 @@ export default [
   {
     id: "basu_bus",
     word: "バス",
+    noun: "バス",
+    hint: "バ",
+
     kana: "バス",
     romaji: "ba su",
     sentence: "バスに のります",
@@ -12,6 +15,9 @@ export default [
   {
     id: "biru_building",
     word: "ビル",
+    noun: "ビル",
+    hint: "ビ",
+
     kana: "ビル",
     romaji: "bi ru",
     sentence: "ビルが あります",
@@ -22,6 +28,9 @@ export default [
   {
     id: "beddo_bed",
     word: "ベッド",
+    noun: "ベッド",
+    hint: "ベ",
+
     kana: "ベッド",
     romaji: "be ddo",
     sentence: "ベッドで ねます",
@@ -32,6 +41,9 @@ export default [
   {
     id: "boorupen_ballpointpen",
     word: "ボールペン",
+    noun: "ボールペン",
+    hint: "ボ",
+
     kana: "ボールペン",
     romaji: "bo o ru pe n",
     sentence: "ボールペンで かきます",
@@ -42,6 +54,9 @@ export default [
   {
     id: "botan_button",
     word: "ボタン",
+    noun: "ボタン",
+    hint: "ボ",
+    
     kana: "ボタン",
     romaji: "bo ta n",
     sentence: "ボタンを おします",

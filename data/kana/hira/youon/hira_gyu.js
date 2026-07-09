@@ -2,6 +2,9 @@ export default [
     {
         id: "gyuudon_beefbowl",
         word: "ぎゅうどん",
+        noun: "ぎゅうどん",
+        hint: "ぎゅ",
+
         kana: "ギュウドン",
         romaji: "gyu u do n",
         sentence: "ぎゅうどんを たべます",
@@ -12,6 +15,9 @@ export default [
     {
         id: "gyuunyuu_milk",
         word: "ぎゅうにゅう",
+        noun: "ぎゅうにゅう",
+        hint: "ぎゅ",
+
         kana: "ギュウニュウ",
         romaji: "gyu u nyu u",
         sentence: "ぎゅうにゅうを のみます",
@@ -22,6 +28,9 @@ export default [
     {
         id: "juusho_address",
         word: "じゅうしょ",
+        noun: "じゅうしょ",
+        hint: "じゅ",
+
         kana: "ジュウショ",
         romaji: "ju u sho",
         sentence: "じゅうしょを かきます",
@@ -32,6 +41,9 @@ export default [
     {
         id: "junbi_prepare",
         word: "じゅんび",
+        noun: "じゅんび",
+        hint: "じゅ",
+        
         kana: "ジュンビ",
         romaji: "ju n bi",
         sentence: "りょこうの じゅんびを します",

@@ -2,6 +2,9 @@ export default [
   {
     id: "sushi_food",
     word: "すし",
+    noun: "すし",
+    hint: "す",
+
     kana: "スシ",
     romaji: "su shi",
     sentence: "すしを たべます",
@@ -11,6 +14,9 @@ export default [
   {
     id: "sutemasu_trash",
     word: "すてます",
+    noun: "-",
+    hint: "-",
+
     kana: "ステマス",
     romaji: "su te ma su",
     sentence: "ごみを すてます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "sumo_match",
     word: "すもう",
+    noun: "すもう",
+    hint: "す",
+
     kana: "スモウ",
     romaji: "su mo u",
     sentence: "すもうを みます",
@@ -29,6 +38,9 @@ export default [
   {
     id: "suwarimasu_sit",
     word: "すわります",
+    noun: "-",
+    hint: "-",
+
     kana: "スワリマス",
     romaji: "su wa ri ma su",
     sentence: "いすに すわります",
@@ -38,6 +50,9 @@ export default [
   {
     id: "suiyoubi_wednesday",
     word: "すいようび",
+    noun: "すいようび",
+    hint: "す",
+    
     kana: "スイヨウビ",
     romaji: "su i yo u bi",
     sentence: "きょうわ すいようびです",
@@ -47,6 +62,9 @@ export default [
   {
     id: "suzushii_cool",
     word: "すずしい",
+    noun: "-",
+    hint: "-",
+    
     kana: "スズシイ",
     romaji: "su zu shi i",
     sentence: "きょうわ すずしいです",

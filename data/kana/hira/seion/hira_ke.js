@@ -2,6 +2,9 @@ export default [
   {
     id: "kesa_morning",
     word: "けさ",
+    noun: "-",
+    hint: "-",
+
     kana: "ケサ",
     romaji: "ke sa",
     sentence: "けさ ごはんを たべました",
@@ -11,6 +14,9 @@ export default [
   {
     id: "keshigomu_eraser",
     word: "けしゴム",
+    noun: "けしごむ",
+    hint: "け",
+
     kana: "ケシゴム",
     romaji: "ke shi go mu",
     sentence: "けしゴムを つかいます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "keshimasu_turnoff",
     word: "けします",
+    noun: "-",
+    hint: "-",
+
     kana: "ケシマス",
     romaji: "ke shi ma su",
     sentence: "でんきを けします",
@@ -29,6 +38,9 @@ export default [
   {
     id: "ken_prefecture",
     word: "けん",
+    noun: "-",
+    hint: "-",
+
     kana: "ケン",
     romaji: "ke n",
     sentence: "ひろしまけんです",
@@ -38,6 +50,9 @@ export default [
   {
     id: "kengaku_visit",
     word: "けんがくします",
+    noun: "-",
+    hint: "-",
+    
     kana: "ケンガクシマス",
     romaji: "ke n ga ku shi ma su",
     sentence: "がっこうを けんがくします",

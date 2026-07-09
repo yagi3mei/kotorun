@@ -2,6 +2,9 @@ export default [
   {
     id: "chiisai_small",
     word: "ちいさい",
+    noun: "-",
+    hint: "-",
+
     kana: "チイサイ",
     romaji: "chi i sa i",
     sentence: "ちいさい いぬです",
@@ -11,6 +14,9 @@ export default [
   {
     id: "chikatetsu_subway",
     word: "ちかてつ",
+    noun: "ちかてつ",
+    hint: "ちか",
+    
     kana: "チカテツ",
     romaji: "chi ka te tsu",
     sentence: "ちかてつに のります",
@@ -20,6 +26,9 @@ export default [
   {
     id: "chizu_map",
     word: "ちず",
+    noun: "ちず",
+    hint: "ち",
+    
     kana: "チズ",
     romaji: "chi zu",
     sentence: "ちずを みます",
@@ -29,6 +38,9 @@ export default [
   {
     id: "chikai_near",
     word: "ちかい",
+    noun: "-",
+    hint: "-",
+    
     kana: "チカイ",
     romaji: "chi ka i",
     sentence: "かわわ ちかいです",
@@ -38,6 +50,9 @@ export default [
   {
       id: "chika_underground",
       word: "ちか",
+      noun: "ちか",
+      hint: "ち",
+
       kana: "チカ",
       romaji: "chi ka",
       sentence: "ちかえ いきます",
@@ -47,6 +62,9 @@ export default [
   {
       id: "chigaimasu_different",
       word: "ちがいます",
+      noun: "-",
+      hint: "-",
+      
       kana: "チガイマス",
       romaji: "chi ga i ma su",
       sentence: "それわ ちがいます",

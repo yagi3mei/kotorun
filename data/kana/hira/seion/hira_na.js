@@ -2,6 +2,9 @@ export default [
     {
         id: "naka_inside",
         word: "なか",
+        noun: "なか",
+        hint: "な",
+        
         kana: "ナカ",
         romaji: "na ka",
         sentence: "本わ なかです",
@@ -11,6 +14,9 @@ export default [
     {
         id: "nagai_long",
         word: "ながい",
+        noun: "-",
+        hint: "-",
+
         kana: "ナガイ",
         romaji: "na ga i",
         sentence: "ながい えんぴつです",
@@ -20,6 +26,9 @@ export default [
     {
         id: "natsu_summer",
         word: "なつ",
+        noun: "なつ",
+        hint: "な",
+
         kana: "ナツ",
         romaji: "na tsu",
         sentence: "なつわ あついです",
@@ -29,6 +38,9 @@ export default [
     {
         id: "namae_name",
         word: "なまえ",
+        noun: "なまえ",
+        hint: "な",
+
         kana: "ナマエ",
         romaji: "na ma e",
         sentence: "なまえを かきます",
@@ -38,6 +50,9 @@ export default [
     {
         id: "naraimasu_study",
         word: "ならいます",
+        noun: "-",
+        hint: "-",
+
         kana: "ナライマス",
         romaji: "na ra i ma su",
         sentence: "にほんごを ならいます",
@@ -47,6 +62,9 @@ export default [
     {
         id: "naoshimasu_repair",
         word: "なおします",
+        noun: "-",
+        hint: "-",
+        
         kana: "ナオシマス",
         romaji: "na o shi ma su",
         sentence: "じてんしゃを なおします",

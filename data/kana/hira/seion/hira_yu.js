@@ -2,6 +2,9 @@ export default [
   {
     id: "yuki_snow",
     word: "ゆき",
+    noun: "ゆき",
+    hint: "ゆ",
+    
     kana: "ユキ",
     romaji: "yu ki",
     sentence: "ゆきが ふっています",
@@ -11,6 +14,9 @@ export default [
   {
     id: "yuubinkyoku_postoffice",
     word: "ゆうびんきょく",
+    noun: "ゆうびんきょく",
+    hint: "ゆ",
+    
     kana: "ユウビンキョク",
     romaji: "yu u bi n kyo ku",
     sentence: "ゆうびんきょくへ いきます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "yukkuri_slowly",
     word: "ゆっくり",
+    noun: "-",
+    hint: "-",
+    
     kana: "ユックリ",
     romaji: "yu kku ri",
     sentence: "ゆっくり あるきます",
@@ -29,6 +38,9 @@ export default [
   {
     id: "yuumei_famous",
     word: "ゆうめいな",
+    noun: "-",
+    hint: "-",
+
     kana: "ユウメイナ",
     romaji: "yu u me i na",
     sentence: "ゆうめいな　えです",

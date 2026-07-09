@@ -2,6 +2,9 @@ export default [
   {
     id: "kusuri_medicine",
     word: "くすり",
+    noun: "くすり",
+    hint: "く",
+
     kana: "クスリ",
     romaji: "ku su ri",
     sentence: "くすりを のみます",
@@ -11,6 +14,9 @@ export default [
   {
     id: "kudamono_fruit",
     word: "くだもの",
+    noun: "くだもの",
+    hint: "く",
+
     kana: "クダモノ",
     romaji: "ku da mo no",
     sentence: "くだものを たべます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "kutsu_shoes",
     word: "くつ",
+    noun: "くつ",
+    hint: "く",
+
     kana: "クツ",
     romaji: "ku tsu",
     sentence: "くつを はきます",
@@ -29,6 +38,9 @@ export default [
   {
     id: "kumori_cloudy",
     word: "くもり",
+    noun: "くも",
+    hint: "く",
+
     kana: "クモリ",
     romaji: "ku mo ri",
     sentence: "くもりです",
@@ -38,6 +50,9 @@ export default [
   {
     id: "kuruma_car",
     word: "くるま",
+    noun: "くるま",
+    hint: "く",
+
     kana: "クルマ",
     romaji: "ku ru ma",
     sentence: "くるまが あります",
@@ -47,6 +62,9 @@ export default [
   {
     id: "kuroi_black",
     word: "くろい",
+    noun: "-",
+    hint: "-",
+
     kana: "クロイ",
     romaji: "ku ro i",
     sentence: "くろい ねこです",

@@ -2,36 +2,45 @@ export default [
   {
     id: "kyuukou_express",
     word: "きゅうこう",
+    noun: "-",
+    hint: "-",
+
     kana: "キュウコウ",
     romaji: "kyu u ko u",
     sentence: "きゅうこうで いきます",
     img: "kyuukou_express.png",
     lesson: 5
   },
-
   {
     id: "kyou_today",
     word: "きょう",
+    noun: "-",
+    hint: "-",
+
     kana: "キョウ",
     romaji: "kyo u",
     sentence: "きょうわ あついです",
     img: "kyou_today.png",
     lesson: 4
   },
-
   {
     id: "kyoushi_teacher",
     word: "きょうし",
+    noun: "きょうし",
+    hint: "きょ",
+
     kana: "キョウシ",
     romaji: "kyo u shi",
     sentence: "わたしわ きょうしです",
     img: "kyoushi_teacher.png",
     lesson: 1
   },
-
   {
     id: "kyoushitsu_classroom",
     word: "きょうしつ",
+    noun: "きょうしつ",
+    hint: "きょ",
+
     kana: "キョウシツ",
     romaji: "kyo u shi tsu",
     sentence: "きょうしつえ いきます",
@@ -42,6 +51,9 @@ export default [
   {
     id: "kyoudai_siblings",
     word: "きょうだい",
+    noun: "きょうだい",
+    hint: "きょ",
+
     kana: "キョウダイ",
     romaji: "kyo u da i",
     sentence: "きょうだいが います",
@@ -52,6 +64,9 @@ export default [
   {
     id: "kyonen_lastyear",
     word: "きょねん",
+    noun: "きょねん",
+    hint: "きょ",
+    
     kana: "キョネン",
     romaji: "kyo ne n",
     sentence: "きょねん にほんえ いきました",

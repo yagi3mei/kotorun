@@ -2,6 +2,9 @@ export default [
   {
     id: "kasa_umbrella",
     word: "かさ",
+    noun: "かさ",
+    hint: "か",
+    
     kana: "カサ",
     romaji: "ka sa",
     sentence: "かさを さします",
@@ -11,6 +14,9 @@ export default [
   {
     id: "kaban_bag",
     word: "かばん",
+    noun: "かばん",
+    hint: "か",
+    
     kana: "カバン",
     romaji: "ka ba n",
     sentence: "かばんを もちます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "kami_paper",
     word: "かみ",
+    noun: "かみ",
+    hint: "か",
+    
     kana: "カミ",
     romaji: "ka mi",
     sentence: "かみに かきます",
@@ -29,6 +38,9 @@ export default [
   {
     id: "kao_face",
     word: "かお",
+    noun: "かお",
+    hint: "か",
+    
     kana: "カオ",
     romaji: "ka o",
     sentence: "かおを あらいます",
@@ -38,6 +50,9 @@ export default [
   {
     id: "kaerimasu_home",
     word: "かえります",
+    noun: "-",
+    hint: "-",
+    
     kana: "カエリマス",
     romaji: "ka e ri ma su",
     sentence: "うちに かえります",
@@ -47,6 +62,9 @@ export default [
   {
     id: "kawa_river",
     word: "かわ",
+    noun: "かわ",
+    hint: "か",
+    
     kana: "カワ",
     romaji: "ka wa",
     sentence: "かわが あります",

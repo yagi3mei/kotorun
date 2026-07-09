@@ -2,6 +2,9 @@ export default [
   {
     id: "sakana_fish",
     word: "さかな",
+    noun: "さかな",
+    hint: "さ",
+
     kana: "サカナ",
     romaji: "sa ka na",
     sentence: "さかなを つります",
@@ -11,6 +14,9 @@ export default [
   {
     id: "sashimi_food",
     word: "さしみ",
+    noun: "さしみ",
+    hint: "さ",
+
     kana: "サシミ",
     romaji: "sa shi mi",
     sentence: "さしみを たべます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "sakura_cherry",
     word: "さくら",
+    noun: "さくら",
+    hint: "さ",
+
     kana: "サクラ",
     romaji: "sa ku ra",
     sentence: "さくらが あります",
@@ -29,6 +38,9 @@ export default [
   {
     id: "satou_sugar",
     word: "さとう",
+    noun: "さとう",
+    hint: "さ",
+
     kana: "サトウ",
     romaji: "sa to u",
     sentence: "さとうを いれます",
@@ -38,6 +50,9 @@ export default [
   {
     id: "samui_cold",
     word: "さむい",
+    noun: "-",
+    hint: "-",
+
     kana: "サムイ",
     romaji: "sa mu i",
     sentence: "さむい です",
@@ -47,6 +62,9 @@ export default [
   {
     id: "sanpo_walk",
     word: "さんぽします",
+    noun: "さんぽ",
+    hint: "さ",
+
     kana: "サンポシマス",
     romaji: "sa n po shi ma su",
     sentence: "さんぽします",

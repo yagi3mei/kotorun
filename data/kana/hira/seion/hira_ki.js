@@ -2,6 +2,9 @@ export default [
   {
     id: "ki_tree",
     word: "き",
+    noun: "き",
+    hint: "き",
+
     kana: "キ",
     romaji: "ki",
     sentence: "きが あります",
@@ -11,6 +14,9 @@ export default [
   {
     id: "kikimasu_listen",
     word: "ききます",
+    noun: "-",
+    hint: "-",
+
     kana: "キキマス",
     romaji: "ki ki ma su",
     sentence: "うたを ききます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "kippu_ticket",
     word: "きっぷ",
+    noun: "きっぷ",
+    hint: "き",
+
     kana: "キップ",
     romaji: "ki ppu",
     sentence: "きっぷを かいます",
@@ -29,6 +38,9 @@ export default [
   {
       id: "kimono_clothes",
       word: "きもの",
+      noun: "きもの",
+      hint: "き",
+
       kana: "キモノ",
       romaji: "ki mo no",
       sentence: "きものを きます",
@@ -38,6 +50,9 @@ export default [
   {
     id: "kirimasu_cut",
     word: "きります",
+    noun: "-",
+    hint: "-",
+
     kana: "キリマス",
     romaji: "ki ri ma su",
     sentence: "かみを きります",
@@ -47,6 +62,9 @@ export default [
   {
     id: "kisetsu_season",
     word: "きせつ",
+    noun: "きせつ",
+    hint: "き",
+    
     kana: "キセツ",
     romaji: "ki se tsu",
     sentence: "きせつが かわります",

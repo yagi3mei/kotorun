@@ -2,6 +2,9 @@ export default [
   {
     id: "okane_money",
     word: "おかね",
+    noun: "おかね",
+    hint: "お",
+
     kana: "オカネ",
     romaji: "o ka ne",
     sentence: "おかねが あります",
@@ -11,6 +14,9 @@ export default [
   {
     id: "okimasu_wake",
     word: "おきます",
+    noun: "-",
+    hint: "-",
+    
     kana: "オキマス",
     romaji: "o ki ma su",
     sentence: "しちじに おきます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "oshimasu_push",
     word: "おします",
+    noun: "-",
+    hint: "-",
+
     kana: "オシマス",
     romaji: "o shi ma su",
     sentence: "ボタンを おします",
@@ -29,6 +38,9 @@ export default [
   {
     id: "onaka_stomach",
     word: "おなか",
+    noun: "おなか",
+    hint: "お",
+
     kana: "オナカ",
     romaji: "o na ka",
     sentence: "おなかが いたいです",
@@ -38,6 +50,9 @@ export default [
   {
     id: "ookii_big",
     word: "おおきい",
+    noun: "-",
+    hint: "-",
+
     kana: "オオキイ",
     romaji: "o o ki i",
     sentence: "ぞうは おおきいです",
@@ -47,6 +62,9 @@ export default [
   {
     id: "ocha_tea",
     word: "おちゃ",
+    noun: "おちゃ",
+    hint: "お",
+    
     kana: "オチャ",
     romaji: "o cha",
     sentence: "おちゃを のみます",

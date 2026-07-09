@@ -2,6 +2,9 @@ export default [
   {
     id: "te_hand",
     word: "て",
+    noun: "て",
+    hint: "て",
+
     kana: "テ",
     romaji: "te",
     sentence: "てを あらいます",
@@ -11,6 +14,9 @@ export default [
   {
     id: "tegami_letter",
     word: "てがみ",
+    noun: "てがみ",
+    hint: "て",
+
     kana: "テガミ",
     romaji: "te ga mi",
     sentence: "てがみを かきます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "tetsudaimasu_help",
     word: "てつだいます",
+    noun: "-",
+    hint: "-",
+
     kana: "テツダイマス",
     romaji: "te tsu da i ma su",
     sentence: "りょうりを てつだいます",
@@ -29,6 +38,9 @@ export default [
   {
     id: "tera_temple",
     word: "てら",
+    noun: "てら",
+    hint: "て",
+
     kana: "テラ",
     romaji: "te ra",
     sentence: "てらえ いきます",
@@ -38,6 +50,9 @@ export default [
   {
     id: "tenki_weather",
     word: "てんき",
+    noun: "てんき",
+    hint: "て",
+
     kana: "テンキ",
     romaji: "te n ki",
     sentence: "きょうわ てんきが いいです",
@@ -47,6 +62,9 @@ export default [
   {
     id: "tempura_food",
     word: "てんぷら",
+    noun: "てんぷら",
+    hint: "て",
+    
     kana: "テンプラ",
     romaji: "te n pu ra",
     sentence: "てんぷらを たべます",

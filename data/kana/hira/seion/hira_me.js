@@ -2,6 +2,9 @@ export default [
   {
     id: "me_eye",
     word: "め",
+    noun: "め",
+    hint: "め",
+
     kana: "メ",
     romaji: "me",
     sentence: "めです",
@@ -11,6 +14,9 @@ export default [
   {
     id: "megane_glasses",
     word: "めがね",
+    noun: "めがね",
+    hint: "め",
+
     kana: "メガネ",
     romaji: "me ga ne",
     sentence: "めがねを かけます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "meishi_card",
     word: "めいし",
+    noun: "めいし",
+    hint: "め",
+
     kana: "メイシ",
     romaji: "me i shi",
     sentence: "めいしを わたします",

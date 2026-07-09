@@ -2,6 +2,9 @@ export default [
   {
     id: "tsukue_desk",
     word: "つくえ",
+    noun: "つくえ",
+    hint: "つ",
+
     kana: "ツクエ",
     romaji: "tsu ku e",
     sentence: "つくえが あります",
@@ -11,6 +14,9 @@ export default [
   {
     id: "tsukaimasu_use",
     word: "つかいます",
+    noun: "-",
+    hint: "-",
+
     kana: "ツカイマス",
     romaji: "tsu ka i ma su",
     sentence: "はさみを つかいます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "tsukurimasu_make",
     word: "つくります",
+    noun: "-",
+    hint: "-",
+
     kana: "ツクリマス",
     romaji: "tsu ku ri ma su",
     sentence: "サンドイッチを つくります",
@@ -29,6 +38,9 @@ export default [
   {
     id: "tsukemasu_turnon",
     word: "つけます",
+    noun: "-",
+    hint: "-",
+
     kana: "ツケマス",
     romaji: "tsu ke ma su",
     sentence: "でんきを つけます",
@@ -38,6 +50,9 @@ export default [
   {
     id: "tsumetai_cold",
     word: "つめたい",
+    noun: "-",
+    hint: "-",
+
     kana: "ツメタイ",
     romaji: "tsu me ta i",
     sentence: "みずが つめたいです",
@@ -47,6 +62,9 @@ export default [
   {
     id: "tsuri_fishing",
     word: "つり",
+    noun: "つり",
+    hint: "つ",
+    
     kana: "ツリ",
     romaji: "tsu ri",
     sentence: "さかなを つります",

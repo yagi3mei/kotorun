@@ -1,7 +1,10 @@
-const hira_go = [
+export default [
   {
     id: "gogo_pm",
     word: "ごご",
+    noun: "ごご",
+    hint: "ご",
+
     kana: "ゴゴ",
     romaji: "go go",
     sentence: "ごごです",
@@ -11,6 +14,9 @@ const hira_go = [
   {
     id: "gozen_am",
     word: "ごぜん",
+    noun: "ごぜん",
+    hint: "ご",
+
     kana: "ゴゼン",
     romaji: "go ze n",
     sentence: "ごぜんです",
@@ -20,6 +26,9 @@ const hira_go = [
   {
     id: "gohan_meal",
     word: "ごはん",
+    noun: "ごはん",
+    hint: "ご",
+
     kana: "ゴハン",
     romaji: "go ha n",
     sentence: "ごはんを たべます",
@@ -29,6 +38,9 @@ const hira_go = [
   {
     id: "gochisousamadeshita_Thank_you_for_the_meal",
     word: "ごちそうさまでした",
+    noun: "-",
+    hint: "-",
+
     kana: "ゴチソウサマデシタ",
     romaji: "go chi so u sa ma de shi ta",
     sentence: "ごちそうさまでした",
@@ -36,5 +48,3 @@ const hira_go = [
     lesson: 23
   }
 ];
-
-export default hira_go;

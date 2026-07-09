@@ -2,6 +2,9 @@ export default [
   {
     id: "naifu_knife",
     word: "ナイフ",
+    noun: "ナイフ",
+    hint: "ナ",
+
     kana: "ナイフ",
     romaji: "na i fu",
     sentence: "ナイフで きります",
@@ -12,6 +15,9 @@ export default [
   {
     id: "nyuusu_news",
     word: "ニュース",
+    noun: "ニュース",
+    hint: "ニュ",
+
     kana: "ニュース",
     romaji: "nyu u su",
     sentence: "ニュースを みます",
@@ -22,6 +28,9 @@ export default [
   {
     id: "nekutai_necktie",
     word: "ネクタイ",
+    noun: "ネクタイ",
+    hint: "ネ",
+
     kana: "ネクタイ",
     romaji: "ne ku ta i",
     sentence: "ネクタイを します",
@@ -32,6 +41,9 @@ export default [
   {
     id: "nooto_notebook",
     word: "ノート",
+    noun: "ノート",
+    hint: "ノ",
+    
     kana: "ノート",
     romaji: "no o to",
     sentence: "ノートに かきます",

@@ -2,6 +2,9 @@ export default [
   {
     id: "ue_up",
     word: "うえ",
+    noun: "うえ",
+    hint: "う",
+
     kana: "ウエ",
     romaji: "u e",
     sentence: "うえに あります",
@@ -11,6 +14,9 @@ export default [
   {
     id: "ushiro_back",
     word: "うしろ",
+    noun: "うしろ",
+    hint: "う",
+
     kana: "ウシロ",
     romaji: "u shi ro",
     sentence: "うしろに あります",
@@ -20,6 +26,9 @@ export default [
   {
     id: "uta_song",
     word: "うた",
+    noun: "うた",
+    hint: "う",
+
     kana: "ウタ",
     romaji: "u ta",
     sentence: "うたを ききます",
@@ -29,6 +38,9 @@ export default [
   {
     id: "uchi_home",
     word: "うち",
+    noun: "うち",
+    hint: "う",
+
     kana: "ウチ",
     romaji: "u chi",
     sentence: "うちに かえります",
@@ -38,6 +50,9 @@ export default [
   {
     id: "uma_horse",
     word: "うま",
+    noun: "うま",
+    hint: "う",
+    
     kana: "ウマ",
     romaji: "u ma",
     sentence: "うまが います",
@@ -47,6 +62,9 @@ export default [
   {
     id: "umi_sea",
     word: "うみ",
+    noun: "うみ",
+    hint: "う",
+    
     kana: "ウミ",
     romaji: "u mi",
     sentence: "うみ です",

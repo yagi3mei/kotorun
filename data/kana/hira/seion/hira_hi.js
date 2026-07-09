@@ -2,6 +2,9 @@ export default [
   {
     id: "hikui_short",
     word: "ひくい",
+    noun: "-",
+    hint: "-",
+
     kana: "ヒクイ",
     romaji: "hi ku i",
     sentence: "せが ひくいです",
@@ -11,6 +14,9 @@ export default [
   {
     id: "hikouki_airplane",
     word: "ひこうき",
+    noun: "ひこうき",
+    hint: "ひ",
+
     kana: "ヒコウキ",
     romaji: "hi ko u ki",
     sentence: "ひこうきに のります",
@@ -20,6 +26,9 @@ export default [
   {
     id: "hidari_left",
     word: "ひだり",
+    noun: "ひだり",
+    hint: "ひ",
+    
     kana: "ヒダリ",
     romaji: "hi da ri",
     sentence: "ひだりです",
@@ -29,6 +38,9 @@ export default [
   {
     id: "hirugohan_lunch",
     word: "ひるごはん",
+    noun: "ひるごはん",
+    hint: "ひ",
+    
     kana: "ヒルゴハン",
     romaji: "hi ru go ha n",
     sentence: "ひるごはんを たべます",
@@ -38,6 +50,9 @@ export default [
   {
     id: "hiragana_letters",
     word: "ひらがな",
+    noun: "ひらがな",
+    hint: "ひ",
+    
     kana: "ヒラガナ",
     romaji: "hi ra ga na",
     sentence: "これは ひらがなです",
@@ -47,6 +62,9 @@ export default [
   {
     id: "hiroi_room",
     word: "ひろい",
+    noun: "-",
+    hint: "-",
+    
     kana: "ヒロイ",
     romaji: "hi ro i",
     sentence: "この部屋わ ひろいです",

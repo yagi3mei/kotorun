@@ -2,6 +2,9 @@ export default [
     {
         id: "takushii_taxi",
         word: "タクシー",
+        noun: "タクシー",
+        hint: "タ",
+
         kana: "タクシー",
         romaji: "ta ku shi i",
         sentence: "タクシーに のります",
@@ -12,6 +15,9 @@ export default [
     {
         id: "chiketto_ticket",
         word: "チケット",
+        noun: "チケット",
+        hint: "チ",
+
         kana: "チケット",
         romaji: "chi ke tto",
         sentence: "チケットを かいます",
@@ -22,6 +28,9 @@ export default [
     {
         id: "chansu_chance",
         word: "チャンス",
+        noun: "チャンス",
+        hint: "チャ",
+
         kana: "チャンス",
         romaji: "cha n su",
         sentence: "チャンスです",
@@ -32,6 +41,9 @@ export default [
     {
         id: "chokoreeto_chocolate",
         word: "チョコレート",
+        noun: "チョコレート",
+        hint: "チョ",
+        
         kana: "チョコレート",
         romaji: "cho ko re e to",
         sentence: "チョコレートを たべます",

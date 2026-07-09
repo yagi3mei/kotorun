@@ -2,6 +2,9 @@ export default [
     {
         id: "dai_counter_for_machines",
         word: "だい",
+        noun: "-",
+        hint: "-",
+
         kana: "ダイ",
         romaji: "da i",
         sentence: "くるまが にだい あります",
@@ -11,6 +14,9 @@ export default [
     {
         id: "daigaku_university",
         word: "だいがく",
+        noun: "だいがく",
+        hint: "だ",
+
         kana: "ダイガク",
         romaji: "da i ga ku",
         sentence: "だいがくえ いきます",
@@ -20,6 +26,9 @@ export default [
     {
         id: "dashimasu_take_out_submit",
         word: "だします",
+        noun: "-",
+        hint: "-",
+
         kana: "ダシマス",
         romaji: "da shi ma su",
         sentence: "てがみを だします",
@@ -29,6 +38,9 @@ export default [
     {
         id: "dare_who",
         word: "だれ",
+        noun: "-",
+        hint: "-",
+
         kana: "ダレ",
         romaji: "da re",
         sentence: "あの ひとわ だれですか",
@@ -38,6 +50,9 @@ export default [
     {
         id: "danme_floor_level",
         word: "だんめ",
+        noun: "-",
+        hint: "-",
+        
         kana: "ダンメ",
         romaji: "da n me",
         sentence: "さんだんめです",

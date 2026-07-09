@@ -2,6 +2,9 @@ export default [
   {
     id: "yomu_read",
     word: "よみます",
+    noun: "-",
+    hint: "-",
+
     kana: "ヨミマス",
     romaji: "yo mi ma su",
     sentence: "ほんを よみます",
@@ -11,6 +14,9 @@ export default [
   {
     id: "yobu_call",
     word: "よびます",
+    noun: "-",
+    hint: "-",
+    
     kana: "ヨビマス",
     romaji: "yo bi ma su",
     sentence: "なまえを よびます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "yoru_night",
     word: "よる",
+    noun: "よる",
+    hint: "よ",
+    
     kana: "ヨル",
     romaji: "yo ru",
     sentence: "よるです",
@@ -29,6 +38,9 @@ export default [
   {
     id: "yoyaku_reserve",
     word: "よやくします",
+    noun: "よやく",
+    hint: "よ",
+    
     kana: "ヨヤクシマス",
     romaji: "yo ya ku shi ma su",
     sentence: "ホテルを よやくします",

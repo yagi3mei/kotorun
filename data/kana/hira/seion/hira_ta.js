@@ -2,6 +2,9 @@ export default [
   {
     id: "takai_tall",
     word: "たかい",
+    noun: "-",
+    hint: "-",
+
     kana: "タカイ",
     romaji: "ta ka i",
     sentence: "たかい たてものです",
@@ -11,6 +14,9 @@ export default [
   {
     id: "tachimasu_stand",
     word: "たちます",
+    noun: "-",
+    hint: "-",
+
     kana: "タチマス",
     romaji: "ta chi ma su",
     sentence: "いすから たちます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "tabemasu_eat",
     word: "たべます",
+    noun: "-",
+    hint: "-",
+
     kana: "タベマス",
     romaji: "ta be ma su",
     sentence: "すしを たべます",
@@ -29,6 +38,9 @@ export default [
   {
     id: "tamago_egg",
     word: "たまご",
+    noun: "たまご",
+    hint: "た",
+
     kana: "タマゴ",
     romaji: "ta ma go",
     sentence: "たまごが あります",
@@ -38,6 +50,9 @@ export default [
   {
     id: "tatemono_building",
     word: "たてもの",
+    noun: "-",
+    hint: "-",
+
     kana: "タテモノ",
     romaji: "ta te mo no",
     sentence: "おおきい たてものです",
@@ -47,6 +62,9 @@ export default [
   {
     id: "tanjoubi_birthday",
     word: "たんじょうび",
+    noun: "たんじょうび",
+    hint: "た",
+    
     kana: "タンジョウビ",
     romaji: "ta n jo u bi",
     sentence: "きょうわ たんじょうびです",

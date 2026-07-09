@@ -2,6 +2,9 @@ export default [
   {
     id: "rajio_radio",
     word: "ラジオ",
+    noun: "ラジオ",
+    hint: "ラ",
+
     kana: "ラジオ",
     romaji: "ra ji o",
     sentence: "ラジオを ききます",
@@ -12,6 +15,9 @@ export default [
   {
     id: "rasshu_rush",
     word: "ラッシュ",
+    noun: "ラッシュ",
+    hint: "ラ",
+
     kana: "ラッシュ",
     romaji: "ra sshu",
     sentence: "ラッシュです",
@@ -22,6 +28,9 @@ export default [
   {
     id: "resutoran_restaurant",
     word: "レストラン",
+    noun: "レストラン",
+    hint: "レ",
+
     kana: "レストラン",
     romaji: "re su to ra n",
     sentence: "レストランで たべます",
@@ -32,6 +41,9 @@ export default [
   {
     id: "repooto_report",
     word: "レポート",
+    noun: "-",
+    hint: "-",
+
     kana: "レポート",
     romaji: "re po o to",
     sentence: "レポートを かきます",
@@ -42,6 +54,9 @@ export default [
   {
     id: "roomaji_romaji",
     word: "ローマじ",
+    noun: "-",
+    hint: "-",
+
     kana: "ローマジ",
     romaji: "ro o ma ji",
     sentence: "ローマじで かきます",
@@ -52,6 +67,9 @@ export default [
   {
     id: "robii_lobby",
     word: "ロビー",
+    noun: "ロビー",
+    hint: "ロ",
+
     kana: "ロビー",
     romaji: "ro bi i",
     sentence: "ロビーで まちます",

@@ -2,6 +2,9 @@ export default [
     {
         id: "nigiyaka_lively",
         word: "にぎやかな",
+        noun: "-",
+        hint: "-",
+
         kana: "ニギヤカナ",
         romaji: "ni gi ya ka na",
         sentence: "にぎやかな こうえんです",
@@ -11,6 +14,9 @@ export default [
     {
         id: "niku_meat",
         word: "にく",
+        noun: "にく",
+        hint: "に",
+
         kana: "ニク",
         romaji: "ni ku",
         sentence: "にくを たべます",
@@ -20,6 +26,9 @@ export default [
     {
         id: "nihongo_japanese",
         word: "にほんご",
+        noun: "にほんご",
+        hint: "に",
+
         kana: "ニホンゴ",
         romaji: "ni ho n go",
         sentence: "にほんごを べんきょうします",
@@ -29,6 +38,9 @@ export default [
     {
         id: "nimotsu_baggage",
         word: "にもつ",
+        noun: "にもつ",
+        hint: "に",
+
         kana: "ニモツ",
         romaji: "ni mo tsu",
         sentence: "にもつが あります",
@@ -38,6 +50,9 @@ export default [
     {
         id: "niwa_garden",
         word: "にわ",
+        noun: "にわ",
+        hint: "に",
+
         kana: "ニワ",
         romaji: "ni wa",
         sentence: "にわに 花が あります",
@@ -47,6 +62,9 @@ export default [
     {
         id: "nin_three_people",
         word: "にん",
+        noun: "-",
+        hint: "-",
+        
         kana: "ニン",
         romaji: "ni n",
         sentence: "さんにん います",

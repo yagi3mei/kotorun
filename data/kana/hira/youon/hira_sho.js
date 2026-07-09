@@ -2,6 +2,9 @@ export default [
   {
     id: "shoukai_introduce",
     word: "しょうかいします",
+    noun: "しょうかい",
+    hint: "しょ",
+
     kana: "ショウカイシマス",
     romaji: "sho u ka i shi ma su",
     sentence: "ともだちを しょうかいします",
@@ -12,6 +15,9 @@ export default [
   {
     id: "shougatsu_newyear",
     word: "しょうがつ",
+    noun: "しょうがつ",
+    hint: "しょ",
+
     kana: "ショウガツ",
     romaji: "sho u ga tsu",
     sentence: "しょうがつに かぞくと あいます",
@@ -22,6 +28,9 @@ export default [
   {
     id: "shokuji_meal",
     word: "しょくじします",
+    noun: "しょくじ",
+    hint: "しょ",
+
     kana: "ショクジシマス",
     romaji: "sho ku ji shi ma su",
     sentence: "かぞくと しょくじします",
@@ -32,6 +41,9 @@ export default [
   {
     id: "shokudou_cafeteria",
     word: "しょくどう",
+    noun: "しょくどう",
+    hint: "しょ",
+    
     kana: "ショクドウ",
     romaji: "sho ku do u",
     sentence: "しょくどうで たべます",

@@ -3,6 +3,9 @@ export default [
     {
         id: "byouin_hospital",
         word: "びょういん",
+        noun: "びょういん",
+        hint: "びょ",
+
         kana: "ビョウイン",
         romaji: "byo u i n",
         sentence: "びょういんえ いきます。",
@@ -13,6 +16,9 @@ export default [
     {
         id: "byouki_sick",
         word: "びょうき",
+        noun: "びょうき",
+        hint: "びょ",
+        
         kana: "ビョウキ",
         romaji: "byo u ki",
         sentence: "びょうきです。",

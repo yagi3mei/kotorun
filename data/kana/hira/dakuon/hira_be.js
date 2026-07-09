@@ -2,6 +2,9 @@ export default [
     {
         id: "benkyou_study",
         word: "べんきょう",
+        noun: "べんきょう",
+        hint: "べ",
+
         kana: "ベンキョウ",
         romaji: "be n kyo u",
         sentence: "にほんごを べんきょうします。",
@@ -11,6 +14,9 @@ export default [
     {
         id: "bentou_lunchbox",
         word: "べんとう",
+        noun: "べんとう",
+        hint: "べ",
+
         kana: "ベントウ",
         romaji: "be n to u",
         sentence: "べんとうを たべます。",
@@ -20,6 +26,9 @@ export default [
     {
         id: "benrina_convenient",
         word: "べんりな",
+        noun: "-",
+        hint: "-",
+
         kana: "ベンリナ",
         romaji: "be n ri na",
         sentence: "べんりな スマホです。",
@@ -29,6 +38,9 @@ export default [
     {
         id: "boushi_cap",
         word: "ぼうし",
+        noun: "ぼうし",
+        hint: "ぼ",
+
         kana: "ボウシ",
         romaji: "bo u shi",
         sentence: "ぼうしを かぶります。",
@@ -38,6 +50,9 @@ export default [
     {
         id: "boku_me",
         word: "ぼく",
+        noun: "-",
+        hint: "-",
+
         kana: "ボク",
         romaji: "bo ku",
         sentence: "ぼくは がくせいです。",

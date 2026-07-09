@@ -2,6 +2,9 @@ export default [
     {
         id: "jikokuhyou_timetable",
         word: "じこくひょう",
+        noun: "じこくひょう",
+        hint: "じ",
+
         kana: "ジコクヒョウ",
         romaji: "ji ko ku hyo u",
         sentence: "じこくひょうを みます",
@@ -11,6 +14,9 @@ export default [
     {
         id: "jisho_dictionary",
         word: "じしょ",
+        noun: "じしょ",
+        hint: "じ",
+
         kana: "ジショ",
         romaji: "ji sho",
         sentence: "じしょを つかいます",
@@ -20,6 +26,9 @@ export default [
     {
         id: "jitensha_bicycle",
         word: "じてんしゃ",
+        noun: "じてんしゃ",
+        hint: "じ",
+
         kana: "ジテンシャ",
         romaji: "ji te n sha",
         sentence: "じてんしゃに のります",
@@ -29,6 +38,9 @@ export default [
     {
         id: "jidousha_car",
         word: "じどうしゃ",
+        noun: "じどうしゃ",
+        hint: "じ",
+
         kana: "ジドウシャ",
         romaji: "ji do u sha",
         sentence: "じどうしゃで いきます",
@@ -38,6 +50,9 @@ export default [
     {
         id: "jinja_shrine",
         word: "じんじゃ",
+        noun: "じんじゃ",
+        hint: "じ",
+        
         kana: "ジンジャ",
         romaji: "ji n ja",
         sentence: "じんじゃえ いきます",

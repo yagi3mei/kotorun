@@ -11,6 +11,9 @@ export default [
   {
     id: "tooi_far",
     word: "とおい",
+    noun: "-",
+    hint: "-",
+
     kana: "トオイ",
     romaji: "to o i",
     sentence: "がっこうわ とおいです",
@@ -20,6 +23,9 @@ export default [
   {
     id: "toshokan_library",
     word: "としょかん",
+    noun: "としょかん",
+    hint: "と",
+
     kana: "トショカン",
     romaji: "to sho ka n",
     sentence: "としょかんえ いきます",
@@ -29,6 +35,9 @@ export default [
   {
     id: "tomodachi_friend",
     word: "ともだち",
+    noun: "ともだち",
+    hint: "と",
+
     kana: "トモダチ",
     romaji: "to mo da chi",
     sentence: "ともだちと あそびます",
@@ -38,6 +47,9 @@ export default [
   {
     id: "torimasu_photo",
     word: "とります",
+    noun: "-",
+    hint: "-",
+
     kana: "トリマス",
     romaji: "to ri ma su",
     sentence: "しゃしんを とります",
@@ -47,6 +59,9 @@ export default [
   {
     id: "tomemasu_stop",
     word: "とめます",
+    noun: "-",
+    hint: "-",
+    
     kana: "トメマス",
     romaji: "to me ma su",
     sentence: "くるまを とめます",

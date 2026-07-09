@@ -2,6 +2,9 @@ export default [
   {
     id: "watashi_I",
     word: "わたし",
+    noun: "わたし",
+    hint: "わ",
+
     kana: "ワタシ",
     romaji: "wa ta shi",
     sentence: "わたしわ がくせいです",
@@ -11,6 +14,9 @@ export default [
   {
     id: "watashitachi_we",
     word: "わたしたち",
+    noun: "わたしたち",
+    hint: "わ",
+
     kana: "ワタシタチ",
     romaji: "wa ta shi ta chi",
     sentence: "わたしたちわ ともだちです",
@@ -20,6 +26,9 @@ export default [
   {
     id: "wakai_young",
     word: "わかい",
+    noun: "-",
+    hint: "-",
+
     kana: "ワカイ",
     romaji: "wa ka i",
     sentence: "このひとわ わかいです",
@@ -29,6 +38,9 @@ export default [
   {
     id: "washitsu_room",
     word: "わしつ",
+    noun: "わしつ",
+    hint: "わ",
+
     kana: "ワシツ",
     romaji: "wa shi tsu",
     sentence: "これわ わしつです",
@@ -38,6 +50,9 @@ export default [
   {
     id: "watarimasu_crossing",
     word: "わたります",
+    noun: "-",
+    hint: "-",
+
     kana: "ワタリマス",
     romaji: "wa ta ri ma su",
     sentence: "橋を わたります",
@@ -47,6 +62,9 @@ export default [
   {
     id: "warui_bad",
     word: "わるい",
+    noun: "-",
+    hint: "-",
+    
     kana: "ワルイ",
     romaji: "wa ru i",
     sentence: "これわ わるいです",

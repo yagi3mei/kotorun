@@ -2,6 +2,9 @@ export default [
     {
         id: "nodo_throat",
         word: "のど",
+        noun: "のど",
+        hint: "の",
+
         kana: "ノド",
         romaji: "no do",
         sentence: "のどが いたいです",
@@ -11,6 +14,9 @@ export default [
     {
         id: "noborimasu_climb",
         word: "のぼります",
+        noun: "-",
+        hint: "-",
+
         kana: "ノボリマス",
         romaji: "no bo ri ma su",
         sentence: "やまに のぼります",
@@ -20,6 +26,9 @@ export default [
     {
         id: "nomimasu_drink",
         word: "のみます",
+        noun: "-",
+        hint: "-",
+
         kana: "ノミマス",
         romaji: "no mi ma su",
         sentence: "みずを のみます",
@@ -29,6 +38,9 @@ export default [
     {
         id: "nomimono_drink",
         word: "のみもの",
+        noun: "のみもの",
+        hint: "の",
+
         kana: "ノミモノ",
         romaji: "no mi mo no",
         sentence: "飲み物が あります",
@@ -38,6 +50,9 @@ export default [
     {
         id: "noriba_busstop",
         word: "のりば",
+        noun: "のりば",
+        hint: "の",
+
         kana: "ノリバ",
         romaji: "no ri ba",
         sentence: "バスの のりばです",
@@ -47,6 +62,9 @@ export default [
     {
         id: "norimasu_ride",
         word: "のります",
+        noun: "-",
+        hint: "-",
+        
         kana: "ノリマス",
         romaji: "no ri ma su",
         sentence: "バスに のります",

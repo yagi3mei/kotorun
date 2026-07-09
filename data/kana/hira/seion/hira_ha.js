@@ -2,6 +2,9 @@ export default [
   {
     id: "ha_tooth",
     word: "は",
+    noun: "は",
+    hint: "は",
+    
     kana: "ハ",
     romaji: "ha",
     sentence: "歯が あります",
@@ -11,6 +14,9 @@ export default [
   {
     id: "hashi_chopsticks",
     word: "はし（箸）",
+    noun: "はし",
+    hint: "は",
+    
     kana: "ハシ",
     romaji: "ha shi",
     sentence: "箸で たべます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "hashi_bridge",
     word: "はし（橋）",
+    noun: "はし",
+    hint: "は",
+    
     kana: "ハシ",
     romaji: "ha shi",
     sentence: "橋を わたります",
@@ -29,6 +38,9 @@ export default [
   {
     id: "hakimasu_putOnShoes",
     word: "はきます",
+    noun: "-",
+    hint: "-",
+
     kana: "ハキマス",
     romaji: "ha ki ma su",
     sentence: "くつを はきます",
@@ -38,6 +50,9 @@ export default [
   {
     id: "hasami_scissors",
     word: "はさみ",
+    noun: "はさみ",
+    hint: "は",
+
     kana: "ハサミ",
     romaji: "ha sa mi",
     sentence: "はさみで きります",
@@ -47,6 +62,9 @@ export default [
   {
     id: "haru_spring",
     word: "はる",
+    noun: "はる",
+    hint: "は",
+    
     kana: "ハル",
     romaji: "ha ru",
     sentence: "はるに なりました",

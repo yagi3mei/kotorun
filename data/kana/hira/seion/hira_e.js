@@ -2,6 +2,9 @@ export default [
   {
     id: "e_picture",
     word: "え",
+    noun: "え",
+    hint: "え",
+
     kana: "エ",
     romaji: "e",
     sentence: "えを みます",
@@ -11,6 +14,9 @@ export default [
   {
     id: "eiga_movie",
     word: "えいが",
+    noun: "えいが",
+    hint: "え",
+
     kana: "エイガ",
     romaji: "e i ga",
     sentence: "えいがを みます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "eigo_english",
     word: "えいご",
+    noun: "えいご",
+    hint: "え",
+
     kana: "エイゴ",
     romaji: "e i go",
     sentence: "えいごを べんきょうします",
@@ -29,6 +38,9 @@ export default [
   {
     id: "eki_station",
     word: "えき",
+    noun: "えき",
+    hint: "え",
+
     kana: "エキ",
     romaji: "e ki",
     sentence: "えきに いきます",
@@ -38,6 +50,9 @@ export default [
   {
     id: "enpitsu_pencil",
     word: "えんぴつ",
+    noun: "えんぴつ",
+    hint: "え",
+    
     kana: "エンピツ",
     romaji: "e n pi tsu",
     sentence: "えんぴつで かきます",
@@ -47,6 +62,9 @@ export default [
   {
     id: "en_yen",
     word: "えん",
+    noun: "えん",
+    hint: "え",
+    
     kana: "エン",
     romaji: "e n",
     sentence: "100えん です",

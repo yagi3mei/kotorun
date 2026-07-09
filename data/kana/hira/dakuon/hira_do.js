@@ -2,6 +2,9 @@ export default [
     {
         id: "douzoyoroshiku_nice_to_meet_you",
         word: "どうぞよろしく",
+        noun: "-",
+        hint: "-",
+
         kana: "ドウゾヨロシク",
         romaji: "do u zo yo ro shi ku",
         sentence: "どうぞ よろしく",
@@ -11,6 +14,9 @@ export default [
     {
         id: "doubutsu_animal",
         word: "どうぶつ",
+        noun: "どうぶつ",
+        hint: "ど",
+
         kana: "ドウブツ",
         romaji: "do u bu tsu",
         sentence: "動物が います",
@@ -20,6 +26,9 @@ export default [
     {
         id: "docchi_which_one",
         word: "どっち",
+        noun: "-",
+        hint: "-",
+
         kana: "ドッチ",
         romaji: "do cchi",
         sentence: "どっちですか",
@@ -29,6 +38,9 @@ export default [
     {
         id: "doyoubi_saturday",
         word: "どようび",
+        noun: "どようび",
+        hint: "ど",
+        
         kana: "ドヨウビ",
         romaji: "do yo u bi",
         sentence: "どようび です",

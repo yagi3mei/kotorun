@@ -2,6 +2,9 @@ export default [
   {
     id: "kurisumasu_christmas",
     word: "クリスマス",
+    noun: "クリスマス",
+    hint: "ク",
+
     kana: "クリスマス",
     romaji: "ku ri su ma su",
     sentence: "クリスマスです",
@@ -12,6 +15,9 @@ export default [
   {
     id: "keeki_cake",
     word: "ケーキ",
+    noun: "ケーキ",
+    hint: "ケ",
+
     kana: "ケーキ",
     romaji: "ke e ki",
     sentence: "ケーキを たべます",
@@ -22,6 +28,9 @@ export default [
   {
     id: "koohii_coffee",
     word: "コーヒー",
+    noun: "コーヒー",
+    hint: "コ",
+
     kana: "コーヒー",
     romaji: "ko o hi i",
     sentence: "コーヒーを のみます",
@@ -32,6 +41,9 @@ export default [
   {
     id: "kooto_coat",
     word: "コート",
+    noun: "コート",
+    hint: "コ",
+
     kana: "コート",
     romaji: "ko o to",
     sentence: "コートを きます",
@@ -42,6 +54,9 @@ export default [
   {
     id: "konsaato_concert",
     word: "コンサート",
+    noun: "コンサート",
+    hint: "コ",
+
     kana: "コンサート",
     romaji: "ko n sa a to",
     sentence: "コンサートえ いきます",
@@ -52,6 +67,9 @@ export default [
   {
     id: "konpyuutaa_computer",
     word: "コンピューター",
+    noun: "コンピューター",
+    hint: "コ",
+    
     kana: "コンピューター",
     romaji: "ko n pyu u ta a",
     sentence: "コンピューターを つかいます",

@@ -2,6 +2,9 @@ export default [
     {
         id: "dekakemasu_go_out",
         word: "でかけます",
+        noun: "-",
+        hint: "-",
+
         kana: "デカケマス",
         romaji: "de ka ke ma su",
         sentence: "ともだちと でかけます",
@@ -11,6 +14,9 @@ export default [
     {
         id: "denki_electricity",
         word: "でんき",
+        noun: "でんき",
+        hint: "で",
+
         kana: "デンキ",
         romaji: "de n ki",
         sentence: "でんきを つけます",
@@ -20,6 +26,9 @@ export default [
     {
         id: "densha_train",
         word: "でんしゃ",
+        noun: "でんしゃ",
+        hint: "で",
+
         kana: "デンシャ",
         romaji: "de n sha",
         sentence: "でんしゃに のります",
@@ -29,6 +38,9 @@ export default [
     {
         id: "denchi_battery",
         word: "でんち",
+        noun: "でんち",
+        hint: "で",
+
         kana: "デンチ",
         romaji: "de n chi",
         sentence: "でんちを いれます",
@@ -38,6 +50,9 @@ export default [
     {
         id: "denwa_telephone",
         word: "でんわ",
+        noun: "でんわ",
+        hint: "で",
+        
         kana: "デンワ",
         romaji: "de n wa",
         sentence: "でんわを かけます",

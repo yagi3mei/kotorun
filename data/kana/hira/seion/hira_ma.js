@@ -2,6 +2,9 @@ export default [
   {
     id: "mainichi_everyday",
     word: "まいにち",
+    noun: "まいにち",
+    hint: "ま",
+
     kana: "マイニチ",
     romaji: "ma i ni chi",
     sentence: "まいにち べんきょうします",
@@ -11,6 +14,9 @@ export default [
   {
     id: "mado_window",
     word: "まど",
+    noun: "まど",
+    hint: "ま",
+
     kana: "マド",
     romaji: "ma do",
     sentence: "まどを あけます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "machi_town",
     word: "まち",
+    noun: "まち",
+    hint: "ま",
+
     kana: "マチ",
     romaji: "ma chi",
     sentence: "まちえ いきます",
@@ -29,6 +38,9 @@ export default [
   {
     id: "massugu_straight",
     word: "まっすぐ",
+    noun: "-",
+    hint: "-",
+
     kana: "マッスグ",
     romaji: "ma s su gu",
     sentence: "まっすぐ いきます",
@@ -38,6 +50,9 @@ export default [
   {
     id: "matsuri_festival",
     word: "まつり",
+    noun: "まつり",
+    hint: "ま",
+
     kana: "マツリ",
     romaji: "ma tsu ri",
     sentence: "まつりです",
@@ -47,6 +62,9 @@ export default [
   {
     id: "magarimasu_turn",
     word: "まがります",
+    noun: "-",
+    hint: "-",
+    
     kana: "マガリマス",
     romaji: "ma ga ri ma su",
     sentence: "みぎえ まがります",

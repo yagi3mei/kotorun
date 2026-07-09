@@ -2,6 +2,9 @@ export default [
     {
         id: "neko_cat",
         word: "ねこ",
+        noun: "ねこ",
+        hint: "ね",
+
         kana: "ネコ",
         romaji: "ne ko",
         sentence: "ねこが います",
@@ -11,6 +14,9 @@ export default [
     {
         id: "netsu_fever",
         word: "ねつ",
+        noun: "ねつ",
+        hint: "ね",
+
         kana: "ネツ",
         romaji: "ne tsu",
         sentence: "ねつが あります",
@@ -20,6 +26,9 @@ export default [
     {
         id: "nemasu_sleep",
         word: "ねます",
+        noun: "-",
+        hint: "-",
+
         kana: "ネマス",
         romaji: "ne ma su",
         sentence: "よる ねます",
@@ -29,6 +38,9 @@ export default [
     {
         id: "nemui_sleepy",
         word: "ねむい",
+        noun: "-",
+        hint: "-",
+
         kana: "ネムイ",
         romaji: "ne mu i",
         sentence: "ねむいです",
@@ -38,6 +50,9 @@ export default [
     {
         id: "nen_year",
         word: "ねん",
+        noun: "-",
+        hint: "-",
+        
         kana: "ネン",
         romaji: "ne n",
         sentence: "２０２６ねん です",

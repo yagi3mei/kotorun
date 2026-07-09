@@ -2,6 +2,9 @@ export default [
   {
     id: "yasai_vegetable",
     word: "やさい",
+    noun: "やさい",
+    hint: "や",
+
     kana: "ヤサイ",
     romaji: "ya sa i",
     sentence: "やさいを たべます",
@@ -11,6 +14,9 @@ export default [
   {
     id: "yama_mountain",
     word: "やま",
+    noun: "やま",
+    hint: "や",
+
     kana: "ヤマ",
     romaji: "ya ma",
     sentence: "やまに のぼります",
@@ -20,6 +26,9 @@ export default [
   {
     id: "yakyuu_baseball",
     word: "やきゅう",
+    noun: "やきゅう",
+    hint: "や",
+
     kana: "ヤキュウ",
     romaji: "ya kyu u",
     sentence: "やきゅうを します",
@@ -29,6 +38,9 @@ export default [
   {
     id: "yasumi_holiday",
     word: "やすみ",
+    noun: "やすみ",
+    hint: "や",
+
     kana: "ヤスミ",
     romaji: "ya su mi",
     sentence: "きょうは やすみです",
@@ -38,6 +50,9 @@ export default [
   {
     id: "yasui_cheap",
     word: "やすい",
+    noun: "-",
+    hint: "-",
+
     kana: "ヤスイ",
     romaji: "ya su i",
     sentence: "この ほんは やすいです",
@@ -47,6 +62,9 @@ export default [
   {
     id: "yakusoku_promise",
     word: "やくそく",
+    noun: "やくそく",
+    hint: "や",
+    
     kana: "ヤクソク",
     romaji: "ya ku so ku",
     sentence: "やくそくを します",

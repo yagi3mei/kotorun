@@ -2,6 +2,9 @@ export default [
   {
     id: "suicchi_switch",
     word: "スイッチ",
+    noun: "スイッチ",
+    hint: "ス",
+
     kana: "スイッチ",
     romaji: "su i cchi",
     sentence: "スイッチを おします",
@@ -12,6 +15,9 @@ export default [
   {
     id: "suutsu_suit",
     word: "スーツ",
+    noun: "-",
+    hint: "-",
+
     kana: "スーツ",
     romaji: "su u tsu",
     sentence: "スーツを きます",
@@ -22,6 +28,9 @@ export default [
   {
     id: "suupaa_super",
     word: "スーパー",
+    noun: "スーパー",
+    hint: "ス",
+
     kana: "スーパー",
     romaji: "su u pa a",
     sentence: "スーパーえ いきます",
@@ -32,6 +41,9 @@ export default [
   {
     id: "sukii_ski",
     word: "スキー",
+    noun: "スキー",
+    hint: "ス",
+
     kana: "スキー",
     romaji: "su ki i",
     sentence: "スキーを します",
@@ -42,6 +54,9 @@ export default [
   {
     id: "sppuun_spoon",
     word: "スプーン",
+    noun: "スプーン",
+    hint: "ス",
+
     kana: "スプーン",
     romaji: "su pu u n",
     sentence: "スプーンを つかいます",
@@ -52,6 +67,9 @@ export default [
   {
     id: "supootsu_sports",
     word: "スポーツ",
+    noun: "スポーツ",
+    hint: "ス",
+    
     kana: "スポーツ",
     romaji: "su po o tsu",
     sentence: "スポーツが すきです",

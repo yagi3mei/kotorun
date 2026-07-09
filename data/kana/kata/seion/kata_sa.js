@@ -2,6 +2,9 @@ export default [
   {
     id: "saabisu_service",
     word: "サービス",
+    noun: "-",
+    hint: "-",
+
     kana: "サービス",
     romaji: "sa a bi su",
     sentence: "サービスを します",
@@ -12,6 +15,9 @@ export default [
   {
     id: "saizu_size",
     word: "サイズ",
+    noun: "-",
+    hint: "-",
+
     kana: "サイズ",
     romaji: "sa i zu",
     sentence: "Ｍサイズです",
@@ -22,6 +28,9 @@ export default [
   {
     id: "sakkaa_soccer",
     word: "サッカー",
+    noun: "サッカー",
+    hint: "サ",
+
     kana: "サッカー",
     romaji: "sa kka a",
     sentence: "サッカーを します",
@@ -32,6 +41,9 @@ export default [
   {
     id: "sarariiman_salaryman",
     word: "サラリーマン",
+    noun: "-",
+    hint: "-",
+
     kana: "サラリーマン",
     romaji: "sa ra ri i ma n",
     sentence: "サラリーマンです",
@@ -42,6 +54,9 @@ export default [
   {
     id: "sandoicchi_sandwich",
     word: "サンドイッチ",
+    noun: "サンドイッチ",
+    hint: "サ",
+    
     kana: "サンドイッチ",
     romaji: "sa n do i cchi",
     sentence: "サンドイッチを たべます",

@@ -2,6 +2,9 @@ export default [
   {
     id: "kaado_card",
     word: "カード",
+    noun: "カード",
+    hint: "カ",
+
     kana: "カード",
     romaji: "ka a do",
     sentence: "カードで はらいます",
@@ -11,6 +14,9 @@ export default [
   {
     id: "katarogu_catalog",
     word: "カタログ",
+    noun: "カタログ",
+    hint: "カ",
+    
     kana: "カタログ",
     romaji: "ka ta ro gu",
     sentence: "カタログを みます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "kamera_camera",
     word: "カメラ",
+    noun: "カメラ",
+    hint: "カ",
+
     kana: "カメラ",
     romaji: "ka me ra",
     sentence: "カメラで とります",
@@ -29,6 +38,9 @@ export default [
   {
     id: "karaoke_karaoke",
     word: "カラオケ",
+    noun: "カラオケ",
+    hint: "カ",
+
     kana: "カラオケ",
     romaji: "ka ra o ke",
     sentence: "カラオケで うたいます",
@@ -38,6 +50,9 @@ export default [
   {
     id: "kareeraisu_curryrice",
     word: "カレーライス",
+    noun: "カレーライス",
+    hint: "カ",
+
     kana: "カレーライス",
     romaji: "ka re e ra i su",
     sentence: "カレーライスを たべます",

@@ -2,6 +2,9 @@ export default [
   {
     id: "mokuyoubi_thursday",
     word: "もくようび",
+    noun: "もくようび",
+    hint: "も",
+
     kana: "モクヨウビ",
     romaji: "mo ku yo u bi",
     sentence: "きょうは もくようびです",
@@ -11,6 +14,9 @@ export default [
   {
     id: "mochimasu_hold",
     word: "もちます",
+    noun: "-",
+    hint: "-",
+
     kana: "モチマス",
     romaji: "mo chi ma su",
     sentence: "かばんを もちます",
@@ -20,6 +26,9 @@ export default [
   {
     id: "moshimoshi_phone",
     word: "もしもし",
+    noun: "-",
+    hint: "-",
+
     kana: "モシモシ",
     romaji: "mo shi mo shi",
     sentence: "もしもし",
@@ -29,6 +38,9 @@ export default [
   {
     id: "mondai_question",
     word: "もんだい",
+    noun: "もんだい",
+    hint: "も",
+
     kana: "モンダイ",
     romaji: "mo n da i",
     sentence: "もんだいを ときます",
@@ -38,6 +50,9 @@ export default [
   {
     id: "momiji_leaf",
     word: "もみじ",
+    noun: "もみじ",
+    hint: "も",
+    
     kana: "モミジ",
     romaji: "mo mi ji",
     sentence: "もみじです",

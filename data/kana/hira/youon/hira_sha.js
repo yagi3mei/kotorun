@@ -2,6 +2,9 @@ export default [
   {
     id: "shain_employee",
     word: "しゃいん",
+    noun: "しゃいん",
+    hint: "しゃ",
+
     kana: "シャイン",
     romaji: "sha i n",
     sentence: "わたしわ しゃいんです",
@@ -12,6 +15,9 @@ export default [
   {
     id: "shashin_photo",
     word: "しゃしん",
+    noun: "しゃしん",
+    hint: "しゃ",
+
     kana: "シャシン",
     romaji: "sha shi n",
     sentence: "しゃしんを とります",
@@ -22,6 +28,9 @@ export default [
   {
     id: "shachou_president",
     word: "しゃちょう",
+    noun: "しゃちょう",
+    hint: "しゃ",
+    
     kana: "シャチョウ",
     romaji: "sha cho u",
     sentence: "しゃちょうわ いそがしいです",

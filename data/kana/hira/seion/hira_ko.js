@@ -2,6 +2,9 @@ export default [
   {
     id: "kouen_park",
     word: "こうえん",
+    noun: "こうえん",
+    hint: "こ",
+
     kana: "コウエン",
     romaji: "ko u e n",
     sentence: "こうえんで あそびます",
@@ -11,6 +14,9 @@ export default [
   {
     id: "kousaten_crossing",
     word: "こうさてん",
+    noun: "こうさてん",
+    hint: "こ",
+
     kana: "コウサテン",
     romaji: "ko u sa te n",
     sentence: "こうさてんを わたります",
@@ -20,6 +26,9 @@ export default [
   {
     id: "koucha_tea",
     word: "こうちゃ",
+    noun: "こうちゃ",
+    hint: "こ",
+
     kana: "コウチャ",
     romaji: "ko u cha",
     sentence: "こうちゃを のみます",
@@ -29,6 +38,9 @@ export default [
   {
     id: "koukou_school",
     word: "こうこう",
+    noun: "こうこう",
+    hint: "こ",
+
     kana: "コウコウ",
     romaji: "ko u ko u",
     sentence: "こうこうに いきます",
@@ -38,6 +50,9 @@ export default [
   {
     id: "kodomo_child",
     word: "こども",
+    noun: "こども",
+    hint: "こ",
+    
     kana: "コドモ",
     romaji: "ko do mo",
     sentence: "こどもが います",

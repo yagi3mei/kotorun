@@ -2,6 +2,9 @@ export default [
   {
     id: "ii_say",
     word: "いいます",
+    noun: "-",
+    hint: "-",
+
     kana: "イイマス",
     romaji: "i i ma su",
     sentence: "なまえを いいます",
@@ -11,6 +14,9 @@ export default [
   {
     id: "inu_dog",
     word: "いぬ",
+    noun: "いぬ",
+    hint: "い",
+
     kana: "イヌ",
     romaji: "i nu",
     sentence: "いぬが います",
@@ -20,6 +26,9 @@ export default [
   {
     id: "ireru_put",
     word: "いれます",
+    noun: "-",
+    hint: "-",
+
     kana: "イレマス",
     romaji: "i re ma su",
     sentence: "かばんに いれます",
@@ -29,6 +38,9 @@ export default [
   {
     id: "isha_doctor",
     word: "いしゃ",
+    noun: "いしゃ",
+    hint: "い",
+    
     kana: "イシャ",
     romaji: "i sha",
     sentence: "ちちわ いしゃです",
@@ -38,6 +50,9 @@ export default [
   {
     id: "isu_chair",
     word: "いす",
+    noun: "いす",
+    hint: "い",
+    
     kana: "イス",
     romaji: "i su",
     sentence: "いすに すわります",
@@ -47,6 +62,9 @@ export default [
   {
     id: "itai_pain",
     word: "いたい",
+    noun: "-",
+    hint: "-",
+    
     kana: "イタイ",
     romaji: "i ta i",
     sentence: "あたまが いたいです",

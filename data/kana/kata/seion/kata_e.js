@@ -2,6 +2,9 @@ export default [
   {
     id: "eakon_aircon",
     word: "エアコン",
+    noun: "エアコン",
+    hint: "エ",
+
     kana: "エアコン",
     romaji: "e a ko n",
     sentence: "エアコンを つけます",
@@ -11,6 +14,9 @@ export default [
   {
     id: "esukareta_escalator",
     word: "エスカレーター",
+    noun: "エスカレーター",
+    hint: "エ",
+
     kana: "エスカレーター",
     romaji: "e su ka re e ta a",
     sentence: "エスカレーターに のります",
@@ -20,6 +26,9 @@ export default [
   {
     id: "erebeta_elevator",
     word: "エレベーター",
+    noun: "エレベーター",
+    hint: "エ",
+
     kana: "エレベーター",
     romaji: "e re be e ta a",
     sentence: "エレベーターで いきます",
@@ -29,6 +38,9 @@ export default [
   {
     id: "enjinia_engineer",
     word: "エンジニア",
+    noun: "エンジニア",
+    hint: "エ",
+
     kana: "エンジニア",
     romaji: "e n ji ni a",
     sentence: "エンジニアです",

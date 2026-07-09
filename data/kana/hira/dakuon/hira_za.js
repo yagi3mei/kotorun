@@ -2,6 +2,9 @@ export default [
     {
         id: "zasshi_magazine",
         word: "ざっし",
+        noun: "ざっし",
+        hint: "ざ",
+
         kana: "ザッシ",
         romaji: "za sshi",
         sentence: "ざっしを よみます",
@@ -11,6 +14,9 @@ export default [
     {
         id: "zangyoushimasu_overtime_work",
         word: "ざんぎょうします",
+        noun: "ざんぎょう",
+        hint: "ざ",
+        
         kana: "ザンギョウシマス",
         romaji: "za n gyo u shi ma su",
         sentence: "きょうわ ざんぎょうします",
@@ -20,6 +26,9 @@ export default [
     {
         id: "zannendesune_thats_too_bad",
         word: "ざんねんですね",
+        noun: "ざんねん",
+        hint: "ざ",
+        
         kana: "ザンネンデスネ",
         romaji: "za n ne n de su ne",
         sentence: "それわ ざんねんですね",
