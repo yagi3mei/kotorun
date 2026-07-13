@@ -564,6 +564,26 @@ function nextQuestion() {
 
 
 /* =========================
+   ローカル日付文字列
+========================= */
+function formatLocalDate(date) {
+
+    const year = date.getFullYear();
+
+    const month = String(
+        date.getMonth() + 1
+    ).padStart(2, "0");
+
+    const day = String(
+        date.getDate()
+    ).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+/* =========================
    正解日付取得
 ========================= */
 function getAnswerDate() {
@@ -584,9 +604,11 @@ function getAnswerDate() {
         + question.offset
     );
 
-    return answerDate
-        .toISOString()
-        .split("T")[0];
+    return formatLocalDate(answerDate);
+    // 以下はUTCなのでローカル時間が成功すれば削除予定：07/13
+    // return answerDate
+    //     .toISOString()
+    //     .split("T")[0];
 
 }
 
@@ -617,9 +639,11 @@ function getWeekAnswer() {
     );
 
 
-    return answerWeek
-        .toISOString()
-        .split("T")[0];
+    return formatLocalDate(answerWeek);
+    // 以下はUTCなのでローカル時間が成功すれば削除予定：07/13
+    // return answerWeek
+    //     .toISOString()
+    //     .split("T")[0];
 
 }
 
@@ -981,8 +1005,11 @@ function renderDayCalendar() {
             date.getDate();
 
         const fullDate =
-            date.toISOString()
-                .split("T")[0];
+            formatLocalDate(date);
+        // 以下はUTCなのでローカル時間が成功すれば削除予定：07/13
+        // const fullDate =
+        //     date.toISOString()
+        //         .split("T")[0];
 
         html += `
             <button
@@ -1219,13 +1246,14 @@ function renderWeekButtons() {
         const endDay =
             weekEnd.getDate();
 
-
-        /* 判定用の日曜日 */
         const fullDate =
-            weekStart
-                .toISOString()
-                .split("T")[0];
-
+            formatLocalDate(weekStart);
+        // 以下はUTCなのでローカル時間が成功すれば削除予定：07/13
+        /* 判定用の日曜日 */
+        // const fullDate =
+        //     weekStart
+        //         .toISOString()
+        //         .split("T")[0];
 
         html += `
             <button
