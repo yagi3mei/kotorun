@@ -7,7 +7,8 @@
 //      Updated: 2026-05-17: かるたゲームからたんごかるたへ名称変更
 //      Updated: 2026-05-20: LocalStorageベスト記録保存・結果モーダル拡張対応
 //      Updated: 2026-06-05: google analytics イベント送信追加
-//
+//      Updated: 2026-07-24：kotobasagashi-game.htmlへのリンク追加
+// 
 //      Notes:
 //      - たんごかるたゲームの共通JavaScriptファイル
 //      - karuta-list.htmlからURLパラメータ（type, kana）を受け取りゲーム内容を切り替える
@@ -514,6 +515,20 @@ window.restartGame = function () {
 
   loadQuestion();
 
+};
+
+
+/* =====================
+ことばさがしへ
+===================== */
+window.goKotobasagashi = function ()
+{
+    location.href =
+        `kotobasagashi-game.html`
+        + `?type=${type}`
+        + `&group=${group}`
+        + `&kana=${kana}`
+        + `&label=${kanaLabel}`;
 };
 
 

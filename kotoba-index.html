@@ -3,6 +3,7 @@
      Purpose: ことばカテゴリの入口画面
      Author: やぎさん
      Created: 2026-05-27
+     Updated: 2026-07-24：kotobasagashi-game追加
 
      Notes:
      - ことばカテゴリのメニュー画面
@@ -36,27 +37,19 @@
 <body>
 
     <div class="header">
-
         <!-- ロゴ -->
         <header class="top-header">
-
             <a href="index.html">
-
                 <img src="images/kotorun-logo.png"
                      alt="ことラン"
                      class="app-logo">
-
             </a>
-
         </header>
 
         <button id="back-btn-top"
                 onclick="goBack()">
-
             もどる
-
         </button>
-
     </div>
 
     <!-- メニュー -->
@@ -66,99 +59,88 @@
 
         <!-- たんごかるた -->
         <button onclick="goKaruta()">
-
             たんごかるた<br>
-
             <small>
                 たべもの・どうぶつ・スポーツ…
             </small>
+        </button>
 
+        <!-- ことばさがし -->
+        <button onclick="goKotobasagashi()">
+            ことばさがし<br>
+            <small>
+                おぼえた ことばを さがそう！
+            </small>
         </button>
 
         <!-- かぞく -->
         <button onclick="goFamily()">
-
             かぞくゲーム<br>
-
             <small>
                 ちち・はは・おじさん…
             </small>
-
         </button>
 
         <!-- からだゲーム -->       
         <button onclick="goKarada()">
-
             からだゲーム<br>
-
             <small>
                 め・みみ・くち…
             </small>
-
         </button>  
-        
+
         <!-- くに・ちいきゲーム -->
         <button onclick="goCountry()">
-
             くに・ちいきゲーム<br>
-
             <small>
                 にほん・たいわん・ベトナム…
             </small>
-
         </button>
 
         <!-- 学習者向け説明 -->
         <small>
-
             ことばを おぼえる<br>
-
             にほんごゲームです。
-
         </small>
-
     </div>
 
     <script>
 
         // たんごかるた
         function goKaruta() {
-
             location.href =
                 "karuta-index.html";
+        }
 
+        // ことばさがし
+        function goKotobasagashi()
+        {
+            location.href =
+                "kotobasagashi-index.html";
         }
 
         // かぞく
         function goFamily() {
-
             location.href =
                 "family-index.html";
-
         }
 
         // からだ
         function goKarada() {
-
             location.href =
                 "karada-index.html";
-
         }
 
         // くに・ちいき
         function goCountry() {
-
             location.href =
                 "country-game.html";
-
         }
 
         // 戻る
         function goBack() {
-
             location.href =
                 "index.html";
-
         }
 
     </script>

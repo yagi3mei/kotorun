@@ -15,7 +15,7 @@ export default [
     id: "chikatetsu_subway",
     word: "ちかてつ",
     noun: "ちかてつ",
-    hint: "ちか",
+    hint: "ち",
     
     kana: "チカテツ",
     romaji: "chi ka te tsu",

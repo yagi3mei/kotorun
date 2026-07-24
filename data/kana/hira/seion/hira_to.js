@@ -2,6 +2,9 @@ export default [
   {
     id: "tokei_clock",
     word: "とけい",
+    noun: "とけい",
+    hint: "と",
+    
     kana: "トケイ",
     romaji: "to ke i",
     sentence: "とけいが あります",

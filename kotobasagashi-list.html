@@ -1,0 +1,286 @@
+<!-- =========================================
+     File: kotobasagashi-list.html
+     Purpose: ことばさがしゲームで使用する文字（かな）を選択する画面
+     Author: やぎさん
+     Created: 2026-07-14
+
+     Notes:
+     - 各ゲームモード（ひらがな・カタカナ）の文字を選択する画面
+     - URLパラメータ（type, group）を受け取り、表示内容を切り替える
+     - 選択した文字（kana）をURLパラメータとして次画面へ渡す
+     - 共通スタイルは common.css / layout.css を使用
+     - ページ専用スタイルは kana.css を使用
+========================================= -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ことばさがし一覧</title>
+    <!-- 共通 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <!-- ページ専用 -->
+    <link rel="stylesheet" href="css/kana.css">
+
+    <!-- Google Analytics -->
+    <script async
+        src="https://www.googletagmanager.com/gtag/js?id=G-B80JQLPCH4">
+    </script>
+
+    <script src="js/analytics.js"></script>
+
+</head>
+<body>
+    <div class="header">
+        <!-- ロゴ -->
+        <header class="top-header">
+            <a href="index.html">
+                <img src="images/kotorun-logo.png"
+                    alt="ことラン"
+                    class="app-logo">
+            </a>
+        </header>
+        <button id="back-btn-top" onclick="goBack()">
+            もどる
+        </button>
+    </div>
+
+    <h1>もじをえらんでね</h1>
+
+    <div id="kana-grid" class="kana-layout fixed"></div>
+
+    <script type="module">
+        // 学習対象データ（使用可能なかな一覧）
+        import list from "./data/system/list.js";
+
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get("type") || "hira";
+        const group = params.get("group") || "seion";
+
+        // 対象データ取得
+        const available = list[type][group];
+
+        // ひらがな清音
+        const hiraSeionList = [
+            { kana: "あ", key: "a" }, { kana: "い", key: "i" }, { kana: "う", key: "u" }, { kana: "え", key: "e" }, { kana: "お", key: "o" },
+            { kana: "か", key: "ka" }, { kana: "き", key: "ki" }, { kana: "く", key: "ku" }, { kana: "け", key: "ke" }, { kana: "こ", key: "ko" },
+            { kana: "さ", key: "sa" }, { kana: "し", key: "shi" }, { kana: "す", key: "su" }, { kana: "せ", key: "se" }, { kana: "そ", key: "so" },
+            { kana: "た", key: "ta" }, { kana: "ち", key: "chi" }, { kana: "つ", key: "tsu" }, { kana: "て", key: "te" }, { kana: "と", key: "to" },
+            { kana: "な", key: "na" }, { kana: "に", key: "ni" }, { kana: "ぬ", key: "nu" }, { kana: "ね", key: "ne" }, { kana: "の", key: "no" },
+            { kana: "は", key: "ha" }, { kana: "ひ", key: "hi" }, { kana: "ふ", key: "fu" }, { kana: "へ", key: "he" }, { kana: "ほ", key: "ho" },
+            { kana: "ま", key: "ma" }, { kana: "み", key: "mi" }, { kana: "む", key: "mu" }, { kana: "め", key: "me" }, { kana: "も", key: "mo" },
+            { kana: "や", key: "ya" }, { kana: "", key: "" }, { kana: "ゆ", key: "yu" }, { kana: "", key: "" }, { kana: "よ", key: "yo" },
+            { kana: "ら", key: "ra" }, { kana: "り", key: "ri" }, { kana: "る", key: "ru" }, { kana: "れ", key: "re" }, { kana: "ろ", key: "ro" },
+            { kana: "わ", key: "wa" }, { kana: "", key: "" }, { kana: "を", key: "wo" }, { kana: "", key: "" }, { kana: "ん", key: "n" }
+        ];
+
+        // ひらがな濁音
+        const hiraDakuonList = [
+            { kana: "が", key: "ga" }, { kana: "ぎ", key: "gi" }, { kana: "ぐ", key: "gu" }, { kana: "げ", key: "ge" }, { kana: "ご", key: "go" },
+            { kana: "ざ", key: "za" }, { kana: "じ", key: "ji" }, { kana: "ず", key: "zu" }, { kana: "ぜ", key: "ze" }, { kana: "ぞ", key: "zo" },
+            { kana: "だ", key: "da" }, { kana: "ぢ", key: "di" }, { kana: "づ", key: "du" }, { kana: "で", key: "de" }, { kana: "ど", key: "do" },
+            { kana: "ば", key: "ba" }, { kana: "び", key: "bi" }, { kana: "ぶ", key: "bu" }, { kana: "べ", key: "be" }, { kana: "ぼ", key: "bo" },
+            { kana: "ぱ", key: "pa" }, { kana: "ぴ", key: "pi" }, { kana: "ぷ", key: "pu" }, { kana: "ぺ", key: "pe" }, { kana: "ぽ", key: "po" }
+        ];       
+
+        const hiraYouonList = [
+            { kana: "きゃ", key: "kya" }, { kana: "", key: "" }, { kana: "きゅ", key: "kyu" }, { kana: "", key: "" }, { kana: "きょ", key: "kyo" },
+            { kana: "しゃ", key: "sha" }, { kana: "", key: "" }, { kana: "しゅ", key: "shu" }, { kana: "", key: "" }, { kana: "しょ", key: "sho" },
+            { kana: "ちゃ", key: "cha" }, { kana: "", key: "" }, { kana: "ちゅ", key: "chu" }, { kana: "", key: "" }, { kana: "ちょ", key: "cho" },
+            { kana: "にゃ", key: "nya" }, { kana: "", key: "" }, { kana: "にゅ", key: "nyu" }, { kana: "", key: "" }, { kana: "にょ", key: "nyo" },
+            { kana: "ひゃ", key: "hya" }, { kana: "", key: "" }, { kana: "ひゅ", key: "hyu" }, { kana: "", key: "" }, { kana: "ひょ", key: "hyo" },
+            { kana: "みゃ", key: "mya" }, { kana: "", key: "" }, { kana: "みゅ", key: "myu" }, { kana: "", key: "" }, { kana: "みょ", key: "myo" },
+            { kana: "りゃ", key: "rya" }, { kana: "", key: "" }, { kana: "りゅ", key: "ryu" }, { kana: "", key: "" }, { kana: "りょ", key: "ryo" },
+            { kana: "ぎゃ", key: "gya" }, { kana: "", key: "" }, { kana: "ぎゅ", key: "gyu" }, { kana: "", key: "" }, { kana: "ぎょ", key: "gyo" },
+            { kana: "じゃ", key: "ja" }, { kana: "", key: "" }, { kana: "じゅ", key: "ju" }, { kana: "", key: "" }, { kana: "じょ", key: "jo" },
+            { kana: "びゃ", key: "bya" }, { kana: "", key: "" }, { kana: "びゅ", key: "byu" }, { kana: "", key: "" }, { kana: "びょ", key: "byo" },
+            { kana: "ぴゃ", key: "pya" }, { kana: "", key: "" }, { kana: "ぴゅ", key: "pyu" }, { kana: "", key: "" }, { kana: "ぴょ", key: "pyo" },
+        ];
+
+        // ひらがなをカタカナに変換する関数
+        function toKatakana(str) {
+            return str.replace(/[ぁ-ん]/g, s =>
+                String.fromCharCode(s.charCodeAt(0) + 0x60)
+            );
+        }
+
+        // カタカナ清音はひらがな清音を変換して生成
+        const kataSeionList = hiraSeionList.map(item => ({
+            kana: item.kana ? toKatakana(item.kana) : "",
+            key: item.key
+        }));
+        // カタカナ濁音はひらがな濁音を変換して生成
+        const kataDakuonList = hiraDakuonList.map(item => ({
+            kana: item.kana ? toKatakana(item.kana) : "",
+            key: item.key
+        }));
+        // カタカナ拗音はひらがな拗音を変換して生成
+        // const kataYouonList = hiraYouonList.map(item => ({
+        //     kana: item.kana ? toKatakana(item.kana) : "",
+        //     key: item.key
+        // }));
+
+        let kanaList;
+
+        if (type === "hira" && group === "seion") {
+            kanaList = hiraSeionList;
+        } else if (type === "hira" && group === "dakuon") {
+            kanaList = hiraDakuonList;
+        } else if (type === "hira" && group === "youon") {
+            kanaList = hiraYouonList;
+        } else if (type === "kata" && group === "seion") {
+            kanaList = kataSeionList;
+        } else if (type === "kata" && group === "dakuon") {
+            kanaList = kataDakuonList;
+        // } else if (type === "kata" && group === "youon") {
+        //     kanaList = kataYouonList;
+        }
+
+        const grid = document.getElementById("kana-grid");
+
+        /* =====================
+            LocalStorageキー生成
+        ===================== */
+        function getStorageKey(type, group, kanaKey) {
+
+            return `${type}-${group}-${kanaKey}`;
+
+        }
+
+        /* =====================
+            共有かな変換
+        ===================== */
+        function getSharedKanaKey(type, key) {
+
+            /* ひらがな共有 */
+            if (type === "hira") {
+
+                const hiraMap = {
+
+                    // 清音
+                    re: "ra",
+
+                    // 濁音
+                    gi: "ga",
+                    bi: "ba",
+                    bo: "be",
+
+                    // 拗音
+                    kyo: "kyu",
+                    cho: "chu",
+                    ryo: "ryu",
+                    ju: "gyu",
+
+                };
+
+                return hiraMap[key] || key;
+            }
+
+
+            /* カタカナ共有 */
+            if (type === "kata") {
+
+                const kataMap = {
+
+                    // 清音グループ
+                    ke: "ku", ko: "ku",
+                    so: "se",
+                    chi: "ta",
+                    to: "te",
+                    ni: "na", ne: "na", no: "na",
+                    fu: "ha", ho: "ha",
+                    me: "mi",
+                    re: "ra", ro: "ra",
+
+                    // カタカナ濁音
+                    go: "gu", ji: "gu",
+                    de: "da", do: "da",
+                    bi: "ba", be: "ba", bo: "ba",
+                    pu: "pi", po: "pi",
+
+                };
+
+                return kataMap[key] || key;
+            }
+
+
+            return key;
+
+        }
+
+        /* ★追加：レイアウト切り替え */
+        if (group === "seion" || type === "kata") {
+            grid.classList.add("fixed");  // 五十音フル
+        } else {
+            grid.classList.add("auto");   // 濁音など
+        }
+
+        // かなタイルを動的生成
+        kanaList.forEach(item => {
+            const btn = document.createElement("div");
+
+            // ★変更：クラス統一
+            btn.className = "kana-item";
+
+            // 空マス
+            if (!item.key) {
+                btn.classList.add("empty");
+                grid.appendChild(btn);
+                return;
+            }
+
+            btn.textContent = item.kana;
+
+            /* =====================
+                実施済みチェック
+            ===================== */
+
+            const scores =
+                JSON.parse(
+                    localStorage.getItem("kotorun-score")
+                ) || {};
+
+            const kotobasagashiScores =
+                scores.kotobasagashi || {};
+
+            const storageKey =
+                getStorageKey(
+                    type,
+                    group,
+                    getSharedKanaKey(type, item.key)
+                );
+
+            if (kotobasagashiScores[storageKey]) {
+
+                btn.classList.add("completed");
+            }
+
+            /* =====================
+                クリックイベント設定（次のページへの引継ぎ）
+            ===================== */
+            if (available.includes(item.key)) {
+                btn.onclick = () => {
+
+                const targetKana =
+                    getSharedKanaKey(type, item.key);
+
+                    location.href =
+                    `kotobasagashi-game.html?type=${type}&group=${group}&kana=${targetKana}&label=${item.kana}`;
+                };
+            } else {
+                btn.classList.add("disabled");
+            }
+
+            grid.appendChild(btn);
+        });
+
+        // 前の画面に戻る（履歴ベース）
+        window.goBack = function () {
+            location.href="kotobasagashi-index.html";
+        };
+
+    </script>
+
+</body>
+</html>

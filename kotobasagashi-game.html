@@ -1,34 +1,31 @@
 <!-- =========================================
-     File: karuta-game.html
-     Purpose: かるた（ひらがな・カタカナ）ゲームの共通プレイ画面
+     File: kotobasagashi-game.html
+     Purpose: ことばさがし（ひらがな・カタカナ）ゲームの共通プレイ画面
      Author: やぎさん
-     Created: 2026-04-09
-     Updated: 2026-04-30：css分割
-     Updated: 2026-05-20：LocalStorageにベストスコア保存機能追加
-     Updated: 2026-07-24：kotobasagashi-game.htmlへのリンク追加
+     Created: 2026-07-14
 
      Notes:
-     - 問題表示・回答入力・結果表示を行う共通ゲーム画面
+     - 問題表示・文字選択・結果表示を行う共通ゲーム画面
      - URLパラメータ（type, kana）に応じて問題内容を切り替える
      - 問題音声はボタンで再生（音声合成）
      - 正解時及びミス時に効果音を再生
      - 共通スタイル: common.css / layout.css
      - ゲームUI: game.css
-     - かるた専用: karuta.css
+     - ことばさがし専用: kotobasagashi.css
 ========================================= -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>たんごかるた</title>
+    <title>ことばさがし</title>
     <!-- 共通 -->
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/layout.css">
     <!-- ゲーム系 -->
     <link rel="stylesheet" href="css/game.css">
     <!-- ページ専用 -->
-    <link rel="stylesheet" href="css/karuta.css">
+    <link rel="stylesheet" href="css/kotobasagashi.css">
 
     <!-- Google Analytics -->
     <script async
@@ -56,24 +53,63 @@
     </div>
 
     <!-- 問題表示エリア -->
-    <div class="question-area">
-          <div id="romaji-display">もんだい</div>
-          <button id="sound-btn">🔊</button>
+    <div class="question-wrapper">
+        <div class="question-area">
+            <div id="questionText">
+                これは？
+            </div>
+            <button id="sound-btn">
+                🔊
+            </button>
+        </div>
+        <!-- ヒント（最初の文字）表示 -->
+        <div id="hintText" class="hint-link">
+            💡ヒント：
+            <span id="hintValue"></span>
+        </div>
     </div>
 
-    <!-- カード表示エリア -->
-    <div id="cards"></div>
+    <!-- イメージエリア -->
+    <div class="image-container">
 
-    <!-- もどるボタン -->
+        <img
+            id="questionImage"
+            src=""
+            alt=""
+        >
+
+    </div>
+
+    <!-- 単語グリッド -->
+    <div id="word-grid"
+        class="word-grid">
+
+    </div>
+
+    <!-- 確認ボタン -->
+    <div class="check-area">
+        <button id="check-btn">
+            かくにん
+        </button>
+    </div>
+
     <div class="button-area">
-        <button id="back-btn" onclick="goBack()">もどる</button>
+
+        <button
+            id="back-btn"
+            onclick="goBack()">
+
+            もどる
+
+        </button>
+
     </div>
 
     
     <!-- 結果モーダル --> 
     <div id="result-modal" class="modal hidden">
         <div class="modal-content">
-            <h2>たんごかるた　けっか</h2>
+            <h2>ことばさがし　けっか</h2>
 
             <!-- ゲーム情報 -->
             <p id="game-type-label"></p>
@@ -99,9 +135,9 @@
             
             <!-- 今回の単語 -->
             <p>
-                ＜こんかいのたんご＞
+                ＜まちがえたもんだい＞
             </p>
-            <div id="word-list-area"
+            <div id="wrong-list-area"
                 class="word-list-scroll">
             </div>
 
@@ -109,8 +145,8 @@
                 もういちど
             </button>
 
-            <button onclick="goKotobasagashi()">
-                ことばさがしへ
+            <button onclick="goKaruta()">
+                たんごかるたへ
             </button>
             
             <button onclick="goBack()">
@@ -119,8 +155,13 @@
         </div>
     </div>
 
+    <audio
+        id="sound-wrong"
+        src="sounds/wrong.mp3">
+    </audio>
+
     <!-- ゲームロジック -->
-    <script type="module" src="js/karuta-game.js"></script>
+    <script type="module" src="js/kotobasagashi-game.js"></script>
 
 </body>
 </html>

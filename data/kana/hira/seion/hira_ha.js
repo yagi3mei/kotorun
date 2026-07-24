@@ -16,6 +16,7 @@ export default [
     word: "はし（箸）",
     noun: "はし",
     hint: "は",
+    speech: "箸",
     
     kana: "ハシ",
     romaji: "ha shi",
@@ -28,6 +29,7 @@ export default [
     word: "はし（橋）",
     noun: "はし",
     hint: "は",
+    speech: "橋",
     
     kana: "ハシ",
     romaji: "ha shi",
