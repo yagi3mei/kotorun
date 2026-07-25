@@ -110,6 +110,16 @@
     margin-bottom: 15px;
 }
 
+.game-tree a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.game-tree a:hover {
+    text-decoration: underline;
+}
+
+
 /* =====================
    トップおしらせ
 ===================== */
