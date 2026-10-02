@@ -1,0 +1,111 @@
+
+<!-- =========================================
+     File: bunpou-index.html
+     Purpose: 文法カテゴリの入口画面
+     Author: やぎさん
+     Created: 2026-10-02
+
+     Notes:
+     - 文法カテゴリのメニュー画面
+     - 現在はどうしゲームのみ
+========================================= -->
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ぶんぽう</title>
+
+    <!-- 共通 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+    <!-- Google Analytics -->
+    <script async
+        src="https://www.googletagmanager.com/gtag/js?id=G-B80JQLPCH4">
+    </script>
+
+    <script src="js/analytics.js"></script>
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        <!-- ロゴ -->
+        <header class="top-header">
+
+            <a href="index.html">
+
+                <img src="images/kotorun-logo.png"
+                     alt="ことラン"
+                     class="app-logo">
+
+            </a>
+
+        </header>
+
+        <button id="back-btn-top"
+                onclick="goBack()">
+
+            もどる
+
+        </button>
+
+    </div>
+
+    <!-- メニュー -->
+    <div class="menu">
+
+        <h1>ぶんぽう</h1>
+
+        <!-- どうしゲーム -->
+        <button onclick="goDoushiGame()">
+
+            どうしゲーム<br>
+
+            <small>
+                どうしの かたちを れんしゅう
+            </small>
+
+        </button>
+
+        <!-- 学習者向け説明 -->
+        <small>
+
+            にほんごの ぶんぽうを<br>
+
+            れんしゅうする ゲームです。
+
+        </small>
+
+    </div>
+
+    <script>
+
+        // どうしゲームへ
+        function goDoushiGame() {
+
+            location.href =
+                "doushi-index.html";
+
+        }
+
+        // 戻る
+        function goBack() {
+
+            location.href =
+                "index.html";
+
+        }
+
+    </script>
+
+</body>
+</html>

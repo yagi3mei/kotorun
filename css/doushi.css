@@ -1,0 +1,289 @@
+/* =====================================
+   動詞ゲーム
+   doushi.css
+===================================== */
+
+
+/* =========================
+   ゲーム画面全体
+========================= */
+
+body {
+
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================
+   イラスト
+========================= */
+
+.image-container {
+
+    position: relative;
+
+    width: 100%;
+    max-width: 360px;
+
+    margin: 0 auto 12px;
+
+    box-sizing: border-box;
+
+}
+
+#verbImage {
+
+    width: 100%;
+    height: auto;
+
+    display: block;
+
+}
+
+
+/* =========================
+   問題表示
+========================= */
+
+.question-area {
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 12px;
+
+}
+
+#questionText {
+
+    color: red;
+
+    font-size: 1.4rem;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================
+   スピーカーボタン
+========================= */
+
+#sound-btn, #sentence-sound-btn {
+
+    border: none;
+
+    background: none;
+
+    font-size: 1.4rem;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================
+   設問文
+========================= */
+
+.sentence-area {
+
+    width: 100%;
+
+    max-width: 400px;
+
+    margin: 0 auto 14px;
+
+    padding: 0 10px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    font-size: 1.25rem;
+
+    font-weight: bold;
+
+    line-height: 1.5;
+
+}
+
+
+/* 設問文の動詞部分 */
+.verb-blue {
+    color: blue;
+}
+
+
+/* 読み仮名 */
+
+.sentence-reading {
+
+    display: block;
+
+    color: black;
+
+    font-size: 1rem;
+
+    font-weight: normal;
+
+}
+
+
+/* =========================
+   正解
+========================= */
+.answer-display {
+    min-height: 2.8em;
+    margin: 8px 0;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+/* =========================
+   選択肢
+========================= */
+
+.choices-area {
+
+    width: 100%;
+
+    max-width: 400px;
+
+    margin: 0 auto;
+
+    padding: 0 10px;
+
+    box-sizing: border-box;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+}
+
+
+.choice-button {
+
+    min-height: 52px;
+
+    padding: 8px 6px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 12px;
+
+    background-color: white;
+
+    font-size: 1.25rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================
+    正解時の選択肢処理
+========================= */
+.choice-button.correct {
+    background-color: #90ee90;
+}
+
+
+/* =========================
+   戻るボタン
+========================= */
+
+.button-area {
+
+    margin-top: 14px;
+
+    text-align: center;
+
+}
+
+
+/* =========================
+   スマートフォン
+========================= */
+
+@media (max-width: 480px) {
+
+    body {
+
+        width: 100%;
+
+        max-width: 100%;
+
+        margin: 0;
+
+        padding: 0 8px;
+
+        box-sizing: border-box;
+
+    }
+
+
+    .image-container {
+
+        width: 100%;
+
+        max-width: 300px;
+
+        margin-left: auto;
+
+        margin-right: auto;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    #questionText {
+
+        font-size: 1.25rem;
+
+    }
+
+
+    .sentence-area {
+
+        font-size: 1.15rem;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .sentence-reading {
+
+        font-size: 0.9rem;
+
+    }
+
+
+    .choice-button {
+
+        min-height: 48px;
+
+        font-size: 1.15rem;
+
+        border-radius: 10px;
+
+    }
+
+}

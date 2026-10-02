@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>動詞ゲーム</title>
+
+    <!-- 共通 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+    <!-- ゲーム系 -->
+    <link rel="stylesheet" href="css/game.css">
+
+    <!-- 動詞ゲーム専用 -->
+    <link rel="stylesheet" href="css/doushi.css">
+
+    <!-- Google Analytics -->
+    <script async
+        src="https://www.googletagmanager.com/gtag/js?id=G-B80JQLPCH4">
+    </script>
+
+    <script src="js/analytics.js"></script>
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        <!-- ロゴ -->
+        <header class="top-header">
+
+            <a href="index.html">
+
+                <img
+                    src="images/kotorun-logo.png"
+                    alt="ことラン"
+                    class="app-logo">
+
+            </a>
+
+        </header>
+
+        <!-- ステータス表示 -->
+        <div id="timer-display">
+            0.00
+        </div>
+
+        <div id="remaining-display">
+            のこり：10
+        </div>
+
+        <div id="miss-display">
+            ミス：0
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+        問題
+    ===================================== -->
+
+    <div class="question-area">
+
+        <div id="questionText"></div>
+
+        <button id="sound-btn">
+            🔊
+        </button>
+
+    </div>
+
+
+    <!-- =====================================
+        イラスト
+    ===================================== -->
+
+    <div class="image-container">
+
+        <img
+            id="verbImage"
+            src=""
+            alt="">
+
+    </div>
+
+
+    <!-- =====================================
+        設問文
+    ===================================== -->
+
+    <div class="sentence-area">
+
+        <span class="sentence-part1"></span>
+
+        <span class="sentence-part2"></span>
+
+        <button id="sentence-sound-btn">
+            🔊
+        </button>
+
+        <span class="sentence-reading"></span>
+
+        <span class="sentence-part3"></span>
+
+    </div>
+
+
+    <!-- =====================================
+        正解表示
+    ===================================== -->
+
+    <div id="answer-display" class="answer-display"></div>
+
+
+    <!-- =====================================
+        選択肢
+    ===================================== -->
+
+    <div
+        id="choicesContainer"
+        class="choices-area">
+    </div>
+
+
+    <!-- =====================================
+        戻るボタン
+    ===================================== -->
+
+    <div class="button-area">
+
+        <button
+            id="back-btn"
+            onclick="goBack()">
+
+            もどる
+
+        </button>
+
+    </div>
+
+
+    <!-- 結果モーダル -->
+    <div id="result-modal" class="modal hidden">
+        <div class="modal-content">
+
+            <h2>どうし かつようゲーム けっか</h2>
+
+            <p id="game-type-label">
+                【あ で はじまる どうし】
+            </p>
+
+            <p id="date-time"></p>
+
+            <!-- 今回結果 -->
+            <p id="final-time"></p>
+
+            <p id="miss-result"></p>
+
+            <hr>
+
+            <!-- ベスト表示 -->
+            <p id="best-score-label">
+                あなたのベストきろく
+            </p>
+
+            <p id="best-message"></p>
+            <p id="best-date"></p>
+            <p id="best-miss"></p>
+            <p id="best-time"></p>
+
+            <hr>
+
+            <!-- 間違えた問題 -->
+            <h3>まちがえた　どうし</h3>
+
+            <div id="wrong-list" class="word-list-scroll"></div>
+
+            <div class="modal-buttons">
+                <button onclick="restartGame()">もういちど</button>
+                <button onclick="goMenu()">メニューへ</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ミス音 -->
+    <audio id="sound-wrong"
+           src="sounds/wrong.mp3">
+    </audio>
+
+
+    <script type="module" src="js/doushi-game.js"></script>
+</body>
+</html>

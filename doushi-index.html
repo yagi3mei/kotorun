@@ -1,0 +1,116 @@
+
+<!-- =========================================
+     File: doushi-index.html
+     Purpose: 動詞活用ゲームの入口画面
+     Author: やぎさん
+     Created: 2026-10-01
+
+     Notes:
+     - 動詞活用ゲームのメニュー画面
+========================================= -->
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>どうしゲーム</title>
+
+    <link rel="stylesheet"
+        href="css/common.css">
+
+    <link rel="stylesheet"
+        href="css/layout.css">
+
+    <!-- Google Analytics -->
+    <script async
+        src="https://www.googletagmanager.com/gtag/js?id=G-B80JQLPCH4">
+    </script>
+
+    <script src="js/analytics.js"></script>
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        <!-- ロゴ -->
+        <header class="top-header">
+
+            <a href="index.html">
+
+                <img src="images/kotorun-logo.png"
+                    alt="ことラン"
+                    class="app-logo">
+
+            </a>
+
+        </header>
+
+        <!-- もどる -->
+        <button id="back-btn-top"
+                onclick="goBack()">
+
+            もどる
+
+        </button>
+
+    </div>
+
+    <div class="menu">
+
+        <h1>どうしゲーム</h1>
+
+        <!-- みんなの日本語 初級Ⅰ -->
+        <button
+            onclick="goGame('I')">
+
+            どうし　みんなの日本語 初級Ⅰ<br>
+
+            <small>
+                辞書形・て形・た形・ない形・たら形・たり形
+            </small>
+
+        </button>
+
+        <!-- みんなの日本語 初級Ⅱ -->
+        <button
+            disabled>
+
+            どうし　みんなの日本語 初級Ⅱ<br>
+
+            <small>
+                準備中
+            </small>
+
+        </button>
+
+    </div>
+
+    <script>
+
+        function goGame(level)
+        {
+            location.href =
+                "doushi-subindex.html?level="
+                + level;
+        }
+
+        function goBack()
+        {
+            location.href =
+                "bunpou-index.html";
+        }
+
+    </script>
+
+</body>
+
+</html>

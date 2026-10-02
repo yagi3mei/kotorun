@@ -1,0 +1,387 @@
+
+<!-- =========================================
+     File: doushi-subindex.html
+     Purpose: 動詞活用ゲームのモード・文字選択画面
+     Author: やぎさん
+========================================= -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>どうし活用　文字選択</title>
+
+    <!-- 共通CSS -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+    <!-- かな一覧用CSS -->
+    <link rel="stylesheet" href="css/kana.css">
+
+    <style>
+        /* ページ見出し */
+        h1 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* =========================
+        モード選択
+        ========================= */
+        .mode-area {
+            margin: 8px auto 10px;
+            text-align: center;
+        }
+
+        .mode-title {
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .mode-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .mode-button {
+            min-width: 110px;
+            padding: 5px 14px;
+            border: 2px solid #aaa;
+            border-radius: 10px;
+            background-color: white;
+            color: #333;
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 1.2;
+            cursor: pointer;
+        }
+
+        .mode-button.selected {
+            border-color: #2196f3;
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+
+        /* =========================
+        文字選択見出し
+        ========================= */
+        .kana-title {
+            margin: 8px 0 6px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        /* =========================
+        利用できない文字のマスク
+        ========================= */
+        .kana-item.masked {
+            background-color: #e0e0e0;
+            color: #999;
+            opacity: 0.55;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         ヘッダー
+    ========================= -->
+    <div class="header">
+
+        <header class="top-header">
+            <a href="index.html">
+                <img src="images/kotorun-logo.png"
+                     alt="ことラン"
+                     class="app-logo">
+            </a>
+        </header>
+
+        <button id="back-btn-top" onclick="goBack()">
+            もどる
+        </button>
+
+    </div>
+
+
+    <h1>どうし活用ゲーム</h1>
+
+
+    <!-- =========================
+         モード選択
+    ========================= -->
+    <div class="mode-area">
+
+        <div class="mode-title">
+            れんしゅう方法をえらんでね
+        </div>
+
+        <div class="mode-buttons">
+
+            <button
+                id="normal-btn"
+                class="mode-button selected"
+                type="button">
+                ふつう
+            </button>
+
+            <button
+                id="random-btn"
+                class="mode-button"
+                type="button">
+                ランダム
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         50音表
+    ========================= -->
+    <div class="kana-title">
+        もじをえらんでね
+    </div>
+
+    <div id="kana-grid" class="kana-layout fixed"></div>
+
+
+    <!-- =========================
+         JavaScript
+    ========================= -->
+    <script type="module">
+
+        /* =========================
+           設問有りの文字の読み込み
+        ========================= */
+
+        import availableKana from "./data/system/doushi-list-shokyu1.js";
+
+
+        /* =========================
+           練習モード
+        ========================= */
+
+        let selectedMode = "normal";
+
+        const normalBtn =
+            document.getElementById("normal-btn");
+
+        const randomBtn =
+            document.getElementById("random-btn");
+
+
+        function selectMode(mode) {
+
+            selectedMode = mode;
+
+            normalBtn.classList.toggle(
+                "selected",
+                mode === "normal"
+            );
+
+            randomBtn.classList.toggle(
+                "selected",
+                mode === "random"
+            );
+
+            updateCompletedCards();
+        }
+
+
+        normalBtn.addEventListener("click", () => {
+            selectMode("normal");
+        });
+
+        randomBtn.addEventListener("click", () => {
+            selectMode("random");
+        });
+
+
+        /* =========================
+           ひらがな清音
+        ========================= */
+
+        const hiraSeionList = [
+            { kana: "あ", key: "a" },
+            { kana: "い", key: "i" },
+            { kana: "う", key: "u" },
+            { kana: "え", key: "e" },
+            { kana: "お", key: "o" },
+
+            { kana: "か", key: "ka" },
+            { kana: "き", key: "ki" },
+            { kana: "く", key: "ku" },
+            { kana: "け", key: "ke" },
+            { kana: "こ", key: "ko" },
+
+            { kana: "さ", key: "sa" },
+            { kana: "し", key: "shi" },
+            { kana: "す", key: "su" },
+            { kana: "せ", key: "se" },
+            { kana: "そ", key: "so" },
+
+            { kana: "た", key: "ta" },
+            { kana: "ち", key: "chi" },
+            { kana: "つ", key: "tsu" },
+            { kana: "て", key: "te" },
+            { kana: "と", key: "to" },
+
+            { kana: "な", key: "na" },
+            { kana: "に", key: "ni" },
+            { kana: "ぬ", key: "nu" },
+            { kana: "ね", key: "ne" },
+            { kana: "の", key: "no" },
+
+            { kana: "は", key: "ha" },
+            { kana: "ひ", key: "hi" },
+            { kana: "ふ", key: "fu" },
+            { kana: "へ", key: "he" },
+            { kana: "ほ", key: "ho" },
+
+            { kana: "ま", key: "ma" },
+            { kana: "み", key: "mi" },
+            { kana: "む", key: "mu" },
+            { kana: "め", key: "me" },
+            { kana: "も", key: "mo" },
+
+            { kana: "や", key: "ya" },
+            { kana: "", key: "" },
+            { kana: "ゆ", key: "yu" },
+            { kana: "", key: "" },
+            { kana: "よ", key: "yo" },
+
+            { kana: "ら", key: "ra" },
+            { kana: "り", key: "ri" },
+            { kana: "る", key: "ru" },
+            { kana: "れ", key: "re" },
+            { kana: "ろ", key: "ro" },
+
+            { kana: "わ", key: "wa" },
+            { kana: "", key: "" },
+            { kana: "を", key: "wo" },
+            { kana: "", key: "" },
+            { kana: "ん", key: "n" }
+        ];
+
+
+        /* =========================
+           50音表の生成
+        ========================= */
+
+        const grid =
+            document.getElementById("kana-grid");
+
+        /* =========================
+        実施済みチェック
+        ========================= */
+
+        // 文字ボタンを保存
+        const kanaButtons = new Map();
+
+        // 選択中のモードに応じて緑色表示を更新
+        function updateCompletedCards() {
+
+            const scores =
+                JSON.parse(
+                    localStorage.getItem("kotorun-score")
+                ) || {};
+
+            const modeScores =
+                scores[`doushi_${selectedMode}`] || {};
+
+            kanaButtons.forEach((btn, key) => {
+
+                if (modeScores[key]) {
+                    btn.classList.add("completed");
+                } else {
+                    btn.classList.remove("completed");
+                }
+
+            });
+        }
+
+        hiraSeionList.forEach(item => {
+
+            const btn =
+                document.createElement("div");
+
+            btn.className = "kana-item";
+
+
+            // 空マス
+            if (!item.key) {
+
+                btn.classList.add("empty");
+
+                grid.appendChild(btn);
+
+                return;
+            }
+
+
+            btn.textContent = item.kana;
+
+            // ボタンを登録
+            kanaButtons.set(item.key, btn);
+
+            /* =====================
+            利用できない文字
+            ===================== */
+
+            if (!availableKana.includes(item.key)) {
+
+                btn.classList.add("masked");
+
+                grid.appendChild(btn);
+
+                return;
+            }
+
+
+            /* =====================
+            文字選択
+            ===================== */
+
+            btn.addEventListener("click", () => {
+
+                const params =
+                    new URLSearchParams();
+
+                params.set("mode", selectedMode);
+                params.set("kana", item.key);
+
+                location.href =
+                    `doushi-game.html?${params.toString()}`;
+
+            });
+
+
+            grid.appendChild(btn);
+
+        });
+
+        updateCompletedCards();
+        
+        /* =========================
+           戻るボタン
+        ========================= */
+
+        window.goBack = function () {
+
+            location.href = "doushi-index.html";
+
+        };
+
+    </script>
+
+</body>
+</html>
