@@ -27,7 +27,8 @@ body {
 
     position: relative;
 
-    width: 100%;
+    width: 50%;
+    
     max-width: 360px;
 
     margin: 0 auto 12px;
@@ -121,6 +122,10 @@ body {
 /* 設問文の動詞部分 */
 .verb-blue {
     color: blue;
+    font-size: 1.15em;
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 
@@ -147,7 +152,9 @@ body {
     margin: 8px 0;
     text-align: center;
     color: red;
+    font-size: 1.4rem;
     font-weight: bold;
+    line-height: 1.5;
 }
 
 /* =========================
@@ -240,7 +247,7 @@ body {
 
     .image-container {
 
-        width: 100%;
+        width: 70%;
 
         max-width: 300px;
 
@@ -275,6 +282,9 @@ body {
 
     }
 
+    .answer-display {
+        font-size: 1.25rem;
+    }
 
     .choice-button {
 
