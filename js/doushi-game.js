@@ -2,17 +2,13 @@
 import verbChoiceData from "../data/verb/verb-choice-data.js";
 import { saveScore, getScore } from "../js/storage.js";
 
-// =====================================
-// URLパラメータ
-// =====================================
-
 const params = new URLSearchParams(location.search);
 
 const mode = params.get("mode") || "normal";
-const kana = params.get("kana") || "a";
+const kana = params.get("kana") || "a1";
 
 // ファイル名に使える文字を確認
-const validKana = /^[a-z]+$/;
+const validKana = /^[a-z]+\d*$/;
 
 if (!validKana.test(kana)) {
     throw new Error("不正な文字が指定されています。");
