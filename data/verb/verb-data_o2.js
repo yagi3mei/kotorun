@@ -58,7 +58,7 @@ export default [
     question1: "日本語は難しいと",
     question2: "思います",
     question3: "（にほんごはむずかしいとおもいます）",
-    questionSpeech: "にほんごはむずかしいとおもいます",
+    questionSpeech: "にほんごわむずかしいとおもいます",
 
     stem: "思い",
     image: "omoimasu.png",

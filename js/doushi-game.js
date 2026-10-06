@@ -75,27 +75,27 @@ let currentQuestion = verb[questionType];
 const questionNames = {
     te: {
         display: "て形は？",
-        speech: "てけいは"
+        speech: "てけいわ"
     },
     ta: {
         display: "た形は？",
-        speech: "たけいは"
+        speech: "たけいわ"
     },
     dictionary: {
         display: "辞書（じしょ）形は？",
-        speech: "じしょけいは"
+        speech: "じしょけいわ"
     },
     nai: {
         display: "ない形は？",
-        speech: "ないけいは"
+        speech: "ないけいわ"
     },
     tara: {
         display: "たら形は？",
-        speech: "たらけいは"
+        speech: "たらけいわ"
     },
     tari: {
         display: "たり形は？",
-        speech: "たりけいは"
+        speech: "たりけいわ"
     },
 };
 
