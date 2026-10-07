@@ -3,9 +3,9 @@ export default [
     masu: "入れます",
     reading: "いれます",
 
-    question1: "箱に",
+    question1: "箱に\u00A0",
     question2: "入れます",
-    question3: "（はこにいれます）",
+    question3: "（はこに いれます）",
     questionSpeech: "はこにいれます",
 
     stem: "入れ",
@@ -55,9 +55,9 @@ export default [
     masu: "要ります",
     reading: "いります",
 
-    question1: "お金が",
+    question1: "お金が\u00A0",
     question2: "要ります",
-    question3: "（おかねがいります）",
+    question3: "（おかねが いります）",
     questionSpeech: "おかねがいります",
 
     stem: "要",
@@ -107,9 +107,9 @@ export default [
     masu: "言います",
     reading: "いいます",
 
-    question1: "名前を",
+    question1: "名前を\u00A0",
     question2: "言います",
-    question3: "（なまえをいいます）",
+    question3: "（なまえを いいます）",
     questionSpeech: "なまえをいいます",
 
     stem: "言",

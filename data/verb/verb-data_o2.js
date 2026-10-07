@@ -3,9 +3,9 @@ export default [
     masu: "降ります",
     reading: "おります",
 
-    question1: "電車を",
+    question1: "電車を\u00A0",
     question2: "降ります",
-    question3: "（でんしゃをおります）",
+    question3: "（でんしゃを おります）",
     questionSpeech: "でんしゃをおります",
 
     stem: "降り",
@@ -55,9 +55,9 @@ export default [
     masu: "思います",
     reading: "おもいます",
 
-    question1: "日本語は難しいと",
+    question1: "日本語は\u00A0難しいと\u00A0",
     question2: "思います",
-    question3: "（にほんごはむずかしいとおもいます）",
+    question3: "（にほんごは\u00A0むずかしいと\u00A0おもいます）",
     questionSpeech: "にほんごわむずかしいとおもいます",
 
     stem: "思い",
@@ -107,9 +107,9 @@ export default [
     masu: "送ります",
     reading: "おくります",
 
-    question1: "荷物を",
+    question1: "荷物を\u00A0",
     question2: "送ります",
-    question3: "（にもつをおくります）",
+    question3: "（にもつを おくります）",
     questionSpeech: "にもつをおくります",
 
     stem: "送り",

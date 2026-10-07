@@ -3,10 +3,10 @@ export default [
     masu: "帰ります",
     reading: "かえります",
 
-    question1: "家へ",
+    question1: "家へ\u00A0",
     question2: "帰ります",
-    question3: "（いえへかえります）",
-    questionSpeech: "いえへかえります",
+    question3: "（いえへ かえります）",
+    questionSpeech: "いええかえります",
 
     stem: "帰",
     image: "kaerimasu.png",
@@ -55,9 +55,9 @@ export default [
     masu: "買います",
     reading: "かいます",
 
-    question1: "新聞を",
+    question1: "新聞を\u00A0",
     question2: "買います",
-    question3: "（しんぶんをかいます）",
+    question3: "（しんぶんを かいます）",
     questionSpeech: "しんぶんをかいます",
 
     stem: "買",
@@ -107,9 +107,9 @@ export default [
     masu: "書きます",
     reading: "かきます",
 
-    question1: "手紙を",
+    question1: "手紙を\u00A0",
     question2: "書きます",
-    question3: "（てがみをかきます）",
+    question3: "（てがみを かきます）",
     questionSpeech: "てがみをかきます",
 
     stem: "書",
@@ -159,9 +159,9 @@ export default [
     masu: "貸します",
     reading: "かします",
 
-    question1: "本を",
+    question1: "本を\u00A0",
     question2: "貸します",
-    question3: "（ほんをかします）",
+    question3: "（ほんを かします）",
     questionSpeech: "ほんをかします",
 
     stem: "貸",

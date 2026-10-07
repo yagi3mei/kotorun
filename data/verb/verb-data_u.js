@@ -5,9 +5,9 @@ export default [
         masu: "歌います",
         reading: "うたいます",
 
-        question1: "カラオケで",
+        question1: "カラオケで\u00A0",
         question2: "歌います",
-        question3: "（からおけでうたいます）",
+        question3: "（からおけで うたいます）",
         questionSpeech: "からおけでうたいます",
 
         stem: "歌",
@@ -51,9 +51,9 @@ export default [
         masu: "運転します",
         reading: "うんてんします",
 
-        question1: "車を",
+        question1: "車を\u00A0",
         question2: "運転します",
-        question3: "（くるまをうんてんします）",
+        question3: "（くるまを うんてんします）",
         questionSpeech: "くるまをうんてんします",
 
         stem: "運転",
@@ -97,9 +97,9 @@ export default [
         masu: "生まれます",
         reading: "うまれます",
 
-        question1: "赤ちゃんが",
+        question1: "赤ちゃんが\u00A0",
         question2: "生まれます",
-        question3: "（あかちゃんがうまれます）",
+        question3: "（あかちゃんが うまれます）",
         questionSpeech: "あかちゃんがうまれます",
 
         stem: "生まれ",
@@ -143,9 +143,9 @@ export default [
         masu: "動きます",
         reading: "うごきます",
 
-        question1: "ロボットが",
+        question1: "ロボットが\u00A0",
         question2: "動きます",
-        question3: "（ろぼっとがうごきます）",
+        question3: "（ロボットが うごきます）",
         questionSpeech: "ろぼっとがうごきます",
 
         stem: "動",

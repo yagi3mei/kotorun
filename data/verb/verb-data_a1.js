@@ -3,9 +3,9 @@ export default [
     masu: "会います",
     reading: "あいます",
 
-    question1: "友達に",
+    question1: "友達に\u00A0",
     question2: "会います",
-    question3: "（ともだちにあいます）",
+    question3: "（ともだちに あいます）",
     questionSpeech: "ともだちにあいます",
 
     stem: "会",
@@ -55,9 +55,9 @@ export default [
     masu: "あります",
     reading: "あります",
 
-    question1: "本が",
+    question1: "本が\u00A0",
     question2: "あります",
-    question3: "（ほんがあります）",
+    question3: "（ほんが あります）",
     questionSpeech: "ほんがあります",
 
     stem: "あ",
@@ -107,9 +107,9 @@ export default [
     masu: "遊びます",
     reading: "あそびます",
 
-    question1: "友達と",
+    question1: "友達と\u00A0",
     question2: "遊びます",
-    question3: "（ともだちとあそびます）",
+    question3: "（ともだちと あそびます）",
     questionSpeech: "ともだちとあそびます",
 
     stem: "遊",
@@ -159,9 +159,9 @@ export default [
     masu: "開けます",
     reading: "あけます",
 
-    question1: "ドアを",
+    question1: "ドアを\u00A0",
     question2: "開けます",
-    question3: "（ドアをあけます）",
+    question3: "（ドアを あけます）",
     questionSpeech: "ドアをあけます",
 
     stem: "開け",

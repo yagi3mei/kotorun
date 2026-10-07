@@ -3,9 +3,9 @@ export default [
     masu: "洗います",
     reading: "あらいます",
 
-    question1: "手を",
+    question1: "手を\u00A0",
     question2: "洗います",
-    question3: "（てをあらいます）",
+    question3: "（てを あらいます）",
     questionSpeech: "てをあらいます",
 
     stem: "洗",
@@ -55,9 +55,9 @@ export default [
     masu: "集めます",
     reading: "あつめます",
 
-    question1: "カードを",
+    question1: "カードを\u00A0",
     question2: "集めます",
-    question3: "（カードをあつめます）",
+    question3: "（カードを あつめます）",
     questionSpeech: "カードをあつめます",
 
     stem: "集め",
@@ -159,9 +159,9 @@ export default [
     masu: "案内します",
     reading: "あんないします",
 
-    question1: "学校を",
+    question1: "学校を\u00A0",
     question2: "案内します",
-    question3: "（がっこうをあんないします）",
+    question3: "（がっこうを あんないします）",
     questionSpeech: "がっこうをあんないします",
 
     stem: "案内",

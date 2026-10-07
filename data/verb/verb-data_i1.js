@@ -3,9 +3,9 @@ export default [
     masu: "行きます",
     reading: "いきます",
 
-    question1: "学校へ",
+    question1: "学校へ\u00A0",
     question2: "行きます",
-    question3: "（がっこうへいきます）",
+    question3: "（がっこうへ いきます）",
     questionSpeech: "がっこうえいきます",
 
     stem: "行",
@@ -55,9 +55,9 @@ export default [
     masu: "います",
     reading: "います",
 
-    question1: "ここに",
+    question1: "ここに\u00A0",
     question2: "います",
-    question3: "（ここにいます）",
+    question3: "（ここに います）",
     questionSpeech: "ここにいます",
 
     stem: "い",

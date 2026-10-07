@@ -3,9 +3,9 @@ export default [
     masu: "かかります",
     reading: "かかります",
 
-    question1: "１時間",
+    question1: "１時間\u00A0",
     question2: "かかります",
-    question3: "（いちじかんかかります）",
+    question3: "（いちじかん かかります）",
     questionSpeech: "いちじかんかかります",
 
     stem: "かか",
@@ -55,9 +55,9 @@ export default [
     masu: "換えます",
     reading: "かえます",
 
-    question1: "お金を",
+    question1: "お金を\u00A0",
     question2: "換えます",
-    question3: "（おかねをかえます）",
+    question3: "（おかねを かえます）",
     questionSpeech: "おかねをかえます",
 
     stem: "換え",
@@ -107,9 +107,9 @@ export default [
     masu: "勝ちます",
     reading: "かちます",
 
-    question1: "日本が",
+    question1: "日本が\u00A0",
     question2: "勝ちます",
-    question3: "（にほんがかちます）",
+    question3: "（にほんが かちます）",
     questionSpeech: "にほんがかちます",
 
     stem: "勝",
@@ -159,9 +159,9 @@ export default [
     masu: "かぶります",
     reading: "かぶります",
 
-    question1: "帽子を",
+    question1: "帽子を\u00A0",
     question2: "かぶります",
-    question3: "（ぼうしをかぶります）",
+    question3: "（ぼうしを かぶります）",
     questionSpeech: "ぼうしをかぶります",
 
     stem: "かぶり",
