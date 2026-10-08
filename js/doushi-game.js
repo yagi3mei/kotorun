@@ -644,7 +644,8 @@ showQuestion();
    クリックイベント
 ========================= */
 window.goBack = function () {
-    location.href = "doushi-subindex.html";
+    const mode = new URLSearchParams(location.search).get("mode") || "normal";
+    location.href = `doushi-subindex.html?mode=${mode}`;
 };
 
 // もういちど：現在のモード・文字のままゲームを再読み込み
@@ -654,7 +655,8 @@ window.restartGame = function () {
 
 // メニューへ：動詞活用ゲームの文字選択画面へ戻る
 window.goMenu = function () {
-    location.href = "doushi-subindex.html";
+    const mode = new URLSearchParams(location.search).get("mode") || "normal";
+    location.href = `doushi-subindex.html?mode=${mode}`;
 };
 
 

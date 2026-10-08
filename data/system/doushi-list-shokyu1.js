@@ -6,5 +6,6 @@
 export default [
     "a1", "a2", "i1", "i2", "u", "o1", "o2",
     "ka1", "ka2", "ka3", "ki", "ku",
-    "sa"
+    "sa", "shi1", "shi2", "su", "se", "so",
+    "ta", "tsu",
 ];

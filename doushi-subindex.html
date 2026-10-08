@@ -170,7 +170,10 @@
            練習モード
         ========================= */
 
-        let selectedMode = "normal";
+        let selectedMode =
+            new URLSearchParams(location.search).get("mode") === "random"
+                ? "random"
+                : "normal";
 
         const normalBtn =
             document.getElementById("normal-btn");
@@ -231,13 +234,18 @@
             // { kana: "こ", key: "ko" },
 
             { kana: "さ", key: "sa" },
-            { kana: "し", key: "shi" },
+            { kana: "し①", key: "shi1" },
+            { kana: "し②", key: "shi2" },
             { kana: "す", key: "su" },
             { kana: "せ", key: "se" },
             { kana: "そ", key: "so" },
+            { kana: "", key: "" },
+            { kana: "", key: "" },
+            { kana: "", key: "" },
+            { kana: "", key: "" },
 
             { kana: "た", key: "ta" },
-            { kana: "ち", key: "chi" },
+            // { kana: "ち", key: "chi" },
             { kana: "つ", key: "tsu" },
             { kana: "て", key: "te" },
             { kana: "と", key: "to" },
@@ -376,7 +384,7 @@
 
         });
 
-        updateCompletedCards();
+        selectMode(selectedMode);
         
         /* =========================
            戻るボタン

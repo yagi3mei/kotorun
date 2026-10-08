@@ -12,7 +12,7 @@ export default [
     image: "kimasu1.png",
 
     dictionary: {
-      answer: "る",
+      answer: "くる",
       speech: "くる",
       display: "来る（くる）"
     },
@@ -30,7 +30,7 @@ export default [
     },
 
     nai: {
-      answer: "ない",
+      answer: "こない",
       speech: "こない",
       display: "来ない（こない）"
     },
