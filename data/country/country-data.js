@@ -1,9 +1,9 @@
 export default [
 {
-id: "japan",
-country: "にほん（日本）",
-reading: "にほん",
-img: "japan.png"
+    id: "japan",
+    country: "にほん（日本）",
+    reading: "にほん",
+    img: "japan.png"
 },
 
 {
