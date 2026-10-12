@@ -9,4 +9,9 @@ export default [
     "sa", "shi1", "shi2", "su", "se", "so",
     "ta", "tsu", "te", "to",
     "na", "nu", "ne", "no",
+    "ha", "hi", "he",
+    "ma", "mo",
+    "ya", "yo",
+    "ri",
+    "wa"
 ];

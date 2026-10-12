@@ -5,7 +5,7 @@ export default [
 
     question1: "写真を\u00A0",
     question2: "撮ります",
-    question3: "（写真を 撮ります）",
+    question3: "（しゃしんを とります）",
     questionSpeech: "しゃしんをとります",
 
     stem: "撮",
@@ -56,7 +56,7 @@ export default [
 
     question1: "ホテルに\u00A0",
     question2: "泊まります",
-    question3: "（ホテルに 泊まります）",
+    question3: "（ホテルに とまります）",
     questionSpeech: "ほてるにとまります",
 
     stem: "泊ま",
@@ -107,7 +107,7 @@ export default [
 
     question1: "年を\u00A0",
     question2: "取ります",
-    question3: "（年を 取ります）",
+    question3: "（としを とります）",
     questionSpeech: "としをとります",
 
     stem: "取",

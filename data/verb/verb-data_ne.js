@@ -5,7 +5,7 @@ export default [
 
     question1: "11時に\u00A0",
     question2: "寝ます",
-    question3: "（11時に 寝ます）",
+    question3: "（11じに ねます）",
     questionSpeech: "じゅういちじにねます",
 
     stem: "寝",

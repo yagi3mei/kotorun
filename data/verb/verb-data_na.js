@@ -5,7 +5,7 @@ export default [
 
     question1: "日本語を\u00A0",
     question2: "習います",
-    question3: "（日本語を 習います）",
+    question3: "（にほんごを ならいます）",
     questionSpeech: "にほんごをならいます",
 
     stem: "習",
@@ -56,7 +56,7 @@ export default [
 
     question1: "鍵を\u00A0",
     question2: "なくします",
-    question3: "（鍵を なくします）",
+    question3: "（かぎを なくします）",
     questionSpeech: "かぎをなくします",
 
     stem: "なく",
@@ -107,7 +107,7 @@ export default [
 
     question1: "寒く\u00A0",
     question2: "なります",
-    question3: "（寒く なります）",
+    question3: "（さむく なります）",
     questionSpeech: "さむくなります",
 
     stem: "な",
@@ -158,7 +158,7 @@ export default [
 
     question1: "自転車を\u00A0",
     question2: "直します",
-    question3: "（自転車を 直します）",
+    question3: "（じてんしゃを なおします）",
     questionSpeech: "じてんしゃをなおします",
 
     stem: "直",

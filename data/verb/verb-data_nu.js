@@ -5,7 +5,7 @@ export default [
 
     question1: "靴を\u00A0",
     question2: "脱ぎます",
-    question3: "（靴を 脱ぎます）",
+    question3: "（くつを ぬぎます）",
     questionSpeech: "くつをぬぎます",
 
     stem: "脱",

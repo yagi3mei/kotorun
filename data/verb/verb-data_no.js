@@ -5,7 +5,7 @@ export default [
 
     question1: "コーヒーを\u00A0",
     question2: "飲みます",
-    question3: "（コーヒーを 飲みます）",
+    question3: "（コーヒーを のみます）",
     questionSpeech: "こーひーをのみます",
 
     stem: "飲",
@@ -56,7 +56,7 @@ export default [
 
     question1: "電車に\u00A0",
     question2: "乗ります",
-    question3: "（電車に 乗ります）",
+    question3: "（でんしゃに のります）",
     questionSpeech: "でんしゃにのります",
 
     stem: "乗",
@@ -107,7 +107,7 @@ export default [
 
     question1: "富士山に\u00A0",
     question2: "登ります",
-    question3: "（富士山に 登ります）",
+    question3: "（ふじさんに のぼります）",
     questionSpeech: "ふじさんにのぼります",
 
     stem: "登",
