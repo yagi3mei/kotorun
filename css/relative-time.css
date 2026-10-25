@@ -189,7 +189,7 @@
    スマホ
 ========================= */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
 
     .date-btn {
 
@@ -205,6 +205,26 @@
 
         padding: 5px 0;
 
+    }
+
+} */
+
+
+@media (max-width: 768px) {
+
+    .calendar-grid {
+        gap: 3px;
+    }
+
+    .date-btn {
+        min-height: 45px;
+        padding: 4px 0;
+        font-size: 0.75rem;
+    }
+
+    .weekday {
+        font-size: 0.8rem;
+        padding: 5px 0;
     }
 
 }
