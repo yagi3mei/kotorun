@@ -189,27 +189,6 @@
    スマホ
 ========================= */
 
-/* @media (max-width: 768px) {
-
-    .date-btn {
-
-        min-height: 45px;
-
-        font-size: 0.8rem;
-
-    }
-
-    .weekday {
-
-        font-size: 0.8rem;
-
-        padding: 5px 0;
-
-    }
-
-} */
-
-
 @media (max-width: 768px) {
 
     .calendar-grid {
