@@ -415,30 +415,19 @@ function showResult() {
             ) / 1000
         ).toFixed(2);
 
-    const oldBest =
-        getScore(
-            "country",
-            "country_game"
-        );
 
-    const isBest =
-        !oldBest
-        || missCount < oldBest.miss
-        || (
-            missCount === oldBest.miss
-            && Number(time)
-                < oldBest.time
-        );
+    const result = {
+        time: Number(time),
+        miss: missCount,
+        date: dateStr
+    };
 
-    saveScore(
+    const updated = saveScore(
         "country",
         "country_game",
-        {
-            time: Number(time),
-            miss: missCount,
-            date: dateStr
-        }
+        result
     );
+
 
     if (
         typeof gtag === "function"
@@ -478,7 +467,7 @@ function showResult() {
     wrongListArea.innerHTML =
         wrongQuestions.join("<br>");
 
-    if (isBest) {
+    if (updated) {
 
         bestMessage.textContent =
             "🎉 ベストきろく　こうしん！";

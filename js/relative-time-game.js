@@ -429,8 +429,7 @@ function showResultModal() {
                 .toLocaleString("ja-JP")
     };
 
-    const isBest =
-    saveScore(
+    const updated = saveScore(
         "hizuke",
         mode,
         result
@@ -490,7 +489,7 @@ function showResultModal() {
     finalTime.textContent =
         `タイム：${(elapsedTime / 1000).toFixed(2)}秒`;
         
-        if (isBest) {
+        if (updated) {
 
         bestMessage.textContent =
             "🎉 ベストきろく　こうしん！";
@@ -1248,12 +1247,7 @@ function renderWeekButtons() {
 
         const fullDate =
             formatLocalDate(weekStart);
-        // 以下はUTCなのでローカル時間が成功すれば削除予定：07/13
-        /* 判定用の日曜日 */
-        // const fullDate =
-        //     weekStart
-        //         .toISOString()
-        //         .split("T")[0];
+
 
         html += `
             <button

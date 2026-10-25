@@ -137,9 +137,6 @@ let categoryLabel = "";
 
 function showQuestion(question)
 {
-    // 試験用にコンソールへ問題を表示する。あとで削除予定！
-    console.log(question.word);
-
     questionText.textContent =
         QUESTION_TEXT;
 
@@ -421,7 +418,7 @@ function showResultModal()
         );
     }
 
-    const isBest =
+    const updated =
         saveScore(
             "karada",
             category,
@@ -434,7 +431,7 @@ function showResultModal()
             category
         );
 
-    if (isBest)
+    if (updated)
     {
         bestMessage.textContent =
             "🎉 ベストきろく　こうしん！";

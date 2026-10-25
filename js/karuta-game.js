@@ -385,51 +385,40 @@ function showResult() {
 
 
   /* =====================
-      ベスト判定
+      今回の結果
   ===================== */
-  const oldBest = getScore(
-    "karuta",
-    getStorageKey()
-  );
-
-
-  const isBest =
-    !oldBest
-    || missCount < oldBest.miss
-    || (
-      missCount === oldBest.miss
-      && Number(time) < oldBest.time
-    );
-
+  const result = {
+    time: Number(time),
+    miss: missCount,
+    date: dateStr
+  };
 
   /* =====================
-      スコア保存
+      スコア保存・ベスト更新判定
   ===================== */
-  saveScore(
+  const updated = saveScore(
     "karuta",
     getStorageKey(),
-    {
-      time: Number(time),
-      miss: missCount,
-      date: dateStr
-    }
+    result
   );
 
   // Google Analytics イベント送信
-  if (typeof gtag === "function")
-  {
+  if (typeof gtag === "function") {
       gtag(
           "event",
           "game_clear",
           {
               game: "karuta",
               mode: getStorageKey(),
-              miss: missCount,
-              time: Number(time)
+              miss: result.miss,
+              time: result.time
           }
       );
   }
 
+  /* =====================
+      保存後ベスト取得
+  ===================== */
   const best = getScore(
     "karuta",
     getStorageKey()
@@ -455,7 +444,7 @@ function showResult() {
   /* =====================
       ベスト表示
   ===================== */
-  if (isBest) {
+  if (updated) {
 
     bestMessage.textContent =
       "🎉 ベストきろく　こうしん！";

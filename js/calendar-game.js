@@ -243,34 +243,18 @@ function endGame(){
 
 
     /* =====================
-       ベスト判定
-    ===================== */
-    const oldBest =
-        getScore(
-            "calendar",
-            getStorageKey()
-        );
-
-    const isBest =
-        !oldBest
-        || missCount < oldBest.miss
-        || (
-            missCount === oldBest.miss
-            && Number(time) < oldBest.time
-        );
-
-
-    /* =====================
        スコア保存
     ===================== */
-    saveScore(
+    const result = {
+        time: Number(time),
+        miss: missCount,
+        date: dateStr
+    };
+
+    const updated = saveScore(
         "calendar",
         getStorageKey(),
-        {
-            time: Number(time),
-            miss: missCount,
-            date: dateStr
-        }
+        result
     );
 
     const best =
@@ -324,7 +308,7 @@ function endGame(){
         );
 
 
-    if (isBest) {
+    if (updated) {
 
         bestMessage.textContent =
             "🎉 ベストきろく　こうしん！";

@@ -346,33 +346,7 @@ function showQuestion() {
                     showQuestion();
                 };
 
-                // utterance.onend = () => {
-
-                //     // 次の活用形へ
-                //     if (questionTypeIndex < questionTypes.length - 1) {
-
-                    //     questionTypeIndex++;
-
-                    // } else {
-
-                    //     // 5種類終わったら次の動詞へ
-                    //     questionTypeIndex = 0;
-                    //     currentVerbIndex++;
-
-                    // }
-
-                    // // すべての動詞が終わったら終了
-                    // if (currentVerbIndex >= verbDataA.length) {
-
-                    //     showResult();
-
-                    //     return;
-                    // }
-
-                    // showQuestion();
-
-                // };
-
+        
                 speechSynthesis.speak(utterance);
 
             // ---------------------------------
@@ -467,34 +441,18 @@ function showResult() {
 
 
     /* =====================
-       ベスト判定
-    ===================== */
-    const oldBest =
-        getScore(
-            `doushi_${mode}`,
-            kana
-        );
-
-    const isBest =
-        !oldBest
-        || missCount < oldBest.miss
-        || (
-            missCount === oldBest.miss
-            && Number(time) < oldBest.time
-        );
-
-
-    /* =====================
        スコア保存
     ===================== */
-    saveScore(
+    const result = {
+        time: Number(time),
+        miss: missCount,
+        date: dateStr
+    };
+
+    const updated = saveScore(
         `doushi_${mode}`,
         kana,
-        {
-            time: Number(time),
-            miss: missCount,
-            date: dateStr
-        }
+        result
     );
 
 
@@ -544,7 +502,7 @@ function showResult() {
     /* =====================
        ベスト表示
     ===================== */
-    if (isBest) {
+    if (updated) {
 
         bestMessage.textContent =
             "🎉 ベストきろく　こうしん！";
@@ -658,15 +616,3 @@ window.goMenu = function () {
     const mode = new URLSearchParams(location.search).get("mode") || "normal";
     location.href = `doushi-subindex.html?mode=${mode}`;
 };
-
-
-// =====================================
-// 確認用
-// =====================================
-console.log("読み込んだ動詞データ：", verb);
-console.log("モード：", mode);
-console.log("選択した文字：", kana);
-console.log("読み込んだ動詞データ：", verbData);
-console.log("現在の問題：", currentQuestion);
-console.log("出題数：", questionList.length);
-

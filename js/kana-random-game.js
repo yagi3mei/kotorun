@@ -169,8 +169,7 @@ function startGame() {
         remaining[card.dataset.romaji] = card.dataset.kana;
     });
 
-    updateRemainingDisplay();
-
+    
     document.getElementById("start-btn").style.display = "none";
     // document.getElementById("back-btn").style.display = "none";
     document.getElementById("card-container").classList.remove("disabled");
@@ -281,13 +280,6 @@ function endGame() {
     const time =
         ((performance.now() - startTime) / 1000).toFixed(2);
 
-    // =====================
-    // 保存前ベスト取得
-    // =====================
-    const oldBest = getScore(
-        "kana",
-        getStorageKey(gameType)
-    );
 
     // =====================
     // 今回の結果
@@ -426,8 +418,3 @@ window.restartGame = restartGame;
 window.goMenu = goMenu;
 
 document.getElementById("card-container").classList.add("disabled");
-
-function updateRemainingDisplay() {
-    const count = Object.keys(remaining).length;
-    document.getElementById("remaining-display").textContent = count;
-}

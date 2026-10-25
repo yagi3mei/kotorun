@@ -24,11 +24,7 @@ import config
 /* =========================
    storage 読込
 ========================= */
-import {
-    saveScore,
-    getScore
-}
-from "./storage.js";
+import {saveScore, getScore} from "./storage.js";
 
 /* =========================
    URLパラメータ取得
@@ -455,36 +451,22 @@ function showResult() {
         ).toFixed(2);
 
 
-    /* =====================
-       ベスト判定
-    ===================== */
-    const oldBest =
-        getScore(
-            "kazoekata",
-            type
-        );
-
-    const isBest =
-        !oldBest
-        || missCount < oldBest.miss
-        || (
-            missCount === oldBest.miss
-            && Number(time) < oldBest.time
-        );
-
 
     /* =====================
-       スコア保存
+       スコア保存・ベスト更新判定
     ===================== */
-    saveScore(
+    const result = {
+        time: Number(time),
+        miss: missCount,
+        date: dateStr
+    };
+
+    const updated = saveScore(
         "kazoekata",
         type,
-        {
-            time: Number(time),
-            miss: missCount,
-            date: dateStr
-        }
+        result
     );
+
 
     // Google Analytics イベント送信
     if (typeof gtag === "function")
@@ -548,7 +530,7 @@ function showResult() {
     /* =====================
        ベスト表示
     ===================== */
-    if (isBest) {
+    if (updated) {
 
         bestMessage.textContent =
             "🎉 ベストきろく　こうしん！";

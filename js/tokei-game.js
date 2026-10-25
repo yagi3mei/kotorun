@@ -870,12 +870,11 @@ function showResultModal() {
             ? "beginner"
             : "intermediate";
 
-    const isBest =
-        saveScore(
-            "tokei",
-            storageKey,
-            result
-        );
+    const updated = saveScore(
+        "tokei",
+        storageKey,
+        result
+    );
 
     // Google Analytics イベント送信
     if (typeof gtag === "function")
@@ -912,7 +911,7 @@ function showResultModal() {
 
     wrongListArea.innerHTML = "";
 
-    if (isBest) {
+    if (updated) {
 
         bestMessage.textContent =
             "🎉 ベストきろく　こうしん！";

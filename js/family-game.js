@@ -416,35 +416,23 @@ function showResult() {
         now.toLocaleString();
 
 
-    /* =====================
-       ベスト判定
-    ===================== */
-    const oldBest =
-        getScore(
-            "family",
-            getStorageKey()
-        );
-
-    const isBest =
-        !oldBest
-        || missCount < oldBest.miss
-        || (
-            missCount === oldBest.miss
-            && Number(time) < oldBest.time
-        );
-
 
     /* =====================
-       スコア保存
+       今回の結果
     ===================== */
-    saveScore(
+    const result = {
+        time: Number(time),
+        miss: missCount,
+        date: dateStr
+    };
+
+    /* =====================
+       スコア保存・ベスト更新判定
+    ===================== */
+    const updated = saveScore(
         "family",
         getStorageKey(),
-        {
-            time: Number(time),
-            miss: missCount,
-            date: dateStr
-        }
+        result
     );
 
     // Analytics
@@ -456,12 +444,15 @@ function showResult() {
             {
                 game: "family",
                 mode: getStorageKey(),
-                miss: missCount,
-                time: Number(time)
+                miss: result.miss,
+                time: result.time
             }
         );
     }
-    
+
+    /* =====================
+       保存後ベスト取得
+    ===================== */
     const best =
         getScore(
             "family",
@@ -509,7 +500,7 @@ function showResult() {
     /* =====================
        ベスト
     ===================== */
-    if (isBest) {
+    if (updated) {
 
         bestMessage.textContent =
             "🎉 ベストきろく　こうしん！";

@@ -679,22 +679,6 @@ function showResult()
     const dateStr =
         now.toLocaleString();
 
-    /* =====================
-        ベスト判定
-    ===================== */
-    const oldBest =
-        getScore(
-            "kotobasagashi",
-            getStorageKey()
-        );
-
-    const isBest =
-        !oldBest
-        || missCount < oldBest.miss
-        || (
-            missCount === oldBest.miss
-            && Number(time) < oldBest.time
-        );
         
     gameTypeLabel.textContent =
         `【${typeDisplay}　${groupDisplay}　${kanaLabel}】`;
@@ -728,19 +712,25 @@ function showResult()
     wrongListArea.innerHTML =
         wordList;
 
+    
     /* =====================
-        スコア保存
+        今回の結果
     ===================== */
-    saveScore(
+    const result = {
+        time: Number(time),
+        miss: missCount,
+        date: dateStr
+    };
+
+    /* =====================
+        スコア保存・ベスト更新判定
+    ===================== */
+    const updated = saveScore(
         "kotobasagashi",
         getStorageKey(),
-        {
-            time: Number(time),
-            miss: missCount,
-            date: dateStr
-        }
+        result
     );
-    
+
     // Google Analytics イベント送信
     if (typeof gtag === "function")
     {
@@ -750,22 +740,25 @@ function showResult()
             {
                 game: "kotobasagashi",
                 mode: getStorageKey(),
-                miss: missCount,
-                time: Number(time)
+                miss: result.miss,
+                time: result.time
             }
         );
     }
 
+    /* =====================
+        保存後ベスト取得
+    ===================== */
     const best =
-    getScore(
-        "kotobasagashi",
-        getStorageKey()
-    );
+        getScore(
+            "kotobasagashi",
+            getStorageKey()
+        );
 
     /* =====================
         ベスト表示
     ===================== */
-    if (isBest)
+    if (updated)
     {
         bestMessage.textContent =
             "🎉 ベストきろく　こうしん！";
