@@ -35,7 +35,7 @@ display:block;
 
     width: 28px;
 
-    height: 4px;
+    height: 7px;
 
     background: red;
 
@@ -58,7 +58,7 @@ display:block;
 
     border-top: 8px solid transparent;
 
-    border-bottom: 8px solid transparent;
+    border-bottom: 12px solid transparent;
 
     border-left: 12px solid red;
 }
