@@ -17,6 +17,10 @@ import countryData
     from "../data/country/country-data.js";
 
 import {
+        showResultModal
+    } from "./result-modal.js";
+
+import {
         saveScore,
         getScore
     }
@@ -59,51 +63,6 @@ const missDisplay =
 const resultModal =
     document.getElementById(
     "result-modal"
-    );
-
-const gameTypeLabel =
-    document.getElementById(
-    "game-type-label"
-    );
-
-const dateTime =
-    document.getElementById(
-    "date-time"
-    );
-
-const finalTime =
-    document.getElementById(
-    "final-time"
-    );
-
-const missResult =
-    document.getElementById(
-    "miss-result"
-    );
-
-const bestMessage =
-    document.getElementById(
-    "best-message"
-    );
-
-const bestDate =
-    document.getElementById(
-    "best-date"
-    );
-
-const bestTime =
-    document.getElementById(
-    "best-time"
-    );
-
-const bestMiss =
-    document.getElementById(
-    "best-miss"
-    );
-
-const wrongListArea =
-    document.getElementById(
-    "wrong-list"
     );
 
 const QUESTION_COUNT = 10;  // 出題数
@@ -452,46 +411,27 @@ function showResult() {
             "country_game"
         );
 
-    gameTypeLabel.textContent =
-        "【くに・ちいきゲーム】";
+    // 共通表示形式に変換
+    const resultData = {
+        gameName: "くに・ちいきゲーム",
+        date: dateStr,
+        time: Number(time),
+        missCount: missCount,
+        bestUpdated: updated,
+        bestRecord: best
+            ? {
+                date: best.date,
+                miss: best.miss,
+                time: best.time
+            }
+            : null,
+        wrongQuestions: wrongQuestions.map(country => ({
+            question: country
+        }))
+    };
 
-    dateTime.textContent =
-        dateStr;
-
-    missResult.textContent =
-        `ミス：${missCount}回`;
-
-    finalTime.textContent =
-        `タイム：${time}秒`;
-
-    wrongListArea.innerHTML =
-        wrongQuestions.join("<br>");
-
-    if (updated) {
-
-        bestMessage.textContent =
-            "🎉 ベストきろく　こうしん！";
-
-        bestDate.textContent = "";
-        bestMiss.textContent = "";
-        bestTime.textContent = "";
-
-    } else {
-
-        bestDate.textContent =
-            `いつ：${best.date}`;
-
-        bestMiss.textContent =
-            `ミス：${best.miss}回`;
-
-        bestTime.textContent =
-            `タイム：${best.time}秒`;
-
-    }
-
-    resultModal.classList.remove(
-        "hidden"
-    );
+    // 共通の結果モーダルを表示
+    showResultModal(resultData);
 
 }
 
