@@ -6,6 +6,7 @@
 //      Updated: 2026-04-30: CSSファイル分割に伴う読み込み構造の変更
 //      Updated: 2026-05-21: storage対応
 //      Updated: 2026-06-05: google analytics イベント送信追加
+//      Updated: 2026-10-26: result-modal.jsによるモーダル表示に変更
 //
 //      Notes:
 //      - 家族ゲームの共通JavaScriptファイル
@@ -14,7 +15,14 @@
 //      - ゲームのロジック（問題選択、入力判定、タイマー、ミスカウントなど）を実装
 // ========================================= 
 
-import { saveScore, getScore } from "./storage.js";
+import {
+    saveScore,
+    getScore
+} from "./storage.js";
+
+import {
+    showResultModal
+} from "./result-modal.js";
 
 const params=new URLSearchParams(location.search);
 
@@ -49,55 +57,6 @@ function getStorageKey() {
 
     return mode;
 }
-
-
-/* =========================
-   結果モーダル
-========================= */
-const gameTypeLabel =
-    document.getElementById(
-        "game-type-label"
-    );
-
-const dateTime =
-    document.getElementById(
-        "date-time"
-    );
-
-const missResult =
-    document.getElementById(
-        "miss-result"
-    );
-
-const finalTime =
-    document.getElementById(
-        "final-time"
-    );
-
-const bestMessage =
-    document.getElementById(
-        "best-message"
-    );
-
-const bestDate =
-    document.getElementById(
-        "best-date"
-    );
-
-const bestMiss =
-    document.getElementById(
-        "best-miss"
-    );
-
-const bestTime =
-    document.getElementById(
-        "best-time"
-    );
-
-const wordListArea =
-    document.getElementById(
-        "word-list-area"
-    );
 
 
 /* =====================
@@ -461,72 +420,30 @@ function showResult() {
 
 
     /* =====================
-       単語一覧
+       共通結果モーダル
     ===================== */
-    let wordList = "";
+    const resultData = {
+        gameName: modeLabel,
+        date: dateStr,
+        time: Number(time),
+        missCount: missCount,
+        bestUpdated: updated,
+        bestRecord: best
+            ? {
+                date: best.date,
+                miss: best.miss,
+                time: best.time
+            }
+            : null,
+        wrongQuestions: data
+            .filter(item => wrongWords.includes(item.id))
+            .map(item => ({
+                question: item.word
+            }))
+    };
 
-    data.forEach(item => {
+    showResultModal(resultData);
 
-        const isWrong =
-            wrongWords.includes(item.id);
-
-        const mark =
-            isWrong ? "★" : "　";
-
-        wordList += `
-            ${mark} ${item.word}（${item.lesson}課）<br>
-        `;
-    });
-
-    wordListArea.innerHTML = wordList;
-
-
-    /* =====================
-       今回結果
-    ===================== */
-    gameTypeLabel.textContent =
-        `【${modeLabel}】`;
-
-    dateTime.textContent =
-        dateStr;
-
-    missResult.textContent =
-        `ミス：${missCount}回`;
-
-    finalTime.textContent =
-        `タイム：${time}秒`;
-
-
-    /* =====================
-       ベスト
-    ===================== */
-    if (updated) {
-
-        bestMessage.textContent =
-            "🎉 ベストきろく　こうしん！";
-
-        bestDate.textContent = "";
-        bestMiss.textContent = "";
-        bestTime.textContent = "";
-
-    } else {
-
-        bestMessage.textContent = "";
-
-        bestDate.textContent =
-            `いつ：${best.date}`;
-
-        bestMiss.textContent =
-            `ミス：${best.miss}回`;
-
-        bestTime.textContent =
-            `タイム：${best.time}秒`;
-
-    }
-
-    resultModal.classList.remove(
-        "hidden"
-    );
 }
 
 
