@@ -1,6 +1,24 @@
+/* =========================================
+   File: doushi-game.js
+   Purpose: 動詞ゲームのプレイロジック
+   Author: やぎさん
+   Created: 2026-10-12
+   Updated: 2026-10-26: result-modal.jsをimportするように変更
+
+   Notes:
+   - 動詞の活用を練習するゲーム
+   - 文の動詞部分を指示に従って変化すえう選択肢を選ぶ
+========================================= */
 
 import verbChoiceData from "../data/verb/verb-choice-data.js";
-import { saveScore, getScore } from "../js/storage.js";
+import {
+    saveScore,
+    getScore
+} from "../js/storage.js";
+
+import {
+    showResultModal
+} from "../js/result-modal.js";
 
 const params = new URLSearchParams(location.search);
 
@@ -105,35 +123,6 @@ let isAnswerLocked = false;
 let startTime;
 let timerInterval;
 
-const resultModal =
-    document.getElementById("result-modal");
-
-const gameTypeLabel =
-    document.getElementById("game-type-label");
-
-const dateTime =
-    document.getElementById("date-time");
-
-const finalTime =
-    document.getElementById("final-time");
-
-const missResult =
-    document.getElementById("miss-result");
-
-const bestMessage =
-    document.getElementById("best-message");
-
-const bestDate =
-    document.getElementById("best-date");
-
-const bestMiss =
-    document.getElementById("best-miss");
-
-const bestTime =
-    document.getElementById("best-time");
-
-const wrongListArea =
-    document.getElementById("wrong-list");
 
 const missDisplay =
     document.getElementById("miss-display");
@@ -482,76 +471,37 @@ function showResult() {
         wa: "わ", wo: "を"
     };
 
-    gameTypeLabel.textContent =
-        `【${kanaLabels[kana] || kana} で はじまる どうし】`;
+    const baseKana = kana.replace(/\d+$/, "");
 
-    dateTime.textContent =
-        dateStr;
+    const kanaLabel = kanaLabels[baseKana] || baseKana;
 
-
-    /* =====================
-       今回結果
-    ===================== */
-    finalTime.textContent =
-        `タイム：${time}秒`;
-
-    missResult.textContent =
-        `ミス：${missCount}回`;
-
+    const gameName =
+        `${kanaLabel}${kana.match(/\d+$/)?.[0] || ""} で はじまる どうし`;
 
     /* =====================
-       ベスト表示
+       共通結果モーダル
     ===================== */
-    if (updated) {
+    const resultData = {
+        gameName: gameName,
+        date: dateStr,
+        time: Number(time),
+        missCount: missCount,
+        bestUpdated: updated,
+        bestRecord: best
+            ? {
+                date: best.date,
+                miss: best.miss,
+                time: best.time
+            }
+            : null,
+        wrongQuestions: wrongQuestions.map(item => ({
+            question: `${item.masu} → ${item.form}`,
+            answer: item.answer
+        }))
+    };
 
-        bestMessage.textContent =
-            "🎉 ベストきろく　こうしん！";
+    showResultModal(resultData);
 
-        bestDate.textContent =
-            "";
-
-        bestMiss.textContent =
-            "";
-
-        bestTime.textContent =
-            "";
-
-    } else {
-
-        bestMessage.textContent =
-            "";
-
-        bestDate.textContent =
-            `いつ：${best.date}`;
-
-        bestMiss.textContent =
-            `ミス：${best.miss}回`;
-
-        bestTime.textContent =
-            `タイム：${best.time}秒`;
-
-    }
-
-
-    /* =====================
-       間違えた問題
-    ===================== */
-    let wrongList = "";
-
-    wrongQuestions.forEach(item => {
-
-        wrongList +=
-            `${item.masu} → ${item.form}<br>${item.answer}<br><br>`;
-
-    });
-
-    wrongListArea.innerHTML =
-        wrongList;
-
-
-    resultModal.classList.remove(
-        "hidden"
-    );
 }
 
 // =====================================
