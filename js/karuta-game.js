@@ -8,6 +8,7 @@
 //      Updated: 2026-05-20: LocalStorageベスト記録保存・結果モーダル拡張対応
 //      Updated: 2026-06-05: google analytics イベント送信追加
 //      Updated: 2026-07-24：kotobasagashi-game.htmlへのリンク追加
+//      Updated: 2026-10-29：result-modal.js利用への変更
 // 
 //      Notes:
 //      - たんごかるたゲームの共通JavaScriptファイル
