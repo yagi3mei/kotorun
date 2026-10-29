@@ -93,9 +93,11 @@ export function showResultModal(resultData) {
     resultData.wrongQuestions.forEach(item => {
         const line = document.createElement("p");
 
-        const question = document.createElement("div");
-        question.textContent = `問題：${item.question}`;
-        line.appendChild(question);
+        if (item.question) {
+            const question = document.createElement("div");
+            question.textContent = `問題：${item.question}`;
+            line.appendChild(question);
+        }
 
         if (item.answer) {
             const answer = document.createElement("div");
