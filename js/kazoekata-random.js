@@ -3,6 +3,7 @@ File: kazoekata-random.js
 Purpose: かぞえかたランダム
 Author: やぎさん
 Created: 2026-06-09
+Updated: 2026-10-29: result-modal.js利用へ変更
 
 Notes:
 
@@ -36,7 +37,17 @@ from "../data/kazoekata/satsu-data.js";
 /* =========================
 storage
 ========================= */
-import { saveScore, getScore } from "./storage.js";
+import {
+    saveScore,
+    getScore
+} from "./storage.js";
+
+/* =========================
+   Modal 読込
+========================= */
+import {
+    showResultModal
+} from "./result-modal.js";
 
 /* =========================
 全データ
@@ -417,17 +428,17 @@ function checkAnswer(choice,button) {
             "ミス：" + missCount;
 
         if (
-            !wrongQuestions.includes(
-                currentQuestion.item
+            !wrongQuestions.some(
+                item => item.startsWith(
+                    currentQuestion.item + " → "
+                )
             )
         ) {
-
             wrongQuestions.push(
                 currentQuestion.item +
                 " → " +
                 currentQuestion.reading
             );
-
         }
 
         setTimeout(
@@ -505,71 +516,94 @@ function showResult() {
 
 
     /* =====================
-       間違え一覧
+        間違えた問題一覧
     ===================== */
-    let wrongList = "";
+    const wrongQuestionItems = wrongQuestions.map(item => {
+        const [question, answer] = item.split(" → ");
 
-    wrongQuestions.forEach(item => {
-
-        wrongList += `
-            ${item}<br>
-        `;
-
+        return {
+            question,
+            answer
+        };
     });
+    // /* =====================
+    //    間違え一覧
+    // ===================== */
+    // let wrongList = "";
 
-    wrongListArea.innerHTML =
-        wrongList;
+    // wrongQuestions.forEach(item => {
 
+    //     wrongList += `
+    //         ${item}<br>
+    //     `;
 
-    /* =====================
-       今回結果
-    ===================== */
-    gameTypeLabel.textContent =
-         "【じょすうしランダム】";
+    // });
 
-    dateTime.textContent =
-        dateStr;
-
-    missResult.textContent =
-        `ミス：${missCount}回`;
-
-    finalTime.textContent =
-        `タイム：${time}秒`;
+    // wrongListArea.innerHTML =
+    //     wrongList;
 
 
     /* =====================
-       ベスト表示
+        今回結果
     ===================== */
-    if (updated) {
+    showResultModal({
+        gameName: "じょすうしランダム",
+        date: dateStr,
+        time: Number(time),
+        missCount: missCount,
+        bestUpdated: updated,
+        bestRecord: best,
+        wrongQuestions: wrongQuestionItems
+    });
+    // /* =====================
+    //    今回結果
+    // ===================== */
+    // gameTypeLabel.textContent =
+    //      "【じょすうしランダム】";
 
-        bestMessage.textContent =
-            "🎉 ベストきろく　こうしん！";
+    // dateTime.textContent =
+    //     dateStr;
 
-        bestDate.textContent = "";
+    // missResult.textContent =
+    //     `ミス：${missCount}回`;
 
-        bestMiss.textContent = "";
-
-        bestTime.textContent = "";
-
-    } else {
-
-        bestMessage.textContent = "";
-
-        bestDate.textContent =
-            `いつ：${best.date}`;
-
-        bestMiss.textContent =
-            `ミス：${best.miss}回`;
-
-        bestTime.textContent =
-            `タイム：${best.time}秒`;
-
-    }
+    // finalTime.textContent =
+    //     `タイム：${time}秒`;
 
 
-    resultModal.classList.remove(
-        "hidden"
-    );
+    // /* =====================
+    //    ベスト表示
+    // ===================== */
+    // if (updated) {
+
+    //     bestMessage.textContent =
+    //         "🎉 ベストきろく　こうしん！";
+
+    //     bestDate.textContent = "";
+
+    //     bestMiss.textContent = "";
+
+    //     bestTime.textContent = "";
+
+    // } else {
+
+    //     bestMessage.textContent = "";
+
+    //     bestDate.textContent =
+    //         `いつ：${best.date}`;
+
+    //     bestMiss.textContent =
+    //         `ミス：${best.miss}回`;
+
+    //     bestTime.textContent =
+    //         `タイム：${best.time}秒`;
+
+    // }
+
+
+    // resultModal.classList.remove(
+    //     "hidden"
+    // );
 
 }
 
