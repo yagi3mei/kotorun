@@ -3,6 +3,7 @@
      Purpose: かなゲームランダムの共通プレイ画面（問題表示・入力・結果表示）
      Author: やぎさん
      Created: 2026-08-19
+     updated: 2026-10-29：result-modal.jsを利用するように修正
 
      Notes:
      - ランダムで問題表示・回答入力・結果表示を行う共通ゲーム画面
@@ -97,6 +98,18 @@
             <p id="best-date"></p>
             <p id="best-miss"></p>
             <p id="best-time"></p>
+
+            <hr>
+
+            <!-- まちがえたリスト -->
+            <p id="word-list-label">
+
+                まちがえた　かな
+
+            </p>
+            <div id="wrong-list"
+                class="word-list-scroll">
+            </div>
 
             <button onclick="restartGame()">もういちど</button>
             <button onclick="goMenu()">もどる</button>
