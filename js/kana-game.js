@@ -14,7 +14,15 @@
 // ========================================= 
 
 // 共通のストレージモジュールからスコア保存関数をインポート
-import { saveScore, getScore } from "./storage.js";
+import {
+    saveScore,
+    getScore
+} from "./storage.js";
+
+import {
+    showResultModal
+} from "./result-modal.js";
+
 
 // ひらがな清音の配列（5列グリッド用に空文字を含む）
 // 空文字はレイアウト調整用（クリック不可）
@@ -119,6 +127,9 @@ let startTime = 0;
 let timerInterval;
 let missCount = 0;
 
+// 間違えた問題の記録
+let wrongQuestions = [];
+
 // =====================
 // 初期描画
 // =====================
@@ -154,6 +165,7 @@ document.getElementById("sound-btn").disabled = false;  // 🔊 音声再生ボ�
 function startGame() {
     remaining = {};
     missCount = 0;
+    wrongQuestions = [];
 
     document.querySelectorAll(".kana-button").forEach(card => {
         card.style.visibility = "visible";
@@ -251,8 +263,21 @@ function handleClick(e) {
         setTimeout(() => document.body.style.animation = "", 200);
         // ミス数インクリメント
         missCount++;
+
+        // 間違えた問題を記録（同じ問題は1回だけ）
+        const wrongQuestion = {
+            question: current,
+            answer: remaining[current]
+        };
+
+        if (!wrongQuestions.some(item =>
+            item.question === wrongQuestion.question
+        )) {
+            wrongQuestions.push(wrongQuestion);
+        }
+
         document.getElementById("miss-display").textContent =
-    "ミス：" + missCount;
+            "ミス：" + missCount;
 
     }
 }
@@ -313,48 +338,16 @@ function endGame() {
     // =====================
     // 今回の結果表示
     // =====================
-    document.getElementById("game-type-label").textContent =
-        `【${getGameLabel(gameType)}】`;
+    showResultModal({
+        gameName: getGameLabel(gameType),
+        date: dateStr,
+        time: Number(time),
+        missCount: missCount,
+        bestUpdated: updated,
+        bestRecord: best,
+        wrongQuestions: wrongQuestions
+    });
 
-    document.getElementById("date-time").textContent =
-        dateStr;
-
-    document.getElementById("miss-result").textContent =
-        "ミス：" + missCount + " 回";
-
-    document.getElementById("final-time").textContent =
-        "タイム：" + time + " 秒";
-
-    // =====================
-    // ベスト表示
-    // =====================
-    if (updated) {
-
-        document.getElementById("best-message").textContent =
-            "🎉 ベストきろく　こうしん！";
-
-        document.getElementById("best-date").textContent = "";
-        document.getElementById("best-miss").textContent = "";
-        document.getElementById("best-time").textContent = "";
-
-    } else {
-
-        document.getElementById("best-message").textContent = "";
-
-        document.getElementById("best-date").textContent =
-            "いつ：" + best.date;
-
-        document.getElementById("best-miss").textContent =
-            "ミス：" + best.miss + " 回";
-
-        document.getElementById("best-time").textContent =
-            "タイム：" + best.time + " 秒";
-    }
-    // =====================
-    // モーダル表示
-    // =====================
-    document.getElementById("result-modal")
-        .classList.remove("hidden");
 }
 
 
