@@ -1,4 +1,3 @@
-
 /* =========================================
    File: result-modal.js
    Purpose: ゲーム結果モーダルの共通表示
@@ -95,13 +94,13 @@ export function showResultModal(resultData) {
 
         if (item.question) {
             const question = document.createElement("div");
-            question.textContent = `問題：${item.question}`;
+            question.textContent = `もんだい：${item.question}`;
             line.appendChild(question);
         }
 
         if (item.answer) {
             const answer = document.createElement("div");
-            answer.textContent = `正解：${item.answer}`;
+            answer.textContent = `こたえ：${item.answer}`;
             line.appendChild(answer);
         }
 
@@ -109,12 +108,6 @@ export function showResultModal(resultData) {
             const detail = document.createElement("div");
             detail.textContent = item.detail;
             line.appendChild(detail);
-        }
-
-        if (item.lesson !== undefined && item.lesson !== null) {
-            const lesson = document.createElement("div");
-            lesson.textContent = `レッスン：${item.lesson}`;
-            line.appendChild(lesson);
         }
 
         wrongListArea.appendChild(line);

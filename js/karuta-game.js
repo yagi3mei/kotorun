@@ -382,7 +382,9 @@ function showResult() {
         .filter(item => wrongAnswers.includes(item.id))
         .map(item => ({
             question: item.romaji,
-            answer: item.word
+            answer: item.lesson
+                ? `${item.word}（${item.lesson}課）`
+                : item.word
         }));
 
     /* =====================

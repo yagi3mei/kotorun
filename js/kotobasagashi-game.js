@@ -719,7 +719,9 @@ function showResult()
 
             return {
                 question: "",
-                answer: item.noun
+                answer: item.lesson
+                    ? `${item.noun}（${item.lesson}課）`
+                    : item.noun
             };
         })
         .filter(item => item !== null);

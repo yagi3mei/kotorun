@@ -438,7 +438,9 @@ function showResult() {
         wrongQuestions: data
             .filter(item => wrongWords.includes(item.id))
             .map(item => ({
-                question: item.word
+                question: item.lesson
+                    ? `${item.word}（${item.lesson}課）`
+                    : item.word
             }))
     };
 
