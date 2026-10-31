@@ -17,7 +17,14 @@ import questions from "../data/tokei/tokei-shokyuu-data.js";
 import chuukyuuData
     from "../data/tokei/tokei-chuukyuu-data.js";
 
-import {saveScore, getScore} from "./storage.js";
+import {
+    saveScore,
+    getScore
+} from "./storage.js";
+
+import {
+    showResultModal
+} from "./result-modal.js";
 
 
 /* =========================
@@ -84,35 +91,8 @@ const missDisplay =
 const resultModal =
     document.getElementById("result-modal");
 
-const gameLevelLabel =
-    document.getElementById("game-level-label");
-
-const dateTime =
-    document.getElementById("date-time");
-
-const missResult =
-    document.getElementById("miss-result");
-
-const finalTime =
-    document.getElementById("final-time");
-
-const wrongListArea =
-    document.getElementById("wrong-list-area");
-
 const timerDisplay =
     document.getElementById("timer-display");
-
-const bestMessage =
-    document.getElementById("best-message");
-
-const bestDate =
-    document.getElementById("best-date");
-
-const bestMiss =
-    document.getElementById("best-miss");
-
-const bestTime =
-    document.getElementById("best-time");
 
 
 /* =========================
@@ -824,28 +804,9 @@ function updateTimerDisplay() {
 
 
 /* =========================
-    ベストスコア読込
-========================= */
-function loadBestScore() {
-
-    const storageKey =
-        gameLevel === "beginner"
-            ? "tokei-beginner-best"
-            : "tokei-intermediate-best";
-
-    return JSON.parse(
-        localStorage.getItem(
-            storageKey
-        )
-    );
-
-}
-
-
-/* =========================
     結果モーダル表示
 ========================= */
-function showResultModal() {
+function showResult() {
 
     clearInterval(timer);
 
@@ -897,49 +858,31 @@ function showResultModal() {
             storageKey
         );
 
-    const now = new Date();
-        dateTime.textContent = now.toLocaleString("ja-JP");
+    const resultData = {
+        gameName:
+            gameLevel === "beginner"
+                ? "しょきゅう（初級）"
+                : "中級（ちゅうきゅう）",
+        date: result.date,
+        time: result.time,
+        missCount: result.miss,
+        bestUpdated: updated,
+        bestRecord: bestScore
+            ? {
+                date: bestScore.date,
+                miss: bestScore.miss,
+                time: bestScore.time
+            }
+            : null,
+        wrongQuestions: wrongAnswers.map(
+            answer => ({
+                question: answer
+            })
+        )
+    };
 
-    gameLevelLabel.textContent =
-        gameLevel === "beginner"
-            ? "【しょきゅう（初級）】"
-            : "【中級（ちゅうきゅう）】";
+    showResultModal(resultData);
 
-    missResult.textContent = `ミス:${missCount}`;
-
-    finalTime.textContent = `タイム:${(elapsedTime / 1000).toFixed(2)}秒`;
-
-    wrongListArea.innerHTML = "";
-
-    if (updated) {
-
-        bestMessage.textContent =
-            "🎉 ベストきろく　こうしん！";
-
-        bestDate.textContent = "";
-        bestMiss.textContent = "";
-        bestTime.textContent = "";
-
-    } else if (bestScore) {
-        bestMessage.textContent = "";
-        bestDate.textContent =
-            `いつ：${bestScore.date}`;
-        bestMiss.textContent =
-            `ミス：${bestScore.miss}回`;
-        bestTime.textContent =
-            `タイム：${bestScore.time}秒`;
-    }
-
-    // 間違えた問題をリスト表示
-    wrongAnswers.forEach(answer => {
-        const p = document.createElement("p");
-        p.textContent = answer;
-        wrongListArea.appendChild(p);
-    });
-
-    document
-        .getElementById("result-modal")
-        .classList.remove("hidden");
 }
 
 
@@ -954,7 +897,7 @@ function nextQuestion() {
         currentQuestionIndex >=
         gameQuestions.length
     ) {
-        showResultModal();
+        showResult();
         return;
     }
 

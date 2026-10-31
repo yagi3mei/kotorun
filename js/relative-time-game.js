@@ -3,6 +3,7 @@
    Purpose: ひづけゲーム
    Author: やぎさん
    Created: 2026-06-13
+   Updated: 2026-10-30：result-modal.jsの利用へ変更
 
    Notes:
    - mode取得
@@ -29,6 +30,13 @@ import {
     getScore
 }
 from "./storage.js";
+
+/* =========================
+   共通結果モーダル
+========================= */
+import {
+    showResultModal
+} from "./result-modal.js";
 
 
 /* =========================
@@ -59,51 +67,6 @@ const wrongSound =
 const resultModal =
     document.getElementById(
         "result-modal"
-    );
-
-const gameTypeLabel =
-    document.getElementById(
-        "game-type-label"
-    );
-
-const dateTime =
-    document.getElementById(
-        "date-time"
-    );
-
-const missResult =
-    document.getElementById(
-        "miss-result"
-    );
-
-const finalTime =
-    document.getElementById(
-        "final-time"
-    );
-
-const bestMessage =
-    document.getElementById(
-        "best-message"
-    );
-
-const bestDate =
-    document.getElementById(
-        "best-date"
-    );
-
-const bestMiss =
-    document.getElementById(
-        "best-miss"
-    );
-
-const bestTime =
-    document.getElementById(
-        "best-time"
-    );
-
-const wrongListArea =
-    document.getElementById(
-        "wrong-list-area"
     );
 
 const timerDisplay =
@@ -405,28 +368,17 @@ function updateTimerDisplay() {
 /* =========================
    結果モーダル表示
 ========================= */
-function showResultModal() {
+function showResult() {
 
-    /* タイマー停止 */
+    // タイマー停止
     clearInterval(timer);
     timer = null;
 
     // スコア保存
     const result = {
-
-        time:
-            Number(
-                (
-                    elapsedTime / 1000
-                ).toFixed(2)
-            ),
-
-        miss:
-            missCount,
-
-        date:
-            new Date()
-                .toLocaleString("ja-JP")
+        time: Number((elapsedTime / 1000).toFixed(2)),
+        miss: missCount,
+        date: new Date().toLocaleString("ja-JP")
     };
 
     const updated = saveScore(
@@ -435,107 +387,42 @@ function showResultModal() {
         result
     );
 
-    const bestScore =
-    getScore(
+    const bestScore = getScore(
         "hizuke",
         mode
     );
 
+    // ゲーム名
     let gameName = "";
 
     if (mode === "day") {
-
-        gameName =
-            "【きょう・あしたゲーム】";
-
+        gameName = "きょう・あしたゲーム";
     } else if (mode === "week") {
-
-        gameName =
-            "【こんしゅう・せんしゅうゲーム】";
-
+        gameName = "こんしゅう・せんしゅうゲーム";
     } else if (mode === "month") {
-
-        gameName =
-            "【こんげつ・さらいげつゲーム】";
-
+        gameName = "こんげつ・さらいげつゲーム";
     } else if (mode === "year") {
-
-        gameName =
-            "【ことし・おととしゲーム】";
-
+        gameName = "ことし・おととしゲーム";
     } else if (mode === "random") {
-
-        gameName =
-            "【ランダムゲーム】";
-
+        gameName = "ランダムゲーム";
     }
 
-    gameTypeLabel.textContent =
-        gameName;
+    // 間違えた問題
+    const wrongQuestionItems = wrongAnswers.map(answer => ({
+        question: "",
+        answer
+    }));
 
-    // 現在日時
-    const now =
-        new Date();
-
-    dateTime.textContent =
-        now.toLocaleString("ja-JP");
-
-
-    // ミス表示
-    missResult.textContent =
-        `ミス：${missCount}`;
-
-    // タイム表示
-    finalTime.textContent =
-        `タイム：${(elapsedTime / 1000).toFixed(2)}秒`;
-        
-        if (updated) {
-
-        bestMessage.textContent =
-            "🎉 ベストきろく　こうしん！";
-
-        bestDate.textContent = "";
-
-        bestMiss.textContent = "";
-
-        bestTime.textContent = "";
-
-    } else if (bestScore) {
-
-        bestMessage.textContent =
-            "";
-
-        bestDate.textContent =
-            `いつ：${bestScore.date}`;
-
-        bestMiss.textContent =
-            `ミス：${bestScore.miss}回`;
-
-        bestTime.textContent =
-            `タイム：${bestScore.time}秒`;
-    }
-
-
-    // 間違えた問題表示
-    wrongListArea.innerHTML = "";
-
-    wrongAnswers.forEach(answer => {
-
-        const p =
-            document.createElement("p");
-
-        p.textContent =
-            answer;
-
-        wrongListArea.appendChild(p);
-
+    // 共通結果モーダル表示
+    showResultModal({
+        gameName,
+        date: result.date,
+        time: result.time,
+        missCount,
+        bestUpdated: updated,
+        bestRecord: bestScore,
+        wrongQuestions: wrongQuestionItems
     });
-
-
-    // モーダル表示
-    resultModal.classList.remove(
-        "hidden"
-    );
 
 }
 
@@ -551,7 +438,7 @@ function nextQuestion() {
 
     if (currentQuestionIndex >= questions.length) {
 
-        showResultModal();
+        showResult();
 
         return;
 

@@ -42,6 +42,6 @@ export default [
     romaji: "i to ko",
     sentence: "わたしの いとこ です",
     img: "itoko.png",
-    lesson: "--"
+    lesson: "中級Ⅰ13"
   }
 ];

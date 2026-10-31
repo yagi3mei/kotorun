@@ -3,6 +3,7 @@
 // Purpose: ことばさがしゲーム
 // Author: やぎさん
 // Created: 2026-07-15
+// Updated: 2026-10-30：result-modal.js利用へ変更
 //
 // Notes:
 // ・ことばさがしゲーム共通JS
@@ -10,7 +11,20 @@
 // ・ゲームロジックを管理する
 // =========================================
 
-import { saveScore, getScore } from "./storage.js";
+/* =========================
+   Storage 読込
+========================= */
+import {
+    saveScore,
+    getScore
+} from "./storage.js";
+
+/* =========================
+   Modal 読込
+========================= */
+import {
+    showResultModal
+} from "./result-modal.js";
 
 const params = new URLSearchParams(window.location.search);
 
@@ -62,35 +76,8 @@ const soundBtn =
 const questionText =
     document.getElementById("questionText");
 
-const wrongListArea =
-    document.getElementById("wrong-list-area");
-
-    const resultModal =
+const resultModal =
     document.getElementById("result-modal");
-
-const gameTypeLabel =
-    document.getElementById("game-type-label");
-
-const dateTime =
-    document.getElementById("date-time");
-
-const missResult =
-    document.getElementById("miss-result");
-
-const finalTime =
-    document.getElementById("final-time");
-
-const bestMessage =
-    document.getElementById("best-message");
-
-const bestDate =
-    document.getElementById("best-date");
-
-const bestMiss =
-    document.getElementById("best-miss");
-
-const bestTime =
-    document.getElementById("best-time");
 
 const IMAGE_DIR_MAP = {
 
@@ -679,39 +666,6 @@ function showResult()
     const dateStr =
         now.toLocaleString();
 
-        
-    gameTypeLabel.textContent =
-        `【${typeDisplay}　${groupDisplay}　${kanaLabel}】`;
-
-    dateTime.textContent =
-        dateStr;
-
-    missResult.textContent =
-        `ミス：${missCount}回`;
-
-    finalTime.textContent =
-        `タイム：${time}秒`;
-    
-    // -----------------
-    // 間違えた問題一覧
-    // -----------------
-    let wordList = "";
-
-    wrongAnswers.forEach(id =>
-    {
-        const item =
-            data.find(q => q.id === id);
-
-        if (item)
-        {
-            wordList +=
-                `${item.noun}（${item.lesson}課）<br>`;
-        }
-    });
-
-    wrongListArea.innerHTML =
-        wordList;
-
     
     /* =====================
         今回の結果
@@ -755,35 +709,33 @@ function showResult()
             getStorageKey()
         );
 
-    /* =====================
-        ベスト表示
-    ===================== */
-    if (updated)
-    {
-        bestMessage.textContent =
-            "🎉 ベストきろく　こうしん！";
 
-        bestDate.textContent = "";
+    // 間違えた問題の正解一覧を作成
+    const wrongQuestionItems = wrongAnswers
+        .map(id => {
+            const item = data.find(q => q.id === id);
 
-        bestMiss.textContent = "";
+            if (!item) return null;
 
-        bestTime.textContent = "";
-    }
-    else
-    {
-        bestMessage.textContent = "";
+            return {
+                question: "",
+                answer: item.lesson
+                    ? `${item.noun}（${item.lesson}課）`
+                    : item.noun
+            };
+        })
+        .filter(item => item !== null);
 
-        bestDate.textContent =
-            `いつ：${best.date}`;
-
-        bestMiss.textContent =
-            `ミス：${best.miss}回`;
-
-        bestTime.textContent =
-            `タイム：${best.time}秒`;
-    }
-
-    resultModal.classList.remove("hidden");
+    // 共通結果モーダルを表示
+    showResultModal({
+        gameName: `${typeDisplay}　${groupDisplay}　${kanaLabel}`,
+        date: dateStr,
+        time: Number(time),
+        missCount: missCount,
+        bestUpdated: updated,
+        bestRecord: best,
+        wrongQuestions: wrongQuestionItems
+    });
 }
 
 

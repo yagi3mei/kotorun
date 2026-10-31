@@ -26,6 +26,13 @@ import {
 } from "./storage.js";
 
 /* =========================
+   モーダル表示
+========================= */
+import {
+    showResultModal
+} from "./result-modal.js";
+
+/* =========================
    storage key
 ========================= */
 function getStorageKey() {
@@ -46,12 +53,12 @@ const soundBtn = document.getElementById("sound-btn");
 /* =========================
    ゲーム管理変数
 ========================= */
-let calendarDays = [];
 let questions = [];
 let currentQuestion = null;
 
 let remaining = 0;
 let missCount = 0;
+let wrongQuestions = [];
 // タイマー関連
 let startTime = 0;
 let timerInterval;
@@ -99,6 +106,7 @@ function startGame(){
 
     remaining = questions.length;
     missCount = 0;
+    wrongQuestions = [];
 
     updateDisplays();
 
@@ -174,6 +182,14 @@ function checkAnswer(selectedDay){
     }else{
 
         missCount++;
+
+        if (!wrongQuestions.some(
+            item => item.question === currentQuestion.text
+        )) {
+            wrongQuestions.push({
+                question: currentQuestion.text
+            });
+        }
 
         updateDisplays();
 
@@ -265,76 +281,26 @@ function endGame(){
 
 
     /* =====================
-       今回結果
+       共通結果モーダル
     ===================== */
-    document.getElementById("game-type-label")
-        .textContent =
-        "【日づけ（カレンダー）】";
+    const resultData = {
+        gameName: "日づけ（カレンダー）",
+        date: dateStr,
+        time: Number(time),
+        missCount: missCount,
+        bestUpdated: updated,
+        bestRecord: best
+            ? {
+                date: best.date,
+                miss: best.miss,
+                time: best.time
+            }
+            : null,
+        wrongQuestions: wrongQuestions
+    };
 
-    document.getElementById("date-time")
-        .textContent =
-        dateStr;
+    showResultModal(resultData);
 
-    document.getElementById("final-time")
-        .textContent =
-        `タイム：${time}秒`;
-
-    document.getElementById("miss-result")
-        .textContent =
-        `ミス：${missCount}回`;
-
-
-    /* =====================
-       ベスト表示
-    ===================== */
-    const bestMessage =
-        document.getElementById(
-            "best-message"
-        );
-
-    const bestDate =
-        document.getElementById(
-            "best-date"
-        );
-
-    const bestTime =
-        document.getElementById(
-            "best-time"
-        );
-
-    const bestMiss =
-        document.getElementById(
-            "best-miss"
-        );
-
-
-    if (updated) {
-
-        bestMessage.textContent =
-            "🎉 ベストきろく　こうしん！";
-
-        bestDate.textContent = "";
-        bestTime.textContent = "";
-        bestMiss.textContent = "";
-
-    } else {
-
-        bestMessage.textContent = "";
-
-        bestDate.textContent =
-            `いつ：${best.date}`;
-
-        bestTime.textContent =
-            `タイム：${best.time}秒`;
-
-        bestMiss.textContent =
-            `ミス：${best.miss}回`;
-    }
-
-
-    // モーダル表示
-    document.getElementById("result-modal")
-        .classList.remove("hidden");
 }
 
 /* =========================

@@ -3,6 +3,7 @@ File: kazoekata-random.js
 Purpose: かぞえかたランダム
 Author: やぎさん
 Created: 2026-06-09
+Updated: 2026-10-29: result-modal.js利用へ変更
 
 Notes:
 
@@ -36,7 +37,17 @@ from "../data/kazoekata/satsu-data.js";
 /* =========================
 storage
 ========================= */
-import { saveScore, getScore } from "./storage.js";
+import {
+    saveScore,
+    getScore
+} from "./storage.js";
+
+/* =========================
+   Modal 読込
+========================= */
+import {
+    showResultModal
+} from "./result-modal.js";
 
 /* =========================
 全データ
@@ -91,50 +102,6 @@ document.getElementById(
 "result-modal"
 );
 
-const gameTypeLabel =
-document.getElementById(
-"game-type-label"
-);
-
-const dateTime =
-document.getElementById(
-"date-time"
-);
-
-const finalTime =
-document.getElementById(
-"final-time"
-);
-
-const missResult =
-document.getElementById(
-"miss-result"
-);
-
-const bestMessage =
-document.getElementById(
-"best-message"
-);
-
-const bestDate =
-document.getElementById(
-"best-date"
-);
-
-const bestTime =
-document.getElementById(
-"best-time"
-);
-
-const bestMiss =
-document.getElementById(
-"best-miss"
-);
-
-const wrongListArea =
-document.getElementById(
-"wrong-list"
-);
 
 /* =========================
 状態変数
@@ -417,17 +384,17 @@ function checkAnswer(choice,button) {
             "ミス：" + missCount;
 
         if (
-            !wrongQuestions.includes(
-                currentQuestion.item
+            !wrongQuestions.some(
+                item => item.startsWith(
+                    currentQuestion.item + " → "
+                )
             )
         ) {
-
             wrongQuestions.push(
                 currentQuestion.item +
                 " → " +
                 currentQuestion.reading
             );
-
         }
 
         setTimeout(
@@ -505,71 +472,30 @@ function showResult() {
 
 
     /* =====================
-       間違え一覧
+        間違えた問題一覧
     ===================== */
-    let wrongList = "";
+    const wrongQuestionItems = wrongQuestions.map(item => {
+        const [question, answer] = item.split(" → ");
 
-    wrongQuestions.forEach(item => {
-
-        wrongList += `
-            ${item}<br>
-        `;
-
+        return {
+            question,
+            answer
+        };
     });
 
-    wrongListArea.innerHTML =
-        wrongList;
-
 
     /* =====================
-       今回結果
+        今回結果
     ===================== */
-    gameTypeLabel.textContent =
-         "【じょすうしランダム】";
-
-    dateTime.textContent =
-        dateStr;
-
-    missResult.textContent =
-        `ミス：${missCount}回`;
-
-    finalTime.textContent =
-        `タイム：${time}秒`;
-
-
-    /* =====================
-       ベスト表示
-    ===================== */
-    if (updated) {
-
-        bestMessage.textContent =
-            "🎉 ベストきろく　こうしん！";
-
-        bestDate.textContent = "";
-
-        bestMiss.textContent = "";
-
-        bestTime.textContent = "";
-
-    } else {
-
-        bestMessage.textContent = "";
-
-        bestDate.textContent =
-            `いつ：${best.date}`;
-
-        bestMiss.textContent =
-            `ミス：${best.miss}回`;
-
-        bestTime.textContent =
-            `タイム：${best.time}秒`;
-
-    }
-
-
-    resultModal.classList.remove(
-        "hidden"
-    );
+    showResultModal({
+        gameName: "じょすうしランダム",
+        date: dateStr,
+        time: Number(time),
+        missCount: missCount,
+        bestUpdated: updated,
+        bestRecord: best,
+        wrongQuestions: wrongQuestionItems
+    });
 
 }
 

@@ -4,7 +4,8 @@
 //      Author: やぎさん
 //      Created: 2026-06-01
 //      Updated: 2026-06-05: google analytics イベント送信追加
-// 
+//      Updated: 2026-10-26: 共通モーダル利用へ変更
+//
 //      Notes:
 //      - からだゲームの共通JavaScriptファイル
 //      - karada-index.htmlからゲームタイプをURLパラメータで受け取って、ゲームの内容を切り替える
@@ -21,12 +22,15 @@ import upperParts
 
 import lowerParts
     from "../data/body/lowerParts.js";
-    
+
+import {
+    showResultModal
+} from "./result-modal.js";
+
 import {
     saveScore,
     getScore
-}
-from "./storage.js";
+} from "./storage.js";
 
 
 const image = document.getElementById("faceImage");
@@ -85,31 +89,6 @@ const params =
 
 const category =
     params.get("category");
-
-const gameLevelLabel =
-    document.getElementById(
-        "game-level-label"
-    );
-
-const bestMessage =
-    document.getElementById(
-        "best-message"
-    );
-
-const bestDate =
-    document.getElementById(
-        "best-date"
-    );
-
-const bestMiss =
-    document.getElementById(
-        "best-miss"
-    );
-
-const bestTime =
-    document.getElementById(
-        "best-time"
-    );
 
 const wrongSound =
     document.getElementById(
@@ -285,7 +264,7 @@ function checkAnswer(
                 questionList.length
             )
             {
-                showResultModal();
+                showResult();
 
                 return;
             }
@@ -381,7 +360,7 @@ function updateStatus()
         missCount;
 }
 
-function showResultModal()
+function showResult()
 {
     // タイマー停止
     clearInterval(timer);
@@ -431,67 +410,28 @@ function showResultModal()
             category
         );
 
-    if (updated)
-    {
-        bestMessage.textContent =
-            "🎉 ベストきろく　こうしん！";
+    const resultData = {
+        gameName: categoryLabel,
+        date: now.toLocaleString("ja-JP"),
+        time: result.time,
+        missCount: missCount,
+        bestUpdated: updated,
+        bestRecord: bestScore
+            ? {
+                date: bestScore.date,
+                miss: bestScore.miss,
+                time: bestScore.time
+            }
+            : null,
+        wrongQuestions: wrongAnswers.map(
+            answer => ({
+                question: answer
+            })
+        )
+    };
 
-        bestDate.textContent = "";
+    showResultModal(resultData);
 
-        bestMiss.textContent = "";
-
-        bestTime.textContent = "";
-    }
-    else if (bestScore)
-    {
-        bestMessage.textContent = "";
-
-        bestDate.textContent =
-            `いつ：${bestScore.date}`;
-
-        bestMiss.textContent =
-            `ミス：${bestScore.miss}回`;
-
-        bestTime.textContent =
-            `タイム：${bestScore.time}秒`;
-    }
-
-    gameLevelLabel.textContent =
-        `【${categoryLabel}】`;
-
-        dateTime.textContent =
-        now.toLocaleString("ja-JP");
-
-    missResult.textContent =
-        `ミス：${missCount}`;
-
-    finalTime.textContent =
-        `タイム：${(
-            elapsedTime / 1000
-        ).toFixed(2)}秒`;
-    
-    wrongListArea.innerHTML = "";
-
-    wrongAnswers.forEach(
-        answer =>
-        {
-            const p =
-                document.createElement(
-                    "p"
-                );
-
-            p.textContent =
-                answer;
-
-            wrongListArea.appendChild(
-                p
-            );
-        }
-    );
-
-    resultModal.classList.remove(
-        "hidden"
-    );
 }
 
 function restartGame()
