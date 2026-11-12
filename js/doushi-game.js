@@ -558,14 +558,6 @@ timerInterval =
 showQuestion();
 
 
-/* =========================
-   クリックイベント
-========================= */
-window.goBack = function () {
-    const mode = new URLSearchParams(location.search).get("mode") || "normal";
-    location.href = `doushi-subindex.html?mode=${mode}`;
-};
-
 // もういちど：現在のモード・文字のままゲームを再読み込み
 window.restartGame = function () {
 

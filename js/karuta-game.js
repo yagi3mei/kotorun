@@ -406,8 +406,8 @@ function showResult() {
             window.restartGame();
         },
 
-        onMenu: () => {
-            window.goBack();
+       onMenu: () => {
+            window.goMenu();
         }
 
     });
@@ -458,9 +458,9 @@ window.goKotobasagashi = function ()
 
 
 /* =====================
-戻る
+    戻る
 ===================== */
-window.goBack = function () {
+window.goMenu = function () {
 
     location.href =
         `karuta-list.html?type=${type}&group=${group}`;

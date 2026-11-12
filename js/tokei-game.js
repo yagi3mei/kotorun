@@ -886,7 +886,7 @@ function showResult() {
             window.restartGame();
         },
         onMenu: () => {
-            window.goBack();
+            window.goMenu();
         }
     });
 
@@ -986,7 +986,7 @@ function restartGame() {
 /* =========================
     メニューへ戻る
 ========================= */
-function goBack() {
+function goMenu() {
 
     window.location.href =
         "tokei-index.html";
@@ -1022,4 +1022,4 @@ updateStatus();
 
 window.restartGame = restartGame;
 
-window.goBack = goBack;
+window.goMenu = goMenu;

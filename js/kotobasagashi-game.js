@@ -744,7 +744,7 @@ function showResult()
         },
 
         onMenu: () => {
-            window.goBack();
+            window.goMenu();
         }
 
     });
@@ -793,7 +793,7 @@ window.goKaruta = function ()
 // =====================
 // もどるボタン
 // =====================
-window.goBack = function () {
+window.goMenu = function () {
 
     location.href =
         `kotobasagashi-list.html?type=${type}&group=${group}`;

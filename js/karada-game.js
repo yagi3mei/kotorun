@@ -430,7 +430,7 @@ function showResult()
             window.restartGame();
         },
         onMenu: () => {
-            window.goBack();
+            window.goMenu();
         }
     });
 }
@@ -454,7 +454,7 @@ function restartGame()
     updateStatus();
 }
 
-function goBack()
+function goMenu()
 {
     location.href =
         "karada-index.html";
@@ -536,5 +536,5 @@ startGame();
 window.restartGame =
     restartGame;
 
-window.goBack =
-    goBack;
+window.goMenu =
+    goMenu;

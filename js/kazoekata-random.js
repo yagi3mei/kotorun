@@ -379,18 +379,17 @@ function checkAnswer(choice,button) {
         missDisplay.textContent =
             "ミス：" + missCount;
 
+        /* 間違え記録 */
         if (
-            !wrongQuestions.some(
-                item => item.startsWith(
-                    currentQuestion.item + " → "
-                )
+            !wrongQuestions.includes(
+                currentQuestion.reading
             )
         ) {
+
             wrongQuestions.push(
-                currentQuestion.item +
-                " → " +
                 currentQuestion.reading
             );
+
         }
 
         setTimeout(
@@ -468,16 +467,12 @@ function showResult() {
 
 
     /* =====================
-        間違えた問題一覧
+        間違えた正解一覧
     ===================== */
-    const wrongQuestionItems = wrongQuestions.map(item => {
-        const [question, answer] = item.split(" → ");
-
-        return {
-            question,
-            answer
-        };
-    });
+    const wrongQuestionItems = wrongQuestions.map(item => ({
+        question: "",
+        answer: item
+    }));
 
 
     /* =====================

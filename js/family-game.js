@@ -448,7 +448,7 @@ function showResult() {
             window.restartGame();
         },
         onMenu: () => {
-            window.goBack();
+            window.goMenu();
         }
     });
 
@@ -478,7 +478,7 @@ window.restartGame=function(){
 /* =====================
    戻る
 ===================== */
-window.goBack=function(){
+window.goMenu = function(){
 
     location.href =
         "family-index.html";
