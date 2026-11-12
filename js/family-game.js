@@ -21,7 +21,8 @@ import {
 } from "./storage.js";
 
 import {
-    showResultModal
+    showResultModal,
+    hideResultModal
 } from "./result-modal.js";
 
 const params=new URLSearchParams(location.search);
@@ -158,10 +159,6 @@ if (mode === "relative") {
     };
 }
 
-const resultModal =
-    document.getElementById(
-        "result-modal"
-    );
 
 let used=[];
 let wrongWords=[];
@@ -424,6 +421,8 @@ function showResult() {
     ===================== */
     const resultData = {
         gameName: modeLabel,
+        category: "family",
+        gameKey: getStorageKey(),
         date: dateStr,
         time: Number(time),
         missCount: missCount,
@@ -444,7 +443,14 @@ function showResult() {
             }))
     };
 
-    showResultModal(resultData);
+    showResultModal(resultData, {
+        onRestart: () => {
+            window.restartGame();
+        },
+        onMenu: () => {
+            window.goBack();
+        }
+    });
 
 }
 
@@ -463,9 +469,7 @@ window.restartGame=function(){
     missDisplay.textContent=
         "ミス：0";
 
-    resultModal.classList.add(
-        "hidden"
-    );
+    hideResultModal();
 
     start();
 };

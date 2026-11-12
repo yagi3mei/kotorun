@@ -17,8 +17,9 @@ import countryData
     from "../data/country/country-data.js";
 
 import {
-        showResultModal
-    } from "./result-modal.js";
+    showResultModal,
+    hideResultModal
+} from "./result-modal.js";
 
 import {
         saveScore,
@@ -58,11 +59,6 @@ const remainingDisplay =
 const missDisplay =
     document.getElementById(
     "miss-display"
-    );
-
-const resultModal =
-    document.getElementById(
-    "result-modal"
     );
 
 const QUESTION_COUNT = 10;  // 出題数
@@ -414,6 +410,8 @@ function showResult() {
     // 共通表示形式に変換
     const resultData = {
         gameName: "くに・ちいきゲーム",
+        category: "country",
+        gameKey: "country_game",
         date: dateStr,
         time: Number(time),
         missCount: missCount,
@@ -431,7 +429,14 @@ function showResult() {
     };
 
     // 共通の結果モーダルを表示
-    showResultModal(resultData);
+    showResultModal(resultData, {
+        onRestart: () => {
+            window.restartGame();
+        },
+        onMenu: () => {
+            window.goMenu();
+        }
+    });
 
 }
 
@@ -483,9 +488,7 @@ function startGame() {
 window.restartGame =
     function() {
 
-    resultModal.classList.add(
-        "hidden"
-    );
+    hideResultModal();
 
     startGame();
 

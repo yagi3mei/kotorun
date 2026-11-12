@@ -59,7 +59,15 @@
 /* =====================
    モーダル（結果）
 ===================== */
-.modal {
+.hidden {
+    display: none;
+}
+
+
+/* =====================
+   共通結果モーダル
+===================== */
+.result-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -73,11 +81,7 @@
     align-items: center;
 }
 
-.hidden {
-    display: none;
-}
-
-.modal-content {
+.result-modal-content {
     background: #FFB728;
     padding: 10px 12px;
     border-radius: 12px;
@@ -89,20 +93,20 @@
     text-align: center;
 }
 
-.modal-content h2 {
+.result-modal-content h2 {
     font-size: 5vw;
     margin-top: 0;
     margin-bottom: 8px;
     color: #4A2800;
 }
 
-.modal-content p {
+.result-modal-content p {
     font-size: 4.2vw;
     margin: 6px 0;
     color: #4A2800;
 }
 
-.modal-content button {
+.result-modal-content button {
     margin: 10px;
     padding: 12px 20px;
     font-size: 4.5vw;
@@ -207,15 +211,15 @@
         font-size: min(6vw, 30px);
     }
 
-    .modal-content h2 {
+    .result-modal-content h2 {
         font-size: 32px;
     }
 
-    .modal-content p {
+    .result-modal-content p {
         font-size: 22px;
     }
 
-    .modal-content button {
+    .result-modal-content button {
         font-size: 18px;
     }
 

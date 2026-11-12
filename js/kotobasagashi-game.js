@@ -23,7 +23,8 @@ import {
    Modal 読込
 ========================= */
 import {
-    showResultModal
+    showResultModal,
+    hideResultModal
 } from "./result-modal.js";
 
 const params = new URLSearchParams(window.location.search);
@@ -75,9 +76,6 @@ const soundBtn =
 
 const questionText =
     document.getElementById("questionText");
-
-const resultModal =
-    document.getElementById("result-modal");
 
 const IMAGE_DIR_MAP = {
 
@@ -728,13 +726,27 @@ function showResult()
 
     // 共通結果モーダルを表示
     showResultModal({
+
         gameName: `${typeDisplay}　${groupDisplay}　${kanaLabel}`,
+        category: "kotobasagashi",
+        gameKey: getStorageKey(),
         date: dateStr,
         time: Number(time),
         missCount: missCount,
         bestUpdated: updated,
         bestRecord: best,
         wrongQuestions: wrongQuestionItems
+
+    }, {
+
+        onRestart: () => {
+            window.restartGame();
+        },
+
+        onMenu: () => {
+            window.goBack();
+        }
+
     });
 }
 
@@ -757,7 +769,7 @@ window.restartGame = function ()
     wrongAnswers = [];
 
     // モーダルを閉じる
-    resultModal.classList.add("hidden");
+    hideResultModal();
 
     // ゲーム開始
     startGame();

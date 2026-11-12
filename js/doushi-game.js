@@ -17,7 +17,8 @@ import {
 } from "../js/storage.js";
 
 import {
-    showResultModal
+    showResultModal,
+    hideResultModal
 } from "../js/result-modal.js";
 
 const params = new URLSearchParams(location.search);
@@ -483,6 +484,8 @@ function showResult() {
     ===================== */
     const resultData = {
         gameName: gameName,
+        category: `doushi_${mode}`,
+        gameKey: kana,
         date: dateStr,
         time: Number(time),
         missCount: missCount,
@@ -500,7 +503,14 @@ function showResult() {
         }))
     };
 
-    showResultModal(resultData);
+    showResultModal(resultData, {
+        onRestart: () => {
+            window.restartGame();
+        },
+        onMenu: () => {
+            window.goMenu();
+        }
+    });
 
 }
 
@@ -558,7 +568,11 @@ window.goBack = function () {
 
 // もういちど：現在のモード・文字のままゲームを再読み込み
 window.restartGame = function () {
+
+    hideResultModal();
+
     location.reload();
+
 };
 
 // メニューへ：動詞活用ゲームの文字選択画面へ戻る

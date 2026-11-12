@@ -14,7 +14,10 @@
 
 import ageData from "../data/age/age-data.js";
 
-import { showResultModal } from "./result-modal.js";
+import {
+    showResultModal,
+    hideResultModal
+} from "./result-modal.js";
 
 // ストレージからスコアを保存・取得する関数
 import {saveScore, getScore} from "./storage.js";
@@ -48,50 +51,6 @@ const missDisplay =
         "miss-display"
     );
 
-const resultModal =
-    document.getElementById(
-        "result-modal"
-    );
-
-const gameTypeLabel =
-    document.getElementById(
-        "game-type-label"
-    );
-
-const dateTime =
-    document.getElementById(
-        "date-time"
-    );
-
-const finalTime =
-    document.getElementById(
-        "final-time"
-    );
-
-const missResult =
-    document.getElementById(
-        "miss-result"
-    );
-
-const bestMessage =
-    document.getElementById(
-        "best-message"
-    );
-
-const bestDate =
-    document.getElementById(
-        "best-date"
-    );
-
-const bestTime =
-    document.getElementById(
-        "best-time"
-    );
-
-const bestMiss =
-    document.getElementById(
-        "best-miss"
-    );
 
 let used = [];
 
@@ -361,6 +320,8 @@ function showResult() {
     ===================== */
     const resultData = {
         gameName: "ねんれいゲーム",
+        category: "age",
+        gameKey: "age_game",
         date: dateStr,
         time: Number(time),
         missCount: missCount,
@@ -379,55 +340,15 @@ function showResult() {
         )
     };
 
-    showResultModal(resultData);
+    showResultModal(resultData, {
+        onRestart: () => {
+            window.restartGame();
+        },
+        onMenu: () => {
+            window.goMenu();
+        }
+    });
 
-    // /* =====================
-    //    今回結果
-    // ===================== */
-    // gameTypeLabel.textContent =
-    //     "【ねんれいゲーム】";
-
-    // dateTime.textContent =
-    //     dateStr;
-
-    // missResult.textContent =
-    //     `ミス：${missCount}回`;
-
-    // finalTime.textContent =
-    //     `タイム：${time}秒`;
-
-
-    // /* =====================
-    //    ベスト表示
-    // ===================== */
-    // if (updated) {
-
-    //     bestMessage.textContent =
-    //         "🎉 ベストきろく　こうしん！";
-
-    //     bestDate.textContent = "";
-    //     bestMiss.textContent = "";
-    //     bestTime.textContent = "";
-
-    // } else {
-
-    //     bestMessage.textContent = "";
-
-    //     bestDate.textContent =
-    //         `いつ：${best.date}`;
-
-    //     bestMiss.textContent =
-    //         `ミス：${best.miss}回`;
-
-    //     bestTime.textContent =
-    //         `タイム：${best.time}秒`;
-
-    // }
-
-
-    // resultModal.classList.remove(
-    //     "hidden"
-    // );
 }
 
 /* =========================
@@ -477,9 +398,7 @@ function startGame() {
 ========================= */
 window.restartGame = function() {
 
-    resultModal.classList.add(
-        "hidden"
-    );
+    hideResultModal();
 
     startGame();
 

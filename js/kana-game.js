@@ -20,7 +20,8 @@ import {
 } from "./storage.js";
 
 import {
-    showResultModal
+    showResultModal,
+    hideResultModal
 } from "./result-modal.js";
 
 
@@ -339,13 +340,27 @@ function endGame() {
     // 今回の結果表示
     // =====================
     showResultModal({
+
         gameName: getGameLabel(gameType),
+        category: "kana",
+        gameKey: getStorageKey(gameType),
         date: dateStr,
         time: Number(time),
         missCount: missCount,
         bestUpdated: updated,
         bestRecord: best,
         wrongQuestions: wrongQuestions
+
+    }, {
+
+        onRestart: () => {
+            window.restartGame();
+        },
+
+        onMenu: () => {
+            window.goMenu();
+        }
+
     });
 
 }

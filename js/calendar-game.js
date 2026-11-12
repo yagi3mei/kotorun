@@ -29,7 +29,8 @@ import {
    モーダル表示
 ========================= */
 import {
-    showResultModal
+    showResultModal,
+    hideResultModal
 } from "./result-modal.js";
 
 /* =========================
@@ -285,6 +286,8 @@ function endGame(){
     ===================== */
     const resultData = {
         gameName: "日づけ（カレンダー）",
+        category: "calendar",
+        gameKey: getStorageKey(),
         date: dateStr,
         time: Number(time),
         missCount: missCount,
@@ -299,7 +302,14 @@ function endGame(){
         wrongQuestions: wrongQuestions
     };
 
-    showResultModal(resultData);
+    showResultModal(resultData, {
+        onRestart: () => {
+            window.restartGame();
+        },
+        onMenu: () => {
+            window.goMenu();
+        }
+    });
 
 }
 
@@ -307,7 +317,11 @@ function endGame(){
    リスタート
 ========================= */
 function restartGame(){
+
+    hideResultModal();
+
     location.reload();
+
 }
 
 /* =========================

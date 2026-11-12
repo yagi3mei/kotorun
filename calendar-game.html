@@ -106,49 +106,6 @@
         <button id="back-btn" onclick="goMenu()">もどる</button>
     </div>
 
-    <!-- 結果モーダル -->
-    <div id="result-modal" class="modal hidden">
-        <div class="modal-content">
-
-            <h2>日づけゲーム　けっか</h2>
-
-            <!-- ゲーム情報 -->
-            <p id="game-type-label"></p>
-            <p id="date-time"></p>
-
-            <!-- 今回の結果 -->
-            <p id="miss-result"></p>
-            <p id="final-time"></p>
-
-            <hr>
-
-            <!-- ベスト表示 -->
-            <p id="best-score-label">
-                あなたのベストきろく
-            </p>
-
-            <p id="best-message"></p>
-            <p id="best-date"></p>
-            <p id="best-miss"></p>
-            <p id="best-time"></p>
-
-            <hr>
-
-            <!-- 間違えた問題 -->
-            <h3>まちがえた もんだい</h3>
-            <div id="wrong-list" class="word-list-scroll"></div>
-
-            <button onclick="restartGame()">
-                もういちど
-            </button>
-
-            <button onclick="goMenu()">
-                もどる
-            </button>
-
-        </div>
-    </div>
-
     <!-- ゲームスクリプト -->
     <script type="module" src="js/calendar-game.js"></script>
 

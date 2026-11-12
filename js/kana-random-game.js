@@ -18,7 +18,8 @@ import {
 } from "./storage.js";
 
 import {
-    showResultModal
+    showResultModal,
+    hideResultModal
 } from "./result-modal.js";
 
 
@@ -342,13 +343,27 @@ function endGame() {
     // 共通の結果モーダルを表示
     // =====================
     showResultModal({
+
         gameName: getGameLabel(gameType),
+        category: "kana",
+        gameKey: getStorageKey(gameType),
         date: dateStr,
         time: Number(time),
         missCount: missCount,
         bestUpdated: updated,
         bestRecord: best,
         wrongQuestions: wrongQuestions
+
+    }, {
+
+        onRestart: () => {
+            window.restartGame();
+        },
+
+        onMenu: () => {
+            window.goMenu();
+        }
+
     });
 
 }

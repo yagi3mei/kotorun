@@ -23,7 +23,8 @@ import {
 } from "./storage.js";
 
 import {
-    showResultModal
+    showResultModal,
+    hideResultModal
 } from "./result-modal.js";
 
 
@@ -87,9 +88,6 @@ const remainingDisplay =
 
 const missDisplay =
     document.getElementById("miss-display");
-
-const resultModal =
-    document.getElementById("result-modal");
 
 const timerDisplay =
     document.getElementById("timer-display");
@@ -863,7 +861,9 @@ function showResult() {
             gameLevel === "beginner"
                 ? "しょきゅう（初級）"
                 : "中級（ちゅうきゅう）",
-        date: result.date,
+        category: "tokei",
+        gameKey: storageKey,
+                date: result.date,
         time: result.time,
         missCount: result.miss,
         bestUpdated: updated,
@@ -881,7 +881,14 @@ function showResult() {
         )
     };
 
-    showResultModal(resultData);
+    showResultModal(resultData, {
+        onRestart: () => {
+            window.restartGame();
+        },
+        onMenu: () => {
+            window.goBack();
+        }
+    });
 
 }
 
@@ -965,7 +972,7 @@ function setupLevelUI() {
     ゲーム再開
 ========================= */
 function restartGame() {
-    resultModal.classList.add("hidden");
+    hideResultModal();
     currentQuestionIndex = 0;
     missCount = 0;
     wrongAnswers = [];

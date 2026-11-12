@@ -24,7 +24,8 @@ import {
 } from "./storage.js";
 
 import {
-    showResultModal
+    showResultModal,
+    hideResultModal
 } from "./result-modal.js";
 
 
@@ -87,9 +88,6 @@ const cardsDiv =
 
 const remainingDisplay =
     document.getElementById("remaining-display");
-
-const resultModal =
-    document.getElementById("result-modal");
 
 
 /* 状態管理 */
@@ -391,13 +389,27 @@ function showResult() {
         共通結果モーダル表示
     ===================== */
     showResultModal({
+
         gameName: `${typeDisplay}　${kanaLabel}`,
+        category: "karuta",
+        gameKey: getStorageKey(),
         date: dateStr,
         time: Number(time),
         missCount: missCount,
         bestUpdated: updated,
         bestRecord: best,
         wrongQuestions: wrongQuestions
+
+    }, {
+
+        onRestart: () => {
+            window.restartGame();
+        },
+
+        onMenu: () => {
+            window.goBack();
+        }
+
     });
 
 }
@@ -424,7 +436,7 @@ window.restartGame = function () {
     remainingDisplay.textContent =
         "のこり：" + data.length;
 
-    resultModal.classList.add("hidden");
+    hideResultModal();
 
     loadQuestion();
 

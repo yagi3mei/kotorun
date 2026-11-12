@@ -34,7 +34,8 @@ import {
    Modal 読込
 ========================= */
 import {
-    showResultModal
+    showResultModal,
+    hideResultModal
 } from "./result-modal.js";
 
 
@@ -99,11 +100,6 @@ const remainingDisplay =
 const missDisplay =
     document.getElementById(
         "miss-display"
-    );
-
-const resultModal =
-    document.getElementById(
-        "result-modal"
     );
 
 
@@ -471,13 +467,27 @@ function showResult() {
        今回結果
     ===================== */
     showResultModal({
+
         gameName: `${currentConfig.label}（${currentConfig.kanji}） ${currentConfig.question}`,
+        category: "kazoekata",
+        gameKey: type,
         date: dateStr,
         time: Number(time),
         missCount: missCount,
         bestUpdated: updated,
         bestRecord: best,
         wrongQuestions: wrongQuestionItems
+
+    }, {
+
+        onRestart: () => {
+            window.restartGame();
+        },
+
+        onMenu: () => {
+            window.goMenu();
+        }
+
     });
 
 }
@@ -532,9 +542,7 @@ function startGame() {
 
 window.restartGame = function() {
 
-    resultModal.classList.add(
-        "hidden"
-    );
+    hideResultModal();
 
     startGame();
 

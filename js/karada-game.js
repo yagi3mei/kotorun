@@ -24,7 +24,8 @@ import lowerParts
     from "../data/body/lowerParts.js";
 
 import {
-    showResultModal
+    showResultModal,
+    hideResultModal
 } from "./result-modal.js";
 
 import {
@@ -34,27 +35,29 @@ import {
 
 
 const image = document.getElementById("faceImage");
+
 const marker = document.getElementById("marker");
+
 const questionText =
     document.getElementById("questionText");
+
 const choicesContainer =
     document.getElementById("choicesContainer");
+
 const QUESTION_TEXT = "これは？";
+
 const QUESTION_SPEECH = "これわ？";
+
 // のこり問題数
 const remainingDisplay =
     document.getElementById(
         "remaining-display"
     );
-// ミス数
+
+    // ミス数
 const missDisplay =
     document.getElementById(
         "miss-display"
-    );
-
-const resultModal =
-    document.getElementById(
-        "result-modal"
     );
 
 const missResult =
@@ -72,16 +75,6 @@ const timerDisplay =
         "timer-display"
     );
     
-const dateTime =
-    document.getElementById(
-        "date-time"
-    );
-
-const wrongListArea =
-    document.getElementById(
-        "wrong-list-area"
-    );
-
 const params =
     new URLSearchParams(
         window.location.search
@@ -412,6 +405,8 @@ function showResult()
 
     const resultData = {
         gameName: categoryLabel,
+        category: "karada",
+        gameKey: category,
         date: now.toLocaleString("ja-JP"),
         time: result.time,
         missCount: missCount,
@@ -430,15 +425,19 @@ function showResult()
         )
     };
 
-    showResultModal(resultData);
-
+    showResultModal(resultData, {
+        onRestart: () => {
+            window.restartGame();
+        },
+        onMenu: () => {
+            window.goBack();
+        }
+    });
 }
 
 function restartGame()
 {
-    resultModal.classList.add(
-        "hidden"
-    );
+    hideResultModal();
 
     speechSynthesis.cancel();
 

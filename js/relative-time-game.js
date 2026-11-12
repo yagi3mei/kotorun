@@ -35,7 +35,8 @@ from "./storage.js";
    共通結果モーダル
 ========================= */
 import {
-    showResultModal
+    showResultModal,
+    hideResultModal
 } from "./result-modal.js";
 
 
@@ -59,15 +60,6 @@ const wrongSound =
         "sound-wrong"
     );
 
-
-/* =========================
-   結果モーダル
-========================= */
-
-const resultModal =
-    document.getElementById(
-        "result-modal"
-    );
 
 const timerDisplay =
     document.getElementById(
@@ -415,13 +407,27 @@ function showResult() {
 
     // 共通結果モーダル表示
     showResultModal({
+
         gameName,
+        category: "hizuke",
+        gameKey: mode,
         date: result.date,
         time: result.time,
         missCount,
         bestUpdated: updated,
         bestRecord: bestScore,
         wrongQuestions: wrongQuestionItems
+
+    }, {
+
+        onRestart: () => {
+            window.restartGame();
+        },
+
+        onMenu: () => {
+            window.goMenu();
+        }
+
     });
 
 }
@@ -1726,9 +1732,7 @@ function updateMissDisplay() {
 ========================= */
 function restartGame() {
 
-    resultModal.classList.add(
-        "hidden"
-    );
+    hideResultModal();
 
     document
     .querySelectorAll(".date-btn")
