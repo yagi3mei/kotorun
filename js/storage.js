@@ -13,7 +13,7 @@
 /* =========================
    localStorage キー名
 ========================= */
-const STORAGE_KEY = "kotorun-score";
+export const STORAGE_KEY = "kotorun-score";
 
 
 /* =========================
@@ -24,18 +24,61 @@ export function loadScores() {
     const data = localStorage.getItem(STORAGE_KEY);
 
     // 初回起動時
-    if (!data) {
+    if (data === null) {
         return {};
     }
 
     try {
-        return JSON.parse(data);
+        const scores = JSON.parse(data);
+
+        if (
+            scores === null ||
+            typeof scores !== "object" ||
+            Array.isArray(scores)
+        ) {
+            throw new Error("スコアデータの形式が正しくありません。");
+        }
+
+        // カテゴリー・ゲーム単位のデータを検証
+        for (const [category, games] of Object.entries(scores)) {
+
+            if (
+                games === null ||
+                typeof games !== "object" ||
+                Array.isArray(games)
+            ) {
+                throw new Error(
+                    `スコアカテゴリーの形式が不正です: ${category}`
+                );
+            }
+
+            for (const [gameKey, record] of Object.entries(games)) {
+
+                if (
+                    record === null ||
+                    typeof record !== "object" ||
+                    Array.isArray(record) ||
+                    !Number.isFinite(record.time) ||
+                    record.time <= 0 ||
+                    !Number.isFinite(record.miss) ||
+                    record.miss < 0
+                ) {
+                    throw new Error(
+                        `ゲーム記録の形式が不正です: ${category} / ${gameKey}`
+                    );
+                }
+            }
+        }
+
+        return scores;
 
     } catch (error) {
 
         console.error("score load error", error);
 
-        return {};
+        throw new Error("スコアデータの読み込みに失敗しました。", {
+            cause: error
+        });
     }
 }
 
@@ -156,6 +199,35 @@ export function getScore(category, key) {
     return scores?.[category]?.[key] || null;
 }
 
+/* =========================
+   スコア復元（保存失敗時）
+========================= */
+export function restoreScore(category, key, previousScore) {
+
+    const scores = loadScores();
+
+    if (!scores[category]) {
+        scores[category] = {};
+    }
+
+    // 保存前に記録がなかった場合
+    if (previousScore === null) {
+
+        delete scores[category][key];
+
+        // 空になったカテゴリーを削除
+        if (Object.keys(scores[category]).length === 0) {
+            delete scores[category];
+        }
+
+    } else {
+
+        // 保存前の記録に戻す
+        scores[category][key] = previousScore;
+    }
+
+    saveAllScores(scores);
+}
 
 /* =========================
    category 単位取得

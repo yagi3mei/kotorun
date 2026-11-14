@@ -116,6 +116,26 @@
     border-radius: 8px;
 }
 
+/* =========================
+   バッジ獲得モーダル
+========================= */
+
+/* バッジ画像を横一列に並べる */
+#earned-badge-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+/* バッジ画像の大きさ */
+#earned-badge-images img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
 
 /* =====================
    選択肢エリア
