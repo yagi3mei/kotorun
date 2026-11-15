@@ -5,8 +5,8 @@
    Created: 2026-11-10
 
    Notes:
-   - ゲームクリア時の共通処理を管理する
-   - 旧スコアデータの移行を自動実行する
+    - ゲームクリア時の共通処理を管理する
+    - 進捗データの読み込みと形式検査を行う
 ========================================= */
 
 /* =========================
@@ -15,6 +15,7 @@
 import GAME_POINTS from "./game-points.js";
 import badgeList from "../data/badges/badge-list.js";
 import { migrateLegacyScores } from "./migration.js";
+import { validateProgressData } from "./progress-validation.js";
 
 /* =========================
    localStorage キー名
@@ -65,7 +66,12 @@ function loadProgress() {
     }
 
     // 保存済みデータを読み込む
-    return JSON.parse(savedData);
+    const progress = JSON.parse(savedData);
+
+    // 保存データの形式を検査
+    validateProgressData(progress);
+
+    return progress;
 }
 
 let progressData = loadProgress();
