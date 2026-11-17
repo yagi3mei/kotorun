@@ -1,0 +1,274 @@
+
+/* =========================================
+   File: progress.css
+   Purpose: 学習記録・バッジ管理画面のスタイル
+   Author: やぎさん
+   Created: 2026-11-15
+========================================= */
+
+/* 進捗管理画面 */
+.progress-area {
+    max-width: 900px;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+/* 画面タイトル */
+.progress-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0 20px;
+    line-height: 1.4;
+}
+
+/* タイトルの日本語 */
+.title-japanese {
+    font-size: 1.15rem;
+    font-weight: bold;
+}
+
+/* タイトルの英語 */
+.title-english {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: normal;
+}
+
+/* 学習記録の一覧 */
+.progress-summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 20px auto;
+}
+
+/* 個別の記録欄 */
+.summary-item {
+    padding: 15px 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* 記録項目の見出し */
+.summary-item h2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin: 0 0 10px;
+    line-height: 1.4;
+}
+
+/* 見出しの日本語 */
+.summary-japanese {
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+/* 見出しの英語 */
+.summary-english {
+    font-size: 0.68rem;
+    color: #666;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+/* 記録の数値 */
+.summary-item p {
+    margin: 0;
+    font-size: clamp(0.85rem, 2.5vw, 1.3rem);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* 日本地図の表示領域 */
+.progress-map {
+    margin: 20px auto;
+}
+
+/* 地図本体 */
+#japan-map {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   日本一周の進捗情報
+========================================= */
+
+/* 進捗情報全体 */
+#map-progress-info {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+
+    max-width: 75%;
+
+    /* 地図のクリック操作を妨げない */
+    pointer-events: none;
+}
+
+/* 進捗情報のボックス */
+.map-progress-box {
+    padding: 8px 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+/* 日本語・英語の各行 */
+.map-progress-line {
+    margin: 0;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+/* 日本語 */
+.map-progress-japanese {
+    font-size: clamp(0.62rem, 1.8vw, 0.9rem);
+    font-weight: bold;
+}
+
+/* 英語 */
+.map-progress-english {
+    margin-left: 0.4em;
+    font-size: clamp(0.52rem, 1.4vw, 0.72rem);
+    color: #666;
+}
+
+/* 操作案内 */
+.map-progress-instruction {
+    margin: 0 0 0 2px;
+    font-size: clamp(0.62rem, 1.8vw, 0.9rem);
+    line-height: 1.4;
+    color: #555;
+    text-align: left;
+}
+
+/* 日本地図の画像 */
+.japan-map-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 現在取り組んでいる県を示すランナー */
+.progress-runner {
+    position: absolute;
+    width: 20px;
+    height: auto;
+    transform: translate(-50%, -100%);
+    pointer-events: auto;
+}
+
+/* 都道府県SVGの表示 */
+.prefecture-map-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+}
+
+/* 都道府県の輪郭部分だけクリック可能にする */
+.prefecture-map-image path {
+    pointer-events: visiblePainted;
+    cursor: pointer;
+}
+
+/* =========================================
+   都道府県のバッジモーダル
+========================================= */
+
+/* モーダル全体の背景 */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* hidden属性がある場合は非表示 */
+.modal-overlay[hidden] {
+    display: none;
+}
+
+/* モーダル本体 */
+.modal-content {
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #FFB728;
+    border: 5px solid #B67A20;
+    border-radius: 12px;
+    color: #4A2800;
+    text-align: center;
+}
+
+/* 都道府県名とランナー */
+.modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+/* 都道府県名 */
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* モーダル内のランナー */
+#modal-runner {
+    width: 40px;
+    height: auto;
+}
+
+/* 獲得済みバッジ一覧 */
+#prefecture-badge-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 12px;
+    background-color: #FFF3CF;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* 戻るボタン */
+#close-prefecture-modal {
+    margin-top: 10px;
+    background-color: #B67A20;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+
+/* モーダル内のバッジ画像 */
+#prefecture-badge-list img {
+    width: 120%;
+    height: auto;
+    justify-self: center;
+}

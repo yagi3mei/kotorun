@@ -1,0 +1,208 @@
+
+<!-- =========================================
+     File: progress.html
+     Purpose: 学習記録・バッジ管理画面
+     Author: やぎさん
+     Created: 2026-11-15
+
+     Notes:
+     - 共通スタイルは common.css を使用
+     - ページ専用スタイルは progress.css を使用
+     - 学習記録は progress.js から取得
+========================================= -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>がくしゅうのきろく - ことラン</title>
+
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+    <link rel="stylesheet"
+          href="css/progress.css">
+
+</head>
+<body>
+
+    <div class="header">
+
+        <!-- ロゴ -->
+        <header class="top-header">
+
+            <a href="index.html">
+
+                <img src="images/kotorun-logo.png"
+                     alt="ことラン"
+                     class="app-logo">
+
+            </a>
+
+        </header>
+
+        <button id="back-btn-top" onclick="goBack()">
+            <span class="back-btn-japanese">もどる</span>
+            <span class="back-btn-english">back</span>
+        </button>
+
+    </div>
+
+    <!-- 学習記録画面 -->
+    <main class="progress-area">
+
+        <h1 class="progress-title">
+            <span class="title-japanese">がくしゅうのきろく</span>
+            <span class="title-english">Learning Record</span>
+        </h1>
+
+
+        <!-- 学習記録 -->
+        <section class="progress-summary">
+
+            <div class="summary-item">
+                <h2>
+                    <span class="summary-japanese">ごうけい じかん</span>
+                    <span class="summary-english">Total study time</span>
+                </h2>
+                <p>
+                    <span id="total-play-time">0</span>分 /
+                    <span id="total-play-time-en">0</span> min
+                </p>
+            </div>
+
+            <div class="summary-item">
+                <h2>
+                    <span class="summary-japanese">ごうけいクリア</span>
+                    <span class="summary-english">Total clears</span>
+                </h2>
+                <p>
+                    <span id="total-clear-count">0</span>回 /
+                    <span id="total-clear-count-en">0</span> times
+                </p>
+            </div>
+
+            <div class="summary-item">
+                <h2>
+                    <span class="summary-japanese">こんげつ じかん</span>
+                    <span class="summary-english">Study time this month</span>
+                </h2>
+                <p>
+                    <span id="monthly-play-time">0</span>分 /
+                    <span id="monthly-play-time-en">0</span> min
+                </p>
+            </div>
+
+            <div class="summary-item">
+                <h2>
+                    <span class="summary-japanese">こんげつ クリア</span>
+                    <span class="summary-english">Clears this month</span>
+                </h2>
+                <p>
+                    <span id="monthly-clear-count">0</span>回 /
+                    <span id="monthly-clear-count-en">0</span> times
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- 日本地図 -->
+        <section class="progress-map">
+
+            <div id="japan-map">
+                <!-- 日本地図SVGをここに表示 -->
+
+                <!-- 日本一周の進捗情報 -->
+                <div id="map-progress-info">
+
+                    <!-- 進捗情報のボックス -->
+                    <div class="map-progress-box">
+
+                        <!-- 日本一周 -->
+                        <p class="map-progress-line">
+                            <span class="map-progress-japanese">
+                                日本一周：<span id="round-number-ja">1</span>周目
+                            </span>
+                            <span class="map-progress-english">
+                                Japan Tour: Round <span id="round-number-en">1</span>
+                            </span>
+                        </p>
+
+                        <!-- 獲得バッジ数 -->
+                        <p class="map-progress-line">
+                            <span class="map-progress-japanese">
+                                獲得バッジ数：<span id="badge-count-ja">0</span> / <span id="badge-total-ja">0</span>個
+                            </span>
+                            <span class="map-progress-english">
+                                Badges: <span id="badge-count-en">0</span> / <span id="badge-total-en">0</span>
+                            </span>
+                        </p>
+
+                    </div>
+
+                    <!-- 操作案内 -->
+                    <p class="map-progress-instruction">
+                        県、ランナーをクリック<br>
+                        Click a prefecture or the runner
+                    </p>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 都道府県のバッジモーダル -->
+        <section id="prefecture-modal" class="modal-overlay" hidden>
+            <div class="modal-content">
+
+                <!-- 都道府県名とランナー -->
+                <div class="modal-header">
+                    <h2 id="modal-prefecture-name"></h2>
+                    <img
+                        id="modal-runner"
+                        src="images/badges/runner/runner_01.png"
+                        alt="ランナー"
+                    >
+                </div>
+
+                <!-- 獲得済みバッジ一覧 -->
+                <div id="prefecture-badge-list">
+                    <!-- JavaScriptでバッジを表示 -->
+                </div>
+
+                <!-- 地図に戻るボタン -->
+                <button
+                    type="button"
+                    id="close-prefecture-modal"
+                    class="menu-btn"
+                >
+                    <span class="back-btn-japanese">もどる</span>
+                    <span class="back-btn-english">back</span>
+                </button>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script type="module" src="js/progress-page.js"></script>
+
+    <script>
+
+        // 戻る
+        function goBack() {
+
+            location.href =
+                "index.html";
+
+        }
+
+    </script>
+
+</body>
+</html>

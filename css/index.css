@@ -20,6 +20,11 @@
     margin-top: 15px;
 }
 
+/* 学習記録へのリンク */
+.progress-menu {
+    margin-top: 16px;
+}
+
 /* メインビジュアル領域 */
 .hero-area {
     position: relative;
@@ -29,7 +34,7 @@
 }
 
 .runner-visual {
-    width: 70%;
+    width: 60%;
     max-width: 300px;
     display: block;
      margin: 10px auto 20px;
