@@ -43,14 +43,24 @@ function readLegacyScores() {
     return scores;
 }
 
+
 /* =========================
-   旧スコアデータの検査
+   移行対象の旧スコア記録を取得
 ========================= */
-function validateLegacyScores(scores) {
+function getMigratableRecords(scores) {
+
+    const records = [];
 
     for (const [category, games] of Object.entries(scores)) {
 
-        // 空のカテゴリーは移行対象外
+        // ポイント表にないカテゴリーは無視
+        const categoryPoints = GAME_POINTS[category];
+
+        if (!categoryPoints) {
+            continue;
+        }
+
+        // 現在有効なカテゴリーのデータ形式を確認
         if (
             games === null ||
             typeof games !== "object" ||
@@ -61,29 +71,14 @@ function validateLegacyScores(scores) {
             );
         }
 
-        if (Object.keys(games).length === 0) {
-            continue;
-        }
-
-        // ポイント表にカテゴリーが存在するか確認
-        const categoryPoints = GAME_POINTS[category];
-
-        if (!categoryPoints) {
-            throw new Error(
-                `ポイント表にカテゴリーがありません: ${category}`
-            );
-        }
-
-        // 各ゲームのポイント設定と記録内容を確認
         for (const [gameKey, record] of Object.entries(games)) {
 
+            // ポイント表にないゲームキーは無視
             if (!categoryPoints[gameKey]) {
-                throw new Error(
-                    `ポイント表にゲームがありません: ${category} / ${gameKey}`
-                );
+                continue;
             }
 
-            // ベスト記録の形式を確認
+            // 現在有効なゲームのベスト記録形式を確認
             if (
                 record === null ||
                 typeof record !== "object" ||
@@ -97,8 +92,24 @@ function validateLegacyScores(scores) {
                     `ベスト記録の形式が不正です: ${category} / ${gameKey}`
                 );
             }
+
+            records.push({
+                category,
+                gameKey,
+                record
+            });
         }
     }
+
+    return records;
+}
+
+/* =========================
+   旧スコアデータの検査
+========================= */
+function validateLegacyScores(scores) {
+
+    getMigratableRecords(scores);
 
     return true;
 }
@@ -110,30 +121,45 @@ function calculateMigrationPoints(scores) {
 
     let totalPoints = 0;
 
-    for (const [category, games] of Object.entries(scores)) {
+    const records = getMigratableRecords(scores);
 
-        // 空のカテゴリーは対象外
-        if (Object.keys(games).length === 0) {
-            continue;
-        }
+    for (const { category, gameKey } of records) {
 
-        const categoryPoints = GAME_POINTS[category];
-
-        for (const gameKey of Object.keys(games)) {
-
-            totalPoints += categoryPoints[gameKey].fullPoints;
-        }
+        totalPoints += GAME_POINTS[category][gameKey].fullPoints;
     }
 
     return totalPoints;
 }
 
 /* =========================
+   旧ベスト記録の学習統計計算
+========================= */
+function calculateMigrationStats(scores) {
+
+    let totalPlayTime = 0;
+    let totalClearCount = 0;
+
+    const records = getMigratableRecords(scores);
+
+    for (const { record } of records) {
+
+        totalPlayTime += record.time;
+        totalClearCount += 1;
+    }
+
+    return {
+        totalPlayTime,
+        totalClearCount
+    };
+}
+
+
+/* =========================
    新しい進捗データの保存
 ========================= */
 const PROGRESS_STORAGE_KEY = "kotorun-progress";
 
-function saveMigratedProgress(points) {
+function saveMigratedProgress(points, stats) {
 
     // 20ポイントごとにバッジを獲得
     const badgeCount = Math.min(
@@ -148,8 +174,8 @@ function saveMigratedProgress(points) {
         migrationCompleted: true,
         points: remainingPoints,
         lastBadgeId: badgeCount,
-        totalPlayTime: 0,
-        totalClearCount: 0,
+        totalPlayTime: stats.totalPlayTime,
+        totalClearCount: stats.totalClearCount,
         monthly: {}
     };
 
@@ -204,6 +230,9 @@ export function migrateLegacyScores() {
     // 移行ポイントを計算
     const points = calculateMigrationPoints(scores);
 
+    // 累計学習時間・累計クリア数を計算
+    const stats = calculateMigrationStats(scores);
+
     // 新しい進捗データを保存
-    return saveMigratedProgress(points);
+    return saveMigratedProgress(points, stats);
 }

@@ -213,11 +213,6 @@ async function displayJapanMap(runnerPosition, lastBadgeId) {
     const mapWidth = mapImage.clientWidth;
     const mapHeight = mapImage.clientHeight;
 
-    console.log("地図の表示サイズ:", {
-        width: mapWidth,
-        height: mapHeight
-    });
-
     // SVGの座標を表示位置に変換
     const runnerX =
         runnerPosition.x / 428.06601 * mapWidth;
@@ -407,8 +402,6 @@ async function initializeProgressPage() {
     // 進捗データを取得
     const progress = getProgress();
 
-    console.log("現在の進捗データ:", progress);
-
     // 学習記録を表示
     displayLearningRecords(progress);
 
@@ -418,8 +411,6 @@ async function initializeProgressPage() {
     // 獲得済みの県番号一覧を取得
     const earnedPrefectureNumbers =
         getEarnedPrefectureNumbers(progress.lastBadgeId);
-
-    console.log("獲得済みの県番号:", earnedPrefectureNumbers);
 
     // 獲得済みの県SVGを地図に重ねる
     for (const prefectureNumber of earnedPrefectureNumbers) {
@@ -433,13 +424,9 @@ async function initializeProgressPage() {
     const prefectureNumber =
         getCurrentPrefectureNumber(progress.lastBadgeId);
 
-    console.log("現在の県番号:", prefectureNumber);
-
     // 現在の県のランナー配置座標を取得
     const runnerPosition =
         await getPrefecturePosition(prefectureNumber);
-
-    console.log("ランナー配置座標:", runnerPosition);
 
     // 日本地図とランナーを表示
     await displayJapanMap(

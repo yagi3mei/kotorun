@@ -1,13 +1,14 @@
 /* =========================================
    File: game-points.js
-   Purpose: ゲームごとの満額ポイント・半額ポイント定義
-   Updated: 2026-11-07
+   Purpose: ゲームごとの満額ポイント・減額ポイント定義
+   Updated: 2026-11-17
 
    付与ルール：
    - 初めて実施したゲーム：満額ポイント
    - ベスト記録を更新したゲーム：満額ポイント
-   - ベスト記録を更新しなかったプレイ：クリア時に半額ポイント
-   - 半額ポイントは満額の1/2を小数点以下切り上げ
+   - ベスト記録を更新しなかったプレイ：
+       ・かなゲーム：満額の25%（小数点以下切り上げ）
+       ・その他のゲーム：満額の50%（小数点以下切り上げ）
 
    category / key は storage.js の saveScore() と同じ値を使用する
 ========================================= */
@@ -16,20 +17,20 @@ const GAME_POINTS = Object.freeze({
 
     // かなゲーム＆かなゲームランダム
     "kana": Object.freeze({
-        "hiragana_seion": Object.freeze({ fullPoints: 23, halfPoints: 12 }),
-        "hiragana_dakuon": Object.freeze({ fullPoints: 13, halfPoints: 7 }),
-        "hiragana_youon": Object.freeze({ fullPoints: 17, halfPoints: 9 }),
-        "katakana_seion": Object.freeze({ fullPoints: 23, halfPoints: 12 }),
-        "katakana_dakuon": Object.freeze({ fullPoints: 13, halfPoints: 7 }),
-        "katakana_youon": Object.freeze({ fullPoints: 17, halfPoints: 9 }),
-        "katakana_extra": Object.freeze({ fullPoints: 5, halfPoints: 3 }),
-        "random_hiragana_seion": Object.freeze({ fullPoints: 46, halfPoints: 23 }),
-        "random_hiragana_dakuon": Object.freeze({ fullPoints: 25, halfPoints: 13 }),
-        "random_hiragana_youon": Object.freeze({ fullPoints: 33, halfPoints: 17 }),
-        "random_katakana_seion": Object.freeze({ fullPoints: 46, halfPoints: 23 }),
-        "random_katakana_dakuon": Object.freeze({ fullPoints: 25, halfPoints: 13 }),
-        "random_katakana_youon": Object.freeze({ fullPoints: 33, halfPoints: 17 }),
-        "random_katakana_extra": Object.freeze({ fullPoints: 10, halfPoints: 5 })
+        "hiragana_seion": Object.freeze({ fullPoints: 23, halfPoints: 6 }),
+        "hiragana_dakuon": Object.freeze({ fullPoints: 13, halfPoints: 4 }),
+        "hiragana_youon": Object.freeze({ fullPoints: 17, halfPoints: 5 }),
+        "katakana_seion": Object.freeze({ fullPoints: 23, halfPoints: 6 }),
+        "katakana_dakuon": Object.freeze({ fullPoints: 13, halfPoints: 4 }),
+        "katakana_youon": Object.freeze({ fullPoints: 17, halfPoints: 5 }),
+        "katakana_extra": Object.freeze({ fullPoints: 5, halfPoints: 2 }),
+        "random_hiragana_seion": Object.freeze({ fullPoints: 46, halfPoints: 12 }),
+        "random_hiragana_dakuon": Object.freeze({ fullPoints: 25, halfPoints: 7 }),
+        "random_hiragana_youon": Object.freeze({ fullPoints: 33, halfPoints: 9 }),
+        "random_katakana_seion": Object.freeze({ fullPoints: 46, halfPoints: 12 }),
+        "random_katakana_dakuon": Object.freeze({ fullPoints: 25, halfPoints: 7 }),
+        "random_katakana_youon": Object.freeze({ fullPoints: 33, halfPoints: 9 }),
+        "random_katakana_extra": Object.freeze({ fullPoints: 10, halfPoints: 3 })
     }),
 
     // たんごかるたゲーム

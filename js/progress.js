@@ -15,7 +15,6 @@
 import GAME_POINTS from "./game-points.js";
 import badgeList from "../data/badges/badge-list.js";
 import { migrateLegacyScores } from "./migration.js";
-import { validateProgressData } from "./progress-validation.js";
 
 /* =========================
    localStorage キー名
@@ -26,55 +25,18 @@ const PROGRESS_STORAGE_KEY = "kotorun-progress";
 /* =========================
    初回読み込み時の旧データ移行
 ========================= */
-// let progressData;
+let progressData;
 
-// try {
+try {
 
-//     progressData = migrateLegacyScores();
+    progressData = migrateLegacyScores();
 
-// } catch (error) {
+} catch (error) {
 
-//     console.error("progress initialization error:", error);
+    console.error("progress initialization error:", error);
 
-//     throw error;
-// }
-
-
-/* =========================
-   進捗データの初期化・読み込み
-========================= */
-function createInitialProgress() {
-
-    return {
-        migrationCompleted: false,
-        points: 0,
-        lastBadgeId: 0,
-        totalPlayTime: 0,
-        totalClearCount: 0,
-        monthly: {}
-    };
+    throw error;
 }
-
-function loadProgress() {
-
-    const savedData =
-        localStorage.getItem(PROGRESS_STORAGE_KEY);
-
-    // 保存データがなければ初期データを作成
-    if (savedData === null) {
-        return createInitialProgress();
-    }
-
-    // 保存済みデータを読み込む
-    const progress = JSON.parse(savedData);
-
-    // 保存データの形式を検査
-    validateProgressData(progress);
-
-    return progress;
-}
-
-let progressData = loadProgress();
 
 
 /* =========================
@@ -218,22 +180,6 @@ export function recordGameResult(
 
         // 進捗データを変更前の状態に戻す
         progressData = previousProgressData;
-
-        // // ベスト記録が更新されていた場合は元に戻す
-        // if (bestUpdated) {
-
-        //     try {
-
-        //         restoreScore(category, gameKey, previousBest);
-
-        //     } catch (restoreError) {
-
-        //         console.error(
-        //             "ベスト記録の復元に失敗しました:",
-        //             restoreError
-        //         );
-        //     }
-        // }
 
         // 最初に発生したエラーを返す
         throw error;
