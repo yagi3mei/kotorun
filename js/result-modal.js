@@ -114,7 +114,7 @@ function createBadgeModal() {
 
         <div class="result-modal-content">
 
-            <h2>バッジをかくとく！</h2>
+            <h2>バッジゲット！</h2>
 
             <p id="earned-prefectures"></p>
 
@@ -159,7 +159,7 @@ function showBadgeModal(earnedBadges) {
     document.getElementById(
         "earned-prefectures"
     ).textContent =
-        `${prefectureNames.join("・")}のバッジをかくとくしました！`;
+        `${prefectureNames.join("・")}のバッジをゲットだぜ！`;
 
 
     // バッジ画像
@@ -242,6 +242,8 @@ function createResultModal() {
             <div id="wrong-list"
                  class="word-list-scroll">
             </div>
+
+            <p id="remaining-points"></p>
 
             <button id="restart-result-btn">
                 もういちど
@@ -329,6 +331,10 @@ export function showResultModal(
 
     document.getElementById("miss-result").textContent =
         `ミス：${resultData.missCount}回`;
+
+    // 次のバッジまでの残りポイント
+    document.getElementById("remaining-points").textContent =
+        `バッジゲットまで、あと ${20 - progressResult.remainingPoints} ポイント！`;
 
 
     // ベスト記録

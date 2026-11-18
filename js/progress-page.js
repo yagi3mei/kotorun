@@ -14,7 +14,63 @@
    モジュールの読み込み
 ========================= */
 import { getProgress } from "./progress.js";
+import { loadScores } from "./storage.js";
+import GAME_POINTS from "./game-points.js";
 import badgeList from "../data/badges/badge-list.js";
+
+
+/* =========================
+   ゲーム進捗の表示
+========================= */
+function displayGameProgress() {
+
+    // ゲーム定義とスコアを取得
+    const scores = loadScores();
+
+    let totalCount = 0;
+    let clearedCount = 0;
+
+    // 全ゲームの種類数とクリア済み数を集計
+    for (const [category, games] of Object.entries(GAME_POINTS)) {
+
+        const gameKeys = Object.keys(games);
+        totalCount += gameKeys.length;
+
+        const categoryScores = scores[category];
+
+        if (!categoryScores) {
+            continue;
+        }
+
+        for (const gameKey of gameKeys) {
+
+            if (
+                Object.prototype.hasOwnProperty.call(
+                    categoryScores,
+                    gameKey
+                )
+            ) {
+                clearedCount++;
+            }
+        }
+    }
+
+    // 進捗率を計算
+    const percentage = totalCount > 0
+        ? (clearedCount / totalCount) * 100
+        : 0;
+
+    // 数値を表示
+    document.getElementById("game-progress-cleared").textContent =
+        clearedCount;
+
+    document.getElementById("game-progress-total").textContent =
+        totalCount;
+
+    // 進捗バーを表示
+    document.getElementById("game-progress-bar-fill").style.width =
+        `${percentage}%`;
+}
 
 
 /* =========================
@@ -321,29 +377,18 @@ function displayLearningRecords(progress) {
     document.getElementById("total-play-time").textContent =
         formattedTotalPlayTime;
 
-    document.getElementById("total-play-time-en").textContent =
-        formattedTotalPlayTime;
-
     // 累計クリア回数
     document.getElementById("total-clear-count").textContent =
-        formattedTotalClearCount;
-
-    document.getElementById("total-clear-count-en").textContent =
         formattedTotalClearCount;
 
     // 今月の学習時間
     document.getElementById("monthly-play-time").textContent =
         formattedMonthlyPlayTime;
 
-    document.getElementById("monthly-play-time-en").textContent =
-        formattedMonthlyPlayTime;
-
     // 今月のクリア回数
     document.getElementById("monthly-clear-count").textContent =
         formattedMonthlyClearCount;
 
-    document.getElementById("monthly-clear-count-en").textContent =
-        formattedMonthlyClearCount;
 }
 
 
@@ -382,15 +427,6 @@ function displayMapProgress(lastBadgeId) {
     document.getElementById("badge-total-ja")
         .textContent = totalBadgeCount;
 
-    // 英語表示
-    document.getElementById("round-number-en")
-        .textContent = roundNumber;
-
-    document.getElementById("badge-count-en")
-        .textContent = badgeCount;
-
-    document.getElementById("badge-total-en")
-        .textContent = totalBadgeCount;
 }
 
 
@@ -404,6 +440,9 @@ async function initializeProgressPage() {
 
     // 学習記録を表示
     displayLearningRecords(progress);
+
+    // ゲームの進捗を表示
+    displayGameProgress();
 
     // 日本一周の進捗情報を表示
     displayMapProgress(progress.lastBadgeId);

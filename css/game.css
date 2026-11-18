@@ -250,5 +250,17 @@
         padding: 20px;
     }
 
+    #remaining-points {
+        font-size: 18px;
+    }
+
 }
 
+/* =====================
+   次のバッジまでのポイント
+===================== */
+#remaining-points {
+    font-size: 3.5vw;
+    font-weight: bold;
+    margin: 8px 0;
+}

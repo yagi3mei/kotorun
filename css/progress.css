@@ -9,7 +9,7 @@
 /* 進捗管理画面 */
 .progress-area {
     max-width: 900px;
-    margin: 10px auto;
+    margin: 2px auto;
     padding: 10px;
 }
 
@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px 0 20px;
+    margin: 2px 0 20px;
     line-height: 1.4;
 }
 
@@ -43,23 +43,51 @@
     margin: 20px auto;
 }
 
-/* 個別の記録欄 */
-.summary-item {
-    padding: 15px 10px;
+/* 学習記録の一覧 */
+.progress-summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 20px auto;
+}
+
+/* ゲームの進捗欄 */
+.game-progress-item {
+    grid-column: 1 / -1;
+    padding: 12px 15px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 12px;
     text-align: center;
 }
 
-/* 記録項目の見出し */
+/* 学習記録のグループ */
+.summary-item {
+    padding: 12px 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* 各欄の見出し */
+.game-progress-item h2,
 .summary-item h2 {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 4px;
     margin: 0 0 10px;
     line-height: 1.4;
+}
+
+/* 学習記録のグループ見出し */
+.summary-item h2 {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
 }
 
 /* 見出しの日本語 */
@@ -76,10 +104,54 @@
     white-space: nowrap;
 }
 
-/* 記録の数値 */
-.summary-item p {
+/* ゲーム進捗の数値 */
+.game-progress-item p {
+    margin: 0 0 8px;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: bold;
+}
+
+/* ゲーム進捗バー */
+.game-progress-bar {
+    width: 100%;
+    height: 9px;
+    overflow: hidden;
+    background-color: #e5e5e5;
+    border-radius: 5px;
+}
+
+/* 進捗バーの塗りつぶし */
+#game-progress-bar-fill {
+    width: 0;
+    height: 100%;
+    background-color: #4caf50;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+/* 学習記録の各項目 */
+.summary-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 5px 0;
+}
+
+/* 項目名（日本語・英語） */
+.summary-metric-label {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+/* 学習記録の数値 */
+.summary-metric p {
     margin: 0;
-    font-size: clamp(0.85rem, 2.5vw, 1.3rem);
+    font-size: clamp(0.75rem, 2.2vw, 1.1rem);
     font-weight: bold;
     white-space: nowrap;
 }

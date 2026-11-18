@@ -61,51 +61,80 @@
         </h1>
 
 
-        <!-- 学習記録 -->
+        <!-- ゲームの進捗・学習記録 -->
         <section class="progress-summary">
 
-            <div class="summary-item">
+            <!-- ゲームの進捗 -->
+            <div class="game-progress-item">
                 <h2>
-                    <span class="summary-japanese">ごうけい じかん</span>
-                    <span class="summary-english">Total study time</span>
+                    <span class="summary-japanese">ゲームの進捗</span>
+                    <span class="summary-english">Game Progress</span>
                 </h2>
+
                 <p>
-                    <span id="total-play-time">0</span>分 /
-                    <span id="total-play-time-en">0</span> min
+                    <span id="game-progress-cleared">0</span> /
+                    <span id="game-progress-total">0</span>
                 </p>
+
+                <div class="game-progress-bar" aria-hidden="true">
+                    <div id="game-progress-bar-fill"></div>
+                </div>
             </div>
 
+            <!-- これまでの学習 -->
             <div class="summary-item">
                 <h2>
-                    <span class="summary-japanese">ごうけいクリア</span>
-                    <span class="summary-english">Total clears</span>
+                    <span class="summary-japanese">これまでの学習</span>
+                    <span class="summary-english">Overall Learning</span>
                 </h2>
-                <p>
-                    <span id="total-clear-count">0</span>回 /
-                    <span id="total-clear-count-en">0</span> times
-                </p>
+
+                <div class="summary-metric">
+                    <div class="summary-metric-label">
+                        <span class="summary-japanese">合計時間</span>
+                        <span class="summary-english">Total time</span>
+                    </div>
+                    <p>
+                        <span id="total-play-time">0</span>分/min
+                    </p>
+                </div>
+
+                <div class="summary-metric">
+                    <div class="summary-metric-label">
+                        <span class="summary-japanese">クリア数</span>
+                        <span class="summary-english">Total clears</span>
+                    </div>
+                    <p>
+                        <span id="total-clear-count">0</span>回/times
+                    </p>
+                </div>
             </div>
 
+            <!-- 今月の学習 -->
             <div class="summary-item">
                 <h2>
-                    <span class="summary-japanese">こんげつ じかん</span>
-                    <span class="summary-english">Study time this month</span>
+                    <span class="summary-japanese">今月の学習</span>
+                    <span class="summary-english">This Month</span>
                 </h2>
-                <p>
-                    <span id="monthly-play-time">0</span>分 /
-                    <span id="monthly-play-time-en">0</span> min
-                </p>
-            </div>
 
-            <div class="summary-item">
-                <h2>
-                    <span class="summary-japanese">こんげつ クリア</span>
-                    <span class="summary-english">Clears this month</span>
-                </h2>
-                <p>
-                    <span id="monthly-clear-count">0</span>回 /
-                    <span id="monthly-clear-count-en">0</span> times
-                </p>
+                <div class="summary-metric">
+                    <div class="summary-metric-label">
+                        <span class="summary-japanese">学習時間</span>
+                        <span class="summary-english">Study time</span>
+                    </div>
+                    <p>
+                        <span id="monthly-play-time">0</span>分/min
+                    </p>
+                </div>
+
+                <div class="summary-metric">
+                    <div class="summary-metric-label">
+                        <span class="summary-japanese">クリア数</span>
+                        <span class="summary-english">Clears</span>
+                    </div>
+                    <p>
+                        <span id="monthly-clear-count">0</span>回/times
+                    </p>
+                </div>
             </div>
 
         </section>
