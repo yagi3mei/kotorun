@@ -390,7 +390,8 @@ function showResult() {
     ===================== */
     showResultModal({
 
-        gameName: `${typeDisplay}　${kanaLabel}`,
+        gameName: "たんごかるた",
+        gameType: `${typeDisplay}　${kanaLabel}`,
         category: "karuta",
         gameKey: getStorageKey(),
         date: dateStr,

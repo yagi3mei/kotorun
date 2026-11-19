@@ -404,7 +404,8 @@ function showResult()
         );
 
     const resultData = {
-        gameName: categoryLabel,
+        gameName: "からだ",
+        gameType: categoryLabel.split("（")[0],
         category: "karada",
         gameKey: category,
         date: now.toLocaleString("ja-JP"),

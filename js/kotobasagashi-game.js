@@ -727,7 +727,8 @@ function showResult()
     // 共通結果モーダルを表示
     showResultModal({
 
-        gameName: `${typeDisplay}　${groupDisplay}　${kanaLabel}`,
+        gameName: "ことばさがし",
+        gameType: `${typeDisplay}　${kanaLabel}`,
         category: "kotobasagashi",
         gameKey: getStorageKey(),
         date: dateStr,

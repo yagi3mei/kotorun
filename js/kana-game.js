@@ -341,7 +341,8 @@ function endGame() {
     // =====================
     showResultModal({
 
-        gameName: getGameLabel(gameType),
+        gameName: "かな",
+        gameType: getGameLabel(gameType),
         category: "kana",
         gameKey: getStorageKey(gameType),
         date: dateStr,

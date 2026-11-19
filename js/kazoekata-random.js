@@ -480,7 +480,8 @@ function showResult() {
     ===================== */
     showResultModal({
 
-        gameName: "じょすうしランダム",
+        gameName: "かぞえかた",
+        gameType: "ランダム",
         category: "kazoekata",
         gameKey: "random",
         date: dateStr,

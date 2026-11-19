@@ -285,7 +285,8 @@ function endGame(){
        共通結果モーダル
     ===================== */
     const resultData = {
-        gameName: "日づけ（カレンダー）",
+        gameName: "ひづけ",
+        gameType: "カレンダー",
         category: "calendar",
         gameKey: getStorageKey(),
         date: dateStr,

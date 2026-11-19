@@ -857,13 +857,14 @@ function showResult() {
         );
 
     const resultData = {
-        gameName:
+        gameName: "とけい",
+        gameType:
             gameLevel === "beginner"
                 ? "しょきゅう（初級）"
                 : "中級（ちゅうきゅう）",
         category: "tokei",
         gameKey: storageKey,
-                date: result.date,
+        date: result.date,
         time: result.time,
         missCount: result.miss,
         bestUpdated: updated,

@@ -409,7 +409,8 @@ function showResult() {
 
     // 共通表示形式に変換
     const resultData = {
-        gameName: "くに・ちいきゲーム",
+        gameName: "くに・ちいき",
+        gameType: "くに・ちいき",
         category: "country",
         gameKey: "country_game",
         date: dateStr,

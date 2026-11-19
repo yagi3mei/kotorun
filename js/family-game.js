@@ -420,7 +420,8 @@ function showResult() {
        共通結果モーダル
     ===================== */
     const resultData = {
-        gameName: modeLabel,
+        gameName: "かぞく",
+        gameType: modeLabel.replaceAll(" ", ""),
         category: "family",
         gameKey: getStorageKey(),
         date: dateStr,

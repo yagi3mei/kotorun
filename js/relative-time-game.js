@@ -384,19 +384,19 @@ function showResult() {
         mode
     );
 
-    // ゲーム名
-    let gameName = "";
+    // ゲーム種類
+    let gameType = "";
 
     if (mode === "day") {
-        gameName = "きょう・あしたゲーム";
+        gameType = "きょう・あした";
     } else if (mode === "week") {
-        gameName = "こんしゅう・せんしゅうゲーム";
+        gameType = "こんしゅう・せんしゅう";
     } else if (mode === "month") {
-        gameName = "こんげつ・さらいげつゲーム";
+        gameType = "こんげつ・さらいげつ";
     } else if (mode === "year") {
-        gameName = "ことし・おととしゲーム";
+        gameType = "ことし・おととし";
     } else if (mode === "random") {
-        gameName = "ランダムゲーム";
+        gameType = "ランダム";
     }
 
     // 間違えた問題
@@ -408,7 +408,8 @@ function showResult() {
     // 共通結果モーダル表示
     showResultModal({
 
-        gameName,
+        gameName: "ひづけ",
+        gameType,
         category: "hizuke",
         gameKey: mode,
         date: result.date,

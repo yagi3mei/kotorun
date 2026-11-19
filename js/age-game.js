@@ -319,7 +319,8 @@ function showResult() {
     共通の結果モーダル表示
     ===================== */
     const resultData = {
-        gameName: "ねんれいゲーム",
+        gameName: "なんさい",
+        gameType: "なんさい",
         category: "age",
         gameKey: "age_game",
         date: dateStr,

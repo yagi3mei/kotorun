@@ -468,7 +468,8 @@ function showResult() {
     ===================== */
     showResultModal({
 
-        gameName: `${currentConfig.label}（${currentConfig.kanji}） ${currentConfig.question}`,
+        gameName: "かぞえかた",
+        gameType: `${currentConfig.label}（${currentConfig.kanji}）`,
         category: "kazoekata",
         gameKey: type,
         date: dateStr,

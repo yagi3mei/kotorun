@@ -319,8 +319,7 @@ export function showResultModal(
         `${resultData.gameName}　けっか`;
 
     document.getElementById("game-type-label").textContent =
-        `【${resultData.gameName}】`;
-
+        `【${resultData.gameType}】`;
 
     // プレイ情報
     document.getElementById("date-time").textContent =

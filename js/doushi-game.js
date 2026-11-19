@@ -476,14 +476,15 @@ function showResult() {
 
     const kanaLabel = kanaLabels[baseKana] || baseKana;
 
-    const gameName =
-        `${kanaLabel}${kana.match(/\d+$/)?.[0] || ""} で はじまる どうし`;
+    const gameType =
+        `${mode === "random" ? "ランダム" : "ふつう"}　${kanaLabel}${kana.match(/\d+$/)?.[0] || ""}`;
 
     /* =====================
        共通結果モーダル
     ===================== */
     const resultData = {
-        gameName: gameName,
+        gameName: "どうしかつよう",
+        gameType: gameType,
         category: `doushi_${mode}`,
         gameKey: kana,
         date: dateStr,
