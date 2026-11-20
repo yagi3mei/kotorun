@@ -106,6 +106,7 @@
 
 .about-kotorun p {
     font-size: 0.8rem;
+    margin: 0 0 5px;
 }
 
 .contact-info {
@@ -115,7 +116,7 @@
 }
 
 .game-tree {
-    margin-top: 20px;
+    margin-top: 5px;
     text-align: left;
     font-size: 0.8rem;
 }
@@ -208,4 +209,13 @@
 
     font-size: 1.05em;
 
+}
+
+
+/* =========================
+   Note記事一覧とゲーム一覧の間隔
+========================= */
+
+.about-kotorun .game-tree + .game-tree {
+    margin-top: 5px;
 }
