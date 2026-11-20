@@ -8,6 +8,8 @@
      Updated: 2026-05-27：メニューカテゴリ作成にあわせて変更
      Updated: 2026-06-20：ひづけに新しいゲームを追加
      Updated: 2026-07-24：ことばさがしゲーム追加
+     Updated: 2026-11-18：がくしゅうきろく追加
+     Updated: 2026-11-20：トップ画面にアニメーションランナー追加
 
      Notes:
      - これだけことランロゴは使用せず、大きな画像を利用
@@ -145,10 +147,29 @@
         </details>
 
         <!-- ランナーイラスト -->
-        <img
-            src="images/kotorun-runners.png"
-            alt="ことラン ランナー"
-            class="runner-visual">
+        <div class="runner-stage">
+
+            <!-- 既存の静止画像 -->
+            <img
+                src="images/kotorun-runners.png"
+                alt="ことラン ランナー"
+                class="runner-visual">
+
+            <!-- 追加するアニメーションランナー -->
+            <img
+                src="images/badges/runner/runner_01.png"
+                alt=""
+                class="top-runner upper-runner"
+                aria-hidden="true">
+
+            <!-- 追加するアニメーションランナー（右下） -->
+            <img
+                src="images/badges/runner/runner_01.png"
+                alt=""
+                class="top-runner bottom-runner"
+                aria-hidden="true">
+
+        </div>
 
         <!-- メニュー -->
         <p>日本語をれんしゅうしよう！</p>
@@ -437,6 +458,8 @@
             }
         });
     </script>
+
+    <script src="js/top-runner.js"></script>
 
 </body>
 </html>

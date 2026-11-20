@@ -3,7 +3,7 @@
    Purpose: トップ画面（index.html）のスタイル
    Author: やぎさん
    Created: 2026-04-30：style.css から分割
-   Updated: （なし）
+   Updated: 2026-11-20：トップ画面にランナー追加
 
    Notes:
    - 共通スタイルは common.css / layout.css を使用
@@ -38,6 +38,28 @@
     max-width: 300px;
     display: block;
      margin: 10px auto 20px;
+}
+
+/* ランナー画像を重ねて配置する領域 */
+.runner-stage {
+    position: relative;
+}
+
+/* 追加するアニメーションランナー */
+.top-runner {
+    position: absolute;
+    width: 40px;
+    height: auto;
+    top: 15%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+/* 左下のランナー */
+.bottom-runner {
+    top: 85%;
+    left: 10%;
 }
 
 .menu-btn{
