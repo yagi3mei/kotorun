@@ -427,6 +427,16 @@ function displayMapProgress(lastBadgeId) {
     document.getElementById("badge-total-ja")
         .textContent = totalBadgeCount;
 
+    // 英語表示
+    document.getElementById("round-number-en")
+        .textContent = roundNumber;
+
+    document.getElementById("badge-count-en")
+        .textContent = badgeCount;
+
+    document.getElementById("badge-total-en")
+        .textContent = totalBadgeCount;
+
 }
 
 
