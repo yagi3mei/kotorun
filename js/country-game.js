@@ -21,11 +21,23 @@ import {
     hideResultModal
 } from "./result-modal.js";
 
+// 共通タイマー
+import {
+    startTimer,
+    stopTimer
+} from "./timer.js";
+
+// 共通ステータス表示
+import {
+    updateRemainingDisplay,
+    updateMissDisplay
+} from "./status.js";
+
 import {
         saveScore,
         getScore
     }
-    from "./storage.js";
+from "./storage.js";
 
 /* =========================
 DOM取得
@@ -68,19 +80,10 @@ const QUESTION_COUNT = 10;  // 出題数
 状態変数
 ========================= */
 let gameQuestions = [];
-
 let used = [];
-
 let currentQuestion = null;
-
 let missCount = 0;
-
 let wrongQuestions = [];
-
-let startTime;
-
-let timerInterval;
-
 let isAnswerLocked = false;
 
 
@@ -103,8 +106,8 @@ function loadQuestion() {
             x => !used.includes(x.id)
         );
 
-    remainingDisplay.textContent =
-        "のこり：" + remain.length;
+    const remainingCount = remain.length;
+    updateRemainingDisplay(remainingDisplay, remainingCount);
 
     if (remain.length === 0) {
 
@@ -326,9 +329,7 @@ function checkAnswer(
         }, 200);
 
         missCount++;
-
-        missDisplay.textContent =
-            "ミス：" + missCount;
+        updateMissDisplay(missDisplay, missCount);
 
         if (
             !wrongQuestions.includes(
@@ -352,9 +353,8 @@ function checkAnswer(
 ========================= */
 function showResult() {
 
-    clearInterval(
-        timerInterval
-    );
+    // タイマー停止・時間取得
+    const time = stopTimer();
 
     const now =
         new Date();
@@ -362,17 +362,8 @@ function showResult() {
     const dateStr =
         now.toLocaleString();
 
-    const time =
-        (
-            (
-                performance.now()
-                - startTime
-            ) / 1000
-        ).toFixed(2);
-
-
     const result = {
-        time: Number(time),
+        time: time,
         miss: missCount,
         date: dateStr
     };
@@ -455,28 +446,10 @@ function startGame() {
 
     wrongQuestions = [];
 
-    missDisplay.textContent =
-        "ミス：0";
+    updateMissDisplay(missDisplay, missCount);
 
-    startTime =
-        performance.now();
-
-    clearInterval(
-        timerInterval
-    );
-
-    timerInterval =
-        setInterval(() => {
-
-            timerDisplay.textContent =
-                (
-                    (
-                        performance.now()
-                        - startTime
-                    ) / 1000
-                ).toFixed(2);
-
-        }, 50);
+    // タイマー開始
+    startTimer(timerDisplay);
 
     loadQuestion();
 

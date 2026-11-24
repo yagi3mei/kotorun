@@ -1,6 +1,6 @@
 /* =========================================
    File: calendar-game.js
-   Purpose : 日づけゲーム制御
+   Purpose : カレンダーゲームを制御する。
    Author  : やぎさん
    Created : 2026-05-09
    Updated: 2026-05-22: LocalStorageベスト記録保存・結果モーダル拡張対応
@@ -34,6 +34,22 @@ import {
 } from "./result-modal.js";
 
 /* =========================
+    共通タイマー
+========================= */
+import {
+    startTimer,
+    stopTimer
+} from "./timer.js";
+
+/* =========================
+   共通ステータス表示
+========================= */
+import {
+    updateRemainingDisplay,
+    updateMissDisplay
+} from "./status.js";
+
+/* =========================
    storage key
 ========================= */
 function getStorageKey() {
@@ -56,13 +72,9 @@ const soundBtn = document.getElementById("sound-btn");
 ========================= */
 let questions = [];
 let currentQuestion = null;
-
 let remaining = 0;
 let missCount = 0;
 let wrongQuestions = [];
-// タイマー関連
-let startTime = 0;
-let timerInterval;
 // 回答ロックフラグ（多重クリック防止）
 let isAnswerLocked = false;
 
@@ -112,17 +124,9 @@ function startGame(){
     updateDisplays();
 
     // タイマー開始
-    startTime = performance.now();
-
-    timerInterval = setInterval(() => {
-
-        const t =
-            (performance.now() - startTime) / 1000;
-
+    startTimer(
         document.getElementById("timer-display")
-            .textContent = t.toFixed(2);
-
-    }, 50);
+    );
 
     nextQuestion();
 }
@@ -211,15 +215,19 @@ function checkAnswer(selectedDay){
     }
 }
 
+
 /* =========================
    表示更新
 ========================= */
 function updateDisplays(){
 
-    remainingDisplay.textContent = "のこり：" + remaining;
+    const remainingCount = remaining;
 
-    missDisplay.textContent = "ミス：" + missCount;
+    updateRemainingDisplay(remainingDisplay, remainingCount);
+
+    updateMissDisplay(missDisplay, missCount);
 }
+
 
 /* =========================
    音声読み上げ
@@ -240,8 +248,8 @@ function speakQuestion(){
 ========================= */
 function endGame(){
 
-    // タイマー停止
-    clearInterval(timerInterval);
+    // タイマー停止・時間取得
+    const time = stopTimer();
 
     // 音声停止
     speechSynthesis.cancel();
@@ -251,19 +259,11 @@ function endGame(){
 
     const dateStr = now.toLocaleString();
 
-    // タイム計算
-    const time =
-        (
-            (performance.now() - startTime)
-            / 1000
-        ).toFixed(2);
-
-
     /* =====================
        スコア保存
     ===================== */
     const result = {
-        time: Number(time),
+        time: time,
         miss: missCount,
         date: dateStr
     };

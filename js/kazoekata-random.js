@@ -51,6 +51,22 @@ import {
 } from "./result-modal.js";
 
 /* =========================
+   共通タイマー 読込
+========================= */
+import {
+    startTimer,
+    stopTimer
+} from "./timer.js";
+
+/* =========================
+   共通ステータス表示
+========================= */
+import {
+    updateRemainingDisplay,
+    updateMissDisplay
+} from "./status.js";
+
+/* =========================
 全データ
 ========================= */
 const allData = [
@@ -102,21 +118,11 @@ document.getElementById(
 /* =========================
 状態変数
 ========================= */
-
 let gameQuestions = [];
-
 let used = [];
-
 let currentQuestion = null;
-
 let missCount = 0;
-
 let wrongQuestions = [];
-
-let startTime;
-
-let timerInterval;
-
 let isAnswerLocked = false;
 
 /* =========================
@@ -148,8 +154,8 @@ function loadQuestion() {
             x => !used.includes(x.id)
         );
 
-    remainingDisplay.textContent =
-        "のこり：" + remain.length;
+    const remainingCount = remain.length;
+    updateRemainingDisplay(remainingDisplay, remainingCount);
 
     if (remain.length === 0) {
 
@@ -376,8 +382,7 @@ function checkAnswer(choice,button) {
 
         missCount++;
 
-        missDisplay.textContent =
-            "ミス：" + missCount;
+        updateMissDisplay(missDisplay, missCount);
 
         /* 間違え記録 */
         if (
@@ -412,7 +417,7 @@ function checkAnswer(choice,button) {
 
 function showResult() {
 
-    clearInterval(timerInterval);
+    const time = stopTimer();
 
     const now =
         new Date();
@@ -420,19 +425,11 @@ function showResult() {
     const dateStr =
         now.toLocaleString();
 
-    const time =
-        (
-            (performance.now() - startTime)
-            / 1000
-        ).toFixed(2);
-
-
-
     /* =====================
        スコア保存・ベスト更新判定
     ===================== */
     const result = {
-        time: Number(time),
+        time: time,
         miss: missCount,
         date: dateStr
     };
@@ -454,7 +451,7 @@ function showResult() {
                 game: "kazoekata",
                 mode: "random",
                 miss: missCount,
-                time: Number(time)
+                time: time
             }
         );
     }
@@ -485,7 +482,7 @@ function showResult() {
         category: "kazoekata",
         gameKey: "random",
         date: dateStr,
-        time: Number(time),
+        time: time,
         missCount: missCount,
         bestUpdated: updated,
         bestRecord: best,
@@ -520,31 +517,10 @@ function startGame() {
     wrongQuestions = [];
 
 
-    missDisplay.textContent =
-        "ミス：0";
+    updateMissDisplay(missDisplay, missCount);
 
-
-    startTime =
-        performance.now();
-
-
-    clearInterval(
-        timerInterval
-    );
-
-
-    timerInterval =
-        setInterval(() => {
-
-            timerDisplay.textContent =
-                (
-                    (performance.now()
-                    - startTime)
-                    / 1000
-                ).toFixed(2);
-
-        }, 50);
-
+    // 共通タイマー開始
+    startTimer(timerDisplay);
 
     loadQuestion();
 
