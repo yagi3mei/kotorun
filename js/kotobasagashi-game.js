@@ -27,6 +27,23 @@ import {
     hideResultModal
 } from "./result-modal.js";
 
+/* =========================
+   共通タイマー 読込
+========================= */
+import {
+    startTimer,
+    stopTimer
+} from "./timer.js";
+
+/* =========================
+   共通ステータス表示
+========================= */
+import {
+    updateRemainingDisplay,
+    updateMissDisplay
+} from "./status.js";
+
+
 const params = new URLSearchParams(window.location.search);
 
 const type = params.get("type") || "hira";
@@ -140,19 +157,14 @@ const RANDOM_CHARS = {
     ]
 };
 
+
 let questionList = [];
 let currentQuestion = null;
-
 let currentIndex = 0;
 let missCount = 0;
 let wrongAnswers = [];
-
-let startTime = null;
-let timerInterval = null;
-
 let selectedCells = [];
 let selectedChars = [];
-
 let isAnswerLocked = false;
 
 function startGame()
@@ -169,7 +181,7 @@ function startGame()
 
     updateStatus();
 
-    startTimer();
+    startTimer(timerDisplay);
 
     nextQuestion();
 }
@@ -368,8 +380,6 @@ function checkSelection()
 
             if (currentIndex >= questionList.length)
             {
-                stopTimer();
-
                 showResult();
 
                 return;
@@ -541,12 +551,18 @@ function getRandomChar(excludeChars)
 
 function updateStatus()
 {
-    remainingDisplay.textContent =
-        "のこり：" +
-        (questionList.length - currentIndex);
+    const remainingCount =
+        questionList.length - currentIndex;
 
-    missDisplay.textContent =
-        "ミス：" + missCount;
+    updateRemainingDisplay(
+        remainingDisplay,
+        remainingCount
+    );
+
+    updateMissDisplay(
+        missDisplay,
+        missCount
+    );
 }
 
 
@@ -556,36 +572,6 @@ function updateStatus()
 function getStorageKey()
 {
     return `${type}-${group}-${kana}`;
-}
-
-
-// =====================
-// タイマー開始
-// =====================
-function startTimer()
-{
-    startTime = performance.now();
-
-    timerInterval =
-        setInterval(() =>
-        {
-            const t =
-                (performance.now() - startTime)
-                / 1000;
-
-            timerDisplay.textContent =
-                t.toFixed(2);
-
-        }, 50);
-}
-
-
-// =====================
-// タイマー停止
-// =====================
-function stopTimer()
-{
-    clearInterval(timerInterval);
 }
 
 
@@ -647,16 +633,7 @@ checkBtn.addEventListener(
 // =====================
 function showResult()
 {
-    stopTimer();
-
-    const endTime =
-        performance.now();
-
-    const time =
-        (
-            (endTime - startTime)
-            / 1000
-        ).toFixed(2);
+    const time = stopTimer();
 
     const now =
         new Date();
@@ -757,13 +734,6 @@ function showResult()
 // =====================
 window.restartGame = function ()
 {
-    // タイマー停止
-    clearInterval(timerInterval);
-
-    // タイマー初期化
-    startTime = null;
-    timerDisplay.textContent = "0.00";
-
     // 状態初期化
     selectedCells = [];
     selectedChars = [];

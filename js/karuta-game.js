@@ -28,6 +28,17 @@ import {
     hideResultModal
 } from "./result-modal.js";
 
+// 共通タイマー
+import {
+    startTimer,
+    stopTimer
+} from "./timer.js";
+
+// 共通ステータス表示
+import {
+    updateRemainingDisplay,
+    updateMissDisplay
+} from "./status.js";
 
 const params = new URLSearchParams(window.location.search);
 
@@ -93,22 +104,22 @@ const remainingDisplay =
 /* 状態管理 */
 let questionCount = 0;
 let missCount = 0;
-let startTime = performance.now();
-let timerInterval;
-
 let correctAnswer = null;
 let isAnswerLocked = false;
-
 let wrongAnswers = [];
 let usedQuestions = [];
 
 
 /* 初期描画 */
-remainingDisplay.textContent =
-    "のこり：" + data.length;
+updateRemainingDisplay(
+    remainingDisplay,
+    data.length
+);
 
-missDisplay.textContent =
-    "ミス：0";
+updateMissDisplay(
+    missDisplay,
+    missCount
+);
 
 
 /* =========================
@@ -141,23 +152,15 @@ function loadQuestion() {
 
     if (questionCount === 0) {
 
-        startTime = performance.now();
-
-        timerInterval = setInterval(() => {
-
-            const t =
-                (performance.now() - startTime) / 1000;
-
-            timerDisplay.textContent =
-                t.toFixed(2);
-
-        }, 50);
+        startTimer(timerDisplay);
 
     }
 
-
-    remainingDisplay.textContent =
-      "のこり：" + remaining.length;
+    const remainingCount = remaining.length;
+    updateRemainingDisplay(
+        remainingDisplay,
+        remainingCount
+    );
 
 
     if (remaining.length === 0) {
@@ -288,9 +291,10 @@ function checkAnswer(selected, card) {
 
         missCount++;
 
-        missDisplay.textContent =
-            "ミス：" + missCount;
-
+        updateMissDisplay(
+            missDisplay,
+            missCount
+        );
 
         if (!wrongAnswers.includes(correctAnswer.id)) {
 
@@ -321,12 +325,8 @@ function checkAnswer(selected, card) {
 ===================== */
 function showResult() {
 
-    clearInterval(timerInterval);
-
-    const endTime = performance.now();
-
-    const time =
-        ((endTime - startTime) / 1000).toFixed(2);
+    // 共通タイマー停止・時間取得
+    const time = stopTimer();
 
     const now = new Date();
 
@@ -337,7 +337,7 @@ function showResult() {
         今回の結果
     ===================== */
     const result = {
-        time: Number(time),
+        time: time,
         miss: missCount,
         date: dateStr
     };
@@ -423,19 +423,19 @@ function showResult() {
 window.restartGame = function () {
 
     questionCount = 0;
-
     missCount = 0;
-
-    startTime = Date.now();
-
     usedQuestions = [];
     wrongAnswers = [];
 
-    missDisplay.textContent =
-        "ミス：0";
+    updateMissDisplay(
+        missDisplay,
+        missCount
+    );
 
-    remainingDisplay.textContent =
-        "のこり：" + data.length;
+    updateRemainingDisplay(
+        remainingDisplay,
+        data.length
+    );
 
     hideResultModal();
 

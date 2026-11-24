@@ -28,6 +28,18 @@ import {
     hideResultModal
 } from "./result-modal.js";
 
+// 共通タイマー
+import {
+    startTimer,
+    stopTimer
+} from "./timer.js";
+
+// 共通ステータス表示
+import {
+    updateRemainingDisplay,
+    updateMissDisplay
+} from "./status.js";
+
 import {
     saveScore,
     getScore
@@ -101,9 +113,6 @@ let questionList = [];
 let currentIndex = 0;
 let missCount = 0;
 let wrongAnswers = [];
-let timer = null;
-let startTime = null;
-let elapsedTime = 0;
 let categoryLabel = "";
 
 
@@ -311,64 +320,33 @@ function checkAnswer(
     }
 }
 
-// タイマー表示更新
-function updateTimerDisplay()
-{
-    const seconds =
-        (
-            elapsedTime / 1000
-        ).toFixed(2);
-
-    timerDisplay.textContent =
-        seconds;
-}
-
-// タイマー開始
-function startTimer()
-{
-    startTime = Date.now();
-
-    timer = setInterval(() =>
-    {
-        elapsedTime =
-            Date.now()
-            - startTime;
-
-        updateTimerDisplay();
-
-    }, 10);
-}
-
 function updateStatus()
 {
-    remainingDisplay.textContent =
-        "のこり：" +
-        (
-            questionList.length
-            - currentIndex
-        );
+    const remainingCount =
+        questionList.length
+        - currentIndex;
 
-    missDisplay.textContent =
-        "ミス：" +
-        missCount;
+    updateRemainingDisplay(
+        remainingDisplay,
+        remainingCount
+    );
+
+    updateMissDisplay(
+        missDisplay,
+        missCount
+    );
 }
 
 function showResult()
 {
-    // タイマー停止
-    clearInterval(timer);
-    timer = null;
+    // タイマー停止・時間取得
+    const time = stopTimer();
 
     const now =
         new Date();
 
     const result = {
-        time:
-            Number(
-                (
-                    elapsedTime / 1000
-                ).toFixed(2)
-            ),
+        time: time,
         miss: missCount,
         date:
             new Date()
@@ -464,16 +442,8 @@ function goMenu()
 // ゲームスタート
 function startGame()
 {
-    // タイマー初期化
-    elapsedTime = 0;
-
-    timerDisplay.textContent =
-        "0.00";
-
-    // 既存タイマー停止
-    clearInterval(timer);
-
-    timer = null;
+    // タイマー開始・初期化
+    startTimer(timerDisplay);
 
     // ゲーム設定読み込み
     loadGameConfig();
@@ -488,8 +458,6 @@ function startGame()
 
         nextQuestion();
     };
-    // タイマー開始
-    startTimer();
 
 }
 

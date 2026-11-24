@@ -32,6 +32,22 @@ import {
 from "./storage.js";
 
 /* =========================
+   共通タイマー 読込
+========================= */
+import {
+    startTimer,
+    stopTimer
+} from "./timer.js";
+
+/* =========================
+   共通ステータス表示
+========================= */
+import {
+    updateRemainingDisplay,
+    updateMissDisplay
+} from "./status.js";
+
+/* =========================
    共通結果モーダル
 ========================= */
 import {
@@ -64,6 +80,16 @@ const wrongSound =
 const timerDisplay =
     document.getElementById(
         "timer-display"
+    );
+
+const remainingDisplay =
+    document.getElementById(
+        "remaining-display"
+    );
+
+const missDisplay =
+    document.getElementById(
+        "miss-display"
     );
 
 const soundBtn =
@@ -120,15 +146,6 @@ let wrongAnswers = [];
 ========================= */
 
 let isAnswerLocked = false;
-
-/* =========================
-   タイマー
-========================= */
-let timer = null;
-
-let startTime = null;
-
-let elapsedTime = 0;
 
 
 /* =========================
@@ -285,9 +302,9 @@ function createQuestions() {
 function showQuestion() {
 
     /* 初回のみタイマー開始 */
-    if (!timer) {
+    if (currentQuestionIndex === 0) {
 
-        startTimer();
+        startTimer(timerDisplay);
 
     }
 
@@ -318,57 +335,16 @@ function showQuestion() {
 
 
 /* =========================
-   タイマー開始
-========================= */
-function startTimer() {
-
-    startTime =
-        Date.now();
-
-    timer =
-        setInterval(
-            () => {
-
-                elapsedTime =
-                    Date.now() - startTime;
-
-                updateTimerDisplay();
-
-            },
-            10
-        );
-
-}
-
-
-/* =========================
-   タイマー表示更新
-========================= */
-function updateTimerDisplay() {
-
-    const seconds =
-        (
-            elapsedTime / 1000
-        ).toFixed(2);
-
-    timerDisplay.textContent =
-        seconds;
-
-}
-
-
-/* =========================
    結果モーダル表示
 ========================= */
 function showResult() {
 
     // タイマー停止
-    clearInterval(timer);
-    timer = null;
+    const time = stopTimer();
 
     // スコア保存
     const result = {
-        time: Number((elapsedTime / 1000).toFixed(2)),
+        time: time,
         miss: missCount,
         date: new Date().toLocaleString("ja-JP")
     };
@@ -441,7 +417,7 @@ function nextQuestion() {
 
     currentQuestionIndex++;
 
-    updateRemainingDisplay();
+    updateStatus();
 
     if (currentQuestionIndex >= questions.length) {
 
@@ -976,7 +952,10 @@ function renderDayCalendar() {
                         
                         missCount++;
 
-                        updateMissDisplay();
+                        updateMissDisplay(
+                            missDisplay,
+                            missCount
+                        );
 
 
                         /* =========================
@@ -1223,7 +1202,10 @@ function renderWeekButtons() {
                         missCount++;
 
 
-                        updateMissDisplay();
+                        updateMissDisplay(
+                            missDisplay,
+                            missCount
+                        );
 
 
                         /* 間違えた問題保存 */
@@ -1435,7 +1417,10 @@ function renderMonthButtons() {
                         ===================== */
                         missCount++;
 
-                        updateMissDisplay();
+                        updateMissDisplay(
+                            missDisplay,
+                            missCount
+                        );
 
 
                         const question =
@@ -1616,7 +1601,10 @@ function renderYearButtons() {
 
                         missCount++;
 
-                        updateMissDisplay();
+                        updateMissDisplay(
+                            missDisplay,
+                            missCount
+                        );
 
                         const question =
                             questions[currentQuestionIndex];
@@ -1699,31 +1687,22 @@ function renderRandomMode() {
 
 
 /* =========================
-   残り問題数表示
+   残り問題数、ミス表示
 ========================= */
-function updateRemainingDisplay() {
+function updateStatus() {
 
-    const remaining =
-        questions.length
-        - currentQuestionIndex;
+    const remainingCount =
+        questions.length - currentQuestionIndex;
 
-    document.getElementById(
-        "remaining-display"
-    ).textContent =
-        `のこり：${remaining}`;
+    updateRemainingDisplay(
+        remainingDisplay,
+        remainingCount
+    );
 
-}
-
-
-/* =========================
-   ミス数表示
-========================= */
-function updateMissDisplay() {
-
-    document.getElementById(
-        "miss-display"
-    ).textContent =
-        `ミス：${missCount}`;
+    updateMissDisplay(
+        missDisplay,
+        missCount
+    );
 
 }
 
@@ -1751,17 +1730,9 @@ function restartGame() {
 
     wrongAnswers = [];
 
-    elapsedTime = 0;
-
-    timerDisplay.textContent =
-        "0.00";
-
-
     createQuestions();
 
-    updateRemainingDisplay();
-
-    updateMissDisplay();
+    updateStatus();
 
     showQuestion();
 
@@ -1807,11 +1778,9 @@ soundBtn.addEventListener(
 /* =========================
    初期化
 ========================= */
-updateMissDisplay();
-
 createQuestions();
 
-updateRemainingDisplay();
+updateStatus();
 
 showQuestion();
 

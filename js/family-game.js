@@ -25,6 +25,18 @@ import {
     hideResultModal
 } from "./result-modal.js";
 
+// 共通タイマー
+import {
+    startTimer,
+    stopTimer
+} from "./timer.js";
+
+// 共通ステータス表示
+import {
+    updateRemainingDisplay,
+    updateMissDisplay
+} from "./status.js";
+
 const params=new URLSearchParams(location.search);
 
 // mode: inner（自分の家族） / outer（他人の家族）
@@ -162,14 +174,10 @@ if (mode === "relative") {
 
 let used=[];
 let wrongWords=[];
-
 let correctAnswer=null;
 let isAnswerLocked = false;
 let missCount=0;
 let questionCount = 0;
-
-let startTime;
-let timerInterval;
 
 const timerDisplay=
     document.getElementById(
@@ -229,8 +237,8 @@ function loadQuestion(){
             x=>!used.includes(x.id)
         );
 
-    remainingDisplay.textContent=
-        "のこり："+remain.length;
+    const remainingCount = remain.length;
+    updateRemainingDisplay(remainingDisplay, remainingCount);
 
     if(remain.length===0){
 
@@ -330,8 +338,7 @@ function checkAnswer(selected, card) {
 
         missCount++;
 
-        missDisplay.textContent =
-            "ミス：" + missCount;
+        updateMissDisplay(missDisplay, missCount);
 
         if (!wrongWords.includes(correctAnswer.id)) {
 
@@ -357,27 +364,18 @@ function checkAnswer(selected, card) {
 ===================== */
 function showResult() {
 
-    clearInterval(timerInterval);
-
-    const endTime = performance.now();
-
-    const time =
-        (
-            (endTime - startTime) / 1000
-        ).toFixed(2);
+    const time = stopTimer();
 
     const now = new Date();
 
     const dateStr =
         now.toLocaleString();
 
-
-
     /* =====================
        今回の結果
     ===================== */
     const result = {
-        time: Number(time),
+        time: time,
         miss: missCount,
         date: dateStr
     };
@@ -467,8 +465,7 @@ window.restartGame=function(){
     missCount=0;
     questionCount=0;
 
-    missDisplay.textContent=
-        "ミス：0";
+    updateMissDisplay(missDisplay, missCount);
 
     hideResultModal();
 
@@ -491,23 +488,7 @@ window.goMenu = function(){
 ===================== */
 function start(){
 
-    startTime=
-        performance.now();
-
-    clearInterval(
-        timerInterval
-    );
-
-    timerInterval=
-        setInterval(()=>{
-
-            timerDisplay.textContent=
-            (
-                (performance.now()-startTime)
-                /1000
-            ).toFixed(2);
-
-        },50);
+    startTimer(timerDisplay);
 
     loadQuestion();
 

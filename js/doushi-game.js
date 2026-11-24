@@ -21,6 +21,18 @@ import {
     hideResultModal
 } from "../js/result-modal.js";
 
+// 共通タイマー
+import {
+    startTimer,
+    stopTimer
+} from "./timer.js";
+
+// 共通ステータス表示
+import {
+    updateRemainingDisplay,
+    updateMissDisplay
+} from "./status.js";
+
 const params = new URLSearchParams(location.search);
 
 const mode = params.get("mode") || "normal";
@@ -121,12 +133,13 @@ const questionNames = {
 let missCount = 0;
 let wrongQuestions = [];
 let isAnswerLocked = false;
-let startTime;
-let timerInterval;
 
+const remainingDisplay =
+    document.getElementById("remaining-display");
 
 const missDisplay =
     document.getElementById("miss-display");
+updateMissDisplay(missDisplay, missCount);
 
 const answerDisplay =
     document.getElementById("answer-display");
@@ -158,9 +171,10 @@ function showQuestion() {
 
     questionTypeIndex = questionTypes.indexOf(questionType);
 
-    document.getElementById("remaining-display").textContent =
-        `のこり：${questionList.length - currentQuestionIndex}`;
+    const remainingCount =
+    questionList.length - currentQuestionIndex;
 
+    updateRemainingDisplay(remainingDisplay, remainingCount);
 
     // =================================
     // 設問文
@@ -374,8 +388,7 @@ function showQuestion() {
                 // ミス数
                 missCount++;
 
-                missDisplay.textContent =
-                    "ミス：" + missCount;
+                updateMissDisplay(missDisplay, missCount);
 
                 // 間違えた問題を記録
                 const wrongQuestion = {
@@ -415,7 +428,8 @@ function showQuestion() {
 // =====================================
 function showResult() {
 
-    clearInterval(timerInterval);
+    // タイマー停止・時間取得
+    const time = stopTimer();
 
     const now =
         new Date();
@@ -423,18 +437,11 @@ function showResult() {
     const dateStr =
         now.toLocaleString();
 
-    const time =
-        (
-            (performance.now() - startTime)
-            / 1000
-        ).toFixed(2);
-
-
     /* =====================
        スコア保存
     ===================== */
     const result = {
-        time: Number(time),
+        time: time,
         miss: missCount,
         date: dateStr
     };
@@ -540,21 +547,8 @@ soundBtn.addEventListener("click", () => {
 // 最初の問題を表示
 // =====================================
 
-startTime = performance.now();
-
-clearInterval(timerInterval);
-
-timerInterval =
-    setInterval(() => {
-
-        timerDisplay.textContent =
-            (
-                (performance.now()
-                - startTime)
-                / 1000
-            ).toFixed(2);
-
-    }, 50);
+// タイマー開始
+startTimer(timerDisplay);
 
 showQuestion();
 

@@ -27,6 +27,20 @@ import {
     hideResultModal
 } from "./result-modal.js";
 
+// 共通タイマー
+import {
+    startTimer,
+    stopTimer
+} from "./timer.js";
+
+/* =========================
+   共通ステータス表示
+========================= */
+import {
+    updateRemainingDisplay,
+    updateMissDisplay
+} from "./status.js";
+
 
 /* =========================
 レベル取得
@@ -107,27 +121,14 @@ correctSound.volume = 0.4;
    現在状態
 ========================= */
 let selectedNeedle = "short";
-
 let selectedPeriod = null;
-
 let currentHour = 12;
-
 let currentMinute = 0;
-
 let gameQuestions = [];
-
 let currentQuestionIndex = 0;
-
 let currentQuestion = null;
-
 let missCount = 0;
-
-let timer = null;
-
-let startTime = null;
-
-let elapsedTime = 0;
-
+let isTimerStarted = false;
 let wrongAnswers = [];
 
 /* =========================
@@ -366,8 +367,12 @@ function generateChuukyuuQuestions() {
 ========================= */
 function showQuestion() {
 
-    if (!timer) {
-        startTimer();
+    if (!isTimerStarted) {
+
+        startTimer(timerDisplay);
+
+        isTimerStarted = true;
+
     }
 
     currentQuestion =
@@ -546,15 +551,19 @@ function updatePeriodUI() {
 ========================= */
 function updateStatus() {
 
-    remainingDisplay.textContent =
-        "のこり:"
-        + (
-            gameQuestions.length
-             - currentQuestionIndex
-        );
+    const remainingCount =
+        gameQuestions.length
+        - currentQuestionIndex;
 
-    missDisplay.textContent =
-        `ミス:${missCount}`;
+    updateRemainingDisplay(
+        remainingDisplay,
+        remainingCount
+    );
+
+    updateMissDisplay(
+        missDisplay,
+        missCount
+    );
 
 }
 
@@ -774,51 +783,18 @@ function checkAnswer() {
     );
 }
 
-/* =========================
-    タイマー開始
-========================= */
-function startTimer() {
-
-    startTime = Date.now();
-
-    timer = setInterval(() => {
-        elapsedTime =
-            Date.now() - startTime;
-        updateTimerDisplay();
-    }, 10);
-
-}
-
-/* =========================
-    タイマー表示更新
-========================= */
-function updateTimerDisplay() {
-
-    const seconds =(elapsedTime / 1000).toFixed(2);
-
-    timerDisplay.textContent = seconds;
-
-}
-
 
 /* =========================
     結果モーダル表示
 ========================= */
 function showResult() {
 
-    clearInterval(timer);
-
-    timer = null;
+    // タイマー停止・時間取得
+    const time = stopTimer();
 
     const result = {
-        time:
-            Number(
-                (
-                    elapsedTime / 1000
-                ).toFixed(2)
-            ),
-        miss:
-            missCount,
+        time: time,
+        miss: missCount,
         date:
             new Date()
                 .toLocaleString("ja-JP")
@@ -977,8 +953,7 @@ function restartGame() {
     currentQuestionIndex = 0;
     missCount = 0;
     wrongAnswers = [];
-    elapsedTime = 0;
-    timerDisplay.textContent = "0.00";
+    isTimerStarted = false;
     createGameQuestions();
     showQuestion();
     updateStatus();

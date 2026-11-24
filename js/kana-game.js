@@ -24,6 +24,20 @@ import {
     hideResultModal
 } from "./result-modal.js";
 
+// 共通タイマー
+import {
+    startTimer,
+    stopTimer
+} from "./timer.js";
+
+/* =========================
+   共通ステータス表示
+========================= */
+import {
+    updateRemainingDisplay,
+    updateMissDisplay
+} from "./status.js";
+
 
 // ひらがな清音の配列（5列グリッド用に空文字を含む）
 // 空文字はレイアウト調整用（クリック不可）
@@ -124,8 +138,6 @@ if (gameType === "seion") {
 // =====================
 let remaining = {};
 let current = "";
-let startTime = 0;
-let timerInterval;
 let missCount = 0;
 
 // 間違えた問題の記録
@@ -135,8 +147,15 @@ let wrongQuestions = [];
 // 初期描画
 // =====================
 document.getElementById("sound-btn").disabled = true;   // 🔊 音声再生ボタンは最初は無効化
-document.getElementById("remaining-display").textContent = "のこり：-";
-document.getElementById("miss-display").textContent = "ミス：-";
+
+const remainingDisplay =
+    document.getElementById("remaining-display");
+
+const missDisplay =
+    document.getElementById("miss-display");
+
+remainingDisplay.textContent = "のこり：-";
+missDisplay.textContent = "ミス：-";
 
 const container = document.getElementById("card-container");
 
@@ -178,16 +197,17 @@ function startGame() {
     // document.getElementById("back-btn").style.display = "none";
     document.getElementById("card-container").classList.remove("disabled");
 
-    document.getElementById("remaining-display").textContent = "のこり：" + Object.keys(remaining).length;
+    updateRemainingDisplay(
+        remainingDisplay,
+        Object.keys(remaining).length
+    );
 
-    document.getElementById("miss-display").textContent = "ミス：0";
+    updateMissDisplay(
+        missDisplay,
+        missCount
+    );
 
-    startTime = performance.now();
-
-    timerInterval = setInterval(() => {
-        const t = (performance.now() - startTime) / 1000;
-        document.getElementById("timer-display").textContent = t.toFixed(2);
-    }, 50);
+    startTimer(document.getElementById("timer-display"));
 
     nextQuestion();
 }
@@ -244,7 +264,10 @@ function handleClick(e) {
         card.style.visibility = "hidden";
         delete remaining[current];
 
-        document.getElementById("remaining-display").textContent = "のこり：" + Object.keys(remaining).length;
+        updateRemainingDisplay(
+            remainingDisplay,
+            Object.keys(remaining).length
+        );
 
         if (Object.keys(remaining).length === 0) {
             endGame();
@@ -277,8 +300,10 @@ function handleClick(e) {
             wrongQuestions.push(wrongQuestion);
         }
 
-        document.getElementById("miss-display").textContent =
-            "ミス：" + missCount;
+        updateMissDisplay(
+            missDisplay,
+            missCount
+        );
 
     }
 }
@@ -288,14 +313,12 @@ function handleClick(e) {
 // =====================
 function endGame() {
 
-    clearInterval(timerInterval);
-
     const now = new Date();
 
     const dateStr = now.toLocaleString();
 
-    const time =
-        ((performance.now() - startTime) / 1000).toFixed(2);
+    // 共通タイマー停止・時間取得
+    const time = stopTimer();
 
 
     // =====================
