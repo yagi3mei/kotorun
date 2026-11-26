@@ -105,13 +105,17 @@
         </header>
 
         <button id="back-btn-top" onclick="goBack()">
-            もどる
+            <span class="back-btn-japanese">もどる</span>
+            <span class="back-btn-english">Back</span>
         </button>
 
     </div>
 
 
-    <h1>どうしかつようゲーム</h1>
+    <h1>
+        <span class="title-japanese">どうしかつようゲーム</span>
+        <span class="title-english">Verb Conjugation</span>
+    </h1>
 
 
     <!-- =========================
@@ -120,7 +124,9 @@
     <div class="mode-area">
 
         <div class="mode-title">
-            れんしゅう方法を えらんでね
+            <span class="menu-title-japanese">れんしゅう方法を えらんでね</span>
+            <br>
+            <span class="menu-title-english">Choose a Practice Mode</span>
         </div>
 
         <div class="mode-buttons">
@@ -129,14 +135,16 @@
                 id="normal-btn"
                 class="mode-button selected"
                 type="button">
-                ふつう
+                <span class="menu-title-japanese">ふつう</span>
+                <span class="menu-title-english">Normal</span>
             </button>
 
             <button
                 id="random-btn"
                 class="mode-button"
                 type="button">
-                ランダム
+                <span class="menu-title-japanese">ランダム</span>
+                <span class="menu-title-english">Random</span>
             </button>
 
         </div>
@@ -148,7 +156,9 @@
          50音表
     ========================= -->
     <div class="kana-title">
-        もじを えらんでね
+        <span class="menu-title-japanese">もじを えらんでね</span>
+        <br>
+        <span class="menu-title-english">Choose a Kana</span>
     </div>
 
     <div id="kana-grid" class="kana-layout auto"></div>

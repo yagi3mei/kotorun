@@ -47,7 +47,8 @@
         </header>
 
         <button id="back-btn-top" onclick="goBack()">
-            もどる
+            <span class="back-btn-japanese">もどる</span>
+            <span class="back-btn-english">Back</span>
         </button>
 
     </div>
@@ -55,47 +56,91 @@
     <!-- ゲーム選択ボタン -->
     <div class="menu">
 
-        <h1>たんごかるた</h1>
+        <h1>
+            <span class="title-japanese">たんごかるた</span>
+            <span class="title-english">Word Karuta</span>
+        </h1>
 
         <button onclick="go('hira', 'seion')">
-            ひらがな（せいおん）<br>
-            <small>あ・い・う…</small>
+            <span class="menu-title-japanese">ひらがな（せいおん）</span>
+            <br>
+            <small>
+                <span class="menu-description-japanese">あ・い・う…</span>
+                <span class="menu-description-english">Hiragana-Seion</span>
+            </small>
         </button>
 
         <button onclick="go('hira', 'dakuon')">
-            ひらがな（だくおん）<br>
-            <small>が・ぎ・ぐ…</small>
+            <span class="menu-title-japanese">ひらがな（だくおん）</span>
+            <br>
+            <small>
+                <span class="menu-description-japanese">が・ぎ・ぐ…</span>
+                <span class="menu-description-english">Hiragana-Dakuon</span>
+            </small>
         </button>
 
         <button onclick="go('hira', 'youon')">
-            ひらがな（ようおん）<br>
-            <small>きゃ・しゅ・ちょ…</small>
+            <span class="menu-title-japanese">ひらがな（ようおん）</span>
+            <br>
+            <small>
+                <span class="menu-description-japanese">きゃ・しゅ・ちょ…</span>
+                <span class="menu-description-english">Hiragana-Youon</span>
+            </small>
         </button>
 
         <button onclick="go('kata', 'seion')">
-            カタカナ（せいおん/ようおん）<br>
-            <small>ア・イ・シャ…</small>
+            <span class="menu-title-japanese">カタカナ（せいおん/ようおん）</span>
+            <br>
+            <small>
+                <span class="menu-description-japanese">ア・イ・シャ…</span>
+                <span class="menu-description-english">Katakana-Seion / Youon</span>
+            </small>
         </button>
 
         <button onclick="go('kata', 'dakuon')">
-            カタカナ（だくおん/ようおん）<br>
-            <small>ガ・ギ・ジョ…</small>
+            <span class="menu-title-japanese">カタカナ（だくおん/ようおん）</span>
+            <br>
+            <small>
+                <span class="menu-description-japanese">ガ・ギ・ジョ…</span>
+                <span class="menu-description-english">Katakana-Dakuon / Youon</span>
+            </small>
         </button>
 
-        <!-- <button onclick="go('kata', 'youon')">
-            カタカナ（ようおん）<br>
-            <small>キャ・シュ・チョ…</small>
-        </button> -->
 
         <!-- 学習者向け説明 -->
         <small>
-            ことばを れんしゅうします。<br>
-            みんなの日本語 初級Ⅰの ことばです。<br>
-            みて、きいて えを えらびます。<br>
+            <span class="menu-description-japanese">
+                ことばを れんしゅうします。
+            </span>
             <br>
+            <span class="menu-description-english">
+                Practice words.
+            </span>
+            <br>
+
+            <span class="menu-description-japanese">
+                みんなの日本語 初級Ⅰの ことばです。
+            </span>
+            <br>
+            <span class="menu-description-english">
+                Words from Minna no Nihongo Beginner I.
+            </span>
+            <br>
+
+            <span class="menu-description-japanese">
+                みて、きいて えを えらびます。
+            </span>
+            <br>
+            <span class="menu-description-english">
+                Look, listen, and choose the picture.
+            </span>
+            <br>
+            <br>
+
+            <!-- 先生向け説明：英語表記なし -->
             ※先生へ...学習者に説明をお願いします。<br>
             ・選んだ文字から始まるかるたです。<br>
-            ・イラストが簡単な単語だけです。　<br>
+            ・イラストが簡単な単語だけです。<br>
         </small>
 
     </div>

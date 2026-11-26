@@ -20,6 +20,11 @@
     gap: 6px;   /* 要素間の最小余白 */
     padding: 4px 8px;
     margin-bottom: 2px;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fffdf8;
 }
 
 .top-header {
@@ -178,6 +183,45 @@
     border-radius: 10px;
     background: #fff3cf;
     line-height: 1.6;
+}
+
+/* =========================
+   メニュー画面の英語表記
+========================= */
+
+/* メニュータイトルの英語 */
+.menu-title-english {
+    font-size: 0.68rem;
+    color: #666;
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+/* メニュー説明の英語 */
+.menu-description-english {
+    display: inline;
+    font-size: 0.68rem;
+    color: #666;
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+/* メニュー画面タイトルの日本語 */
+.menu h1 .title-japanese {
+    font-size: 1.15rem;
+}
+
+/* メニュー画面タイトルの英語 */
+.menu h1 .title-english {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: normal;
+}
+
+h1 .title-english {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: normal;
 }
 
 /* =========================

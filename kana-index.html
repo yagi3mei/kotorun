@@ -53,7 +53,8 @@
         <button id="back-btn-top"
                 onclick="goBack()">
 
-            もどる
+            <span class="back-btn-japanese">もどる</span>
+            <span class="back-btn-english">Back</span>
 
         </button>
 
@@ -62,15 +63,21 @@
     <!-- メニュー -->
     <div class="menu">
 
-        <h1>かな</h1>
+        <h1>
+            <span class="title-japanese">かな</span>
+            <span class="title-english">Kana</span>
+        </h1>
 
         <!-- かなゲーム -->
         <button onclick="goKanaGame()">
 
-            かなゲーム<br>
+            <span class="menu-title-japanese">かなゲーム</span>
+            <span class="menu-title-english">Kana Game</span>
+            <br>
 
             <small>
                 ひらがな・カタカナ
+                <span class="menu-description-english">Hiragana &amp; Katakana</span>
             </small>
 
         </button>
@@ -78,10 +85,13 @@
         <!-- かなゲーム（ランダム） -->
         <button onclick="goKanaRandomGame()">
 
-            かなゲーム（ランダム）<br>
+            <span class="menu-title-japanese">かな（ランダム）</span>
+            <span class="menu-title-english">(Random)</span>
+            <br>
 
             <small>
-                ひらがな・カタカナをランダムに配置
+                ひらがな・カタカナ
+                <span class="menu-description-english">Hiragana &amp; Katakana</span>
             </small>
 
         </button>
@@ -102,9 +112,14 @@
         <!-- 学習者向け説明 -->
         <small>
 
-            かなを よんだり きいたりする<br>
-
-            にほんごゲームです。
+            <span class="menu-description-japanese">
+                かなを よんだり きいたりする<br>
+                にほんごゲームです。
+            </span>
+            <br>
+            <span class="menu-description-english">
+                A game to read and listen to Kana.
+            </span>
 
         </small>
 

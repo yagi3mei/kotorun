@@ -226,8 +226,13 @@ color: #333;
     cursor: pointer;
     box-shadow:
         0 2px 6px rgba(0,0,0,0.2);
+    white-space: nowrap;
 }
 
+.check-btn-english {
+    font-size: 0.65em;
+    font-weight: normal;
+}
 
 /* =========================
    ガイド

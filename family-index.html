@@ -58,9 +58,8 @@
 
         <button id="back-btn-top"
                 onclick="goBack()">
-
-            もどる
-
+            <span class="back-btn-japanese">もどる</span>
+            <span class="back-btn-english">Back</span>
         </button>
 
     </div>
@@ -68,14 +67,20 @@
     <!-- メニュー -->
     <div class="menu">
 
-        <h1>かぞくを えらんでね</h1>
+        <h1>
+            <span class="title-japanese">かぞくを えらんでね</span>
+            <span class="title-english">Choose a Family</span>
+        </h1>
 
         <!-- 自分の家族 -->
         <button
             data-key="inner"
             onclick="goFamily('inner')">
 
-            うちの（わたしの） かぞく<br>
+            <span class="menu-title-japanese">うちの（わたしの）かぞく</span>
+            <br>
+            <span class="menu-title-english">My Family</span>
+            <br>
 
             <small>
                 ちち・はは…
@@ -88,7 +93,10 @@
             data-key="outer"
             onclick="goFamily('outer')">
 
-            ともだちの かぞく<br>
+            <span class="menu-title-japanese">ともだちの かぞく</span>
+            <br>
+            <span class="menu-title-english">Friend's Family</span>
+            <br>
 
             <small>
                 おとうさん・おかあさん…
@@ -101,12 +109,25 @@
             data-key="relative"
             onclick="goFamily('relative')">
 
-            しんせきの かぞく<br>
+            <span class="menu-title-japanese">しんせきの かぞく</span>
+            <br>
+            <span class="menu-title-english">Relatives</span>
+            <br>
 
             <small>
-                おじさん・いとこ…<br>
-                ・おじいさん と おじさん がわかる<br>
-                ・おばあさん と おばさん がわかる
+                <span class="menu-description-japanese">おじさん・いとこ…</span>
+                <br>
+                <span class="menu-description-english">Uncle, Cousin...</span>
+                <br>
+
+                <span class="menu-description-japanese">・おじいさん と おじさん がわかる</span>
+                <br>
+                <span class="menu-description-english">Tell the difference: Grandfather and Uncle.</span>
+                <br>
+
+                <span class="menu-description-japanese">・おばあさん と おばさん がわかる</span>
+                <br>
+                <span class="menu-description-english">Tell the difference: Grandmother and Aunt.</span>
             </small>
 
         </button>

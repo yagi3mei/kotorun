@@ -57,11 +57,9 @@
         </header>
 
         <!-- もどる -->
-        <button id="back-btn-top"
-                onclick="goBack()">
-
-            もどる
-
+        <button id="back-btn-top" onclick="goBack()">
+            <span class="back-btn-japanese">もどる</span>
+            <span class="back-btn-english">Back</span>
         </button>
 
     </div>
@@ -69,14 +67,20 @@
     <!-- メニュー -->
     <div class="menu">
 
-        <h1>とけいゲーム</h1>
+        <h1>
+            <span class="title-japanese">とけいゲーム</span>
+            <span class="title-english">Clock Game</span>
+        </h1>
 
         <!-- 初級 -->
         <button
             data-key="tokei_beginner"
             onclick="goGame('beginner')">
 
-            しょきゅう（初級）<br>
+            <span class="menu-title-japanese">しょきゅう（初級）</span>
+            <br>
+            <span class="menu-title-english">Beginner</span>
+            <br>
 
             <small>
                 なんじ？
@@ -89,7 +93,10 @@
             data-key="tokei_intermediate"
             onclick="goGame('intermediate')">
 
-            中級（ちゅうきゅう）<br>
+            <span class="menu-title-japanese">中級（ちゅうきゅう）</span>
+            <br>
+            <span class="menu-title-english">Intermediate</span>
+            <br>
 
             <small>
                 何時 何分？

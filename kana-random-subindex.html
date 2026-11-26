@@ -50,7 +50,8 @@
         </header>
 
         <button id="back-btn-top" onclick="goBack()">
-            もどる
+            <span class="back-btn-japanese">もどる</span>
+            <span class="back-btn-english">Back</span>
         </button>
 
     </div>
@@ -58,16 +59,20 @@
     <!-- メニュー画面 -->
     <div class="menu">
 
-        <h1>かなゲーム（ランダム）</h1>
+        <h1>
+            <span class="title-japanese">かな（ランダム）</span>
+            <span class="title-english">Kana Game (Random)</span>
+        </h1>
 
         <button
             data-key="hiragana_seion"
             onclick="goGame('seion')">
 
-            ひらがな（せいおん）ランダム<br>
-
+            <span class="menu-title-japanese">ひらがな（せいおん）</span>
+            <br>
             <small>
-                あ・い・う…わ・を・ん
+                <span class="menu-description-japanese">あ・い・う…</span>
+                <span class="menu-description-english">Hiragana-Seion</span>
             </small>
 
         </button>
@@ -76,10 +81,11 @@
             data-key="hiragana_dakuon"
             onclick="goGame('dakuon')">
 
-            ひらがな（だくおん）ランダム<br>
-
+            <span class="menu-title-japanese">ひらがな（だくおん）</span>
+            <br>
             <small>
-                が・ぎ・ぐ…ぱ・ぴ・ぷ…
+                <span class="menu-description-japanese">が・ぎ・ぐ…</span>
+                <span class="menu-description-english">Hiragana-Dakuon</span>
             </small>
 
         </button>
@@ -88,10 +94,11 @@
             data-key="hiragana_youon"
             onclick="goGame('youon')">
 
-            ひらがな（ようおん）ランダム<br>
-
+            <span class="menu-title-japanese">ひらがな（ようおん）</span>
+            <br>
             <small>
-                きゃ・きゅ・きょ…
+                <span class="menu-description-japanese">きゃ・きゅ・きょ…</span>
+                <span class="menu-description-english">Hiragana-Youon</span>
             </small>
 
         </button>
@@ -100,10 +107,11 @@
             data-key="katakana_seion"
             onclick="goGame('katakana-seion')">
 
-            カタカナ（せいおん）ランダム<br>
-
+            <span class="menu-title-japanese">カタカナ（せいおん）</span>
+            <br>
             <small>
-                ア・イ・ウ…ワ・ヲ・ン
+                <span class="menu-description-japanese">ア・イ・ウ…</span>
+                <span class="menu-description-english">Katakana-Seion</span>
             </small>
 
         </button>
@@ -112,10 +120,11 @@
             data-key="katakana_dakuon"
             onclick="goGame('katakana-dakuon')">
 
-            カタカナ（だくおん）ランダム<br>
-
+            <span class="menu-title-japanese">カタカナ（だくおん）</span>
+            <br>
             <small>
-                ガ・ギ・グ…パ・ピ・プ…
+                <span class="menu-description-japanese">ガ・ギ・グ…</span>
+                <span class="menu-description-english">Katakana-Dakuon</span>
             </small>
 
         </button>
@@ -124,10 +133,11 @@
             data-key="katakana_youon"
             onclick="goGame('katakana-youon')">
 
-            カタカナ（ようおん）ランダム<br>
-
+            <span class="menu-title-japanese">カタカナ（ようおん）</span>
+            <br>
             <small>
-                キャ・キュ・キョ…
+                <span class="menu-description-japanese">キャ・キュ・キョ…</span>
+                <span class="menu-description-english">Katakana-Youon</span>
             </small>
 
         </button>
@@ -136,10 +146,11 @@
             data-key="katakana_extra"
             onclick="goGame('katakana-extra')">
 
-            カタカナ（外来語）ランダム<br>
-
+            <span class="menu-title-japanese">カタカナ（外来語）</span>
+            <br>
             <small>
-                ファ・ティ・ディ…
+                <span class="menu-description-japanese">ファ・ティ・ディ…</span>
+                <span class="menu-description-english">Other</span>
             </small>
 
         </button>

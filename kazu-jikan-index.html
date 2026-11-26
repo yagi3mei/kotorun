@@ -52,11 +52,9 @@
 
         </header>
 
-        <button id="back-btn-top"
-                onclick="goBack()">
-
-            もどる
-
+        <button id="back-btn-top" onclick="goBack()">
+            <span class="back-btn-japanese">もどる</span>
+            <span class="back-btn-english">Back</span>
         </button>
 
     </div>
@@ -64,12 +62,17 @@
     <!-- メニュー -->
     <div class="menu">
 
-        <h1>かず・じかん</h1>
+        <h1>
+            <span class="title-japanese">かず・じかん</span>
+            <span class="title-english">Numbers & Time</span>
+        </h1>
 
         <!-- 日づけゲーム -->
         <button onclick="goCalendar()">
 
-            ひづけゲーム<br>
+            ひづけゲーム
+            <span class="menu-title-english">Date Game</span>
+            <br>
 
             <small>
                 ついたち・きょう・らいしゅう…
@@ -80,7 +83,9 @@
         <!-- なんさいゲーム -->
         <button onclick="goAge()">
 
-            なんさい？ゲーム<br>
+            なんさい？ゲーム
+            <span class="menu-title-english">How Old?</span>
+            <br>
 
             <small>
                 いっさい・にさい・はたち…
@@ -91,7 +96,9 @@
         <!-- かぞえかたゲーム -->
         <button onclick="goKazoekata()">
 
-            かぞえかたゲーム<br>
+            かぞえかたゲーム
+            <span class="menu-title-english">Counters</span>
+            <br>
 
             <small>
                 いっぽん・にほん・さんぼん…
@@ -102,7 +109,9 @@
         <!-- とけいゲーム -->
         <button onclick="goTokei()">
 
-            とけいゲーム<br>
+            とけいゲーム
+            <span class="menu-title-english">Clock Game</span>
+            <br>
 
             <small>
                 いちじ・にじ・さんじ…
@@ -110,19 +119,12 @@
 
         </button>
 
-        <!-- 今後追加予定 -->
-        <!--
-        <button>からだ</button>
-        <button>くに</button>
-        -->
 
         <!-- 学習者向け説明 -->
         <small>
-
             かず や じかん の<br>
-
-            よみかたを れんしゅうします。
-
+            よみかたを れんしゅうします。<br>
+            <span class="menu-description-english">Practice reading numbers and time.</span>
         </small>
 
     </div>

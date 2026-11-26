@@ -114,9 +114,13 @@ function createBadgeModal() {
 
         <div class="result-modal-content">
 
-            <h2>バッジゲット！</h2>
+            <h2>
+                バッジゲット！
+                <span class="modal-english">Badge Earned!</span>
+            </h2>
 
             <p id="earned-prefectures"></p>
+            <p class="modal-english">You got a badge!</p>
 
             <div id="earned-badge-images"></div>
 
@@ -210,47 +214,84 @@ function createResultModal() {
 
         <div class="result-modal-content">
 
-            <h2 id="result-title"></h2>
+            <h2>
+                <span id="result-title-japanese"></span>
+                <span class="modal-english">Result</span>
+            </h2>
 
             <!-- ゲーム情報 -->
             <p id="game-type-label"></p>
             <p id="date-time"></p>
 
             <!-- 今回結果 -->
-            <p id="miss-result"></p>
-            <p id="final-time"></p>
+            <p id="miss-result">
+                <span id="miss-result-japanese"></span>
+                / <span class="modal-english-inline">Miss</span>：
+                <span id="miss-result-value"></span>
+            </p>
+
+            <p id="final-time">
+                <span id="final-time-japanese"></span>
+                / <span class="modal-english-inline">Time</span>：
+                <span id="final-time-value"></span>
+            </p>
 
             <hr>
 
             <!-- ベスト表示 -->
             <p id="best-score-label">
                 あなたのベストきろく
+                <span class="modal-english">Your Best Record</span>
             </p>
 
-            <p id="best-message"></p>
-            <p id="best-date"></p>
-            <p id="best-miss"></p>
-            <p id="best-time"></p>
+            <p id="best-message">
+                <span id="best-message-japanese"></span>
+                <span class="modal-english">New Best Record!</span>
+            </p>
+
+            <p id="best-date">
+                <span id="best-date-japanese"></span>
+                / <span class="modal-english-inline">Date</span>：
+                <span id="best-date-value"></span>
+            </p>
+
+            <p id="best-miss">
+                <span id="best-miss-japanese"></span>
+                / <span class="modal-english-inline">Miss</span>：
+                <span id="best-miss-value"></span>
+            </p>
+
+            <p id="best-time">
+                <span id="best-time-japanese"></span>
+                / <span class="modal-english-inline">Time</span>：
+                <span id="best-time-value"></span>
+            </p>
 
             <hr>
 
             <!-- まちがえた問題 -->
             <p id="word-list-label">
                 まちがえた　もんだい
+                <span class="modal-english">Incorrect Answers</span>
             </p>
 
             <div id="wrong-list"
                  class="word-list-scroll">
             </div>
 
-            <p id="remaining-points"></p>
+            <p id="remaining-points">
+                <span id="remaining-points-japanese"></span>
+                <span class="modal-english">Points until your next badge!</span>
+            </p>
 
             <button id="restart-result-btn">
                 もういちど
+                <span class="modal-english">Play Again</span>
             </button>
 
             <button id="menu-result-btn">
                 メニューへ
+                <span class="modal-english">Back to Menu</span>
             </button>
 
         </div>
@@ -315,26 +356,30 @@ export function showResultModal(
 
 
     // ゲーム名
-    document.getElementById("result-title").textContent =
+    document.getElementById("result-title-japanese").textContent =
         `${resultData.gameName}　けっか`;
 
     document.getElementById("game-type-label").textContent =
         `【${resultData.gameType}】`;
 
-    // プレイ情報
     document.getElementById("date-time").textContent =
         resultData.date;
 
-    document.getElementById("final-time").textContent =
-        `タイム：${resultData.time.toFixed(2)}秒`;
+    document.getElementById("final-time-japanese").textContent =
+        "タイム";
 
-    document.getElementById("miss-result").textContent =
-        `ミス：${resultData.missCount}回`;
+    document.getElementById("final-time-value").textContent =
+        `${resultData.time.toFixed(2)}秒`;
+
+    document.getElementById("miss-result-japanese").textContent =
+        "ミス";
+
+    document.getElementById("miss-result-value").textContent =
+        `${resultData.missCount}回`;
 
     // 次のバッジまでの残りポイント
-    document.getElementById("remaining-points").textContent =
+    document.getElementById("remaining-points-japanese").textContent =
         `バッジゲットまで、あと ${20 - progressResult.remainingPoints} ポイント！`;
-
 
     // ベスト記録
     const bestMessage =
@@ -350,38 +395,66 @@ export function showResultModal(
         document.getElementById("best-time");
 
 
+    const bestMessageJapanese =
+        document.getElementById("best-message-japanese");
+
+    const bestDateJapanese =
+        document.getElementById("best-date-japanese");
+
+    const bestMissJapanese =
+        document.getElementById("best-miss-japanese");
+
+    const bestTimeJapanese =
+        document.getElementById("best-time-japanese");
+
+    const bestDateValue =
+        document.getElementById("best-date-value");
+
+    const bestMissValue =
+        document.getElementById("best-miss-value");
+
+    const bestTimeValue =
+        document.getElementById("best-time-value");
+
+
     if (resultData.bestUpdated) {
 
-        bestMessage.textContent =
+        bestMessage.style.display = "block";
+        bestMessageJapanese.textContent =
             "🎉 ベストきろく　こうしん！";
 
-        bestDate.textContent = "";
-        bestMiss.textContent = "";
-        bestTime.textContent = "";
+        bestDate.style.display = "none";
+        bestMiss.style.display = "none";
+        bestTime.style.display = "none";
 
     } else {
 
-        bestMessage.textContent = "";
+        bestMessage.style.display = "none";
 
         if (resultData.bestRecord) {
 
-            bestDate.textContent =
-                `いつ：${resultData.bestRecord.date}`;
+            bestDate.style.display = "block";
+            bestMiss.style.display = "block";
+            bestTime.style.display = "block";
 
-            bestMiss.textContent =
-                `ミス：${resultData.bestRecord.miss}回`;
+            bestDateJapanese.textContent = "いつ";
+            bestDateValue.textContent = resultData.bestRecord.date;
 
-            bestTime.textContent =
-                `タイム：${resultData.bestRecord.time}秒`;
+            bestMissJapanese.textContent = "ミス";
+            bestMissValue.textContent =
+                `${resultData.bestRecord.miss}回`;
+
+            bestTimeJapanese.textContent = "タイム";
+            bestTimeValue.textContent =
+                `${resultData.bestRecord.time}秒`;
 
         } else {
 
-            bestDate.textContent = "";
-            bestMiss.textContent = "";
-            bestTime.textContent = "";
+            bestDate.style.display = "none";
+            bestMiss.style.display = "none";
+            bestTime.style.display = "none";
 
         }
-
     }
 
 

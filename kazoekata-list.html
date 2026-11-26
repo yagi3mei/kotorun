@@ -61,11 +61,9 @@
         </header>
 
         <!-- 戻る -->
-        <button id="back-btn-top"
-                onclick="goBack()">
-
-            もどる
-
+        <button id="back-btn-top" onclick="goBack()">
+            <span class="back-btn-japanese">もどる</span>
+            <span class="back-btn-english">Back</span>
         </button>
 
     </div>
@@ -77,16 +75,17 @@
     <div class="menu">
 
         <h1>
-
-            かぞえかたゲーム<br>
-
+            <span class="title-japanese">かぞえかたゲーム</span>
+            <span class="title-english">Counters</span>
         </h1>
 
 
         <!-- 個 -->
         <button onclick="goGame('tsu')">
 
-            ～つ<br>
+            <span class="menu-title-japanese">～つ</span>
+            <span class="menu-title-english">General Items</span>
+            <br>
 
             <small>
                 ひとつ・ふたつ・みっつ
@@ -97,7 +96,9 @@
         <!-- 個 -->
         <button onclick="goGame('ko')">
 
-            こ（個）<br>
+            <span class="menu-title-japanese">こ（個）</span>
+            <span class="menu-title-english">Small Items</span>
+            <br>
 
             <small>
                 いっこ・にこ・さんこ
@@ -109,7 +110,9 @@
         <!-- 本 -->
         <button onclick="goGame('hon')">
 
-            ほん（本）<br>
+            <span class="menu-title-japanese">ほん（本）</span>
+            <span class="menu-title-english">Long Items</span>
+            <br>
 
             <small>
                 いっぽん・にほん・さんぼん
@@ -121,7 +124,9 @@
         <!-- 枚 -->
         <button onclick="goGame('mai')">
 
-            まい（枚）<br>
+            <span class="menu-title-japanese">まい（枚）</span>
+            <span class="menu-title-english">Flat Items</span>
+            <br>
 
             <small>
                 いちまい・にまい・さんまい
@@ -133,7 +138,9 @@
         <!-- 人 -->
         <button onclick="goGame('nin')">
 
-            にん（人）<br>
+            <span class="menu-title-japanese">にん（人）</span>
+            <span class="menu-title-english">People</span>
+            <br>
 
             <small>
                 ひとり・ふたり・さんにん
@@ -145,11 +152,9 @@
         <!-- 台 -->
         <button onclick="goGame('dai')">
 
-            だい（台）<br>
-
-            <small>
-                いちだい・にだい・さんだい
-            </small>
+            <span class="menu-title-japanese">だい（台）</span>
+            <span class="menu-title-english">Machines</span>
+            <br>
 
         </button>
 
@@ -157,7 +162,9 @@
         <!-- 冊 -->
         <button onclick="goGame('satsu')">
 
-            さつ（冊）<br>
+            <span class="menu-title-japanese">さつ（冊）</span>
+            <span class="menu-title-english">Books</span>
+            <br>
 
             <small>
                 いっさつ・にさつ・さんさつ
@@ -169,7 +176,9 @@
         <!-- ランダム -->
         <button onclick="goRandomGame()">
 
-            ランダム<br>
+            <span class="menu-title-japanese">ランダム</span>
+            <span class="menu-title-english">Random</span>
+            <br>
 
             <small>
                 いろいろな かぞえかた
@@ -180,11 +189,14 @@
 
         <!-- 学習者向け説明 -->
         <small>
-
-            かずの よみかたを<br>
-
-            みて、きいて、おぼえよう！
-
+            <span class="menu-description-japanese">
+                かずの よみかたを<br>
+                みて、きいて、おぼえよう！
+            </span>
+            <br>
+            <span class="menu-description-english">
+                Look, listen, and learn how to count!
+            </span>
         </small>
 
     </div>

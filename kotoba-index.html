@@ -48,60 +48,111 @@
 
         <button id="back-btn-top"
                 onclick="goBack()">
-            もどる
+            <span class="back-btn-japanese">もどる</span>
+            <span class="back-btn-english">Back</span>
         </button>
+
     </div>
 
     <!-- メニュー -->
     <div class="menu">
 
-        <h1>ことば</h1>
+        <h1>
+            <span class="title-japanese">ことば</span>
+            <span class="title-english">Words</span>
+        </h1>
 
         <!-- たんごかるた -->
         <button onclick="goKaruta()">
-            たんごかるた<br>
+            <span class="menu-title-japanese">たんごかるた</span>
+            <span class="menu-title-english">Word Karuta</span>
+            <br>
             <small>
-                たべもの・どうぶつ・スポーツ…
+                <span class="menu-description-japanese">
+                    たべもの・どうぶつ・スポーツ…<br>
+                </span>
+                <span class="menu-description-english">
+                    Food, Animals, Sports…
+                </span>
             </small>
         </button>
 
         <!-- ことばさがし -->
         <button onclick="goKotobasagashi()">
-            ことばさがし<br>
+            <span class="menu-title-japanese">ことばさがし</span>
+            <span class="menu-title-english">Word Search</span>
+            <br>
             <small>
-                おぼえた ことばを さがそう！
+                <span class="menu-description-japanese">
+                    おぼえた ことばを さがそう！
+                </span>
+                <br>
+                <span class="menu-description-english">
+                    Find the Words You Learned!
+                </span>
             </small>
         </button>
 
         <!-- かぞく -->
         <button onclick="goFamily()">
-            かぞくゲーム<br>
+            <span class="menu-title-japanese">かぞくゲーム</span>
+            <span class="menu-title-english">Family</span>
+            <br>
             <small>
-                ちち・はは・おじさん…
+                <span class="menu-description-japanese">
+                    ちち・はは・おじさん…
+                </span>
+                <br>
+                <span class="menu-description-english">
+                    Father, Mother, Uncle...
+                </span>
             </small>
         </button>
 
         <!-- からだゲーム -->       
         <button onclick="goKarada()">
-            からだゲーム<br>
+            <span class="menu-title-japanese">からだゲーム</span>
+            <span class="menu-title-english">Body</span>
+            <br>
             <small>
-                め・みみ・くち…
+                <span class="menu-description-japanese">
+                    め・みみ・くち…
+                </span>
+                <br>
+                <span class="menu-description-english">
+                    Eyes, Ears, Mouth...
+                </span>
             </small>
         </button>  
 
         <!-- くに・ちいきゲーム -->
         <button onclick="goCountry()">
-            くに・ちいきゲーム<br>
+            <span class="menu-title-japanese">くに・ちいきゲーム</span>
+            <span class="menu-title-english">Countries</span>
+            <br>
             <small>
-                にほん・たいわん・ベトナム…
+                <span class="menu-description-japanese">
+                    にほん・たいわん・ベトナム…
+                </span>
+                <br>
+                <span class="menu-description-english">
+                    Japan, Taiwan, Vietnam...
+                </span>
             </small>
         </button>
 
         <!-- 学習者向け説明 -->
-        <small>
-            ことばを おぼえる<br>
-            にほんごゲームです。
-        </small>
+        <!-- 学習者向け説明 -->
+<small>
+    <span class="menu-description-japanese">
+        ことばを おぼえる<br>
+        にほんごゲームです。
+    </span>
+    <br>
+    <span class="menu-description-english">
+        A Japanese game to learn words.
+    </span>
+</small>
     </div>
 
     <script>

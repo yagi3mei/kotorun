@@ -98,6 +98,20 @@
 }
 
 /* =====================
+   文字選択画面のタイトル
+===================== */
+.kana-list-title .title-japanese {
+    font-size: 1.15rem;
+}
+
+.kana-list-title .title-english {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: normal;
+}
+
+
+/* =====================
    PC対応
 ===================== */
 @media (min-width: 768px) {

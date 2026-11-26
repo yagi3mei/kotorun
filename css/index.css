@@ -219,3 +219,86 @@
 .about-kotorun .game-tree + .game-tree {
     margin-top: 5px;
 }
+
+
+/* =========================
+   英語表記（トップ画面）
+========================= */
+
+/* 英語表記の共通設定 */
+.top-message-english,
+.menu-btn-english,
+.about-title-english,
+.about-text-english,
+.note-summary-english,
+.note-link-english,
+.game-list-english {
+    color: #666;
+    font-weight: normal;
+    font-size: 0.68rem;
+}
+
+/* メインメッセージ */
+.top-message-japanese,
+.top-message-english {
+    display: block;
+}
+
+.top-message-english {
+    font-size: 0.75rem;
+}
+
+/* メニューボタン */
+.menu-btn-japanese {
+    display: inline;
+}
+
+.menu-btn-english {
+    display: inline;
+    margin-left: 5px;
+}
+
+.menu-btn-english-block {
+    display: block;
+    margin-left: 0;
+    margin-top: 3px;
+}
+
+/* ことランについて */
+.about-title-japanese,
+.about-title-english {
+    display: inline;
+}
+
+.about-title-english {
+    margin-left: 5px;
+}
+
+.about-text-japanese,
+.about-text-english {
+    display: block;
+}
+
+/* noteを見る */
+.note-summary-english {
+    margin-left: 5px;
+}
+
+/* この記事を読む */
+.note-link-japanese {
+    display: inline;
+}
+
+.note-link-english {
+    margin-left: 5px;
+}
+
+/* ゲーム一覧を見る */
+.game-list-japanese,
+.game-list-english {
+    display: inline;
+}
+
+.game-list-english {
+    margin-left: 5px;
+}

@@ -106,6 +106,22 @@
     color: #4A2800;
 }
 
+/* モーダル内の英語表記 */
+.modal-english {
+    display: block;
+    font-size: 0.65em;
+    color: #666;
+    font-weight: normal;
+}
+
+/* モーダル内の短い英語表記（日本語の横に表示） */
+.modal-english-inline {
+    display: inline;
+    font-size: 0.65em;
+    color: #666;
+    font-weight: normal;
+}
+
 .result-modal-content button {
     margin: 10px;
     padding: 12px 20px;

@@ -53,29 +53,33 @@
 
         </header>
 
-        <!-- もどる -->
-        <button id="back-btn-top"
-                onclick="goBack()">
-
-            もどる
-
+        <button id="back-btn-top" onclick="goBack()">
+            <span class="back-btn-japanese">もどる</span>
+            <span class="back-btn-english">Back</span>
         </button>
 
     </div>
 
     <div class="menu">
 
-        <h1>からだゲーム</h1>
+        <h1>
+            <span class="title-japanese">からだゲーム</span>
+            <span class="title-english">Body Game</span>
+        </h1>
 
         <!-- 顔 -->
         <button
             data-key="karada_face"
             onclick="goGame('face')">
 
-            かお<br>
+            <span class="menu-title-japanese">かお</span>
+            <span class="menu-title-english">Face</span>
+            <br>
 
             <small>
-                め・みみ・はな
+                <span class="menu-description-japanese">め・みみ・はな...</span>
+                <br>
+                <span class="menu-description-english">Eyes, Ears, Nose...</span>
             </small>
 
         </button>
@@ -85,10 +89,14 @@
             data-key="karada_upper"
             onclick="goGame('upper')">
 
-            じょうはんしん<br>
+            <span class="menu-title-japanese">じょうはんしん</span>
+            <span class="menu-title-english">Upper Body</span>
+            <br>
 
             <small>
-                くび・かた・うで
+                <span class="menu-description-japanese">くび・かた・うで...</span>
+                <br>
+                <span class="menu-description-english">Neck, Shoulders, Arms...</span>
             </small>
 
         </button>
@@ -98,10 +106,14 @@
             data-key="karada_lower"
             onclick="goGame('lower')">
 
-            かはんしん<br>
+            <span class="menu-title-japanese">かはんしん</span>
+            <span class="menu-title-english">Lower Body</span>
+            <br>
 
             <small>
-                あし・ひざ・おしり
+                <span class="menu-description-japanese">あし・ひざ・おしり...</span>
+                <br>
+                <span class="menu-description-english">Legs, Knees, Buttocks...</span>
             </small>
 
         </button>
