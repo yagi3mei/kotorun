@@ -149,12 +149,17 @@ body {
 ========================= */
 .answer-display {
     min-height: 2.8em;
-    margin: 8px 0;
-    text-align: center;
+    margin: 8px auto;
+    text-align: left;
     color: red;
     font-size: 1.4rem;
     font-weight: bold;
     line-height: 1.5;
+}
+
+/* 回答前の語幹 */
+.answer-display.verb-blue {
+    color: blue;
 }
 
 /* =========================

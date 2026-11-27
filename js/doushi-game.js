@@ -169,6 +169,17 @@ function showQuestion() {
     verb = verbData[currentVerbIndex];
     currentQuestion = verb[questionType];
 
+    // 正解の文字数に合わせて表示領域の幅を設定
+    const answerLength =
+        [...currentQuestion.display].length;
+
+    answerDisplay.style.width =
+        `${answerLength + 1}em`;
+
+    answerDisplay.classList.remove("verb-blue");
+    answerDisplay.textContent = verb.stem;
+    answerDisplay.classList.add("verb-blue");
+
     questionTypeIndex = questionTypes.indexOf(questionType);
 
     const remainingCount =
@@ -325,6 +336,8 @@ function showQuestion() {
                 isAnswerLocked = true;
                 
                 button.classList.add("correct");
+
+                answerDisplay.classList.remove("verb-blue");
 
                 answerDisplay.textContent =
                     currentQuestion.display;
