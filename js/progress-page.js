@@ -461,13 +461,15 @@ async function initializeProgressPage() {
     const earnedPrefectureNumbers =
         getEarnedPrefectureNumbers(progress.lastBadgeId);
 
-    // 獲得済みの県SVGを地図に重ねる
-    for (const prefectureNumber of earnedPrefectureNumbers) {
-        await displayPrefectureMap(
-            prefectureNumber,
-            progress.lastBadgeId
-        );
-    }
+    // 獲得済みの県SVGを並行して読み込み、地図に重ねる
+    await Promise.all(
+        earnedPrefectureNumbers.map(prefectureNumber =>
+            displayPrefectureMap(
+                prefectureNumber,
+                progress.lastBadgeId
+            )
+        )
+    );
 
     // 最後に獲得したバッジから現在の県番号を取得
     const prefectureNumber =
