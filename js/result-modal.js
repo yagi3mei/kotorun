@@ -348,6 +348,16 @@ export function showResultModal(
         resultData.bestUpdated
     );
 
+    // Google Analytics：ゲームクリアを記録
+    if (typeof gtag === "function") {
+        gtag("event", "game_clear", {
+            game: resultData.category,
+            mode: resultData.gameKey,
+            miss: resultData.missCount,
+            time: Number(resultData.time)
+        });
+    }
+
     // モーダルを生成
     createResultModal();
 

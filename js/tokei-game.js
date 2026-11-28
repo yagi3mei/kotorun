@@ -811,21 +811,6 @@ function showResult() {
         result
     );
 
-    // Google Analytics イベント送信
-    if (typeof gtag === "function")
-    {
-        gtag(
-            "event",
-            "game_clear",
-            {
-                game: "tokei",
-                mode: storageKey,
-                miss: result.miss,
-                time: result.time
-            }
-        );
-    }
-    
     const bestScore =
         getScore(
             "tokei",

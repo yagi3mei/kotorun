@@ -432,22 +432,6 @@ function showResult() {
         result
     );
 
-
-    // Google Analytics イベント送信
-    if (typeof gtag === "function")
-    {
-        gtag(
-            "event",
-            "game_clear",
-            {
-                game: "kazoekata",
-                mode: type,
-                miss: missCount,
-                time: time
-            }
-        );
-    }
-
     const best =
         getScore(
             "kazoekata",

@@ -389,20 +389,6 @@ function showResult() {
         result
     );
 
-    // Analytics
-    if (typeof gtag === "function")
-    {
-        gtag(
-            "event",
-            "game_clear",
-            {
-                game: "family",
-                mode: getStorageKey(),
-                miss: result.miss,
-                time: result.time
-            }
-        );
-    }
 
     /* =====================
        保存後ベスト取得

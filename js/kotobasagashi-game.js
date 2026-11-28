@@ -660,21 +660,6 @@ function showResult()
         result
     );
 
-    // Google Analytics イベント送信
-    if (typeof gtag === "function")
-    {
-        gtag(
-            "event",
-            "game_clear",
-            {
-                game: "kotobasagashi",
-                mode: getStorageKey(),
-                miss: result.miss,
-                time: result.time
-            }
-        );
-    }
-
     /* =====================
         保存後ベスト取得
     ===================== */

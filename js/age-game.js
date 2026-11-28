@@ -291,21 +291,6 @@ function showResult() {
     );
 
 
-    // Google Analytics イベント送信
-    if (typeof gtag === "function")
-    {
-        gtag(
-            "event",
-            "game_clear",
-            {
-                game: "age",
-                mode: "age_game",
-                miss: missCount,
-                time: Number(time)
-            }
-        );
-    }
-
     const best =
         getScore(
             "age",

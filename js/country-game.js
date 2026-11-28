@@ -374,24 +374,6 @@ function showResult() {
         result
     );
 
-
-    if (
-        typeof gtag === "function"
-    ) {
-
-        gtag(
-            "event",
-            "game_clear",
-            {
-                game: "country",
-                mode: "country_game",
-                miss: missCount,
-                time: Number(time)
-            }
-        );
-
-    }
-
     const best =
         getScore(
             "country",

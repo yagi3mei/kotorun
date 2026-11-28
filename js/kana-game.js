@@ -330,17 +330,6 @@ function endGame() {
         date: dateStr
     };
 
-    // google analytics へイベント送信
-    gtag(
-        "event",
-        "game_clear",
-        {
-            game: "kana",
-            mode: gameType,
-            miss: result.miss,
-            time: result.time
-        }
-    );
 
     // =====================
     // 保存

@@ -353,21 +353,6 @@ function showResult()
                 .toLocaleString("ja-JP")
     };
 
-    // Google Analytics イベント送信
-    if (typeof gtag === "function")
-    {
-        gtag(
-            "event",
-            "game_clear",
-            {
-                game: "karada",
-                mode: category,
-                miss: result.miss,
-                time: result.time
-            }
-        );
-    }
-
     const updated =
         saveScore(
             "karada",
